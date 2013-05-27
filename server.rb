@@ -5,8 +5,9 @@ get '/upload' do
 end
 
 post '/upload' do
-#  File.open('uploads/' + params['myfile'][:filename], 'w') do |f|
-#    f.write(params['myfile'][:filemame].read)
-#  end
-  return "The file was ignored."
+  file = params['myfile']
+  File.open('public/uploads/' + file[:filename], 'w') do |f|
+    f.write(file[:tempfile].read)
+  end
+  erb :uploaded, locals: {file: file}
 end
