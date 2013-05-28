@@ -1,0 +1,22 @@
+html, body {
+background-color: #301711;
+}
+
+body {
+    background: none;
+}
+.example{
+    border: 6px dashed #412816;
+    border-radius: 20px;
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #FACD3E;
+}
+
+h1 small {
+    color: #412816;
+}
