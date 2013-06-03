@@ -4,7 +4,6 @@ get '/upload' do
   erb :upload
 end
 
-p
 post '/upload' do
   file = params['myfile']
   File.open('public/uploads/' + file[:filename], 'w') do |f|
@@ -36,4 +35,20 @@ def get_mime_type_for(filename)
     else
       'application/octet-stream'
   end
+end
+
+def load_frame_get_actions
+  frame_elements = %w(top bottom left right middle)
+  frame_elements.each do |element|
+    frame_path = "frame_#{element}".to_sym
+    get "/frame_#{element}" do
+      erb frame_path, :layout => false
+    end
+  end
+end
+
+load_frame_get_actions
+
+get '/frames' do
+  erb :frames, :layout => false
 end
