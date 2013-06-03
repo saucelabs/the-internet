@@ -52,3 +52,7 @@ load_frame_get_actions
 get '/frames' do
   erb :frames, :layout => false
 end
+
+get '/tinymce' do
+  erb :tinymce
+end
