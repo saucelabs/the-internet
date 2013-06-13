@@ -25,13 +25,25 @@ get '/download/:filename' do |filename|
     :type => mime_type
 end
 
+get '/download/jqueryui/menu/:filename' do |filename|
+  mime_type = get_mime_type_for(filename)
+
+  send_file "public/uploads/jqueryui/menu/#{filename}",
+    :filename => filename,
+    :type => mime_type
+end
+
 def get_mime_type_for(filename)
   file_type = filename.split('.').last
   case file_type
+    when 'csv'
+      'text/csv'
     when 'jpg'
       'image/jpeg'
     when 'pdf'
       'application/pdf'
+    when 'xls'
+      'application/vnd.ms-excel'
     else
       'application/octet-stream'
   end
@@ -55,4 +67,12 @@ end
 
 get '/tinymce' do
   erb :tinymce
+end
+
+get '/jqueryui/menu' do
+  erb :jqueryui_menu
+end
+
+get '/jqueryui' do
+  erb :jqueryui
 end
