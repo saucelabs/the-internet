@@ -76,3 +76,11 @@ end
 get '/jqueryui' do
   erb :jqueryui
 end
+
+get '/windows' do
+  erb :windows
+end
+
+get '/windows/new' do
+  erb :new_window, :layout => false
+end
