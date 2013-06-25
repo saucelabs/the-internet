@@ -76,3 +76,7 @@ end
 get '/jqueryui' do
   erb :jqueryui
 end
+
+get '/dropdown' do
+  erb :dropdown
+end
