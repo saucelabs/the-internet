@@ -83,4 +83,7 @@ end
 
 get '/windows/new' do
   erb :new_window, :layout => false
+
+get '/dropdown' do
+  erb :dropdown
 end
