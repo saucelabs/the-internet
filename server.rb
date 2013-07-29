@@ -1,4 +1,7 @@
 require 'sinatra'
+require 'sinatra/flash'
+
+enable :sessions
 
 get '/upload' do
   erb :upload
@@ -87,4 +90,21 @@ end
 
 get '/dropdown' do
   erb :dropdown
+end
+
+def random_notification_message
+  messages = [
+    'Action successful',
+    'Action unsuccesful, please try again'
+  ]
+  messages[rand(2)]
+end
+
+get '/notification_message' do
+  flash[:notice] = random_notification_message
+  redirect '/notification_message_rendered'
+end
+
+get '/notification_message_rendered' do
+  erb :notification_message
 end
