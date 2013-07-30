@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    newrelic_rpm (3.6.6.147)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -16,5 +17,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  newrelic_rpm
   sinatra
   sinatra-flash
