@@ -108,3 +108,7 @@ end
 get '/notification_message_rendered' do
   erb :notification_message
 end
+
+get '/abtest' do
+  erb :abtest
+end
