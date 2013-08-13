@@ -1,3 +1,10 @@
+Release 0.8.0
+
+Release date: August 13, 2013
+
++ Added an A/B Testing View that works with Optimizely
+
+
 Release 0.7.2
 
 Release date July 29, 2013
