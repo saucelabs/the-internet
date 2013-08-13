@@ -1,3 +1,10 @@
+0.8.3
+
+Release date: August 13, 2013
+
++ Changed the heading text of the abtest view to more clearly demonstrate when no A/B test has been set or if an opt-out has occurred
+
+
 0.8.2
 
 Release date: August 13, 2013
