@@ -1,3 +1,10 @@
+0.8.2
+
+Release date: August 13, 2013
+
++ Small text change to the view
+
+
 0.8.1
 
 Release date: August 13, 2013
