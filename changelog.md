@@ -1,4 +1,4 @@
-0.8.3
+0.8.3 & 0.8.4
 
 Release date: August 13, 2013
 
