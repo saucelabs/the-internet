@@ -1,3 +1,10 @@
+0.9.0
+
+Release date: August 14, 2013
+
++ Added a basic auth example
+
+
 0.8.3 & 0.8.4
 
 Release date: August 13, 2013
