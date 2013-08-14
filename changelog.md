@@ -1,3 +1,10 @@
+0.9.1
+
+Release date: August 14, 2013
+
++ Added trailing slash to support to the basic auth URL
+
+
 0.9.0
 
 Release date: August 14, 2013
