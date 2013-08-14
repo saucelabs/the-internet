@@ -130,3 +130,8 @@ get '/basic_auth' do
   protected!
   erb :basic_auth
 end
+
+get '/basic_auth/' do
+  protected!
+  erb :basic_auth
+end
