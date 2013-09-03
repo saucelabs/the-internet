@@ -36,6 +36,21 @@ get '/download/jqueryui/menu/:filename' do |filename|
     :type => mime_type
 end
 
+get '/download_secure' do
+  protected!
+  @file_list = Dir.glob("public/uploads/*.*").map { |f| f.split('/').last }
+  erb :download_secure
+end
+
+get '/download_secure/:filename' do |filename|
+  protected!
+  mime_type = get_mime_type_for(filename)
+
+  send_file "public/uploads/#{filename}",
+    :filename => filename,
+    :type => mime_type
+end
+
 def get_mime_type_for(filename)
   file_type = filename.split('.').last
   case file_type
