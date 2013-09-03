@@ -1,3 +1,10 @@
+0.10.0
+
+Release date: September 3, 2013
+
++ Secure File Downloads with Basic Auth
+
+
 0.9.1
 
 Release date: August 14, 2013
