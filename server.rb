@@ -128,6 +128,14 @@ get '/abtest' do
   erb :abtest
 end
 
+get '/abtest_cookies' do
+  erb :abtest_cookies
+end
+
+get '/abtest_manual' do
+  erb :abtest_manual
+end
+
 helpers do
   def protected!
     return if authorized?
