@@ -1,3 +1,10 @@
+0.11.0
+
+Release date: September 8, 2013
+
++ Copy tweak on initial A/B test example
++ Added 2 new views for A/B opt-in examples
+
 0.10.0
 
 Release date: September 3, 2013
