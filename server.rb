@@ -158,3 +158,8 @@ get '/basic_auth/' do
   protected!
   erb :basic_auth
 end
+
+get '/status_codes/:status_code' do |status_code|
+  status status_code
+  body "This page returned a #{status_code} code"
+end
