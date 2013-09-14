@@ -158,3 +158,13 @@ get '/basic_auth/' do
   protected!
   erb :basic_auth
 end
+
+get '/status_codes' do
+  erb :status_codes
+end
+
+get '/status_codes/:status_code' do |status_code|
+  status status_code
+  @status_code = status_code
+  erb :status_code
+end
