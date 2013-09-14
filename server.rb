@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'sinatra/flash'
 
-set :bind, '0.0.0.0'
 enable :sessions
 
 get '/upload' do
@@ -160,7 +159,12 @@ get '/basic_auth/' do
   erb :basic_auth
 end
 
-#get '/status_codes/:status_code' do |status_code|
-##  status status_code
-##  body "This page returned a #{status_code} code"
-#end
+get '/status_codes' do
+  erb :status_codes
+end
+
+get '/status_codes/:status_code' do |status_code|
+  status status_code
+  @status_code = status_code
+  erb :status_code
+end
