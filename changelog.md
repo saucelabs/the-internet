@@ -1,3 +1,10 @@
+0.12.0
+
+Release date: September 14, 2013
+
++ Added HTTP Status Codes (/status_codes) that is dynamic (/status_codes/200, /status_codes/404, etc.)
+
+
 0.11.0
 
 Release date: September 8, 2013
