@@ -168,3 +168,11 @@ get '/status_codes/:status_code' do |status_code|
   @status_code = status_code
   erb :status_code
 end
+
+get '/redirect' do
+  redirect '/status_codes'
+end
+
+get '/redirector' do
+  erb :redirector
+end
