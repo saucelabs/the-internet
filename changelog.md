@@ -1,3 +1,10 @@
+0.13.0
+
+Release date: September 14, 2013
+
++ Added heroku app links to the readme
+
+
 0.12.0
 
 Release date: September 14, 2013
