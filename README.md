@@ -15,6 +15,7 @@ Current behavior available:
 + [JQuery UI Menus](http://the-internet.herokuapp.com/jqueryui/menu)
 + [Multiple Windows](http://the-internet.herokuapp.com/windows)
 + [Notification Messages](http://the-internet.herokuapp.com/notification_message)
++ [Redirect Link](http://the-internet.herokuapp.com/redirector)
 + [Status Codes](http://the-internet.herokuapp.com/status_codes)
 
 
