@@ -1,3 +1,10 @@
+0.14.0
+
+Release date: September 16, 2013
+
++ Pulled in pull requests from jimevans (Thank you!) for JavaScript onload event errors and redirection.
+
+
 0.13.0
 
 Release date: September 14, 2013
