@@ -172,3 +172,11 @@ end
 get '/javascript_error' do
   erb :javascript_error, :layout => false
 end
+
+get '/redirect' do
+  redirect '/status_codes'
+end
+
+get '/redirector' do
+  erb :redirector
+end
