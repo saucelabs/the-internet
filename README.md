@@ -2,9 +2,9 @@
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
-Deployed and available at [http://the-internet.herokuapp.com](http://the-internet.herokuapp.com).  
+Deployed and available at [http://the-internet.herokuapp.com](http://the-internet.herokuapp.com).
 
-Current behavior available:  
+Current behavior available:
 
 + [A/B Testing](http://the-internet.herokuapp.com/abtest)
 + [Basic Auth](http://the-internet.herokuapp.com/basic_auth) (user: admin, password: admin)
@@ -30,6 +30,6 @@ Install your dependencies:
 
 Start the server:
 
-    ruby server.rb
+    shotgun config.ru
 
 

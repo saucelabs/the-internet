@@ -3,6 +3,10 @@ require 'sinatra/flash'
 
 enable :sessions
 
+get '/' do
+  erb :index
+end
+
 get '/upload' do
   erb :upload
 end
