@@ -1,7 +1,26 @@
 require 'sinatra'
 require 'sinatra/flash'
+require 'zurb-foundation'
 
 enable :sessions
+
+configure do
+    Compass.configuration do |config|
+      config.project_path = File.dirname __FILE__
+      config.sass_dir = File.join "views", "scss"
+      config.images_dir = File.join "views", "images"
+      config.http_path = "/"
+      config.http_images_path = "/images"
+      config.http_stylesheets_path = "/stylesheets"
+    end
+
+    set :scss, Compass.sass_engine_options
+end
+
+get "/stylesheets/*.css" do |path|
+    content_type "text/css", charset: "utf-8"
+    scss :"scss/#{path}"
+  end
 
 get '/' do
   erb :index
@@ -183,4 +202,41 @@ end
 
 get '/redirector' do
   erb :redirector
+end
+
+
+get '/login' do
+  erb :login
+end
+
+post "/authenticate" do
+  username = 'username'
+  password = 'password'
+
+  if username == params[:username]
+    if password == params[:password]
+      session[:username] = params[:username]
+      flash[:success] = 'You logged into a secure area!'
+      redirect '/secure'
+    else
+      flash[:error] = 'Your password is invalid!'
+    end
+  else
+    flash[:error] = 'Your username is invalid!'
+  end
+  redirect '/login'
+end
+
+get '/secure' do
+  unless session[:username]
+    flash[:error] = 'You must login to view the secure area!'
+    redirect '/login'
+  end
+  erb :secure
+end
+
+get "/logout" do
+  session[:username] = nil
+  flash[:success] = 'You logged out of the secure area!'
+  redirect "/login"
 end
