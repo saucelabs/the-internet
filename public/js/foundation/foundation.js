@@ -29,6 +29,52 @@ if (typeof jQuery === "undefined" &&
 (function ($, window, document, undefined) {
   'use strict';
 
+  /*
+    matchMedia() polyfill - Test a CSS media 
+    type/query in JS. Authors & copyright (c) 2012: 
+    Scott Jehl, Paul Irish, Nicholas Zakas. 
+    Dual MIT/BSD license
+
+    https://github.com/paulirish/matchMedia.js
+  */
+
+   $('head').append('<meta class="foundation-mq-small">');
+   $('head').append('<meta class="foundation-mq-medium">');
+   $('head').append('<meta class="foundation-mq-large">');
+
+  window.matchMedia = window.matchMedia || (function( doc, undefined ) {
+
+    "use strict";
+
+    var bool,
+        docElem = doc.documentElement,
+        refNode = docElem.firstElementChild || docElem.firstChild,
+        // fakeBody required for <FF4 when executed in <head>
+        fakeBody = doc.createElement( "body" ),
+        div = doc.createElement( "div" );
+
+    div.id = "mq-test-1";
+    div.style.cssText = "position:absolute;top:-100em";
+    fakeBody.style.background = "none";
+    fakeBody.appendChild(div);
+
+    return function(q){
+
+      div.innerHTML = "&shy;<style media=\"" + q + "\"> #mq-test-1 { width: 42px; }</style>";
+
+      docElem.insertBefore( fakeBody, refNode );
+      bool = div.offsetWidth === 42;
+      docElem.removeChild( fakeBody );
+
+      return {
+        matches: bool,
+        media: q
+      };
+
+    };
+
+  }( document ));
+
   // add dusty browser stuff
   if (!Array.prototype.filter) {
     Array.prototype.filter = function(fun /*, thisp */) {
@@ -40,7 +86,7 @@ if (typeof jQuery === "undefined" &&
 
       var t = Object(this),
           len = t.length >>> 0;
-      if (typeof fun != "function") {
+      if (typeof fun !== "function") {
           return;
       }
 
@@ -124,10 +170,17 @@ if (typeof jQuery === "undefined" &&
   window.Foundation = {
     name : 'Foundation',
 
-    version : '4.1.5',
+    version : '4.3.2',
 
-    // global Foundation cache object
     cache : {},
+
+    media_queries : {
+      small : $('.foundation-mq-small').css('font-family').replace(/\'/g, ''),
+      medium : $('.foundation-mq-medium').css('font-family').replace(/\'/g, ''),
+      large : $('.foundation-mq-large').css('font-family').replace(/\'/g, '')
+    },
+
+    stylesheet : $('<style></style>').appendTo('head')[0].sheet,
 
     init : function (scope, libraries, method, options, response, /* internal */ nc) {
       var library_arr,
@@ -145,7 +198,7 @@ if (typeof jQuery === "undefined" &&
       // set foundation global scope
       this.scope = scope || this.scope;
 
-      if (libraries && typeof libraries === 'string') {
+      if (libraries && typeof libraries === 'string' && !/reflow/i.test(libraries)) {
         if (/off/i.test(libraries)) return this.off();
 
         library_arr = libraries.split(' ');
@@ -156,6 +209,8 @@ if (typeof jQuery === "undefined" &&
           }
         }
       } else {
+        if (/reflow/i.test(libraries)) args[1] = 'reflow';
+
         for (var lib in this.libs) {
           responses.push(this.init_lib(lib, args));
         }
@@ -188,6 +243,8 @@ if (typeof jQuery === "undefined" &&
         if (this.libs.hasOwnProperty(lib)) {
           this.patch(this.libs[lib]);
           return this.libs[lib].init.apply(this.libs[lib], args);
+        } else {
+          return function () {};
         }
       }.bind(this), lib);
     },
@@ -221,15 +278,15 @@ if (typeof jQuery === "undefined" &&
     },
 
     random_str : function (length) {
-      var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
+      var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
 
       if (!length) {
-          length = Math.floor(Math.random() * chars.length);
+        length = Math.floor(Math.random() * chars.length);
       }
 
       var str = '';
       for (var i = 0; i < length; i++) {
-          str += chars[Math.floor(Math.random() * chars.length)];
+        str += chars[Math.floor(Math.random() * chars.length)];
       }
       return str;
     },
@@ -340,6 +397,18 @@ if (typeof jQuery === "undefined" &&
         }
 
         return true;
+      },
+
+      addCustomRule : function(rule, media) {
+        if(media === undefined) {
+          Foundation.stylesheet.insertRule(rule, Foundation.stylesheet.cssRules.length);
+        } else {
+          var query = Foundation.media_queries[media];
+          if(query !== undefined) {
+            Foundation.stylesheet.insertRule('@media ' + 
+              Foundation.media_queries[media] + '{ ' + rule + ' }');
+          }
+        }
       }
     },
 
@@ -356,7 +425,7 @@ if (typeof jQuery === "undefined" &&
         return el.outerHeight();
       };
 
-      lib.outerWidth = function (el) {
+      lib.outerWidth = function (el, bool) {
         if (typeof Zepto === 'function') {
           return el.width();
         }
@@ -380,13 +449,7 @@ if (typeof jQuery === "undefined" &&
       return true;
     },
 
-    zj : function () {
-      try {
-        return Zepto;
-      } catch (e) {
-        return jQuery;
-      }
-    }()
+    zj : $
   };
 
   $.fn.foundation = function () {

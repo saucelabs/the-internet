@@ -1,0 +1,43 @@
+// Global Foundation Settings
+@import "settings";
+
+// Comment out this import if you don't want to use normalize
+@import "normalize";
+
+// Comment out this import if you are customizing you imports below
+@import "foundation";
+
+#flash-messages {
+    padding-top: 2em;
+}
+
+.flash {
+    @include alert-base;
+    @include radius($global-radius);
+    .close { @include alert-close; }
+    &:before{
+        font-family: 'FontAwesome', sans-serif;
+    }
+}
+
+.success {
+    @include alert-style($success-color);
+    &:before{
+        content: "\F058";
+    }
+}
+
+.notice {
+    @include alert-style($primary-color);
+    &:before{
+        content: "\F06A";
+    }
+}
+
+.error {
+    @include alert-style($alert-color);
+    &:before{
+        content: "\F057";
+    }
+}
+

@@ -6,7 +6,7 @@
   Foundation.libs.clearing = {
     name : 'clearing',
 
-    version : '4.1.3',
+    version: '4.3.2',
 
     settings : {
       templates : {
@@ -33,7 +33,7 @@
         options = $.extend(true, this.settings, method);
       }
 
-      if (typeof method != 'string') {
+      if (typeof method !== 'string') {
         $(this.scope).find('ul[data-clearing]').each(function () {
           var $el = $(this),
               options = options || {},
@@ -79,9 +79,9 @@
 
             // if clearing is open and the current image is
             // clicked, go to the next image in sequence
-            if (target.hasClass('visible') 
-              && current[0] === target[0] 
-              && next.length > 0 && self.is_open(current)) {
+            if (target.hasClass('visible') && 
+              current[0] === target[0] && 
+              next.length > 0 && self.is_open(current)) {
               target = next;
               image = target.find('img');
             }
@@ -228,7 +228,7 @@
     },
 
     is_open : function (current) {
-      return current.parent().attr('style').length > 0;
+      return current.parent().prop('style').length > 0;
     },
 
     keydown : function (e) {
@@ -388,7 +388,7 @@
 
       if (caption) {
         container
-          .text(caption)
+          .html(caption)
           .show();
       } else {
         container
