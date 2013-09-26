@@ -1,8 +1,19 @@
 <div class="example">
-  <h3>Login Page</h3>
+  <h2>Login Page</h2>
+  <h4 class="subheader">This is where you can log into the secure area. Enter <em>username</em> for the username and <em>password</em> for the password. If the information is wrong you should see error messages.</h4>
   <form name="login" id="login" action="/authenticate" method="post" >
-      <input type="text" name="username" id="username" />
-      <input type="password" name="password" id="password" />
-      <input type="submit" value="Login" />
+     <div class="row">
+      <div class="large-6 small-12 columns">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 small-12 columns">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+    </div>
+      <button class="radius" type="submit"><i class="icon-2x icon-signin"> Login</i></button>
   </form>
 </div>

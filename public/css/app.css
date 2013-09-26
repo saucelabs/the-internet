@@ -7336,24 +7336,40 @@ a.th {
 .flash .close:hover, .flash .close:focus {
   opacity: 0.5;
 }
+/* line 18, ../../views/scss/app.scss */
+.flash:before {
+  font-family: 'FontAwesome', sans-serif;
+}
 
-/* line 20, ../../views/scss/app.scss */
+/* line 23, ../../views/scss/app.scss */
 .success {
   background-color: #5da423;
   border-color: #457a1a;
   color: white;
 }
+/* line 25, ../../views/scss/app.scss */
+.success:before {
+  content: "\F058";
+}
 
-/* line 24, ../../views/scss/app.scss */
+/* line 30, ../../views/scss/app.scss */
 .notice {
   background-color: #2ba6cb;
   border-color: #2284a1;
   color: white;
 }
+/* line 32, ../../views/scss/app.scss */
+.notice:before {
+  content: "\F06A";
+}
 
-/* line 28, ../../views/scss/app.scss */
+/* line 37, ../../views/scss/app.scss */
 .error {
   background-color: #c60f13;
   border-color: #970b0e;
   color: white;
+}
+/* line 39, ../../views/scss/app.scss */
+.error:before {
+  content: "\F057";
 }

@@ -12,20 +12,32 @@
 }
 
 .flash {
-  @include alert-base;
-  @include radius($global-radius);
-  .close { @include alert-close; }
+    @include alert-base;
+    @include radius($global-radius);
+    .close { @include alert-close; }
+    &:before{
+        font-family: 'FontAwesome', sans-serif;
+    }
 }
 
 .success {
     @include alert-style($success-color);
+    &:before{
+        content: "\F058";
+    }
 }
 
 .notice {
     @include alert-style($primary-color);
+    &:before{
+        content: "\F06A";
+    }
 }
 
 .error {
     @include alert-style($alert-color);
+    &:before{
+        content: "\F057";
+    }
 }
 
