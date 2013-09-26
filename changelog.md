@@ -1,3 +1,8 @@
+0.15.1
+
++ Added missing gem to Gemfile (compass)
++ Added Ruby version to Gemfile (1.9.3)
+
 0.15.0
 
 Release date: September 26, 2013
