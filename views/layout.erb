@@ -8,44 +8,39 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>The Internet</title>
-    <!-- These styles should be broken out and made specific for this application. As well as in a scss form. -->
-    <link rel="stylesheet" href="http://elemental-selenium.herokuapp.com/css/styles.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/vendor/custom.modernizr.js"></script>
+    <link href="css/app.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   </head>
   <body>
-    <div id='flash' class='notice'>
-      <center><%= flash[:notice] %></center>
-    </div>
-    <div id='flash' class='error'>
-      <center><%= flash[:error] %></center>
-    </div>
-      <div id='flash' class='success'>
-      <center><%= flash[:success] %></center>
+    <div class="row">
+      <div id="flash-messages" class="large-12 columns">
+      <% %w[notice error success].each do |type| %>
+        <% if flash[type.to_sym] %>
+          <div data-alert id='flash' class='flash <%= type %>'>
+            <%= flash[type.to_sym] %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
     </div>
     <div class="row">
-      <div class="large-12 columns">
-        <h1>The Internet<small> Web Application Patterns</small></h1>
-      </div>
-      <div class="large-12 columns">
+      <div id="content" class="large-12 columns">
         <%= yield %>
       </div>
     </div>
 
     <script>
     document.write('<script src=' +
-    ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+    ('__proto__' in {} ? '/js/vendor/zepto' : '/js/vendor/jquery') +
     '.js><\/script>')
     </script>
-
-    <script src="js/foundation.min.js"></script>
-
+    <script src="/js/foundation/foundation.js"></script>
+    <script src="/js/foundation/foundation.alerts.js"></script>
     <!--
-    <script src="js/foundation/foundation.js"></script>
     <script src="js/foundation/foundation.dropdown.js"></script>
     <script src="js/foundation/foundation.placeholder.js"></script>
     <script src="js/foundation/foundation.forms.js"></script>
-    <script src="js/foundation/foundation.alerts.js"></script>
     <script src="js/foundation/foundation.magellan.js"></script>
     <script src="js/foundation/foundation.reveal.js"></script>
     <script src="js/foundation/foundation.tooltips.js"></script>

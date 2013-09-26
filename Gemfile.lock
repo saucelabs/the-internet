@@ -56,6 +56,7 @@ GEM
     rspec-retry (0.2.1)
       rspec
     rubyzip (0.9.9)
+    sass (3.2.10)
     sauce (2.4.6)
       childprocess (>= 0.1.6)
       cmdparse (>= 2.0.2)
@@ -91,6 +92,8 @@ GEM
     tilt (1.4.1)
     websocket (1.0.7)
     yajl-ruby (1.1.0)
+    zurb-foundation (4.3.2)
+      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
@@ -101,3 +104,4 @@ DEPENDENCIES
   shotgun (~> 0.9)
   sinatra
   sinatra-flash
+  zurb-foundation

@@ -2,9 +2,9 @@
   'use strict';
 
   Foundation.libs.forms = {
-    name: 'forms',
+    name : 'forms',
 
-    version: '4.1.6',
+    version: '4.3.2',
 
     cache: {},
 
@@ -19,7 +19,7 @@
         $.extend(true, this.settings, method);
       }
 
-      if (typeof method != 'string') {
+      if (typeof method !== 'string') {
         if (!this.settings.init) {
           this.events();
         }
@@ -33,12 +33,22 @@
     },
 
     assemble: function () {
-      $('form.custom input[type="radio"]', $(this.scope)).not('[data-customforms="disabled"]')
-        .each(this.append_custom_markup);
-      $('form.custom input[type="checkbox"]', $(this.scope)).not('[data-customforms="disabled"]')
-        .each(this.append_custom_markup);
+
+      var forms = this;
+
+      $('form.custom input[type="radio"],[type="checkbox"]', $(this.scope))
+        .not('[data-customforms="disabled"]')
+        .not('.' + this.settings.disable_class)
+        .each(function(idx, sel){
+          forms.set_custom_markup(sel);
+        })
+        .change(function(){
+          forms.set_custom_markup(this);
+        });
+
       $('form.custom select', $(this.scope))
         .not('[data-customforms="disabled"]')
+        .not('.' + this.settings.disable_class)
         .not('[multiple=multiple]')
         .each(this.append_custom_select);
     },
@@ -57,12 +67,13 @@
           e.stopPropagation();
           self.toggle_radio($(this));
         })
-        .on('change.fndtn.forms', 'form.custom select:not([data-customforms="disabled"])', function (e, force_refresh) {
+        .on('change.fndtn.forms', 'form.custom select', function (e, force_refresh) {
+          if ($(this).is('[data-customforms="disabled"]')) return;
           self.refresh_custom_select($(this), force_refresh);
         })
         .on('click.fndtn.forms', 'form.custom label', function (e) {
           if ($(e.target).is('label')) {
-            var $associatedElement = $('#' + self.escape($(this).attr('for')) + ':not([data-customforms="disabled"])'),
+            var $associatedElement = $('#' + self.escape($(this).attr('for'))).not('[data-customforms="disabled"]'),
               $customCheckbox,
               $customRadio;
 
@@ -71,7 +82,7 @@
                 e.preventDefault();
                 $customCheckbox = $(this).find('span.custom.checkbox');
                 //the checkbox might be outside after the label or inside of another element
-                if ($customCheckbox.length == 0) {
+                if ($customCheckbox.length === 0) {
                   $customCheckbox = $associatedElement.add(this).siblings('span.custom.checkbox').first();
                 }
                 self.toggle_checkbox($customCheckbox);
@@ -79,13 +90,16 @@
                 e.preventDefault();
                 $customRadio = $(this).find('span.custom.radio');
                 //the radio might be outside after the label or inside of another element
-                if ($customRadio.length == 0) {
+                if ($customRadio.length === 0) {
                   $customRadio = $associatedElement.add(this).siblings('span.custom.radio').first();
                 }
                 self.toggle_radio($customRadio);
               }
             }
           }
+        })
+        .on('mousedown.fndtn.forms', 'form.custom div.custom.dropdown', function () {
+          return false;
         })
         .on('click.fndtn.forms', 'form.custom div.custom.dropdown a.current, form.custom div.custom.dropdown a.selector', function (e) {
           var $this = $(this),
@@ -133,7 +147,7 @@
               .text($this.text());
 
             $this.closest('ul').find('li').each(function (index) {
-              if ($this[0] == this) {
+              if ($this[0] === this) {
                 selectedIndex = index;
               }
             });
@@ -141,22 +155,37 @@
 
             //store the old value in data
             $select.data('prevalue', $oldThis.html());
-            $select.trigger('change');
+            
+            // Kick off full DOM change event
+            if (typeof (document.createEvent) != 'undefined') {
+              var event = document.createEvent('HTMLEvents');
+              event.initEvent('change', true, true);
+              $select[0].dispatchEvent(event);
+            } else {
+              $select[0].fireEvent('onchange'); // for IE
+            }
           }
       });
 
       $(window).on('keydown', function (e) {
         var focus = document.activeElement,
             self = Foundation.libs.forms,
-            dropdown = $('.custom.dropdown.open');
+            dropdown = $('.custom.dropdown'),
+      select = getFirstPrevSibling(dropdown, 'select'),
+      inputs = $('input,select,textarea,button'); // Zepto-compatible jQuery(":input")
 
-        if (dropdown.length > 0) {
+        if (dropdown.length > 0 && dropdown.hasClass('open')) {
           e.preventDefault();
+
+      if (e.which === 9) {
+          $(inputs[$(inputs).index(select) + 1]).focus();
+        dropdown.removeClass('open');
+      }
 
           if (e.which === 13) {
             dropdown.find('li.selected').trigger('click');
           }
-          
+
           if (e.which === 27) {
             dropdown.removeClass('open');
           }
@@ -193,17 +222,26 @@
         }
       });
 
+    $(window).on('keyup', function (e) {
+          var focus = document.activeElement,
+              dropdown = $('.custom.dropdown');
+
+      if (focus === dropdown.find('.current')[0]) {
+        dropdown.find('.selector').focus().click();
+      }
+    });
+
       this.settings.init = true;
     },
 
-    go_to: function (dropdown, char) {
+    go_to: function (dropdown, character) {
       var lis = dropdown.find('li'),
           count = lis.length;
 
       if (count > 0) {
         for (var i = 0; i < count; i++) {
           var first_letter = lis.eq(i).text().charAt(0).toLowerCase();
-          if (first_letter === String.fromCharCode(char).toLowerCase()) return lis.eq(i);
+          if (first_letter === String.fromCharCode(character).toLowerCase()) return lis.eq(i);
         }
       }
     },
@@ -223,11 +261,11 @@
       }.bind(this), 10);
     },
 
-    append_custom_markup: function (idx, sel) {
+    set_custom_markup: function (sel) {
       var $this = $(sel),
           type = $this.attr('type'),
           $span = $this.next('span.custom.' + type);
-
+          
       if (!$this.parent().hasClass('switch')) {
         $this.addClass('hidden-field');
       }
@@ -255,27 +293,26 @@
             $listItems,
             $currentSelect = false;
 
-        if ($this.hasClass(self.settings.disable_class)) return;
-
         if ($customSelect.length === 0) {
           var customSelectSize = $this.hasClass('small') ? 'small' : $this.hasClass('medium') ? 'medium' : $this.hasClass('large') ? 'large' : $this.hasClass('expand') ? 'expand' : '';
 
           $customSelect = $('<div class="' + ['custom', 'dropdown', customSelectSize].concat(copyClasses).filter(function (item, idx, arr) {
-            if (item == '') return false;
-            return arr.indexOf(item) == idx;
+            if (item === '') return false;
+            return arr.indexOf(item) === idx;
           }).join(' ') + '"><a href="#" class="selector"></a><ul /></div>');
 
           $selector = $customSelect.find(".selector");
           $customList = $customSelect.find("ul");
 
           liHtml = $options.map(function () {
-            return "<li>" + $(this).html() + "</li>";
+            var copyClasses = $(this).attr('class') ? $(this).attr('class') : '';
+            return "<li class='" + copyClasses + "'>" + $(this).html() + "</li>";
           }).get().join('');
 
           $customList.append(liHtml);
 
           $currentSelect = $customSelect
-            .prepend('<a href="#" class="current">' + $selectedOption.html() + '</a>')
+            .prepend('<a href="#" class="current">' + ($selectedOption.html() || '') + '</a>')
             .find(".current");
 
           $this.after($customSelect)
@@ -353,30 +390,27 @@
       var maxWidth = 0,
           $customSelect = $select.next(),
           $options = $select.find('option'),
+          $customList = $customSelect.find('ul'),
           $listItems = $customSelect.find('li');
 
-      if ($listItems.length != this.cache[$customSelect.data('id')] || force_refresh) {
-        $customSelect.find('ul').html('');
+      if ($options.length !== this.cache[$customSelect.data('id')] || force_refresh) {
+        $customList.html('');
 
+        // rebuild and re-populate all at once
+        var customSelectHtml = '';
         $options.each(function () {
-          var $li = $('<li>' + $(this).html() + '</li>');
-          $customSelect.find('ul').append($li);
+          var $this = $(this), thisHtml = $this.html(), thisSelected = this.selected;
+          customSelectHtml += '<li class="' + (thisSelected ? ' selected ' : '') + ($this.is(':disabled') ? ' disabled ' : '') + '">' + thisHtml + '</li>';
+          if (thisSelected) {
+            $customSelect.find('.current').html(thisHtml);
+          }
         });
 
-        // re-populate
-        $options.each(function (index) {
-          if (this.selected) {
-            $customSelect.find('li').eq(index).addClass('selected');
-            $customSelect.find('.current').html($(this).html());
-          }
-          if ($(this).is(':disabled')) {
-            $customSelect.find('li').eq(index).addClass('disabled');
-          }
-        });
+        $customList.html(customSelectHtml);
 
         // fix width
-        $customSelect.removeAttr('style')
-          .find('ul').removeAttr('style');
+        $customSelect.removeAttr('style');
+        $customList.removeAttr('style');
         $customSelect.find('li').each(function () {
           $customSelect.addClass('open');
           if (self.outerWidth($(this)) > maxWidth) {
@@ -389,6 +423,11 @@
         // cache list length
         this.cache[$customSelect.data('id')] = $listItems.length;
       }
+    },
+    
+    refresh_custom_selection: function ($select) {
+      var selectedValue = $('option:selected', $select).text();
+      $('a.current', $select.next()).text(selectedValue);
     },
 
     toggle_checkbox: function ($element) {
@@ -423,6 +462,7 @@
     },
 
     escape: function (text) {
+      if (!text) return '';
       return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     },
 
@@ -445,7 +485,8 @@
           var _self = this;
 
           // Set all hidden parent elements, including this element.
-          _self.hidden = $child.parents().andSelf().filter(":hidden");
+          _self.hidden = $child.parents();
+          _self.hidden = _self.hidden.add($child).filter(":hidden");
 
           // Loop through all hidden elements.
           _self.hidden.each(function () {
@@ -499,7 +540,9 @@
 
     off: function () {
       $(this.scope).off('.fndtn.forms');
-    }
+    },
+
+    reflow : function () {}
   };
 
   var getFirstPrevSibling = function($el, selector) {
