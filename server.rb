@@ -1,7 +1,13 @@
 require 'sinatra'
 require 'sinatra/flash'
+require 'zurb-foundation'
+require 'compass'
 
 enable :sessions
+
+get '/' do
+  erb :index
+end
 
 get '/upload' do
   erb :upload
@@ -166,7 +172,7 @@ end
 get '/status_codes/:status_code' do |status_code|
   status status_code
   @status_code = status_code
-  erb :status_code
+  erb :status_code, :layour => true
 end
 
 get '/javascript_error' do
@@ -179,4 +185,41 @@ end
 
 get '/redirector' do
   erb :redirector
+end
+
+
+get '/login' do
+  erb :login
+end
+
+post "/authenticate" do
+  username = 'username'
+  password = 'password'
+
+  if username == params[:username]
+    if password == params[:password]
+      session[:username] = params[:username]
+      flash[:success] = 'You logged into a secure area!'
+      redirect '/secure'
+    else
+      flash[:error] = 'Your password is invalid!'
+    end
+  else
+    flash[:error] = 'Your username is invalid!'
+  end
+  redirect '/login'
+end
+
+get '/secure' do
+  unless session[:username]
+    flash[:error] = 'You must login to view the secure area!'
+    redirect '/login'
+  end
+  erb :secure
+end
+
+get "/logout" do
+  session[:username] = nil
+  flash[:success] = 'You logged out of the secure area!'
+  redirect "/login"
 end
