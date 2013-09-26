@@ -13,6 +13,7 @@ Current behavior available:
 + [Frames](http://the-internet.herokuapp.com/frames)
 + [JavaScript onload event error](http://the-internet.herokuapp.com/javascript_error)
 + [JQuery UI Menus](http://the-internet.herokuapp.com/jqueryui/menu)
++ [Form Authentication](http://the-internet.herokuapp.com/login)
 + [Multiple Windows](http://the-internet.herokuapp.com/windows)
 + [Notification Messages](http://the-internet.herokuapp.com/notification_message)
 + [Redirect Link](http://the-internet.herokuapp.com/redirector)
