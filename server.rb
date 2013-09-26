@@ -172,7 +172,7 @@ end
 get '/status_codes/:status_code' do |status_code|
   status status_code
   @status_code = status_code
-  erb :status_code
+  erb :status_code, :layour => true
 end
 
 get '/javascript_error' do
