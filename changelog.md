@@ -1,3 +1,12 @@
+0.15.0
+
+Release date: September 26, 2013
+
++ Added form authentication
++ Updated styles
++ Added basic test framework with ckit
+
+
 0.14.0
 
 Release date: September 16, 2013
