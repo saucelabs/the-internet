@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/flash'
 require 'zurb-foundation'
@@ -177,6 +178,10 @@ end
 
 get '/javascript_error' do
   erb :javascript_error, :layout => false
+end
+
+get '/javascript_alert' do
+  erb :javascript_alert
 end
 
 get '/redirect' do
