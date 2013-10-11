@@ -12,6 +12,7 @@ Current behavior available:
 + [File Upload](http://the-internet.herokuapp.com/upload)
 + [Frames](http://the-internet.herokuapp.com/frames)
 + [JavaScript onload event error](http://the-internet.herokuapp.com/javascript_error)
++ [JavaScript Alerts](http://the-internet.herokuapp.com/javascript_alert)
 + [JQuery UI Menus](http://the-internet.herokuapp.com/jqueryui/menu)
 + [Form Authentication](http://the-internet.herokuapp.com/login)
 + [Multiple Windows](http://the-internet.herokuapp.com/windows)
