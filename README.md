@@ -1,4 +1,4 @@
-# The Internet 0.15.1 (2013-09-26)
+# The Internet 0.16.0 (2013-10-11)
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
@@ -12,6 +12,7 @@ Current behavior available:
 + [File Upload](http://the-internet.herokuapp.com/upload)
 + [Frames](http://the-internet.herokuapp.com/frames)
 + [JavaScript onload event error](http://the-internet.herokuapp.com/javascript_error)
++ [JavaScript Alerts](http://the-internet.herokuapp.com/javascript_alert)
 + [JQuery UI Menus](http://the-internet.herokuapp.com/jqueryui/menu)
 + [Form Authentication](http://the-internet.herokuapp.com/login)
 + [Multiple Windows](http://the-internet.herokuapp.com/windows)

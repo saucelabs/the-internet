@@ -1,3 +1,7 @@
+0.16.1
+
++ Pulled in JavaScript Alerts pull request
+
 0.15.1
 
 + Added missing gem to Gemfile (compass)
