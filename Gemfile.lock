@@ -108,6 +108,7 @@ DEPENDENCIES
   chemistrykit
   compass
   newrelic_rpm
+  rake
   shotgun (~> 0.9)
   sinatra
   sinatra-flash
