@@ -1,4 +1,4 @@
-# The Internet 0.16.0 (2013-10-11)
+# The Internet 0.17.0 (2013-10-24)
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
@@ -22,7 +22,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Status Codes](http://the-internet.herokuapp.com/status_codes)
 
 
-Don't see an example you need? Contribute!
+Don't see an example you need or think should be here? Contribute!
 
 ##Contribution Guidelines
 
