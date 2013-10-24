@@ -1,0 +1,36 @@
+# The Internet 0.16.0 (2013-10-11)
+
+An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
+
+Deployed and available at [http://the-internet.herokuapp.com](http://the-internet.herokuapp.com).
+
+## Available Examples:
+
+<%= examples %>
+
+Don't see an example you need? Contribute!
+
+##Contribution Guidelines
+
+tldr;
+
+1. Fork
+2. Build Something
+3. Submit a Pull Request
+4. High Five!
+
+This project conforms to the [neverstopbuilding/craftsmanship](https://github.com/neverstopbuilding/craftsmanship) guidelines for. Please see that repository for details on project administration.
+
+##Getting Started
+
+Install your dependencies:
+
+    bundle install
+
+Start the server:
+
+    rackup
+
+Load the page you want to see in your browser:
+
+    http://localhost:9292/url_path

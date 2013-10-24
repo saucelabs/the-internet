@@ -1,0 +1,15 @@
+title,url_path,notes
+A/B Testing,/abtest
+Basic Auth,/basic_auth,user and pass: admin
+File Download,/download
+File Upload,/upload
+Frames,/frames
+JavaScript onload event error,/javascript_error
+JavaScript Alerts,/javascript_alerts
+JQuery UI Menus,/jqueryui/menu
+Form Authentication,/login
+Multiple Windows,/windows
+Notification Messages,/notification_message
+Redirect Link,/redirector
+Status Codes,/status_codes
+Dynamic Loading,/dynamic_loading
