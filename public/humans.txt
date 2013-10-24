@@ -1,5 +1,5 @@
-/* The Internet was made by Arrgyle */
-/* arrgyle.com */
+/* The Internet was made by Dave Haeffner */
+/* davehaeffner.com */
 /* humanstxt.org */
 
 /* SITE */
