@@ -223,8 +223,12 @@ get '/secure' do
   erb :secure
 end
 
-get "/logout" do
+get '/logout' do
   session[:username] = nil
   flash[:success] = 'You logged out of the secure area!'
   redirect "/login"
+end
+
+get '/dynamic_loading' do
+  erb :dynamic_loading
 end
