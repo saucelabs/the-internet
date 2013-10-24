@@ -2,9 +2,9 @@
 
 Release date: October 24, 2013
 
-+ Added Available examples to the Index page
-+ Did this by adding a generator to create markdown and HTML version of available examples (alphabetically by title) from a central CSV file and inject them in the right places
-+ Renamed javascript_alert to javascript_alerts since there are multiple
++ Added available examples with links to the Index page
++ Added a Rake generator to create markdown and HTML versions of examples and their URLs from a central CSV file (sorted alphabetically by title) and inject them where needed
++ Renamed javascript_alert to javascript_alerts since there are multiple examples in one
 + Added a missing view for the Multiple Windows example
 + Added a Dynamic Loading example
 
