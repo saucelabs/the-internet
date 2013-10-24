@@ -180,8 +180,8 @@ get '/javascript_error' do
   erb :javascript_error, :layout => false
 end
 
-get '/javascript_alert' do
-  erb :javascript_alert
+get '/javascript_alerts' do
+  erb :javascript_alerts
 end
 
 get '/redirect' do
@@ -191,7 +191,6 @@ end
 get '/redirector' do
   erb :redirector
 end
-
 
 get '/login' do
   erb :login
