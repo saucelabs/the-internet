@@ -1,0 +1,34 @@
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+<script>
+  $( document ).ready(function() {
+    $('#finish').hide();
+  });
+
+  $(function(){
+    $('#start button').click(function(){
+      $('#start').hide();
+      $('#start').before("<div id='loading'>Loading... <img src='/img/ajax-loader.gif'></div>");
+      setTimeout(function() {
+        $('#loading').hide();
+        $('#finish').show();
+      } , 1000 );
+    });
+  });
+</script>
+
+<div class='example'>
+  <h3>Dynamically Loaded Page Elements</h3>
+  <p>It's common for you to see something like this -- an action gets triggered that returns a result dynamically. It does not rely on the page to reload or finish loading. The page automatically gets updated (e.g. hiding elements, showing elements, updating copy, etc) through the use of JavaScript.</p>
+
+  </br>
+
+  <div id='start'>
+    <button>Start</button>
+  </div>
+
+  <div id='finish'>
+    <h4>Hello World!</h4>
+  </div>
+
+  </br>
+</div>
