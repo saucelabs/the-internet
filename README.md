@@ -22,7 +22,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Status Codes](http://the-internet.herokuapp.com/status_codes)
 
 
-Don't see an example you need? Contribute!
+Don't see an example you need or think should be here? Contribute!
 
 ##Contribution Guidelines
 
