@@ -231,3 +231,11 @@ end
 get '/dynamic_loading' do
   erb :dynamic_loading
 end
+
+get '/dynamic_loading/1' do
+  erb :dynamic_loading_1
+end
+
+get '/dynamic_loading/2' do
+  erb :dynamic_loading_2
+end

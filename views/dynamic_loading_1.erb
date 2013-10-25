@@ -1,0 +1,29 @@
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+<script>
+  $(function(){
+    $('#start button').click(function(){
+      $('#start').hide();
+      $('#start').before("<div id='loading'>Loading... <img src='/img/ajax-loader.gif'></div>");
+      setTimeout(function() {
+        $('#loading').hide();
+        $('#finish').show();
+      } , 5000 );
+    });
+  });
+</script>
+
+<div class='example'>
+  <h3>Dynamically Loaded Page Elements</h3>
+  <h4>Example 1: Element on page that is hidden</h4>
+
+  </br>
+
+  <div id='start'>
+    <button>Start</button>
+  </div>
+
+  <div id='finish' style='display:none'>
+    <h4>Hello World!</h4>
+  </div>
+
+</div>
