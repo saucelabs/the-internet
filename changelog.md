@@ -1,3 +1,9 @@
+#0.17.1
+
+Release date: October 25, 2013
+
++ Increased the time to display the loading bar on the Dynamic Loading example from 1 second to 5 seconds
+
 #0.17.0
 
 Release date: October 24, 2013
