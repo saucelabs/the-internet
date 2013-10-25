@@ -1,3 +1,9 @@
+#0.18.0
+
+Release date: October 25, 2013
+
++ Broke apart the Dynamic Loading example into 2 examples and a base description page to help account for different automation use cases
+
 #0.17.2
 
 Release date: October 25,2013
