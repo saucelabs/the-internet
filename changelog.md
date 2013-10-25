@@ -1,8 +1,16 @@
+#0.17.2
+
+Release date: October 25,2013
+
++ Changed the method used to hide elements on load in the Dynamic Loading example (from JQuery to CSS) which fixes a small flit of the hidden text when initially rendering the page.
+
+
 #0.17.1
 
 Release date: October 25, 2013
 
 + Increased the time to display the loading bar on the Dynamic Loading example from 1 second to 5 seconds
+
 
 #0.17.0
 
