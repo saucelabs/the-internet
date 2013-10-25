@@ -1,0 +1,28 @@
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+<script>
+  $(function(){
+    $('#start button').click(function(){
+      $('#start').hide();
+      $('#start').before("<div id='loading'>Loading... <img src='/img/ajax-loader.gif'></div>");
+      setTimeout(function() {
+        $('#loading').hide();
+        $('#loading').before("<div id='finish' style='display:none'><h4>Hello World!</h4></div>")
+        $('#finish').show();
+      } , 5000 );
+    });
+  });
+</script>
+
+<div class='example'>
+  <h3>Dynamically Loaded Page Elements</h3>
+  <h4>Example 2: Element rendered after the fact</h4>
+
+  </br>
+
+  <div id='start'>
+    <button>Start</button>
+  </div>
+
+
+  </br>
+</div>
