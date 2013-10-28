@@ -1,4 +1,4 @@
-tests/evidence/**/*
+tests/evidence/
 .sass-cache
 *.swp
 .DS_Store
