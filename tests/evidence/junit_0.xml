@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites errors="0" failures="0" skipped="0" tests="1" time="17.175327" timestamp="2013-09-25T18:54:42-03:00">
+  <testsuite name="home_page" tests="1" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="home_page_lite_account" time="16.517601">
+    </testcase>
+  </testsuite>
+</testsuites>

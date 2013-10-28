@@ -1,0 +1,39 @@
+# Default Chemisty Kit Configuration File
+
+base_url: http://localhost:9292 #change to the base url of your system under test
+retries_on_failure: 1 #defaults to 1, set the number of times a test should be retried on failure
+concurrency: 1
+selenium_connect:
+    #Setup & Debugging
+    jar:
+
+    #Where to run your tests
+    host: 'localhost'
+    port: #set to 4444 by default
+
+    #Browser & Host
+    browser:      'firefox'
+    browser_path:
+    profile_path:
+    profile_name:
+
+    #Saucelabs
+    sauce_username:
+    sauce_api_key:
+    api_timeout:
+    sauce_opts:
+        os:
+        browser_version:
+        job_name:
+
+# Uncomment the below to set up a basic authentication call for your tests
+# basic_auth:
+#    username: 'user'
+#    password: 'pass'
+#    http_path: '/basic'
+#    https_path: '/secure'
+
+# Uncomment the below if you use optimizely in your test environment and want to opt out of it
+# split_testing:
+#     provider: 'optimizely'
+#     opt_out: true
