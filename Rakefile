@@ -1,3 +1,8 @@
+desc' Runs Acceptance Tests'
+task :test do
+  system('cd tests && sudo bundle exec ckit brew')
+end
+
 task :update_docs  do
   update_readme
   update_examples_view
