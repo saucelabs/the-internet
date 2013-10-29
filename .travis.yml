@@ -7,8 +7,8 @@ env:
   - secure: ThT+7URsGZdtD0hgKFhjk/7MYGbRYyOF4lBVvBiI1bu8J9LtuipiChqDfLRYsnds6822ezEkLSrst8466EFwvcE0N+YNBPVpUiStDfPGOhvzvwj5/KXo2pEo2uWui7zuE6dgpbO6dNmU5UIf5KgXIdHL5z34i6nmmTyJPr7xTd4=
 script: cd tests && bundle exec ckit brew
 before_script:
-  - rackup  # start a Web server
-  - sleep 3 # give Web server some time to bind to sockets, etc
+  - bundle rackup   # start a Web server
+  - sleep 3         # give Web server some time to bind to sockets, etc
 addons:
   sauce_connect: true
 notifications:
