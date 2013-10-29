@@ -18,14 +18,15 @@ selenium_connect:
     profile_name:
 
     #Saucelabs
-    sauce_username: <%= ENV['SAUCE_USERNAME']   %>
-    sauce_api_key:  <%= ENV['SAUCE_ACCESS_KEY'] %>
+    sauce_username: %{ ENV['SAUCE_USERNAME']   }
+    sauce_api_key:  %{ ENV['SAUCE_ACCESS_KEY'] }
     api_timeout:
     sauce_opts:
         os:
         browser_version:
         job_name:
-        build:  <%= ENV['TRAVIS_BUILD_NUMBER'] %>
+        build:  %{ ENV['TRAVIS_BUILD_NUMBER'] }
+        'tunnel-identifier' =>  %{ ENV['TRAVIS_JOB_NUMBER'] }
 
 # Uncomment the below to set up a basic authentication call for your tests
 # basic_auth:
