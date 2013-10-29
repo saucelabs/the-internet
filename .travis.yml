@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+- 1.9.3
+env:
+  global:
+  - secure: bTt4z3xLSBtSreoKDlHuUsf4rAufSmeW9cfB3/hduOuN3rtq7l/OztycKVsoOwAln+QscKpsydmsgzrNtbLe+s4HtUiojqCMWxWkkI5WvOkBuatMWpt2xoQPWZxXhx3n4nDoOO4iV2xVWSCn9Mdg9ZDhps/buX6aXuvoqUhT0ks=
+  - secure: ThT+7URsGZdtD0hgKFhjk/7MYGbRYyOF4lBVvBiI1bu8J9LtuipiChqDfLRYsnds6822ezEkLSrst8466EFwvcE0N+YNBPVpUiStDfPGOhvzvwj5/KXo2pEo2uWui7zuE6dgpbO6dNmU5UIf5KgXIdHL5z34i6nmmTyJPr7xTd4=
+script: cd tests && bundle exec ckit brew
+before_script:
+- curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
