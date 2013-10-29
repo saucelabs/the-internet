@@ -26,7 +26,7 @@ selenium_connect:
         browser_version:
         job_name:
         build:                  <%= build %>
-        'tunnel-identifier':    <%= tunnel_identifier %>
+        'tunnel-identifier':    '<%= tunnel_identifier %>'
 
 # Uncomment the below to set up a basic authentication call for your tests
 # basic_auth:
