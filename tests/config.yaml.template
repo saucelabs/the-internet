@@ -22,7 +22,7 @@ selenium_connect:
     sauce_api_key:  <%= sauce_api_key %>
     api_timeout:
     sauce_opts:
-        os:
+        os: 'OSX 10.6'
         browser_version: '23'
         job_name:
         build:                  <%= build %>
