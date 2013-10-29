@@ -3,8 +3,8 @@ describe "File", :depth => 'shallow' do
   let(:upload) { @formula_lab.mix 'upload' }
 
   it 'Upload' do
-    upload.file '~/fake_image.jpg'
-    upload.uploaded_image_source.should =~ /fake_image.jpg/
+    upload.file File.join(File.dirname(__FILE__), '../public/img/', 'avatar.jpg')
+    upload.uploaded_image_source.should =~ /avatar.jpg/
   end
 
   #it 'Download' do
