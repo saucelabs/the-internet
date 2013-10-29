@@ -8,7 +8,7 @@ selenium_connect:
     jar:
 
     #Where to run your tests
-    host: 'localhost'
+    host: 'saucelabs'
     port: #set to 4444 by default
 
     #Browser & Host
@@ -18,13 +18,14 @@ selenium_connect:
     profile_name:
 
     #Saucelabs
-    sauce_username:
-    sauce_api_key:
+    sauce_username: <%= ENV['SAUCE_USERNAME']   %>
+    sauce_api_key:  <%= ENV['SAUCE_ACCESS_KEY'] %>
     api_timeout:
     sauce_opts:
         os:
         browser_version:
         job_name:
+        build:  <%= ENV['TRAVIS_BUILD_NUMBER'] %>
 
 # Uncomment the below to set up a basic authentication call for your tests
 # basic_auth:
