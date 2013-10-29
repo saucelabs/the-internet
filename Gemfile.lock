@@ -148,7 +148,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chemistrykit
+  chemistrykit (~> 3.10.0)
   compass
   rake
   shotgun (~> 0.9)
