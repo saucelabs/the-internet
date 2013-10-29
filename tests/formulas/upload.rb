@@ -16,7 +16,7 @@ module Formulas
       submit FILE_UPLOAD_FORM
     end
 
-    def uploaded_image_source
+    def uploaded_file_attribute
       attribute_for({css: 'img'}, 'src')
     end
 

@@ -1,10 +1,11 @@
 describe "File", :depth => 'shallow' do
 
-  let(:upload) { @formula_lab.mix 'upload' }
+  let(:upload)  { @formula_lab.mix 'upload' }
+  let(:image)   {File.join(File.dirname(__FILE__), '../public/img/', 'avatar.jpg')  }
 
   it 'Upload' do
-    upload.file File.join(File.dirname(__FILE__), '../public/img/', 'avatar.jpg')
-    upload.uploaded_image_source.should =~ /avatar.jpg/
+    upload.file image
+    upload.uploaded_file_attribute.should =~ /avatar.jpg/
   end
 
   #it 'Download' do
