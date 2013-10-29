@@ -8,8 +8,8 @@ env:
 script: cd tests && bundle exec ckit brew
 before_script:
   - bundle exec rake generate_test_config
-  - bundle exec rackup    # start a Web server
-  - sleep 3               # give Web server some time to bind to sockets, etc
+  - bundle exec rackup &    # start a Web server
+  - sleep 3                 # give Web server some time to bind to sockets, etc
 addons:
   sauce_connect: true
 notifications:
