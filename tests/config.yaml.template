@@ -23,7 +23,7 @@ selenium_connect:
     api_timeout:
     sauce_opts:
         os:
-        browser_version:
+        browser_version: '23'
         job_name:
         build:                  <%= build %>
         'tunnel-identifier':    '<%= tunnel_identifier %>'
