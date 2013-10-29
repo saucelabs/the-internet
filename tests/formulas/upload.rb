@@ -17,7 +17,7 @@ module Formulas
     end
 
     def uploaded_image_source
-      attribute_for css: 'img', 'src'
+      attribute_for({css: 'img'}, 'src')
     end
 
   end

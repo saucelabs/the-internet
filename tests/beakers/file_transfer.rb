@@ -4,7 +4,7 @@ describe "File", :depth => 'shallow' do
 
   it 'Upload' do
     upload.file '~/fake_image.jpg'
-    upload.uploaded_image_source.should =~ /fake_imae.jpg/
+    upload.uploaded_image_source.should =~ /fake_image.jpg/
   end
 
   #it 'Download' do
