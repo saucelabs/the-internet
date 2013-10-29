@@ -22,11 +22,12 @@ selenium_connect:
     sauce_api_key:  <%= sauce_api_key %>
     api_timeout:
     sauce_opts:
-        os: 'OSX 10.6'
+        os:
         browser_version: '23'
         job_name:
         build:                  <%= build %>
         'tunnel-identifier':    '<%= tunnel_identifier %>'
+        'selenium-version':     '2.36.0'
 
 # Uncomment the below to set up a basic authentication call for your tests
 # basic_auth:
