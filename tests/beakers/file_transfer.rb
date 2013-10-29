@@ -5,7 +5,9 @@ describe "File", :depth => 'shallow' do
     wait_for { displayed? id: 'file-upload' }
     type id: 'file-upload', '/Users/more/Desktop/fake_image.jpg'
     submit id: 'file-upload'
-    attribute_for(css: 'img', 'src').should =~ /fake_image.jpg/
+
+    uploaded_image = attribute_for css: 'img', 'src'
+    uploaded_image.should =~ /fake_image.jpg/
   end
 
   it 'Download' do
