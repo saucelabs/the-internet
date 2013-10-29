@@ -1,6 +1,6 @@
 describe "File", :depth => 'shallow' do
 
-  let(:upload) { @formula_lab.mix upload }
+  let(:upload) { @formula_lab.mix 'upload' }
 
   it 'Upload' do
     upload.file '~/fake_image.jpg'
