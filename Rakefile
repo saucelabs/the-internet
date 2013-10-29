@@ -1,4 +1,14 @@
-desc' Runs Acceptance Tests'
+desc 'Generate test config file (used by Travis CI)'
+task :generate_test_config do
+  config_file_text = File.read('tests/config.yaml.template')
+  config_file_text.gsub!(/<%= sauce_username %>/, ENV['SAUCE_USERNAME'])
+  config_file_text.gsub!(/<%= sauce_api_key %>/, ENV['SAUCE_ACCESS_KEY'])
+  config_file_text.gsub!(/<%= build %>/, ENV['TRAVIS_BUILD_NUMBER'])
+  config_file_text.gsub!(/<%= tunnel_identifier %>/, ENV['TRAVIS_JOB_NUMBER'])
+  File.open('tests/config.yaml', 'w') { |file| file.puts config_file_text }
+end
+
+desc 'Runs Acceptance Tests'
 task :test do
   system('cd tests && sudo bundle exec ckit brew')
 end

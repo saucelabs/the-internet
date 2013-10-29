@@ -1,3 +1,4 @@
+tests/config.yaml
 tests/evidence/
 .sass-cache
 *.swp
