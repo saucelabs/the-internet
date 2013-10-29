@@ -8,6 +8,10 @@ attr_reader :driver
     @driver = driver
   end
 
+  def current_url
+    driver.current_url
+  end
+
   def visit(destination_url)
     if destination_url.include? 'http'
       url = destination_url
