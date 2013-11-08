@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.3.5)
+    backports (3.3.5)
     builder (3.2.2)
     chemistrykit (3.10.0)
       builder (~> 3.2.2)
@@ -19,29 +21,55 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.2.8)
     cmdparse (2.0.5)
+    coderay (1.0.9)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
     diff-lcs (1.2.4)
+    ethon (0.6.1)
+      ffi (>= 1.3.0)
+      mime-types (~> 1.18)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     ffi (1.9.0)
     fssm (0.2.10)
+    gh (0.13.0)
+      addressable
+      backports
+      faraday (~> 0.8)
+      multi_json (~> 1.0)
+      net-http-persistent (>= 2.7)
+      net-http-pipeline
     highline (1.6.19)
     json (1.8.0)
+    launchy (2.3.0)
+      addressable (~> 2.3)
+    method_source (0.8.2)
     mime-types (1.25)
     mini_portile (0.5.1)
     multi_json (1.8.0)
+    multipart-post (1.2.0)
     net-http-persistent (2.9)
+    net-http-pipeline (1.0.1)
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.6.7.159)
+    netrc (0.7.7)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     parallel (0.7.1)
     parallel_tests (0.15.4)
       parallel
     posix-spawn (0.3.6)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pusher-client (0.4.0)
+      websocket (~> 1.0.0)
     pygments.rb (0.5.2)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
@@ -93,9 +121,24 @@ GEM
       tilt (~> 1.3, >= 1.3.4)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
+    slop (3.4.6)
     syntax (1.0.0)
     thor (0.17.0)
     tilt (1.4.1)
+    travis (1.5.8)
+      addressable (~> 2.3)
+      backports
+      faraday (~> 0.8.7)
+      faraday_middleware (~> 0.9)
+      gh (~> 0.13)
+      highline (~> 1.6)
+      launchy (~> 2.1)
+      netrc (~> 0.7)
+      pry (~> 0.9)
+      pusher-client (~> 0.4)
+      typhoeus (~> 0.6)
+    typhoeus (0.6.5)
+      ethon (~> 0.6.1)
     websocket (1.0.7)
     yajl-ruby (1.1.0)
     zurb-foundation (4.3.2)
@@ -105,11 +148,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chemistrykit
+  chemistrykit (~> 3.10.0)
   compass
-  newrelic_rpm
   rake
   shotgun (~> 0.9)
   sinatra
   sinatra-flash
+  travis
   zurb-foundation

@@ -1,3 +1,9 @@
+#0.19.0
+
+Release date: November 8, 2013
+
++ Added an example of a Data Table that is sortable
+
 #0.18.0
 
 Release date: October 25, 2013
