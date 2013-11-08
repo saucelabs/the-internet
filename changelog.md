@@ -1,3 +1,8 @@
+#0.20.0
+Release date: November 8, 2013
+
++ Added a second Data Table that has Class and ID attributes to group like data together
+
 #0.19.0
 
 Release date: November 8, 2013
