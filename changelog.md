@@ -1,7 +1,7 @@
-#0.20.1
+#0.20.1 & 0.20.2
 Release date: November 8, 2013
 
-+ Removed javascript type indicators from the source tag to address an IE8 error
++ Fixed JavaScript errors in IE for the Data Table example
 
 #0.20.0
 Release date: November 8, 2013
