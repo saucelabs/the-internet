@@ -1,3 +1,8 @@
+#0.20.4
+Release date: November 8, 2013
+
++ Pluralized table example (in name and URL path)
+
 #0.20.1, 0.20.2, 0.20.3
 Release date: November 8, 2013
 
