@@ -240,6 +240,6 @@ get '/dynamic_loading/2' do
   erb :dynamic_loading_2
 end
 
-get '/table' do
-  erb :table
+get '/tables' do
+  erb :tables
 end
