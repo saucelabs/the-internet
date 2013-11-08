@@ -1,3 +1,8 @@
+#0.20.1
+Release date: November 8, 2013
+
++ Removed javascript type indicators from the source tag to address an IE8 error
+
 #0.20.0
 Release date: November 8, 2013
 
