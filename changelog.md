@@ -1,4 +1,4 @@
-#0.20.1 & 0.20.2
+#0.20.1, 0.20.2, 0.20.3
 Release date: November 8, 2013
 
 + Fixed JavaScript errors in IE for the Data Table example
