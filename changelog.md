@@ -1,3 +1,8 @@
+#0.21.1
+Release date: December 11, 2013
+
++ Added a link to Google Maps for the latitude and longitutde on Geolocation
+
 #0.21.0
 Release date: December 11, 2013
 
