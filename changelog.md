@@ -1,3 +1,8 @@
+#0.21.0
+Release date: December 11, 2013
+
++ Added Geolocation
+
 #0.20.4
 Release date: November 8, 2013
 
