@@ -1,3 +1,8 @@
+#0.21.2
+Release date: December 11, 2013
+
++ Added helpful CSS selectors around coordinates and the map link
+
 #0.21.1
 Release date: December 11, 2013
 
