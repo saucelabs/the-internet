@@ -14,8 +14,10 @@
     }
   function showPosition(position)
     {
-    x.innerHTML="Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;  
+    x.innerHTML="Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude +
+    "<br><a href='http://maps.google.com/?q=" + position.coords.latitude +
+    "," + position.coords.longitude + "'>See it on Google</a>";
     }
   </script>
 </div>
