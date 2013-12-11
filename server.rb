@@ -243,3 +243,7 @@ end
 get '/tables' do
   erb :tables
 end
+
+get '/geolocation' do
+  erb :geolocation
+end
