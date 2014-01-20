@@ -5,11 +5,11 @@
   <p>Some pages have very large and deeply nested page layouts, which can trigger odd rendering issues and test performance bottlenecks (depending on your locator strategy). These examples are nested <%= @nested_level %> levels deep.</p>
 
     <h4>No Siblings</h4>
-    <div>
+    <div id='parent'>
       <% @nested_level.times do %>
           <%= "<div>" %>
       <% end %>
-        <div>No siblings</div>
+        <div class='no-siblings'>No siblings</div>
       <% @nested_level.times do %>
           <%= "</div>" %>
       <% end %>
