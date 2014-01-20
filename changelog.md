@@ -1,4 +1,9 @@
-#0.22.2
+#0.22.3
+Release date: January 20, 2014
+
++ Fixed ribbon rendering issues
+
+#0.22.3
 Release date: January 20, 2014
 
 + Reduced the nested levels in the Large & Deep DOM example from 500 to 100 to make it more manageable for browser inspection.
