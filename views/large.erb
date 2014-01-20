@@ -24,12 +24,13 @@
           <div class='parent large-12 large-centered columns'>
             <% 5.times do |parent_count| %>
               <% 3.times do |child_count| %>
-                <% if parent_count == 4 && child_count == 2 %>
-                <%= "</div>" %>
-                <% elsif child_count == 2 %>
+                <% if child_count == 0 %>
                 <%= "<div id='sibling-#{parent_count+1}.#{child_count+1}' class='parent large-12 columns'>#{parent_count+1}.#{child_count+1}" %>
                 <% else %>
                 <%= "<div id='sibling-#{parent_count+1}.#{child_count+1}' class='large-12'>#{parent_count+1}.#{child_count+1}</div>" %>
+                <% end %>
+                <% if parent_count == 4 && child_count == 2 %>
+                <%= "</div>" %>
                 <% end %>
               <% end %>
             <% end %>

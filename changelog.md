@@ -1,3 +1,8 @@
+#0.22.10
+Release date: January 20, 2014
+
++ Fixed indenting in the large DOM example so it happens at the correct level for each tier
+
 #0.22.9
 Release date: January 20, 2014
 
