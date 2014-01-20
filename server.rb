@@ -173,7 +173,7 @@ end
 get '/status_codes/:status_code' do |status_code|
   status status_code
   @status_code = status_code
-  erb :status_code, :layour => true
+  erb :status_code, :layout => true
 end
 
 get '/javascript_error' do
@@ -251,3 +251,9 @@ end
 get '/large' do
   erb :large
 end
+
+get '/large/:nested_level' do |nested_level|
+  @nested_level = nested_level.to_i
+  erb :large
+end
+
