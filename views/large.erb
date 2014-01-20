@@ -1,4 +1,5 @@
 <% @nested_level ||= 50 %>
+
 <div class="example">
   <h3>Large & Deep DOM</h3>
   <p>Some pages have very large and deeply nested page layouts, which can trigger odd rendering issues and test performance bottlenecks (depending on your locator strategy). These examples are nested <%= @nested_level %> levels deep.</p>
@@ -15,16 +16,28 @@
     </div>
 
     <h4>Siblings</h4>
-    <div>
-      <% @nested_level.times do %>
+      <div>
+        <% @nested_level.times do %>
           <%= "<div>" %>
-      <% end %>
-        <% 10.times do |count| %>
-          <%= "<div>Sibling #{count}</div>" %>
         <% end %>
-      <% @nested_level.times do %>
-          <%= "</div>" %>
-      <% end %>
-    </div>
+
+          <div id='parent' class='large-12 large-centered columns'>
+            <% 5.times do |parent_count| %>
+              <% 3.times do |child_count| %>
+                <% if parent_count == 4 && child_count == 2 %>
+                <%= "</div>" %>
+                <% elsif child_count == 2 %>
+                <%= "<div id='siblings' class='open large-12 columns'>#{parent_count+1}-#{child_count+1}" %>
+                <% else %>
+                <%= "<div id='siblings' class='closed large-12'>#{parent_count+1}-#{child_count+1}</div>" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+
+        <% @nested_level.times do %>
+            <%= "</div>" %>
+        <% end %>
+      </div>
 
 </div>
