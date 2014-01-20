@@ -1,3 +1,8 @@
+#0.22.7
+Release date: January 20, 2014
+
++ Made the IDs unique on the large DOM example
+
 #0.22.6
 Release date: January 20, 2014
 

@@ -27,9 +27,9 @@
                 <% if parent_count == 4 && child_count == 2 %>
                 <%= "</div>" %>
                 <% elsif child_count == 2 %>
-                <%= "<div id='siblings' class='open large-12 columns'>#{parent_count+1}-#{child_count+1}" %>
+                <%= "<div id='sibling-#{parent_count+1}.#{child_count+1}' class='open large-12 columns'>#{parent_count+1}.#{child_count+1}" %>
                 <% else %>
-                <%= "<div id='siblings' class='closed large-12'>#{parent_count+1}-#{child_count+1}</div>" %>
+                <%= "<div id='siblings-#{parent_count+1}.#{child_count+1}' class='closed large-12'>#{parent_count+1}.#{child_count+1}</div>" %>
                 <% end %>
               <% end %>
             <% end %>
