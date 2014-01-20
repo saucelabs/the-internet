@@ -247,3 +247,7 @@ end
 get '/geolocation' do
   erb :geolocation
 end
+
+get '/large' do
+  erb :large
+end
