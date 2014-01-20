@@ -2,6 +2,7 @@
 Release date: January 20, 2014
 
 + Added a Large & Deep DOM example
++ Added 'Fork Me On GitHub' ribbon to homepage
 
 #0.21.2
 Release date: December 11, 2013
