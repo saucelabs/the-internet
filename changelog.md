@@ -1,4 +1,9 @@
-#0.22.3
+#0.22.5
+Release date: January 20, 2014
+
++ Updated the siblings example of the large DOM example
+
+#0.22.4
 Release date: January 20, 2014
 
 + Lowered the default nested value to 50 for the large DOM example
