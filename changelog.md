@@ -1,6 +1,12 @@
 #0.22.3
 Release date: January 20, 2014
 
++ Lowered the default nested value to 50 for the large DOM example
++ Also made the large DOM example dynamic by accepting a number for nested levels in the URL ('e.g., /large/100')
+
+#0.22.3
+Release date: January 20, 2014
+
 + Fixed ribbon rendering issues
 
 #0.22.3
