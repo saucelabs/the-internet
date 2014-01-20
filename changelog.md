@@ -1,4 +1,4 @@
-#0.22.3
+#0.22.4
 Release date: January 20, 2014
 
 + Lowered the default nested value to 50 for the large DOM example
