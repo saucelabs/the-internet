@@ -1,3 +1,8 @@
+#0.22.1
+Release date: January 20, 2014
+
++ Reworked the Large & Deep DOM example to use simple divs instead of a table
+
 #0.22.0
 Release date: January 20, 2014
 
