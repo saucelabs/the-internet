@@ -1,153 +1,27 @@
-<script src="http://mottie.github.io/tablesorter/js/jquery.tablesorter.min.js"></script>
-<script>
-$(function(){
-  $("#table1").tablesorter();
-  $("#table2").tablesorter();
-});
-</script>
-
-<style>
-  span {
-    padding-right: 20px;
-    background-repeat: no-repeat;
-    background-position: 100% 100%;
-  }
-  .tablesorter-headerAsc span   { background-image: url('img/down-arrow.png');  }
-  .tablesorter-headerDesc span  { background-image: url('img/up-arrow.png');    }
-</style>
-
 <div class="example">
   <h3>Large & Deep DOM</h3>
-  <p>Some pages have very large and deeply nested page layouts, which can trigger odd rendering issues and test performance bottlenecks (depending on your locator strategy). These table examples are borrowed from <a href="/tables">the tables example</a> and nested 500 levels deep.</p>
+  <p>Some pages have very large and deeply nested page layouts, which can trigger odd rendering issues and test performance bottlenecks (depending on your locator strategy). These examples are nested 500 levels deep.</p>
 
+    <h4>No Siblings</h4>
     <div>
       <% 500.times do %>
           <%= "<div>" %>
       <% end %>
+        <div>No siblings</div>
+      <% 500.times do %>
+          <%= "</div>" %>
+      <% end %>
+    </div>
 
-      <h4>Example 1</h4>
-      <p>No Class or ID attributes to signify groupings of rows and columns</p>
-      <table id="table1" class="tablesorter">
-        <thead>
-          <tr>
-            <th><span>Last Name</span></th>
-            <th><span>First Name</span></th>
-            <th><span>Email</span></th>
-            <th><span>Due</span></th>
-            <th><span>Web Site</span></th>
-            <th><span>Action</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Smith</td>
-            <td>John</td>
-            <td>jsmith@gmail.com</td>
-            <td>$50.00</td>
-            <td>http://www.jsmith.com</td>
-            <td>
-              <a href='#edit'>edit</a>
-              <a href='#delete'>delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Bach</td>
-            <td>Frank</td>
-            <td>fbach@yahoo.com</td>
-            <td>$51.00</td>
-            <td>http://www.frank.com</td>
-            <td>
-              <a href='#edit'>edit</a>
-              <a href='#delete'>delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Doe</td>
-            <td>Jason</td>
-            <td>jdoe@hotmail.com</td>
-            <td>$100.00</td>
-            <td>http://www.jdoe.com</td>
-            <td>
-              <a href='#edit'>edit</a>
-              <a href='#delete'>delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Conway</td>
-            <td>Tim</td>
-            <td>tconway@earthlink.net</td>
-            <td>$50.00</td>
-            <td>http://www.timconway.com</td>
-            <td>
-              <a href='#edit'>edit</a>
-              <a href='#delete'>delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h4>Example 2</h4>
-      <p>Class and ID attributes to signify groupings of rows and columns</p>
-      <table id="table2" class="tablesorter">
-        <thead>
-          <tr>
-            <th><span class='last-name'>Last Name</span></th>
-            <th><span class='first-name'>First Name</span></th>
-            <th><span class='email'>Email</span></th>
-            <th><span class='dues'>Due</span></th>
-            <th><span class='web-site'>Web Site</span></th>
-            <th><span class='action'>Action</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class='last-name'>Smith</td>
-            <td class='first-name'>John</td>
-            <td class='email'>jsmith@gmail.com</td>
-            <td class='dues'>$50.00</td>
-            <td class='web-site'>http://www.jsmith.com</td>
-            <td class='action'>
-              <a href='#edit'>edit</a>
-              <a href='#delete'>delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td class='last-name'>Bach</td>
-            <td class='first-name'>Frank</td>
-            <td class='email'>fbach@yahoo.com</td>
-            <td class='dues'>$51.00</td>
-            <td class='web-site'>http://www.frank.com</td>
-            <td class='action'>
-              <a href='#edit'>edit</a>
-              <a href='#delete'>delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td class='last-name'>Doe</td>
-            <td class='first-name'>Jason</td>
-            <td class='email'>jdoe@hotmail.com</td>
-            <td class='dues'>$100.00</td>
-            <td class='web-site'>http://www.jdoe.com</td>
-            <td class='action'>
-              <a href='#edit'>edit</a>
-              <a href='#delete'>delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td class='last-name'>Conway</td>
-            <td class='first-name'>Tim</td>
-            <td class='email'>tconway@earthlink.net</td>
-            <td class='dues'>$50.00</td>
-            <td class='web-site'>http://www.timconway.com</td>
-            <td class='action'>
-              <a href='#edit'>edit</a>
-              <a href='#delete'>delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <% 1000.times do %>
+    <h4>Siblings</h4>
+    <div>
+      <% 500.times do %>
+          <%= "<div>" %>
+      <% end %>
+        <% 10.times do |count| %>
+          <%= "<div>Sibling #{count}</div>" %>
+        <% end %>
+      <% 500.times do %>
           <%= "</div>" %>
       <% end %>
     </div>

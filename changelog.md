@@ -1,7 +1,13 @@
+#0.22.1
+Release date: January 20, 2014
+
++ Reworked the Large & Deep DOM example to use simple divs instead of a table
+
 #0.22.0
 Release date: January 20, 2014
 
 + Added a Large & Deep DOM example
++ Added 'Fork Me On GitHub' ribbon to homepage
 
 #0.21.2
 Release date: December 11, 2013
