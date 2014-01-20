@@ -1,4 +1,4 @@
-# The Internet 0.22.7 (01-20-2014)
+# The Internet 0.22.8 (01-20-2014)
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 

@@ -1,3 +1,8 @@
+#0.22.8
+Release date: January 20, 2014
+
++ Updated more of the large DOM example's markup
+
 #0.22.7
 Release date: January 20, 2014
 

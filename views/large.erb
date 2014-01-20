@@ -5,11 +5,11 @@
   <p>Some pages have very large and deeply nested page layouts, which can trigger odd rendering issues and test performance bottlenecks (depending on your locator strategy). These examples are nested <%= @nested_level %> levels deep.</p>
 
     <h4>No Siblings</h4>
-    <div id='parent'>
+    <div class='parent'>
       <% @nested_level.times do %>
           <%= "<div>" %>
       <% end %>
-        <div class='no-siblings'>No siblings</div>
+        <div id='no-sibling'>No siblings</div>
       <% @nested_level.times do %>
           <%= "</div>" %>
       <% end %>
@@ -21,15 +21,15 @@
           <%= "<div>" %>
         <% end %>
 
-          <div id='parent' class='large-12 large-centered columns'>
+          <div class='parent large-12 large-centered columns'>
             <% 5.times do |parent_count| %>
               <% 3.times do |child_count| %>
                 <% if parent_count == 4 && child_count == 2 %>
                 <%= "</div>" %>
                 <% elsif child_count == 2 %>
-                <%= "<div id='sibling-#{parent_count+1}.#{child_count+1}' class='open large-12 columns'>#{parent_count+1}.#{child_count+1}" %>
+                <%= "<div id='sibling-#{parent_count+1}.#{child_count+1}' class='parent large-12 columns'>#{parent_count+1}.#{child_count+1}" %>
                 <% else %>
-                <%= "<div id='siblings-#{parent_count+1}.#{child_count+1}' class='closed large-12'>#{parent_count+1}.#{child_count+1}</div>" %>
+                <%= "<div id='siblings-#{parent_count+1}.#{child_count+1}' class='large-12'>#{parent_count+1}.#{child_count+1}</div>" %>
                 <% end %>
               <% end %>
             <% end %>
