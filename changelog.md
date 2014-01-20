@@ -1,3 +1,8 @@
+#0.22.6
+Release date: January 20, 2014
+
++ Added markup for the no siblings case in the large DOM example
+
 #0.22.5
 Release date: January 20, 2014
 
