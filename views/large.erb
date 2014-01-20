@@ -22,14 +22,14 @@
         <% end %>
 
           <div class='parent large-12 large-centered columns'>
-            <% 5.times do |parent_count| %>
+            <% @nested_level.times do |parent_count| %>
               <% 3.times do |child_count| %>
                 <% if child_count == 0 %>
-                <%= "<div id='sibling-#{parent_count+1}.#{child_count+1}' class='parent large-12 columns'>#{parent_count+1}.#{child_count+1}" %>
+                <%= "<div id='sibling-#{parent_count + 1}.#{child_count + 1}' class='parent large-12 columns'>#{parent_count + 1}.#{child_count + 1}" %>
                 <% else %>
-                <%= "<div id='sibling-#{parent_count+1}.#{child_count+1}' class='large-12'>#{parent_count+1}.#{child_count+1}</div>" %>
+                <%= "<div id='sibling-#{parent_count + 1}.#{child_count + 1}' class='large-12'>#{parent_count + 1}.#{child_count + 1}</div>" %>
                 <% end %>
-                <% if parent_count == 4 && child_count == 2 %>
+                <% if parent_count == @nested_level && child_count == 2 %>
                 <%= "</div>" %>
                 <% end %>
               <% end %>
@@ -41,4 +41,16 @@
         <% end %>
       </div>
 
+      <h4>Table</h4>
+      <table>
+        <tbody>
+          <% @nested_level.times do |row_count| %>
+          <%= "<tr class='row-#{row_count + 1}'>" %>
+            <% @nested_level.times do |column_count| %>
+            <%= "<td class='column-#{column_count + 1}'>#{row_count + 1}.#{column_count + 1}</td>" %>
+            <% end %>
+          <%= "</tr>" %>
+          <% end %>
+        </tbody>
+      </table>
 </div>
