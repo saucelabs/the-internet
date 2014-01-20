@@ -1,28 +1,28 @@
+<% @nested_level ||= 50 %>
 <div class="example">
   <h3>Large & Deep DOM</h3>
-  <p>Some pages have very large and deeply nested page layouts, which can trigger odd rendering issues and test performance bottlenecks (depending on your locator strategy). These examples are nested 100 levels deep.</p>
+  <p>Some pages have very large and deeply nested page layouts, which can trigger odd rendering issues and test performance bottlenecks (depending on your locator strategy). These examples are nested <%= @nested_level %> levels deep.</p>
 
-    <% nested_level = 100 %>
     <h4>No Siblings</h4>
     <div>
-      <% nested_level.times do %>
+      <% @nested_level.times do %>
           <%= "<div>" %>
       <% end %>
         <div>No siblings</div>
-      <% nested_level.times do %>
+      <% @nested_level.times do %>
           <%= "</div>" %>
       <% end %>
     </div>
 
     <h4>Siblings</h4>
     <div>
-      <% nested_level.times do %>
+      <% @nested_level.times do %>
           <%= "<div>" %>
       <% end %>
         <% 10.times do |count| %>
           <%= "<div>Sibling #{count}</div>" %>
         <% end %>
-      <% nested_level.times do %>
+      <% @nested_level.times do %>
           <%= "</div>" %>
       <% end %>
     </div>
