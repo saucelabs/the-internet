@@ -1,3 +1,8 @@
+#0.22.11
+Release date: January 20, 2014
+
++ Added a table example and reworked the siblings example (in the large DOM example)
+
 #0.22.10
 Release date: January 20, 2014
 
