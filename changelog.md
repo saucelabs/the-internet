@@ -1,3 +1,8 @@
+#0.22.0
+Release date: January 20, 2014
+
++ Added a Large & Deep DOM example
+
 #0.21.2
 Release date: December 11, 2013
 
