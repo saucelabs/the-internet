@@ -1,3 +1,10 @@
+#0.22.2
+Release date: January 20, 2014
+
++ Reduced the nested levels in the Large & Deep DOM example from 500 to 100 to make it more manageable for browser inspection.
++ Small bit of refactoring in the Large & Deep DOM example to pull out hard coded values into a variable
++ Added 'Fork Me On Github' to every page
+
 #0.22.1
 Release date: January 20, 2014
 
