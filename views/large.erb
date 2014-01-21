@@ -43,6 +43,11 @@
 
       <h4>Table</h4>
       <table id='large-table'>
+        <thead>
+          <% @nested_level.times do |header_count| %>
+          <%= "<th id='header-#{header_count + 1}'><span>#{header_count + 1}</span></th>" %>
+          <% end %>
+        </thead>
         <tbody>
           <% @nested_level.times do |row_count| %>
           <%= "<tr class='row-#{row_count + 1}'>" %>
