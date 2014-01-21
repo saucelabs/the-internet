@@ -45,7 +45,7 @@
       <table id='large-table'>
         <thead>
           <% @nested_level.times do |header_count| %>
-          <%= "<th id='header-#{header_count + 1}'><span>#{header_count + 1}</span></th>" %>
+          <%= "<th id='header-#{header_count + 1}'><span class='column-#{header_count + 1}'>#{header_count + 1}</span></th>" %>
           <% end %>
         </thead>
         <tbody>
