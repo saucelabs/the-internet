@@ -9,7 +9,7 @@
       <% @nested_level.times do %>
           <%= "<div>" %>
       <% end %>
-        <div id='no-sibling'>No siblings</div>
+        <div id='no-siblings'>No siblings</div>
       <% @nested_level.times do %>
           <%= "</div>" %>
       <% end %>
@@ -21,7 +21,7 @@
           <%= "<div>" %>
         <% end %>
 
-          <div class='parent large-12 large-centered columns'>
+          <div id='siblings' class='parent large-12 large-centered columns'>
             <% @nested_level.times do |parent_count| %>
               <% 3.times do |child_count| %>
                 <% if child_count == 0 %>
@@ -42,7 +42,7 @@
       </div>
 
       <h4>Table</h4>
-      <table>
+      <table id='large-table'>
         <tbody>
           <% @nested_level.times do |row_count| %>
           <%= "<tr class='row-#{row_count + 1}'>" %>
