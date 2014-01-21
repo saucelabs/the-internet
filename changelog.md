@@ -1,3 +1,8 @@
+#0.22.15
+Release date: January 21, 2014
+
++ Added a class to the table header of the large DOM example
+
 #0.22.14
 Release date: January 21, 2014
 
