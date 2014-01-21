@@ -1,3 +1,8 @@
+#0.22.14
+Release date: January 21, 2014
+
++ Added more class markup to the siblings in the large DOM example for easier traversing
+
 #0.22.13
 Release date: January 21, 2014
 
