@@ -1,4 +1,9 @@
 #0.22.11
+Release date: January 21, 2014
+
++ Added top level markup for each of the large DOM examples
+
+#0.22.11
 Release date: January 20, 2014
 
 + Added a table example and reworked the siblings example (in the large DOM example)
