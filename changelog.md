@@ -1,4 +1,9 @@
-#0.22.11
+#0.22.13
+Release date: January 21, 2014
+
++ Added a header to the table in the large DOM example
+
+#0.22.12
 Release date: January 21, 2014
 
 + Added top level markup for each of the large DOM examples
