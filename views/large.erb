@@ -25,9 +25,9 @@
             <% @nested_level.times do |parent_count| %>
               <% 3.times do |child_count| %>
                 <% if child_count == 0 %>
-                <%= "<div id='sibling-#{parent_count + 1}.#{child_count + 1}' class='parent large-12 columns'>#{parent_count + 1}.#{child_count + 1}" %>
+                <%= "<div id='sibling-#{parent_count + 1}.#{child_count + 1}' class='parent large-12 columns tier-#{parent_count + 1} item-#{child_count + 1}'>#{parent_count + 1}.#{child_count + 1}" %>
                 <% else %>
-                <%= "<div id='sibling-#{parent_count + 1}.#{child_count + 1}' class='large-12'>#{parent_count + 1}.#{child_count + 1}</div>" %>
+                <%= "<div id='sibling-#{parent_count + 1}.#{child_count + 1}' class='large-12 tier-#{parent_count + 1} item-#{child_count + 1}'>#{parent_count + 1}.#{child_count + 1}</div>" %>
                 <% end %>
                 <% if parent_count == @nested_level && child_count == 2 %>
                 <%= "</div>" %>
