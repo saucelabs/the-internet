@@ -197,8 +197,8 @@ get '/login' do
 end
 
 post "/authenticate" do
-  username = 'username'
-  password = 'password'
+  username = 'tomsmith'
+  password = 'SuperSecretPassword!'
 
   if username == params[:username]
     if password == params[:password]
