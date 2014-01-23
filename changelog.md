@@ -1,3 +1,8 @@
+#0.23.0
+Release date: January 23, 2014
+
++ Changed the username and password values in the Login example
+
 #0.22.15
 Release date: January 21, 2014
 
