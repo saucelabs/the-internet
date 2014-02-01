@@ -36,8 +36,6 @@ tldr;
 3. Submit a Pull Request
 4. High Five!
 
-This project conforms to the [neverstopbuilding/craftsmanship](https://github.com/neverstopbuilding/craftsmanship) guidelines for. Please see that repository for details on project administration.
-
 ##Getting Started
 
 Install your dependencies:
