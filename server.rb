@@ -257,3 +257,6 @@ get '/large/:nested_level' do |nested_level|
   erb :large
 end
 
+get '/drag_and_drop' do
+  erb :drag_and_drop
+end

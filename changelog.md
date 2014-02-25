@@ -1,3 +1,8 @@
+#0.24.0
+Release date: February 25, 2014
+
++ Added a drag and drop example
+
 #0.23.0
 Release date: January 23, 2014
 

@@ -8,6 +8,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 
 + [A/B Testing](http://the-internet.herokuapp.com/abtest)
 + [Basic Auth](http://the-internet.herokuapp.com/basic_auth) (user and pass: admin)
++ [Drag and Drop](http://the-internet.herokuapp.com/drag_and_drop)
 + [Dynamic Loading](http://the-internet.herokuapp.com/dynamic_loading)
 + [File Download](http://the-internet.herokuapp.com/download)
 + [File Upload](http://the-internet.herokuapp.com/upload)
@@ -35,8 +36,6 @@ tldr;
 2. Build Something
 3. Submit a Pull Request
 4. High Five!
-
-This project conforms to the [neverstopbuilding/craftsmanship](https://github.com/neverstopbuilding/craftsmanship) guidelines for. Please see that repository for details on project administration.
 
 ##Getting Started
 
