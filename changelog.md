@@ -1,3 +1,6 @@
+#0.24.1
++ Updated the readme
+
 #0.24.0
 Release date: February 25, 2014
 
