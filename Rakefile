@@ -13,13 +13,11 @@ task :test do
   system('cd tests && sudo bundle exec ckit brew')
 end
 
+desc 'Update docs'
 task :update_docs  do
   update_readme
   update_examples_view
 end
-
-desc 'Update docs'
-task :prep_release => :update_docs
 
 desc 'Pushes tags and code to master, develop, and heroku'
 task :release do
