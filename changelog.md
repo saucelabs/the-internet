@@ -1,3 +1,6 @@
+#0.24.2
++ Added missing example (dropdowns) to list of available examples
+
 #0.24.1
 + Updated the readme
 
