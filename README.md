@@ -9,6 +9,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [A/B Testing](http://the-internet.herokuapp.com/abtest)
 + [Basic Auth](http://the-internet.herokuapp.com/basic_auth) (user and pass: admin)
 + [Drag and Drop](http://the-internet.herokuapp.com/drag_and_drop)
++ [Dropdown](http://the-internet.herokuapp.com/dropdown)
 + [Dynamic Loading](http://the-internet.herokuapp.com/dynamic_loading)
 + [File Download](http://the-internet.herokuapp.com/download)
 + [File Upload](http://the-internet.herokuapp.com/upload)
