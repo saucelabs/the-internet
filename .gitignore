@@ -4,3 +4,6 @@ tests/evidence/
 *.swp
 .DS_Store
 vendor/*.log
+.rbenv-version
+.ruby-version
+.rvmrc

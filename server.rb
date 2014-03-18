@@ -260,3 +260,20 @@ end
 get '/drag_and_drop' do
   erb :drag_and_drop
 end
+
+get '/forgot_password' do
+  erb :forgot_password
+end
+
+require 'pony'
+post '/forgot_password_retrieval' do
+  Pony.mail :to => params[:email],
+    :from => "@gmail.com",
+    :subject => "Forgot Password from the-internet",
+    :body => erb(:forgot_password_body)
+  redirect '/email_sent'
+end
+
+get '/email_sent' do
+  erb :email_sent
+end
