@@ -265,12 +265,32 @@ get '/forgot_password' do
   erb :forgot_password
 end
 
-require 'pony'
-post '/forgot_password_retrieval' do
-  Pony.mail :to => params[:email],
-    :from => "@gmail.com",
-    :subject => "Forgot Password from the-internet",
-    :body => erb(:forgot_password_body)
+set :email_username, ENV['SENDGRID_USERNAME'] || ''
+set :email_password, ENV['SENDGRID_PASSWORD'] || ''
+set :email_address, 'dhaeffner@gmail.com'
+set :email_service, ENV['EMAIL_SERVICE'] || 'gmail.com'
+set :email_domain, ENV['SENDGRID_DOMAIN'] || 'localhost.localdomain'
+
+post '/forgot_password' do
+  require 'pony'
+  Pony.mail(
+    from:     "dhaeffner@gmail.com",
+    to:       params[:email],
+    subject:  "Forgot Password from the-internet",
+    body:     "A forgot password retrieval was initiated from http://the-internet.herokuapp.com/forgot_password to #{params[:email]}.
+
+If this were a real message, you would likely see a link or some relevant text that would help you retrieve a password.",
+    via:      'smtp',
+    via_options: {
+      address:              'smtp.' + settings.email_service,
+      port:                 '587',
+      enable_starttls_auto: true,
+      user_name:            settings.email_username,
+      password:             settings.email_password,
+      authentication:       :plain,
+      domain:               settings.email_domain
+    })
+
   redirect '/email_sent'
 end
 
