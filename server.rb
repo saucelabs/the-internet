@@ -274,7 +274,7 @@ set :email_domain, ENV['SENDGRID_DOMAIN'] || 'localhost.localdomain'
 post '/forgot_password' do
   require 'pony'
   Pony.mail(
-    from:     "dhaeffner@gmail.com",
+    from:     "no-reply@the-internet.herokuapp.com",
     to:       params[:email],
     subject:  "Forgot Password from the-internet",
     body:     "A forgot password retrieval was initiated from http://the-internet.herokuapp.com/forgot_password to #{params[:email]}.

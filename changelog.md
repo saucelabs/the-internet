@@ -1,3 +1,6 @@
+#0.25.2
++ Changed the from e-mail on the forgot password example
+
 #0.25.1
 + Added a forgot password example
 + Skipped 0.25.0 due to a naming conflict
