@@ -1,4 +1,4 @@
-# The Internet 0.24.2 (03-04-2014)
+# The Internet 0.25.1 (03-24-2014)
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
@@ -13,6 +13,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Dynamic Loading](http://the-internet.herokuapp.com/dynamic_loading)
 + [File Download](http://the-internet.herokuapp.com/download)
 + [File Upload](http://the-internet.herokuapp.com/upload)
++ [Forgot Password](http://the-internet.herokuapp.com/forgot_password)
 + [Form Authentication](http://the-internet.herokuapp.com/login)
 + [Frames](http://the-internet.herokuapp.com/frames)
 + [Geolocation](http://the-internet.herokuapp.com/geolocation)

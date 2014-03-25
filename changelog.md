@@ -1,3 +1,7 @@
+#0.25.1
++ Added a forgot password example
++ Skipped 0.25.0 due to a naming conflict
+
 #0.24.2
 + Added missing example (dropdowns) to list of available examples
 
