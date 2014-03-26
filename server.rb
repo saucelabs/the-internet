@@ -281,7 +281,7 @@ post '/forgot_password' do
 
 If this were a real message, you would likely see a link or some relevant text that would help you retrieve a password.
 
-If you want to test login, visit http://the-internet.herokuapp.com/login and login with the following:
+If you want to test login, visit http://the-internet.herokuapp.com/login and use the following credentials:
 
 username: tomsmith
 password: SuperSecretPassword!",
