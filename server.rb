@@ -279,7 +279,12 @@ post '/forgot_password' do
     subject:  "Forgot Password from the-internet",
     body:     "A forgot password retrieval was initiated from http://the-internet.herokuapp.com/forgot_password to #{params[:email]}.
 
-If this were a real message, you would likely see a link or some relevant text that would help you retrieve a password.",
+If this were a real message, you would likely see a link or some relevant text that would help you retrieve a password.
+
+If you want to test login, visit http://the-internet.herokuapp.com/login and login with the following:
+
+username: tomsmith
+password: SuperSecretPassword!",
     via:      'smtp',
     via_options: {
       address:              'smtp.' + settings.email_service,
