@@ -1,3 +1,6 @@
+#0.25.3
++ Added more info to the forgot password example email, noting that login could be tested at /login -- and provided credentials
+
 #0.25.2
 + Changed the from e-mail on the forgot password example
 
