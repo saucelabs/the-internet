@@ -1,3 +1,6 @@
+#0.26.0
++ Added a checkbox example, with one checked and one unchecked
+
 #0.25.3
 + Added more info to the forgot password example email, noting that login could be tested at /login -- and provided credentials
 

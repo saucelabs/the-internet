@@ -1,4 +1,4 @@
-# The Internet 0.25.3 (03-25-2014)
+# The Internet 0.26.0 (04-08-2014)
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
@@ -8,6 +8,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 
 + [A/B Testing](http://the-internet.herokuapp.com/abtest)
 + [Basic Auth](http://the-internet.herokuapp.com/basic_auth) (user and pass: admin)
++ [Checkboxes](http://the-internet.herokuapp.com/checkboxes)
 + [Drag and Drop](http://the-internet.herokuapp.com/drag_and_drop)
 + [Dropdown](http://the-internet.herokuapp.com/dropdown)
 + [Dynamic Loading](http://the-internet.herokuapp.com/dynamic_loading)
