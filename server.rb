@@ -302,3 +302,7 @@ end
 get '/email_sent' do
   erb :email_sent
 end
+
+get '/checkboxes' do
+  erb :checkboxes
+end
