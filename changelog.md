@@ -1,5 +1,8 @@
+#0.27.1
++ Added missing configuration changes needed for newrelic support
+
 #0.27.0
-+ Added newrelic coverage for the production app, keeping out config specifics from the open source repo
++ Added newrelic coverage for the production app
 
 #0.26.0
 + Added a checkbox example, with one checked and one unchecked
