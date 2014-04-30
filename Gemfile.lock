@@ -38,6 +38,7 @@ GEM
     net-http-persistent (2.9)
     net-http-pipeline (1.0.1)
     netrc (0.7.7)
+    newrelic_rpm (3.8.0.218)
     polyglot (0.3.4)
     pony (1.8)
       mail (>= 2.0)
@@ -88,6 +89,7 @@ PLATFORMS
 
 DEPENDENCIES
   compass
+  newrelic_rpm
   pony
   rake
   shotgun (~> 0.9)
