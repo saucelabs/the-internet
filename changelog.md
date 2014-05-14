@@ -1,3 +1,8 @@
+#0.28.0
++ Added hovers example
++ Added /tinymce WYSIWYG Editor example to main list
++ Cleaned up old test harness remnants
+
 #0.27.1
 + Added missing configuration changes needed for newrelic support
 
