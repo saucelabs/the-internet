@@ -1,3 +1,6 @@
+#0.28.2
++ Fixed bogus alt text in /hovers example
+
 #0.28.1
 + Updated /hovers markup to be more semantic
 
