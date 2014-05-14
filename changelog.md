@@ -1,3 +1,6 @@
+#0.28.1
++ Updated /hovers markup to be more semantic
+
 #0.28.0
 + Added hovers example
 + Added /tinymce WYSIWYG Editor example to main list
