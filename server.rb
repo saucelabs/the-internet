@@ -310,3 +310,7 @@ end
 get '/checkboxes' do
   erb :checkboxes
 end
+
+get '/hovers' do
+  erb :hovers
+end

@@ -1,4 +1,4 @@
-# The Internet 0.27.1 (04-30-2014)
+# The Internet 0.28.0 (05-13-2014)
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
@@ -18,6 +18,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Form Authentication](http://the-internet.herokuapp.com/login)
 + [Frames](http://the-internet.herokuapp.com/frames)
 + [Geolocation](http://the-internet.herokuapp.com/geolocation)
++ [Hovers](http://the-internet.herokuapp.com/hovers)
 + [JQuery UI Menus](http://the-internet.herokuapp.com/jqueryui/menu)
 + [JavaScript Alerts](http://the-internet.herokuapp.com/javascript_alerts)
 + [JavaScript onload event error](http://the-internet.herokuapp.com/javascript_error)
@@ -27,6 +28,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Redirect Link](http://the-internet.herokuapp.com/redirector)
 + [Sortable Data Tables](http://the-internet.herokuapp.com/tables)
 + [Status Codes](http://the-internet.herokuapp.com/status_codes)
++ [WYSIWYG Editor](http://the-internet.herokuapp.com/tinymce)
 
 
 Don't see an example you need or think should be here? Contribute!
