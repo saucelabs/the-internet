@@ -1,3 +1,6 @@
+#0.29.0
++ Added [JQuery Growl](http://ksylvest.github.io/jquery-growl/) to public assets (CSS and JavaScript)
+
 #0.28.2
 + Fixed bogus alt text in /hovers example
 
