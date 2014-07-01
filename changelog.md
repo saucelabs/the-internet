@@ -1,3 +1,6 @@
+#0.30.0
++ Reworked /frames so now it is a guide page with links to /nested_frames and /iframe
+
 #0.29.0
 + Added [JQuery Growl](http://ksylvest.github.io/jquery-growl/) to public assets (CSS and JavaScript)
 
