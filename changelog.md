@@ -1,3 +1,6 @@
+#0.32.0
++ Added key presses example
+
 #0.31.0
 + Updated upload example to not assume an image was being uploaded. So now it just lists the file that was uploaded.
 
