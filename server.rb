@@ -322,3 +322,7 @@ end
 get '/hovers' do
   erb :hovers
 end
+
+get '/key_presses' do
+  erb :key_presses
+end
