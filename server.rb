@@ -318,3 +318,7 @@ end
 get '/key_presses' do
   erb :key_presses
 end
+
+get '/context_menu' do
+  erb :context_menu
+end
