@@ -1,3 +1,7 @@
+#0.33.0
++ Fixed invalid markup per issue #11
++ Added an example for right-click menu additions (a.k.a. context menus)
+
 #0.32.0
 + Added key presses example
 
