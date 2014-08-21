@@ -1,3 +1,7 @@
+#0.33.1
++ Added a unique ID to the context menu example for easier scoping
++ Also added a note to the context menu example stating that it currently only works in Firefox (and linked to the open issue for it)
+
 #0.33.0
 + Fixed invalid markup per issue #11
 + Added an example for right-click menu additions (a.k.a. context menus)
