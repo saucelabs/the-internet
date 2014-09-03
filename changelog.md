@@ -1,3 +1,6 @@
+#0.33.2
++ Pulled the GitHub ribbon image to the repo to avoid latency issues when running on slow connections
+
 #0.33.1
 + Added a unique ID to the context menu example for easier scoping
 + Also added a note to the context menu example stating that it currently only works in Firefox (and linked to the open issue for it)
