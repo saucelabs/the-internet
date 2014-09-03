@@ -1,3 +1,6 @@
+#0.33.3
++ More of the same -- found some more external resources that needed to be brought internally due to latency (CSS and JS files)
+
 #0.33.2
 + Pulled the GitHub ribbon image to the repo to avoid latency issues when running on slow connections
 
