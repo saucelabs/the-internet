@@ -326,7 +326,3 @@ end
 get '/slow_externals' do
   erb :slow_externals
 end
-
-get '/slow_external' do
-  sleep 120
-end
