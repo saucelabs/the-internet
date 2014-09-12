@@ -1,3 +1,6 @@
+#0.34.0
++ Added an example that demonstrates a slow loading resource
+
 #0.33.3
 + More of the same -- found some more external resources that needed to be brought internally due to latency (CSS and JS files)
 
