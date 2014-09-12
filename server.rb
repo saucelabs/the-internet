@@ -323,6 +323,11 @@ get '/context_menu' do
   erb :context_menu
 end
 
-get '/slow_externals' do
-  erb :slow_externals
+get '/slow' do
+  erb :slow
+end
+
+get '/slow_external' do
+  sleep 30
+  status 200
 end
