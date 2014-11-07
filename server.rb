@@ -339,3 +339,7 @@ get '/slow_external' do
   sleep 30
   status 200
 end
+
+get '/broken_images' do
+  erb :broken_images
+end

@@ -8,6 +8,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 
 + [A/B Testing](http://the-internet.herokuapp.com/abtest)
 + [Basic Auth](http://the-internet.herokuapp.com/basic_auth) (user and pass: admin)
++ [Broken Images](http://the-internet.herokuapp.com/broken_images)
 + [Checkboxes](http://the-internet.herokuapp.com/checkboxes)
 + [Context Menu](http://the-internet.herokuapp.com/context_menu)
 + [Drag and Drop](http://the-internet.herokuapp.com/drag_and_drop)
