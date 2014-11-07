@@ -1,3 +1,6 @@
+#0.35.1
++ Added secure file downloads to the examples list
+
 #0.35.0
 + Added an example for broken images
 
