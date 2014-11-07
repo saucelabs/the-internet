@@ -1,3 +1,6 @@
+#0.35.0
++ Added an example for broken images
+
 #0.34.0
 + Added an example that demonstrates a slow loading resource
 
