@@ -1,0 +1,31 @@
+<style>
+img {
+  width: 82px;
+  height: 82px;
+}
+</style>
+
+<div class='example'>
+  <h3>Dynamic Content</h3>
+  <p>This example demonstrates the ever-evolving nature of content by loading fresh text and images on each page refresh.</p>
+
+  <hr>
+  </br>
+  </br>
+
+  <div class='row'>
+    <div class='large-10 columns large-centered'>
+      <% @copy.each do |copy| %>
+        <div class='row'>
+          <div class='large-2 columns'>
+            <img src='/img/avatars/<%= @images[rand(@images.length-1)] %>'>
+          </div>
+          <div class='large-10 columns'>
+            <%= copy %>
+          </div>
+        </div></br></br>
+      <% end %>
+    </div>
+  </div>
+
+</div>

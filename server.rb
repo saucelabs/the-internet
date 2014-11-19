@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sinatra/flash'
 require 'zurb-foundation'
 require 'compass'
+require 'faker'
 
 enable :sessions
 
@@ -334,4 +335,15 @@ end
 
 get '/broken_images' do
   erb :broken_images
+end
+
+get '/dynamic_content' do
+  @copy = []
+  3.times { @copy << Faker::Lorem.sentence(30) }
+  @images = Dir.glob('public/img/avatars/*').map { |f| f.split('/').last }
+  erb :dynamic_content
+end
+
+get '/shifting_content' do
+  erb :shifting_content
 end
