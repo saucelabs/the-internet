@@ -1,3 +1,9 @@
+#0.36.0
++ Added 2 examples to help aid with automated visual testing.
+
+1. Loads dynamic text and images on each page refresh
+2. Renders the page contents off by a few pixels
+
 #0.35.1
 + Added secure file downloads to the examples list
 
