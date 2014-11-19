@@ -1,3 +1,6 @@
+#0.36.1
++ Fixed a small rendering issue on /dynamic_content
+
 #0.36.0
 + Added 2 examples to help aid with automated visual testing.
 
