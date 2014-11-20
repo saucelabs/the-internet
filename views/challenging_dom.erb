@@ -6,9 +6,9 @@
   <div class='row'>
     <div class='large-12 columns large-centered'>
       <div class='large-2 columns'>
-        <a id='<%= @id[0] %>' href='' class='button'>foo</a></br>
-        <a id='<%= @id[1] %>' href='' class='button success'>bar</a></br>
-        <a id='<%= @id[2] %>' href='' class='button alert'>baz</a></br>
+        <a id='<%= @id[0] %>' href='' class='button'><%= @text[rand(@text.length)] %></a></br>
+        <a id='<%= @id[1] %>' href='' class='button alert'><%= @text[rand(@text.length)] %></a></br>
+        <a id='<%= @id[2] %>' href='' class='button success'><%= @text[rand(@text.length)] %></a></br>
       </div>
       <div class='large-10 columns'>
         <table>

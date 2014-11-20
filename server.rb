@@ -358,6 +358,7 @@ end
 
 get '/challenging_dom' do
   require 'uuid'
+  @text = %w(foo bar baz qux)
   @id = []
   20.times { @id << UUID.new.generate }
   erb :challenging_dom
