@@ -7,4 +7,3 @@ vendor/*.log
 .rbenv-version
 .ruby-version
 .rvmrc
-*.lock
