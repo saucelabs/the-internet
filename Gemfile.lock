@@ -38,6 +38,8 @@ GEM
     json (1.8.1)
     launchy (2.4.3)
       addressable (~> 2.3)
+    macaddr (1.7.1)
+      systemu (~> 2.6.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -73,6 +75,7 @@ GEM
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
     slop (3.6.0)
+    systemu (2.6.4)
     tilt (1.4.1)
     travis (1.7.4)
       addressable (~> 2.3)
@@ -87,6 +90,8 @@ GEM
       typhoeus (~> 0.6, >= 0.6.8)
     typhoeus (0.6.9)
       ethon (>= 0.7.1)
+    uuid (2.3.7)
+      macaddr (~> 1.0)
     websocket (1.2.1)
     zurb-foundation (4.3.2)
       sass (>= 3.2.0)
@@ -104,4 +109,5 @@ DEPENDENCIES
   sinatra
   sinatra-flash
   travis
+  uuid
   zurb-foundation
