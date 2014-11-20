@@ -1,3 +1,8 @@
+#0.37.0
++ Small copy tweak to /dynamic_content
++ Added body text that shifts by 1 pixel to /shifting_content
++ Added /challenging_dom example
+
 #0.36.1
 + Fixed a small rendering issue on /dynamic_content
 
