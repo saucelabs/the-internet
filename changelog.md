@@ -1,3 +1,7 @@
+#0.37.1
++ Added missing gem to Gemfile
++ Updated buttons on /challenging_dom so there are fewer and their text changes on each page load
+
 #0.37.0
 + Small copy tweak to /dynamic_content
 + Added body text that shifts by 1 pixel to /shifting_content
