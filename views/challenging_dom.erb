@@ -1,0 +1,63 @@
+<div class='example'>
+  <h3>Challenging DOM</h3>
+  <p>The hardest part in automated web testing is finding the best locators (e.g., ones that well named, unique, and unlikely to change). It's more often than not that the application you're testing was not built with this concept in mind. This example demonstrates that with unique IDs, a table with no helpful locators, and a canvas element.</p>
+  <hr>
+
+  <div class='row'>
+    <div class='large-12 columns large-centered'>
+      <div class='large-2 columns'>
+        <a id='<%= @id[0] %>' href='' class='button'>foo</a></br>
+        <a id='<%= @id[1] %>' href='' class='button success'>bar</a></br>
+        <a id='<%= @id[2] %>' href='' class='button alert'>fizz</a></br>
+        <a id='<%= @id[3] %>' href=''>buzz</a></br></br>
+        <a id='<%= @id[3] %>' href=''>rock</a></br></br>
+        <a id='<%= @id[3] %>' href='' class='button'>paper</a></br>
+        <a id='<%= @id[3] %>' href='' class='button'>scissors</a></br>
+      </div>
+      <div class='large-10 columns'>
+        <table>
+          <thead>
+            <tr>
+              <th>Lorem</th>
+              <th>Ipsum</th>
+              <th>Dolor</th>
+              <th>Sit</th>
+              <th>Amet</th>
+              <th>Diceret</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% 10.times do |count| %>
+            <tr>
+              <td>Iuvaret<%= count %></td>
+              <td>Apeirian<%= count %></td>
+              <td>Adipisci<%= count %></td>
+              <td>Definiebas<%= count %></td>
+              <td>Consequuntur<%= count %></td>
+              <td>Phaedrum<%= count %></td>
+              <td>
+                <a href='#edit'>edit</a>
+                <a href='#delete'>delete</a>
+              </td>
+            </tr>
+            <% end %>
+          </th>
+        </table>
+        <div class='row'>
+          <div class='large-10 columns'>
+            <canvas id='canvas' width='599' height='200' style='border:1px dotted;'></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<script>
+var canvas_el = document.getElementById('canvas');
+var canvas = canvas_el.getContext('2d');
+canvas.font = '60px Arial';
+canvas.strokeText('Answer: <%= rand(99999) %>',90,112);
+</script>
