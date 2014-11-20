@@ -355,3 +355,10 @@ end
 get '/shifting_content' do
   erb :shifting_content
 end
+
+get '/challenging_dom' do
+  require 'uuid'
+  @id = []
+  20.times { @id << UUID.new.generate }
+  erb :challenging_dom
+end
