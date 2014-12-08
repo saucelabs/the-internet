@@ -353,6 +353,12 @@ get '/dynamic_content' do
 end
 
 get '/shifting_content' do
+  @pixel_shift ||= 10
+  erb :shifting_content
+end
+
+get '/shifting_content/:pixel_shift' do |pixel_shift|
+  @pixel_shift = pixel_shift.to_i
   erb :shifting_content
 end
 
@@ -362,4 +368,22 @@ get '/challenging_dom' do
   @id = []
   20.times { @id << UUID.new.generate }
   erb :challenging_dom
+end
+
+get '/disappearing_elements' do
+  markup = [%q{<ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about/">About</a></li>
+                  <li><a href="/contact-us/">Contact Us</a></li>
+                  <li><a href="/portfolio/">Portfolio</a></li>
+                  <li><a href="/gallery/">Gallery</a></li>
+                <ul>},
+              %q{<ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about/">About</a></li>
+                  <li><a href="/contact-us/">Contact Us</a></li>
+                  <li><a href="/portfolio/">Portfolio</a></li>
+                <ul>}]
+  @payload = markup[rand(2)]
+  erb :disappear
 end
