@@ -1,4 +1,4 @@
-# The Internet 0.37.0 (11-20-2014)
+# The Internet 0.38.0 (12-08-2014)
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
@@ -12,6 +12,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Challenging DOM](http://the-internet.herokuapp.com/challenging_dom)
 + [Checkboxes](http://the-internet.herokuapp.com/checkboxes)
 + [Context Menu](http://the-internet.herokuapp.com/context_menu)
++ [Disappearing Elements](http://the-internet.herokuapp.com/disappearing_elements)
 + [Drag and Drop](http://the-internet.herokuapp.com/drag_and_drop)
 + [Dropdown](http://the-internet.herokuapp.com/dropdown)
 + [Dynamic Content](http://the-internet.herokuapp.com/dynamic_content)
