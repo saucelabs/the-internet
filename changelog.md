@@ -1,3 +1,7 @@
+#0.38.1
++ Removed pixel specifcation by URL from /shifting_content
++ Reworked the example in /shifting_content so it leverages a menu bar that has a rogue button from time to time
+
 #0.38.0
 + Updated shifting content so it defaults to 10 pixels, but can be changed in the URL by adding a /number (e.g., /shifting_content/100)
 + Added an example for disappearing/reappearing elements on each page load
