@@ -1,27 +1,54 @@
 <style>
-h1 {
-  padding-top: <%= 25+rand(10) %>px;
-  padding-right: 50px;
-  padding-bottom: 25px;
-  padding-left: <%= 25+rand(10) %>px;
+a {
+  color: #DA4B4B;
+  text-decoration: none;
 }
-.content {
-  padding-top: 0px;
-  padding-right: <%= 0+rand(2) %>px;
-  padding-bottom: 25px;
-  padding-left: 50px;
-  width: 400px;
+
+a:hover {
+  color: #000;
+}
+
+ul {
+  list-style-type: none;
+  line-height: 50px;
+}
+
+li {
+  display: inline;
+  float: left;
+}
+
+li a {
+  display: block;
+  background: #ececec;
+  padding: 0 20px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+}
+
+li a:hover {
+  background: #f2f2f2;
+  font-size: 20px;
+}
+
+.shift {
+  position: relative;
+  left: -<%= @pixel_shift %>px;
 }
 </style>
+
 <div class='example'>
   <h3>Shifting Content</h3>
   <p>This example demonstrates elements on a page shifting a few pixels in either direction on each page load. This is meant to demonstrate some of the subtle rendering issues that occur cross-browser.</p>
 
   <hr>
 
-  <h1>Logo</h1>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/contact-us/">Contact Us</a></li>
+    <li><a href="/portfolio/">Portfolio</a></li>
+    <li><a href="/gallery/" class='shift'>Gallery</a></li>
+  <ul>
 
-  <div class='content'>
-    <p>Quot partiendo sea in. Appetere scribentur at duo. Vel soleat ancillae eu. Ius et eius atqui. Nulla nobis per ei, pro ad audire habemus mentitum. No nec ferri equidem cotidieque, ut elitr libris pertinacia pri, possit impedit detraxit eos ex.</p>
-  </div>
 </div>

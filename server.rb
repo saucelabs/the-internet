@@ -91,8 +91,16 @@ end
 
 load_frame_get_actions
 
+get '/nested_frames' do
+  erb :nested_frames, :layout => false
+end
+
 get '/frames' do
-  erb :frames, :layout => false
+  erb :frames
+end
+
+get '/iframe' do
+  erb :tinymce
 end
 
 get '/tinymce' do
@@ -345,12 +353,33 @@ get '/dynamic_content' do
 end
 
 get '/shifting_content' do
+  pixel_count = [0, 20]
+  @pixel_shift = pixel_count[rand(2)]
   erb :shifting_content
 end
 
 get '/challenging_dom' do
   require 'uuid'
+  @text = %w(foo bar baz qux)
   @id = []
   20.times { @id << UUID.new.generate }
   erb :challenging_dom
+end
+
+get '/disappearing_elements' do
+  markup = [%q{<ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about/">About</a></li>
+                  <li><a href="/contact-us/">Contact Us</a></li>
+                  <li><a href="/portfolio/">Portfolio</a></li>
+                  <li><a href="/gallery/">Gallery</a></li>
+                <ul>},
+              %q{<ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about/">About</a></li>
+                  <li><a href="/contact-us/">Contact Us</a></li>
+                  <li><a href="/portfolio/">Portfolio</a></li>
+                <ul>}]
+  @payload = markup[rand(2)]
+  erb :disappear
 end

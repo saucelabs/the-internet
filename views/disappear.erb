@@ -1,0 +1,41 @@
+<style>
+a {
+  color: #DA4B4B;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000;
+}
+
+ul {
+  list-style-type: none;
+  line-height: 50px;
+}
+
+li {
+  display: inline;
+  float: left;
+}
+
+li a {
+  display: block;
+  background: #ececec;
+  padding: 0 20px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+}
+
+li a:hover {
+  background: #f2f2f2;
+  font-size: 20px;
+}
+</style>
+
+<div class='example'>
+  <h3>Disappearing Elements</h3>
+  <p>This example demonstrates when elements on a page change by disappearing/reappearing on each page load.</p>
+
+  <hr>
+  <%= @payload %>
+</div>
