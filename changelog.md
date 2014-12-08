@@ -1,12 +1,10 @@
-<<<<<<< HEAD
-#0.37.1
-+ Added missing gem to Gemfile
-+ Updated buttons on /challenging_dom so there are fewer and their text changes on each page load
-=======
 #0.38.0
 + Updated shifting content so it defaults to 10 pixels, but can be changed in the URL by adding a /number (e.g., /shifting_content/100)
 + Added an example for disappearing/reappearing elements on each page load
->>>>>>> release/0.38.0
+
+#0.37.1
++ Added missing gem to Gemfile
++ Updated buttons on /challenging\_dom so there are fewer and their text changes on each page load
 
 #0.37.0
 + Small copy tweak to /dynamic_content
