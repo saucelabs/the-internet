@@ -1,0 +1,50 @@
+
+<script>
+ function onClick (){
+      var start = document.getElementById("start");
+      start.disabled = true;
+      clearMessage();
+      $('#start').after("<div id='loading'>Wait for it... <img src='/img/ajax-loader.gif'></div>");
+      setTimeout(function() {
+	toggleControls();
+      } , 5000 );
+
+  };
+
+ function clearMessage() {
+    var message = document.getElementById("message");
+    if ($('#message').length) {
+       message.remove();
+    }
+ };
+
+ function toggleControls() {
+    if ( start.innerText == "Remove") {
+         var check = document.getElementById("checkbox");
+         check.remove();
+	 start.innerText = "Add";
+	 $('#start').after("<p id='message'>It's gone!</p>");
+	 start.disabled = false;
+         $('#loading').hide();
+    }else{
+	 start.innerText = "Remove";
+	 $('#start').after("<div id='checkbox'><input type='checkbox' id='checkbox'>A checkbox </div>");
+	 $('#start').after("<p id='message'>It's back!</p>");
+	 start.disabled = false;
+         $('#loading').hide();
+    }
+ };
+</script>
+
+<div class="example">
+   <h4>Dynamic Controls</h4>
+   <p>Demonstrates controls that are added or removed after an async call.</p>
+
+   <form>
+       <button type="button" id="start" onclick="onClick()" >Remove</button>
+       <div id="checkbox">
+	  <input type="checkbox" id="checkbox"> A checkbox
+       </div>
+
+   </form>
+<div>

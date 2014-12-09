@@ -241,6 +241,10 @@ get '/logout' do
   redirect "/login"
 end
 
+get '/dynamic_controls' do
+  erb :dynamic_controls
+end
+
 get '/dynamic_loading' do
   erb :dynamic_loading
 end
