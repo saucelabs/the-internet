@@ -1,5 +1,8 @@
+#0.38.2
++ Changed pixel shifting on /shfting_content from 20 to 25 pixels
+
 #0.38.1
-+ Removed pixel specifcation by URL from /shifting_content
++ Removed pixel specification by URL from /shifting_content
 + Reworked the example in /shifting_content so it leverages a menu bar that has a rogue button from time to time
 
 #0.38.0

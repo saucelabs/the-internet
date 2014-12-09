@@ -353,7 +353,7 @@ get '/dynamic_content' do
 end
 
 get '/shifting_content' do
-  pixel_count = [0, 20]
+  pixel_count = [0, 25]
   @pixel_shift = pixel_count[rand(2)]
   erb :shifting_content
 end
