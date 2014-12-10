@@ -1,5 +1,8 @@
+#0.38.3
++ Updated /shifting_content so it alternates the shift on each page load rather than randomly
+
 #0.38.2
-+ Changed pixel shifting on /shfting_content from 20 to 25 pixels
++ Changed pixel shifting on /shifting_content from 20 to 25 pixels
 
 #0.38.1
 + Removed pixel specification by URL from /shifting_content

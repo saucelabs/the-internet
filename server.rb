@@ -1,10 +1,14 @@
 require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/flash'
+require 'sinatra/contrib'
+require 'sinatra/cookies'
 require 'zurb-foundation'
 require 'compass'
 require 'faker'
 
+helpers Sinatra::Cookies
+set :cookie_options, :domain => nil
 enable :sessions
 
 configure :production do
@@ -358,7 +362,17 @@ end
 
 get '/shifting_content' do
   pixel_count = [0, 25]
-  @pixel_shift = pixel_count[rand(2)]
+  cookies[:page_visit_count] ||= '0'
+  page_visit_count = cookies[:page_visit_count].to_i
+
+  if page_visit_count.even?
+    @pixel_shift = pixel_count[0]
+  else
+    @pixel_shift = pixel_count[1]
+  end
+
+  page_visit_count += 1
+  cookies[:page_visit_count] = page_visit_count.to_s
   erb :shifting_content
 end
 
