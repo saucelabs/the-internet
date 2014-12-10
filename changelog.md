@@ -1,3 +1,6 @@
+#0.38.4
++ Added a /shifting_content/random to load the shift randomly for simpler automated visual testing
+
 #0.38.3
 + Updated /shifting_content so it alternates the shift on each page load rather than randomly
 

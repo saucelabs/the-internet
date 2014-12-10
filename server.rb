@@ -372,6 +372,12 @@ get '/shifting_content' do
   erb :shifting_content
 end
 
+get '/shifting_content/random' do
+  pixel_count = [0, 25]
+  @pixel_shift = pixel_count[rand(2)]
+  erb :shifting_content
+end
+
 get '/challenging_dom' do
   require 'uuid'
   @text = %w(foo bar baz qux)
