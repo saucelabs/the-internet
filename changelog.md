@@ -1,3 +1,6 @@
+#0.39.0
++ Pulled in the pull request for a dynamic controls example
+
 #0.38.4
 + Added a /shifting_content/random to load the shift randomly for simpler automated visual testing
 
