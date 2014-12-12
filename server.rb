@@ -376,8 +376,30 @@ get '/shifting_content' do
   erb :shifting_content
 end
 
+get '/shifting_content/:pixel_shift' do |pixel_shift|
+  pixel_count = [0, pixel_shift]
+  cookies[:page_visit_count] ||= '0'
+  page_visit_count = cookies[:page_visit_count].to_i
+
+  if page_visit_count.even?
+    @pixel_shift = pixel_count[0]
+  else
+    @pixel_shift = pixel_count[1]
+  end
+
+  page_visit_count += 1
+  cookies[:page_visit_count] = page_visit_count.to_s
+  erb :shifting_content
+end
+
 get '/shifting_content/random' do
   pixel_count = [0, 25]
+  @pixel_shift = pixel_count[rand(2)]
+  erb :shifting_content
+end
+
+get '/shifting_content/random/:pixel_shift' do |pixel_shift|
+  pixel_count = [0, pixel_shift]
   @pixel_shift = pixel_count[rand(2)]
   erb :shifting_content
 end
