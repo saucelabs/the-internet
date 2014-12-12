@@ -1,3 +1,6 @@
+#0.40.0
++ Made is so the number of pixels can be specified in the URL for /shifting_content and /shifting_content/random
+
 #0.39.0
 + Pulled in the pull request for a dynamic controls example
 
