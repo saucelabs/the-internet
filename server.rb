@@ -6,10 +6,11 @@ require 'sinatra/cookies'
 require 'zurb-foundation'
 require 'compass'
 require 'faker'
+#require 'logger'
 
 helpers Sinatra::Cookies
 set :cookie_options, :domain => nil
-enable :sessions
+enable :sessions, :logging
 
 configure :production do
   require 'newrelic_rpm'
@@ -361,46 +362,27 @@ get '/dynamic_content' do
 end
 
 get '/shifting_content' do
-  pixel_count = [0, 25]
-  cookies[:page_visit_count] ||= '0'
-  page_visit_count = cookies[:page_visit_count].to_i
-
-  if page_visit_count.even?
-    @pixel_shift = pixel_count[0]
+  if params[:pixel_shift]
+    pixel_count = [0, params[:pixel_shift].to_i]
   else
-    @pixel_shift = pixel_count[1]
+    pixel_count = [0, 25]
   end
 
-  page_visit_count += 1
-  cookies[:page_visit_count] = page_visit_count.to_s
-  erb :shifting_content
-end
-
-get '/shifting_content/:pixel_shift' do |pixel_shift|
-  pixel_count = [0, pixel_shift]
-  cookies[:page_visit_count] ||= '0'
-  page_visit_count = cookies[:page_visit_count].to_i
-
-  if page_visit_count.even?
-    @pixel_shift = pixel_count[0]
+  if params[:mode] == 'random'
+    @pixel_shift = pixel_count[rand(2)]
   else
-    @pixel_shift = pixel_count[1]
+    cookies[:page_visit_count] ||= '0'
+    page_visit_count = cookies[:page_visit_count].to_i
+
+    if page_visit_count.even?
+      @pixel_shift = pixel_count[0]
+    else
+      @pixel_shift = pixel_count[1]
+    end
+    page_visit_count += 1
+    cookies[:page_visit_count] = page_visit_count.to_s
   end
 
-  page_visit_count += 1
-  cookies[:page_visit_count] = page_visit_count.to_s
-  erb :shifting_content
-end
-
-get '/shifting_content/random' do
-  pixel_count = [0, 25]
-  @pixel_shift = pixel_count[rand(2)]
-  erb :shifting_content
-end
-
-get '/shifting_content/random/:pixel_shift' do |pixel_shift|
-  pixel_count = [0, pixel_shift]
-  @pixel_shift = pixel_count[rand(2)]
   erb :shifting_content
 end
 
