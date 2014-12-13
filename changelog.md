@@ -1,3 +1,6 @@
+#0.40.1
++ Fixed a bug in the /shifting_content random example and down-sized it all down to one route that handles all use cases (e.g., normal, random, and specified pixel count). Also added helper text with links to the view
+
 #0.40.0
 + Made is so the number of pixels can be specified in the URL for /shifting_content and /shifting_content/random
 
