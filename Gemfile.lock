@@ -114,7 +114,7 @@ DEPENDENCIES
   newrelic_rpm
   pony
   rake
-  shotgun (~> 0.9)
+  shotgun
   sinatra
   sinatra-contrib
   sinatra-flash

@@ -1,3 +1,6 @@
+#0.40.2
++ Added some semantic markup on the /dynamic_content page to make it easier for targeting individual rows in automated tests.
+
 #0.40.1
 + Fixed a bug in the /shifting_content random example and down-sized it all down to one route that handles all use cases (e.g., normal, random, and specified pixel count). Also added helper text with links to the view
 
