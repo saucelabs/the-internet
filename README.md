@@ -1,4 +1,4 @@
-# The Internet 0.40.2 (12-24-2014)
+# The Internet 0.41.0 (12-30-2014)
 =======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
@@ -39,6 +39,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Slow Resources](http://the-internet.herokuapp.com/slow)
 + [Sortable Data Tables](http://the-internet.herokuapp.com/tables)
 + [Status Codes](http://the-internet.herokuapp.com/status_codes)
++ [Typos](http://the-internet.herokuapp.com/typos)
 + [WYSIWYG Editor](http://the-internet.herokuapp.com/tinymce)
 
 

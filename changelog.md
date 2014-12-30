@@ -1,3 +1,7 @@
+#0.41.0
++ Split /shifting_content into a main page with two sub-examples (menu element and images, respectively)
++ Added a new example that demonstrates typos randomly appearing on each page load
+
 #0.40.2
 + Added some semantic markup on the /dynamic_content page to make it easier for targeting individual rows in automated tests.
 
