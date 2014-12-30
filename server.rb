@@ -361,7 +361,7 @@ get '/dynamic_content' do
   erb :dynamic_content
 end
 
-get '/shifting_content' do
+def shift_tracker
   if params[:pixel_shift]
     pixel_count = [0, params[:pixel_shift].to_i]
   else
@@ -382,8 +382,20 @@ get '/shifting_content' do
     page_visit_count += 1
     cookies[:page_visit_count] = page_visit_count.to_s
   end
+end
 
+get '/shifting_content' do
   erb :shifting_content
+end
+
+get '/shifting_content/menu' do
+  shift_tracker
+  erb :shifting_content_menu
+end
+
+get '/shifting_content/image' do
+  shift_tracker
+  erb :shifting_content_image
 end
 
 get '/challenging_dom' do
@@ -410,4 +422,10 @@ get '/disappearing_elements' do
                 <ul>}]
   @payload = markup[rand(2)]
   erb :disappear
+end
+
+get '/typos' do
+  @copy = ["Sometimes you'll get a typo, other times you won't.",
+           "Somrtimes you'll get a typo, other times you won't"].at(rand(2))
+  erb :typos
 end

@@ -1,58 +1,8 @@
-<style>
-a {
-  color: #DA4B4B;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #000;
-}
-
-ul {
-  list-style-type: none;
-  line-height: 50px;
-}
-
-li {
-  display: inline;
-  float: left;
-}
-
-li a {
-  display: block;
-  background: #ececec;
-  padding: 0 20px;
-  font-size: 18px;
-  border: 1px solid #ccc;
-}
-
-li a:hover {
-  background: #f2f2f2;
-  font-size: 20px;
-}
-
-.shift {
-  position: relative;
-  left: -<%= @pixel_shift %>px;
-}
-</style>
-
 <div class='example'>
   <h3>Shifting Content</h3>
-  <p>This example demonstrates elements on a page shifting a few pixels in either direction on each page load. This is meant to demonstrate some of the subtle rendering issues that occur cross-browser.</p>
+  <p>These examples demonstrate elements on a page shifting a few pixels in either direction on each page load. This is meant to demonstrate some of the subtle rendering issues that occur across browsers.</p>
 
-  <p>To load it randomly, append <code>?mode=random</code> to the URL. Or <a href='/shifting_content?mode=random'>click here</a>.</p>
-  <p>To specify a different number of pixels to shift the example, append <code>?pixel_shift=100</code> to the URL. Or <a href='/shifting_content?pixel_shift=100'>click here</a>.</p>
-  <p>To do both together, use <code>?mode=random&pixel_shift=100</code>. Or <a href='/shifting_content?mode=random&pixel_shift=100'>click here</a>.</p>
-
-  <hr>
-
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about/">About</a></li>
-    <li><a href="/contact-us/">Contact Us</a></li>
-    <li><a href="/portfolio/">Portfolio</a></li>
-    <li><a href="/gallery/" class='shift'>Gallery</a></li>
-  <ul>
+  <a href='/shifting_content/menu'>Example 1: Menu Element</a></br></br>
+  <a href='/shifting_content/image'>Example 2: An image</a>
 
 </div>

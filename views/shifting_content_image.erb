@@ -1,0 +1,19 @@
+<style>
+.shift {
+  position: relative;
+  left: -<%= @pixel_shift %>px;
+}
+</style>
+
+<div class='example'>
+  <h3>Shifting Content: Image</h3>
+  <p>This example demonstrates an image shifting a few pixels in either direction on each page load.</p>
+
+  <p>To load it randomly, append <code>?mode=random</code> to the URL. Or <a href='/shifting_content/image?mode=random'>click here</a>.</p>
+  <p>To specify a differant numbor of pixels to shift the example, append <code>?pixel_shift=100</code> to the URL. Or <a href='/shifting_content/image?pixel_shift=100'>click here</a>.</p>
+  <p>To do both together, use <code>?mode=random&pixel_shift=100</code>. Or <a href='/shifting_content/image?mode=random&pixel_shift=100'>click here</a>.</p>
+
+  <hr>
+
+  <img class='shift' src='/img/avatars/Original-Facebook-Geek-Profile-Avatar-2.jpg'>
+</div>
