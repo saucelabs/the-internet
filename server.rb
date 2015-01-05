@@ -395,6 +395,11 @@ end
 
 get '/shifting_content/image' do
   shift_tracker
+  if params[:image_type] == 'simple'
+    @file = '/img/avatars/Original-Facebook-Geek-Profile-Avatar-2.jpg'
+  else
+    @file = '/img/avatar.jpg'
+  end
   erb :shifting_content_image
 end
 
@@ -425,7 +430,7 @@ get '/disappearing_elements' do
 end
 
 get '/typos' do
-  @copy = ["Sometimes you'll get a typo, other times you won't.",
-           "Somrtimes you'll get a typo, other times you won't"].at(rand(2))
+  @copy = ["Sometimes you'll see a typo, other times you won't.",
+           "Sometimes you'll see a typo, other times you won,t."].at(rand(2))
   erb :typos
 end
