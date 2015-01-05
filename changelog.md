@@ -1,3 +1,7 @@
+#0.42.0
++ Changed the typo example so the typo appears at the end of the sentence
++ Added a more detailed image for the shifting image example with URL parameter option to display the simpler one instead
+
 #0.41.0
 + Split /shifting_content into a main page with two sub-examples (menu element and images, respectively)
 + Added a new example that demonstrates typos randomly appearing on each page load
