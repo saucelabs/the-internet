@@ -1,3 +1,6 @@
+#0.43.0
++ Updated new window example so the page title is more descriptive on the new window that gets loaded
+
 #0.42.0
 + Changed the typo example so the typo appears at the end of the sentence
 + Added a more detailed image for the shifting image example with URL parameter option to display the simpler one instead
