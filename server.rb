@@ -125,7 +125,7 @@ get '/windows' do
 end
 
 get '/windows/new' do
-  erb :new_window, :layout => false
+  erb :new_window, layout: false
 end
 
 get '/dropdown' do
