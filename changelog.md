@@ -1,3 +1,6 @@
+#0.43.1
++ Added /nested_frames back to the examples list
+
 #0.43.0
 + Updated new window example so the page title is more descriptive on the new window that gets loaded
 
