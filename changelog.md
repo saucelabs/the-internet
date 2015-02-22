@@ -1,3 +1,6 @@
+#0.44.0
++ Updated Font Awesome version and its icon usage in /login
+
 #0.43.1
 + Added /nested_frames back to the examples list
 
