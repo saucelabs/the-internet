@@ -1,3 +1,6 @@
+#0.44.1
++ Fixed /tables sorting
+
 #0.44.0
 + Updated Font Awesome version and its icon usage in /login
 
