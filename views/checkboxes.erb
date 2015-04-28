@@ -1,7 +1,16 @@
 <div class="example">
   <h3>Checkboxes</h3>
-  <form>
+  <form id='checkboxes'>
     <input type="checkbox"> unchecked</br>
     <input type="checkbox" checked> checked
   </form>
 </div>
+<script>
+var form = document.getElementById('checkboxes');
+var checkboxes = form.getElementsByTagName('input');
+for (var i=0, len=checkboxes.length; i<len; i++) {
+    checkboxes[i].onclick = function() {
+      this.checked ? this.setAttribute("checked", "") : this.removeAttribute("checked");
+    }
+}
+</script>
