@@ -1,3 +1,6 @@
+#0.45.0
++ Updated /checkboxes so it auto updates the markup to denote which checkboxes are checked
+
 #0.44.1
 + Fixed /tables sorting
 
