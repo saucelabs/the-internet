@@ -1,3 +1,6 @@
+#0.45.1
++ Updated /checkboxes checkbox field text to be more accurate
+
 #0.45.0
 + Updated /checkboxes so it auto updates the markup to denote which checkboxes are checked
 
