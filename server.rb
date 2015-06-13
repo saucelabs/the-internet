@@ -355,6 +355,7 @@ get '/broken_images' do
 end
 
 get '/dynamic_content' do
+  @static_content = (params[:with_content] == 'static')
   @copy = []
   3.times { @copy << Faker::Lorem.sentence(30) }
   @images = Dir.glob('public/img/avatars/*').map { |f| f.split('/').last }
@@ -401,6 +402,14 @@ get '/shifting_content/image' do
     @file = '/img/avatar.jpg'
   end
   erb :shifting_content_image
+end
+
+get '/shifting_content/list' do
+  @copy = []
+  @copy << "Important Information You're Looking For"
+  4.times { @copy << Faker::Lorem.sentence(3) }
+  @copy.shuffle!
+  erb :shifting_content_list
 end
 
 get '/challenging_dom' do

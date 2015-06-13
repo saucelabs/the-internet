@@ -1,0 +1,15 @@
+<div class='example'>
+  <h3>Shifting Content: List</h3>
+  <p>This example demonstrates a list of dynamic content with a static record that constantly moves around.</p>
+  <hr>
+
+  </br></br>
+  <div class='row'>
+    <div class='large-6 columns large-centered'>
+      <% @copy.each do |copy| %>
+        <%= copy %></br></br>
+      <% end %>
+    </div>
+  </div>
+
+</div>
