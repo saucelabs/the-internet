@@ -1,3 +1,8 @@
+#0.46.0
++ Added parameter to /dynamic_content that can make some of the list items static
++ Updated parameter copy on /shifting_content/image that tells users how to load a simple image
++ Added a new /shifting_content example with dynamic list data that has a recurring value which persists and moves around
+
 #0.45.1
 + Updated /checkboxes checkbox field text to be more accurate
 

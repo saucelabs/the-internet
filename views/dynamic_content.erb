@@ -8,11 +8,42 @@
 <div class='example'>
   <h3>Dynamic Content</h3>
   <p>This example demonstrates the ever-evolving nature of content by loading new text and images on each page refresh.</p>
+  <p>To make some of the content static append <code>?with_content=static</code> or <a href='/dynamic_content?with_content=static'>click here</a>.</p>
 
   <hr>
   </br>
   </br>
 
+  <% if @static_content %>
+  <div class='row'>
+    <div id='content' class='large-10 columns large-centered'>
+        <div class='row'>
+          <div class='large-2 columns'>
+            <img src='/img/avatars/<%= @images[0] %>'>
+          </div>
+          <div class='large-10 columns'>
+          Accusantium eius ut architecto neque vel voluptatem vel nam eos minus ullam dolores voluptates enim sed voluptatem rerum qui sapiente nesciunt aspernatur et accusamus laboriosam culpa tenetur hic aut placeat error autem qui sunt.
+          </div>
+        </div></br></br>
+        <div class='row'>
+          <div class='large-2 columns'>
+            <img src='/img/avatars/<%= @images[1] %>'>
+          </div>
+          <div class='large-10 columns'>
+          Omnis fugiat porro vero quas tempora quis eveniet ab officia cupiditate culpa repellat debitis itaque possimus odit dolorum et iste quibusdam quis dicta autem sint vel quo vel consequuntur dolorem nihil neque sunt aperiam blanditiis.
+          </div>
+        </div></br></br>
+        <div class='row'>
+          <div class='large-2 columns'>
+            <img src='/img/avatars/<%= @images[rand(@images.length-1)] %>'>
+          </div>
+          <div class='large-10 columns'>
+            <%= @copy[0] %>
+          </div>
+        </div></br></br>
+    </div>
+  </div>
+  <% else %>
   <div class='row'>
     <div id='content' class='large-10 columns large-centered'>
       <% @copy.each do |copy| %>
@@ -27,5 +58,6 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 
 </div>
