@@ -1,3 +1,6 @@
+#0.47.1
++ Made it so the last row of /dynamic_content when viewing it in static mode will have a unique image on each page refresh
+
 #0.47.0
 + Updated file upload so you can drag/drop a file from outside of the browser. Updated jQuery in the process, and added jQuery-UI
 + Made it so all of the copy in /shifting_content/list is static, while preserving the dynamic order on page refresh
