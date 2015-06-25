@@ -1,3 +1,7 @@
+#0.47.0
++ Updated file upload so you can drag/drop a file from outside of the browser. Updated jQuery in the process, and added jQuery-UI
++ Made it so all of the copy in /shifting_content/list is static, while preserving the dynamic order on page refresh
+
 #0.46.0
 + Added parameter to /dynamic_content that can make some of the list items static
 + Updated parameter copy on /shifting_content/image that tells users how to load a simple image

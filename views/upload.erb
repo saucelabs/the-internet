@@ -1,9 +1,39 @@
+<script src='/js/vendor/dropzone.js'></script>
+<style>
+#drag-drop-upload {
+  border-style: dashed;
+  border-width: 5px;
+  border-color: red;
+  height: 400px;
+  width: 400px;
+}
+</style>
+<script>
+$('.dz-success-mark').remove();
+</script>
 <div class="example">
 <h3>File Uploader</h3>
-<p>Choose a file here on your system that you would like to upload!</p>
-  <form method='post' enctype='multipart/form-data'>
-    <input id='file-upload' type='file' name='myfile'>
+<p>Choose a file on your system and then click upload. Or, drag and drop a file into the area below.</p>
+  <form method='POST' enctype='multipart/form-data'>
+    <input id='file-upload' type='file' name='file'>
     </br>
     <input class="button" id='file-submit' type='submit' value='Upload'>
   </form>
 </div>
+
+<div class='dz-success-mark' id='drag-drop-upload'>
+</div>
+<div id="preview-template" style="display: none;">
+  <div class="dz-preview dz-file-preview">
+    <div class="dz-details">
+      <div class="dz-filename"><span data-dz-name></span></div>
+    </div>
+    <div class="dz-success-mark"><span>✔</span></div>
+  </div>
+</div>
+<script>
+  $('div#drag-drop-upload').dropzone({
+    url: '/upload',
+    previewTemplate: $('#preview-template').html()
+  });
+</script>
