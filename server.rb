@@ -25,7 +25,8 @@ get '/upload' do
 end
 
 post '/upload' do
-  file = params['myfile']
+  file = params['file']
+  puts file.inspect
   File.open('public/uploads/' + file[:filename], 'w') do |f|
     f.write(file[:tempfile].read)
   end
