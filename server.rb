@@ -408,7 +408,10 @@ end
 get '/shifting_content/list' do
   @copy = []
   @copy << "Important Information You're Looking For"
-  4.times { @copy << Faker::Lorem.sentence(3) }
+  @copy << "Nesciunt autem eum odit fuga tempora deleniti."
+  @copy << "Vel aliquid dolores veniam enim nesciunt libero quaerat."
+  @copy << "Sed deleniti blanditiis odio laudantium."
+  @copy << "Et numquam et aliquam."
   @copy.shuffle!
   erb :shifting_content_list
 end
