@@ -447,3 +447,12 @@ get '/typos' do
            "Sometimes you'll see a typo, other times you won,t."].at(rand(2))
   erb :typos
 end
+
+get '/infinite_scroll' do
+  erb :infinite_scroll
+end
+
+get '/infinite_scroll/:number' do |number|
+  "<br />#{Faker::Lorem.sentence(300)}\
+  <a href='/infinite_scroll/#{number.to_i + 1}'>next page</a>"
+end
