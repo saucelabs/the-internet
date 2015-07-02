@@ -1,0 +1,49 @@
+<style>
+#menu {
+    position: absolute;
+    left: 30%;
+}
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu ul li {
+    display: inline;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom:1px solid #ddd;
+    border-top:1px solid #ddd;
+    border-right:1px solid #ddd;
+    border-left:1px solid #ddd;
+    background-color: white;
+}
+#menu ul li a {
+    text-decoration:none;
+}
+</style>
+<div class='example'>
+  <h3>Fixed Menu</h3>
+  <div id='menu'>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+  <div class='row'>
+    <div class='scroll large-10 columns large-centered'>
+      <% @copy.each do |copy| %>
+        <p><%= copy %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script src='/js/vendor/stickyfloat.js'></script>
+<script>
+$('#menu').stickyfloat( {duration: 400} );
+</script>

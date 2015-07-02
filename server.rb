@@ -456,3 +456,9 @@ get '/infinite_scroll/:number' do |number|
   "<br />#{Faker::Lorem.sentence(300)}\
   <a href='/infinite_scroll/#{number.to_i + 1}'>next page</a>"
 end
+
+get '/floating_menu' do
+  @copy = []
+  10.times { @copy << Faker::Lorem.sentence(300) }
+  erb :floating_menu
+end
