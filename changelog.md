@@ -1,3 +1,7 @@
+#0.48.0
++ Added an /infinite_scroll example
++ Added a /floating_menu example
+
 #0.47.1
 + Made it so the last row of /dynamic_content when viewing it in static mode will have a unique image on each page refresh
 
