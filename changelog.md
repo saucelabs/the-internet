@@ -1,3 +1,7 @@
+#0.48.1
++ Fixed a typo on /infinite_scroll
++ Adjusted the duration for the floating menu to follow the user scroll from 400 ms to 1 ms
+
 #0.48.0
 + Added an /infinite_scroll example
 + Added a /floating_menu example
