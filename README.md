@@ -1,4 +1,4 @@
-# The Internet 0.48.0 (July 6, 2015)
+# The Internet 0.48.1 (July 23, 2015)
 =======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
