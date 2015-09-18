@@ -49,3 +49,8 @@ def update_examples_view
   index_html << "</ul>"
   File.open('views/examples.erb', 'w') { |file| file.puts index_html }
 end
+
+desc 'Cleanup uploaded files'
+task :rm_uploads do
+  `rm -rf public/uploads/*.jpg`
+end
