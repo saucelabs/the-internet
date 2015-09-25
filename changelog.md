@@ -1,5 +1,8 @@
+#0.48.3
++ Added footer to all pages with "Power by" info
+
 #0.48.2
-+ Added a Rake task to cleanup uploads directory on production
++ Added a Rake task to cleanup uploads directory
 
 #0.48.1
 + Fixed a typo on /infinite_scroll
