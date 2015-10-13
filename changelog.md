@@ -1,3 +1,6 @@
+#0.48.4
++ Fixed broken sorting functionality on /tables
+
 #0.48.3
 + Added footer to all pages with "Power by" info
 
