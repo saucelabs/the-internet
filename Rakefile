@@ -54,3 +54,8 @@ desc 'Cleanup uploaded files'
 task :rm_uploads do
   `rm -rf public/uploads/*.jpg`
 end
+
+desc 'Run server'
+task :run do
+  `bundle exec ruby server.rb`
+end
