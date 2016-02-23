@@ -1,3 +1,6 @@
+#0.49.0
++ Added /exit_intent example which triggers a modal dialog when the mouse leaves the viewport window
+
 #0.48.4
 + Fixed broken sorting functionality on /tables
 
