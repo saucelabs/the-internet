@@ -462,3 +462,7 @@ get '/floating_menu' do
   10.times { @copy << Faker::Lorem.sentence(300) }
   erb :floating_menu
 end
+
+get '/exit_intent' do
+  erb :exit_intent
+end
