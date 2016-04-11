@@ -6,7 +6,6 @@ require 'sinatra/cookies'
 require 'zurb-foundation'
 require 'compass'
 require 'faker'
-#require 'logger'
 
 helpers Sinatra::Cookies
 set :cookie_options, :domain => nil
