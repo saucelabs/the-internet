@@ -1,3 +1,6 @@
+#0.49.5
++ Removed missed dependency that was causing a production outage
+
 #0.49.4
 + Removed unused Gems from Gemfile
 + Specify Ruby version number in Gemfile

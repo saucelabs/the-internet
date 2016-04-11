@@ -11,10 +11,6 @@ helpers Sinatra::Cookies
 set :cookie_options, :domain => nil
 enable :sessions, :logging
 
-configure :production do
-  require 'newrelic_rpm'
-end
-
 get '/' do
   erb :index
 end
