@@ -1,3 +1,7 @@
+#0.49.4
++ Removed unused Gems from Gemfile
++ Specify Ruby version number in Gemfile
+
 #0.49.3
 + Added MIT license to project
 + Cleaned up unused configurations for NewRelic and TravisCI
