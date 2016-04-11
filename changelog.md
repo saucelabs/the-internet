@@ -1,8 +1,8 @@
-#0.49.2
+#0.49.3
 + Added MIT license to project
 + Cleaned up unused configurations for NewRelic and TravisCI
 
-#0.49.0
+#0.49.1
 + Added /exit_intent example which triggers a modal dialog when the mouse leaves the viewport window
 
 #0.48.4
