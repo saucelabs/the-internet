@@ -1,0 +1,25 @@
+require 'securerandom'
+
+desc 'Run tests against each screen resolution we care about'
+task :run, :environment do |t, args|
+  case args[:environment]
+  when 'localhost'
+    ENV['base_url'] = 'http://localhost:4567'
+  when 'production'
+    ENV['base_url'] = 'http://the-internet.herokuapp.com'
+  end
+  RESOLUTIONS       = [ { width: '1274', height: '743' },
+                        { width: '1024', height: '768' },
+                        { width:  '800', height: '600' },
+                        { width:  '360', height: '640' } ]
+  threads           = []
+  ENV['batch_id']   = SecureRandom.uuid
+  RESOLUTIONS.each do |resolution|
+    threads << Thread.new do
+      ENV['viewport_width']   = resolution[:width]
+      ENV['viewport_height']  = resolution[:height]
+      system("rspec walkthrough_spec.rb")
+    end
+  end
+  threads.each { |thread| thread.join }
+end
