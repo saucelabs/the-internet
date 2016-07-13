@@ -64,6 +64,10 @@ get '/download_secure/:filename' do |filename|
     :type => mime_type
 end
 
+get '/horizontal_slider' do
+  erb :horizontal_slider
+end
+
 def get_mime_type_for(filename)
   file_type = filename.split('.').last
   case file_type

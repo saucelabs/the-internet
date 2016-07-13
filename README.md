@@ -45,6 +45,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Status Codes](http://the-internet.herokuapp.com/status_codes)
 + [Typos](http://the-internet.herokuapp.com/typos)
 + [WYSIWYG Editor](http://the-internet.herokuapp.com/tinymce)
++ [Horizontal Slider](http://the-internet.herokuapp.com/horizontal_slider)
 
 
 Don't see an example you need or think should be here? Contribute!
