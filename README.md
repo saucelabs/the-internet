@@ -1,4 +1,4 @@
-# The Internet 0.49.5 (April, 11 2016)
+# The Internet 0.50.0 (July, 16 2016)
 =======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
@@ -27,6 +27,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Form Authentication](http://the-internet.herokuapp.com/login)
 + [Frames](http://the-internet.herokuapp.com/frames)
 + [Geolocation](http://the-internet.herokuapp.com/geolocation)
++ [Horizontal Slider](http://the-internet.herokuapp.com/horizontal_slider)
 + [Hovers](http://the-internet.herokuapp.com/hovers)
 + [Infinite Scroll](http://the-internet.herokuapp.com/infinite_scroll)
 + [JQuery UI Menus](http://the-internet.herokuapp.com/jqueryui/menu)
