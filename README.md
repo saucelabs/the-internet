@@ -1,5 +1,4 @@
 # The Internet 0.50.0 (July, 16 2016)
-=======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
