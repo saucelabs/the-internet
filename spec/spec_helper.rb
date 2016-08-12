@@ -14,7 +14,7 @@ RSpec.configure do |config|
     @eyes                     = Applitools::Eyes.new
     @eyes.api_key             = ENV['APPLITOOLS_API_KEY']
     @eyes.batch               = Thread.current[:batch]
-    @eyes.branch_name         = 'new_homepage'
+    @eyes.branch_name         = ENV['BRANCH_NAME'] ||= 'default'
     @driver                   = @eyes.open(
       app_name:       'the-internet',
       test_name:      example.metadata[:full_description],
