@@ -50,7 +50,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 
 Don't see an example you need or think should be here? Contribute!
 
-##Contribution Guidelines
+## Contribution Guidelines
 
 tldr;
 
@@ -59,7 +59,7 @@ tldr;
 3. Submit a Pull Request
 4. High Five!
 
-##Getting Started
+## Getting Started
 
 Install your dependencies:
 
