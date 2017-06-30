@@ -1,4 +1,5 @@
 # The Internet 0.50.0 (July, 16 2016)
+=======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
@@ -45,7 +46,6 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Status Codes](http://the-internet.herokuapp.com/status_codes)
 + [Typos](http://the-internet.herokuapp.com/typos)
 + [WYSIWYG Editor](http://the-internet.herokuapp.com/tinymce)
-+ [Horizontal Slider](http://the-internet.herokuapp.com/horizontal_slider)
 
 
 Don't see an example you need or think should be here? Contribute!
@@ -72,3 +72,7 @@ Start the server:
 Load the page you want to see in your browser:
 
     http://localhost:9292/url_path
+
+## See Also
+
+- A Docker Image of the-internet ([link](https://hub.docker.com/r/gprestes/the-internet/))
