@@ -1,0 +1,21 @@
+<style>
+  img {
+    width: 120px;
+    height: 90px;
+  }
+</style>
+
+<script type="text/javascript">
+  function loadUnexpectedAlert() {
+    window.open('/', '_blank');
+    window.alert('This is an unexpected alert.');
+  }
+</script>
+
+<div class="example">
+  <h3>Unexpected Alert</h3>
+  <a onclick="loadUnexpectedAlert()">
+    <p>Click here to load home page in another tab.</p>
+    <p>Clicking the parent tab will load a browser alert dialog.</p>
+  </a>
+</div>

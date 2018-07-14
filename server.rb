@@ -465,3 +465,7 @@ end
 get '/exit_intent' do
   erb :exit_intent
 end
+
+get '/unexpected_alert' do
+    erb :unexpected_alert
+end
