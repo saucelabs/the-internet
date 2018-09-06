@@ -1,60 +1,101 @@
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-function onClick (){
-   disableButton();
-   clearMessage();
-   showDelay();
-   pauseThenToggleControls();
-};
+  function swapInput() {
+    disableButton("#input-example button");
+    clearMessage();
+    showDelay("#input-example button");
+    pauseThenToggleControls("input");
+  }
 
-function disableButton() {
-   $('#btn').attr("disabled",true);
-};
+  function swapCheckbox (){
+    disableButton("#checkbox-example button");
+    clearMessage();
+    showDelay("#checkbox-example button");
+    pauseThenToggleControls("checkbox");
+  };
 
-function clearMessage() {
-    if ($('#message').length) {
-       $('#message').first().remove();
+  function disableButton(locator) {
+    $(locator).attr("disabled", true);
+  };
+
+  function clearMessage() {
+    if ($("#message").length) {
+       $("#message").first().remove();
     }
-};
+  };
 
-function showDelay() {
-   $('#btn').after("<div id='loading'>Wait for it... <img src='/img/ajax-loader.gif'></div></br>");
-};
+  function showDelay(locator) {
+    $(locator).after("<div id='loading'>Wait for it... <img src='/img/ajax-loader.gif'></div></br>");
+  };
 
-function pauseThenToggleControls() {
-   setTimeout(function() {
-	toggleControls();
-   } , 3000 );
-};
+  function pauseThenToggleControls(target) {
+    setTimeout(function() {
+      if (target === "checkbox") {
+        toggleCheckboxControls();
+      } else if (target === "input") {
+        toggleInputControls();
+      }
+    }, 3000 );
+  };
 
-function toggleControls() {
-  var btn = $('#btn').first();
-  var check = $('#checkbox').first();
-  var load = $('#loading');
-  if ( btn.text() == "Remove") {
-       check.remove();
-       btn.text("Add");
-       btn.after("<p id='message'>It's gone!</p>");
-       btn.attr("disabled", false);
-       load.hide();
-  }else{
-       btn.text("Remove");
-       btn.after("<div id='checkbox'><input type='checkbox' id='checkbox'> A checkbox </div>");
-       btn.after("<p id='message'>It's back!</p>");
-       btn.attr("disabled", false);
-       load.hide();
+  function toggleCheckboxControls() {
+    var btn = $("#checkbox-example button").first();
+    var check = $("#checkbox").first();
+    var load = $("#loading");
+    if ( btn.text() == "Remove") {
+      check.remove();
+      btn.text("Add");
+      btn.after("<p id='message'>It's gone!</p>");
+      btn.attr("disabled", false);
+      load.hide();
+    } else {
+      btn.text("Remove");
+      btn.after("<div><input type='checkbox' id='checkbox'> A checkbox</div>");
+      btn.after("<p id='message'>It's back!</p>");
+      btn.attr("disabled", false);
+      load.hide();
     }
- };
+  };
+
+  function toggleInputControls() {
+    var btn = $("#input-example button").first();
+    var input = $("#input-example input").first();
+    var load = $("#loading");
+    console.log(btn.text());
+    if ( btn.text() == "Enable") {
+      console.log(input);
+      input.prop("disabled", false)
+      btn.after("<p id='message'>It's enabled!</p>");
+      btn.text("Disable");
+      btn.attr("disabled", false);
+      load.hide();
+    } else {
+      btn.text("Enable");
+      input.prop("disabled", true)
+      btn.after("<p id='message'>It's disabled!</p>");
+      btn.attr("disabled", false);
+      load.hide();
+    }
+  };
 </script>
 <div class="example">
-   <h4>Dynamic Controls</h4>
-   <p>This example demonstrates when controls (e.g., checkbox, option button, etc.) are added or removed asynchronously.</p>
+  <h4>Dynamic Controls</h4>
+  <p>This example demonstrates when elements (e.g., checkbox, input field, etc.) are changed asynchronously.</p>
 
-   <form >
-       <button autocomplete="off" type="button" id="btn" onclick="onClick()" >Remove</button>
-       <div id="checkbox">
-	  <input type="checkbox" id="checkbox" > A checkbox
-       </div>
+  <h4 class=subheader>Remove/add</h4>
+  </br>
+  <form id="checkbox-example">
+    <div id="checkbox"><input type="checkbox" label="blah"> A checkbox</div>
+    <button autocomplete="off" type="button" onclick="swapCheckbox()">Remove</button>
+  </form>
 
-   </form>
+  <hr>
+
+  </br>
+  <h4 class=subheader>Enable/disable</h4>
+  </br>
+  <form id="input-example">
+    <input type="text" disabled style="width: 30%;">
+    <button autocomplete="off" type="button" onclick="swapInput()">Enable</button>
+  </form>
 <div>
