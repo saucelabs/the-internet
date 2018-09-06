@@ -1,3 +1,6 @@
+#0.51.0
++ Added an async enable/disable element example to /dynamic_controls
+
 #0.50.1
 + Updates to README.template and README.md
 

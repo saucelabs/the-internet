@@ -1,4 +1,4 @@
-# The Internet 0.50.1 (June, 30 2017)
+# The Internet 0.51.0 (6, September 2018)
 =======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
