@@ -61,9 +61,7 @@
     var btn = $("#input-example button").first();
     var input = $("#input-example input").first();
     var load = $("#loading");
-    console.log(btn.text());
     if ( btn.text() == "Enable") {
-      console.log(input);
       input.prop("disabled", false)
       btn.after("<p id='message'>It's enabled!</p>");
       btn.text("Disable");
