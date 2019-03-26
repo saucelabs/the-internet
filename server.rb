@@ -465,3 +465,11 @@ end
 get '/exit_intent' do
   erb :exit_intent
 end
+
+get '/entry_ad' do
+  erb :entry_ad, locals: { dismissed_ad: session[:dismissed_ad] }
+end
+
+post '/entry_ad' do
+  session[:dismissed_ad] = !session[:dismissed_ad]
+end

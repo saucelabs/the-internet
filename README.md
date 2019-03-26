@@ -19,6 +19,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Dynamic Content](http://the-internet.herokuapp.com/dynamic_content)
 + [Dynamic Controls](http://the-internet.herokuapp.com/dynamic_controls)
 + [Dynamic Loading](http://the-internet.herokuapp.com/dynamic_loading)
++ [Entry Ad](http://the-internet.herokuapp.com/entry_ad)
 + [Exit Intent](http://the-internet.herokuapp.com/exit_intent)
 + [File Download](http://the-internet.herokuapp.com/download)
 + [File Upload](http://the-internet.herokuapp.com/upload)
