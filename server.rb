@@ -473,3 +473,7 @@ end
 post '/entry_ad' do
   session[:dismissed_ad] = !session[:dismissed_ad]
 end
+
+get '/add_remove_elements/:number_of_elements?' do
+  erb :add_remove_elements, locals: { number_of_elements: params[:number_of_elements].to_i }
+end

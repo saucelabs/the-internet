@@ -1,0 +1,30 @@
+<h3>Add/Remove Elements</h3>
+</br>
+<div class="example">
+  <button onclick="addElement()">Add Element</button>
+  <hr />
+  <div id="elements">
+    <% if number_of_elements %>
+      <% number_of_elements.times do |index| %>
+        <button onclick='deleteElement()'>Delete</button>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function addElement() {
+    $("<button class='added-manually' onclick='deleteElement()'>Delete</button>").appendTo('#elements');
+  }
+  function deleteElement() {
+    $('#elements button:first-child').remove();
+  }
+</script>
+<style>
+button.added-manually {
+  margin-right: 0.285em;
+}
+button {
+  margin-bottom: 10px;
+}
+</style>
