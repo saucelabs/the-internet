@@ -1,3 +1,7 @@
+#0.52.0
++ Added an example to demonstrate a display ad shortly after page load (/entry_ad)
++ Added an example to easily add and remove elements from the page (/add_remove_elements/)
+
 #0.51.0
 + Added an async enable/disable element example to /dynamic_controls
 
