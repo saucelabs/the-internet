@@ -477,3 +477,7 @@ end
 get '/add_remove_elements/:number_of_elements?' do
   erb :add_remove_elements, locals: { number_of_elements: params[:number_of_elements].to_i }
 end
+
+get '/inputs' do
+  erb :inputs
+end
