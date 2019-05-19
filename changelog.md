@@ -1,3 +1,6 @@
+#0.54.0
++ Added an example for digest authentication
+
 #0.53.0
 + Added an example to demonstrate a number input
 
