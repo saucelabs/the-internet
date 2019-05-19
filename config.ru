@@ -1,2 +1,6 @@
 require './server'
-run Sinatra::Application
+
+run Rack::URLMap.new({
+	"/" => Public,
+  "/digest_auth" => Protected
+})
