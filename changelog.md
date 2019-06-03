@@ -1,3 +1,6 @@
+#0.55.0
++ Made it so the example on /dropdown dynamically updates the "selected" attribute to the currently selected option
+
 #0.54.0
 + Added an example for digest authentication
 
