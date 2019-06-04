@@ -1,8 +1,6 @@
 <script>
   $(document).keydown(function(event){
-    var key_press = [];
-    key_press.push(event.which);
-    output = keyboardMap[ key_press[0] ];
+    output = keyboardMap[ event.which ];
     log('You entered: '+ output);
   })
   function log(msg) {
@@ -16,5 +14,6 @@
 <div class='example'>
   <h3>Key Presses</h3>
   <p>Key presses are often used to interact with a website (e.g., tab order, enter, escape, etc.). Press a key and see what you inputted.</p>
+  <form><input id='target' type='text'></form>
   <p id='result' style='color:green'></p>
 </div>
