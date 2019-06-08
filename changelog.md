@@ -1,3 +1,7 @@
+#0.56.0
++ Changed /context_menu to fire a JS alert on a context click. Fixes #12
++ Added an input field to the key_presses example, and simplified its JS
+
 #0.55.0
 + Made it so the example on /dropdown dynamically updates the "selected" attribute to the currently selected option
 
