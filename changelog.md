@@ -1,3 +1,6 @@
+#0.57.0
++ Added sitemap
+
 #0.56.0
 + Changed /context_menu to fire a JS alert on a context click. Fixes #12
 + Added an input field to the key_presses example, and simplified its JS
