@@ -78,3 +78,7 @@ Load the page you want to see in your browser:
 ## See Also
 
 - A Docker Image of the-internet ([link](https://hub.docker.com/r/gprestes/the-internet/))
+
+## Adding Cypress Testing
+
+- To run tests in cypress, in the Terminal enter this command 'npx cypress open' 
