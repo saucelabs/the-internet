@@ -1,0 +1,22 @@
+{
+  "name": "the-internet",
+  "version": "1.0.0",
+  "description": "=======",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rchovatiya88/the-internet.git"
+  },
+  "author": "Ronak Chovatiya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rchovatiya88/the-internet/issues"
+  },
+  "homepage": "https://github.com/rchovatiya88/the-internet#readme",
+  "devDependencies": {
+    "cypress": "^3.7.0"
+  }
+}

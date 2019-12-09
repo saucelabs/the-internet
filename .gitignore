@@ -7,3 +7,4 @@ vendor/*
 .rbenv-version
 .ruby-version
 .rvmrc
+node_modules
