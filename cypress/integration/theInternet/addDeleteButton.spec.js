@@ -9,12 +9,17 @@ describe('Add Delete Button', () => {
     });
     
     it('Should click Add Element Button',() =>{
-        cy.wait(500)
-        cy.get('button').click();
-    });
+        var i = 0;
+        for (i = 0; i < 5 ; i++) { 
+          //Place code inside the loop that you want to repeat
+          cy.get('button').click({multiple: true});
+         } 
+       
+        });
+
 
     it('Should click Delete Element Button',()=> {
         cy.wait(500)
         cy.get('.added-manually').click();
     });
-})
+});
