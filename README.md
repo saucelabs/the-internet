@@ -1,4 +1,4 @@
-# The Internet 0.57.0 (14, July 2019)
+# The Internet 0.58.0 (10, February 2020)
 =======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
@@ -44,6 +44,7 @@ Deployed and available at [http://the-internet.herokuapp.com](http://the-interne
 + [Notification Messages](http://the-internet.herokuapp.com/notification_message)
 + [Redirect Link](http://the-internet.herokuapp.com/redirector)
 + [Secure File Download](http://the-internet.herokuapp.com/download_secure)
++ [Shadow DOM](http://the-internet.herokuapp.com/shadowdom)
 + [Shifting Content](http://the-internet.herokuapp.com/shifting_content)
 + [Slow Resources](http://the-internet.herokuapp.com/slow)
 + [Sortable Data Tables](http://the-internet.herokuapp.com/tables)
