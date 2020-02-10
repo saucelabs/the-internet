@@ -159,6 +159,10 @@ class Public < Sinatra::Base
     erb :dropdown
   end
 
+  get '/shadowdom' do
+    erb :shadowdom
+  end
+
   def random_notification_message
     messages = [
       'Action successful',

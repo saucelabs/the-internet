@@ -1,3 +1,6 @@
+#0.58.0
++ Added /shadowdom example (PR #45)
+
 #0.57.0
 + Added sitemap
 
