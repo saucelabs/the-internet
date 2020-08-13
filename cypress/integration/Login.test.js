@@ -37,6 +37,17 @@ describe('Login', () => {
       cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
     });
 
+    it('Should login when correct Username and Password are given', () => {
+      cy.get('[name=username]').eq(0).type('tomsmith');
+      cy.get('[name=password]').type('SuperSecretPassword!');
+      cy.get('button').eq(0).click();
+      // Testing the error handler to be visible and correct
+      cy.get('[id=flash]').should('be.visible');
+      cy.contains('You logged into a secure area!');
+      // Testing the page did change
+      cy.url().should('eq', 'https://the-internet.herokuapp.com/secure');
+    });
+
   });
 
   context('Low Priority', () => {
