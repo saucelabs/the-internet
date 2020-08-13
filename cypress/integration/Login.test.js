@@ -101,7 +101,7 @@ describe('Login', () => {
       // Do not want to simulate click and leave application
         .should('have.attr', 'href')
         .and('include', 'elementalselenium.com');
-      // Testing Secure page green banner
+      // Testing Secure page 
       cy.get('[name=username]').eq(0).type('tomsmith');
       cy.get('[name=password]').type('SuperSecretPassword!');
       cy.get('button').eq(0).click();
