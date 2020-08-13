@@ -48,6 +48,14 @@ describe('Login', () => {
       cy.url().should('eq', 'https://the-internet.herokuapp.com/secure');
     });
 
+    it('Should redirect to login page with error message if user tries to go to secure site without proper login', () => {
+      // Testing automatic routing to secure page, expect error handling
+      cy.visit('https://the-internet.herokuapp.com/secure');
+      cy.get('[id=flash]').should('be.visible');
+      cy.contains('You must login to view the secure area!');
+      cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
+    });
+
   });
 
   context('Low Priority', () => {
