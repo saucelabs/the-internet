@@ -76,6 +76,9 @@ describe('Login', () => {
       cy.get('input').eq(1).type('Protected14P@$sword?');
       cy.get('input').eq(1).should('have.value', 'Protected14P@$sword?');
     });
-    
+
+    it('Should be able to keep password private during recording, if needed by developer', () => {
+      cy.get('input').eq(1).type('SuperSecretPassword!', { log: false });
+    });
   });
 });
