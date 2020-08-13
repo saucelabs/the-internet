@@ -80,5 +80,55 @@ describe('Login', () => {
     it('Should be able to keep password private during recording, if needed by developer', () => {
       cy.get('input').eq(1).type('SuperSecretPassword!', { log: false });
     });
+
+    it('Shoud redirect to GitHub when green banner is clicked from both pages', () => {
+      // Testing login page green banner
+      cy.get('img').parent()
+      // Do not want to simulate click and leave application
+        .should('have.attr', 'href')
+        .and('include', 'github.com/tourdedave/the-internet');
+      // Testing Secure page green banner
+      cy.get('[name=username]').eq(0).type('tomsmith');
+      cy.get('[name=password]').type('SuperSecretPassword!');
+      cy.get('button').eq(0).click();
+      cy.get('img').parent()
+        .should('have.attr', 'href')
+        .and('include', 'github.com/tourdedave/the-internet');
+    });
+
+    it('Should direct to Elemental Selenium when bottom link is clicked from both pages', () => {
+      cy.get('a').eq(1)
+      // Do not want to simulate click and leave application
+        .should('have.attr', 'href')
+        .and('include', 'elementalselenium.com');
+      // Testing Secure page green banner
+      cy.get('[name=username]').eq(0).type('tomsmith');
+      cy.get('[name=password]').type('SuperSecretPassword!');
+      cy.get('button').eq(0).click();
+      cy.get('a').eq(3)
+        .should('have.attr', 'href')
+        .and('include', 'elementalselenium.com');
+    })
+
+    // Was attempting to test a successful Fetch call on login button but Cypress does not support
+    // API call testing at the moment, and the suggested XML testing reports back as unreliable.
+
+    // it('Should send a successful fetch request on submit', () => {
+    //   cy.server({
+    //     onResponse(response) {
+    //       if (response.url.includes('/secure')) {
+    //         console.log('response', response.body);
+    //       }
+    //     }
+    //   });
+    //   cy.route({
+    //     method: 'GET',
+    //     url: 'https://the-internet.herokuapp.com/secure',
+    //   }).as('getLogin');
+    //   cy.get('[name=username]').eq(0).type('tomsmith');
+    //   cy.get('[name=password]').type('SuperSecretPassword!');
+    //   cy.get('button').eq(0).click();
+    //   cy.wait('@getLogin');
+    // });
   });
 });
