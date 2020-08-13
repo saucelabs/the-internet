@@ -56,6 +56,17 @@ describe('Login', () => {
       cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
     });
 
+    it('Should return to login page when logout button is clicked after successful login', () => {
+      // First get a successful login to test
+      cy.get('[name=username]').eq(0).type('tomsmith');
+      cy.get('[name=password]').type('SuperSecretPassword!');
+      cy.get('button').eq(0).click();
+      cy.url().should('eq', 'https://the-internet.herokuapp.com/secure');
+      // Testing the logout button
+      cy.get('a').eq(2).click();
+      cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
+    });
+
   });
 
   context('Low Priority', () => {
