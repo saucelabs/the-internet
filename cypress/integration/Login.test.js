@@ -14,6 +14,17 @@ describe('Login', () => {
       cy.get('input').eq(1).should('have.value', 'Password');
     });
 
+    it('Should throw an error message if the incorrect Username is given, and should not login', () => {
+      // Testing a purposefully incorrect username input, expect to recieve error
+      cy.get('input').eq(0).type('NotTomSmith');
+      cy.get('button').eq(0).click();
+      // Testing the error handler to be visible and correct
+      cy.get('[id=flash]').should('be.visible');
+      cy.contains('Your username is invalid!');
+      // Testing  the page did not change
+      cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
+    });
+
   });
 
   context('Low Priority', () => {
