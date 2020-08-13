@@ -70,6 +70,12 @@ describe('Login', () => {
   });
 
   context('Low Priority', () => {
-
+    it('Should accept letters, numbers, and symbols as inputs in username and password input fields', () => {
+      cy.get('input').eq(0).type('Strong22U$ername!');
+      cy.get('input').eq(0).should('have.value', 'Strong22U$ername!');
+      cy.get('input').eq(1).type('Protected14P@$sword?');
+      cy.get('input').eq(1).should('have.value', 'Protected14P@$sword?');
+    });
+    
   });
 });
