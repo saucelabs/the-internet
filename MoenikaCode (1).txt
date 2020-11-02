@@ -1,0 +1,110 @@
+package SelGreenFluxproject;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+Test Case 3--Login page
+public class GreenFluxLogin{
+
+
+    public  void LoginScreen(String[] args) {
+           System.setProperty("webdriver.chrome.driver","E:\\chromedriver.exe");
+	   WebDriver driver = new ChromeDriver();
+    	
+        String baseUrl = "https://the-internet.herokuapp.com/login"
+        driver.get(baseUrl);
+        WebElement username = driver.findElement(By.id("username"));
+        username.Sendkeys("xxxxx");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement password = driver.findElement(By.id("password"));
+        Password.Sendkeys("yyyyy");
+        Driver.findElement(By.xpath("//*[@id="login"]/button/i")).click();
+           
+    }
+
+}
+
+Test Case 2--Dynamic controls
+
+public class GreenFluxDynamicControl{
+
+
+    public  void Dynamic(String[] args) {
+           System.setProperty("webdriver.chrome.driver","E:\\chromedriver.exe");
+	   WebDriver driver = new ChromeDriver();
+    	
+        String baseUrl = "https://the-internet.herokuapp.com/dynamic_controls"
+        driver.get(baseUrl);
+        //Click on the Remove button
+        Driver.findElement(By.xpath("//*[@id="checkbox-example"]/button")).click();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        
+         //Click on the Add button
+        Driver.findElement(By.xpath("//*[@id="checkbox-example"]/button")).click();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+        //Click on Checkbox
+        WebElement Checkbox = driver.findElement(By.id("Checkbox"));
+        Checkbox.click
+      
+         //Check enable
+         WebElement Textbox= driver.findElement(By.xpath("//*[@id="input-example"]/input"));
+          
+  if(Textbox.isEnabled())
+  {
+   System.out.print("\nText box First name is enabled.");
+   Driver.findElement(By.xpath("//*[@id="input-example"]/button")).click();
+
+  }
+  else
+  {
+   System.out.print("\nText box  is disabled.");
+  }
+          
+    }
+
+}
+
+
+Test Case 1--Data Table
+
+public class GreenFluxWbtables{
+
+
+    
+
+    public  void Tables(String[] args) {
+           System.setProperty("webdriver.chrome.driver","E:\\chromedriver.exe");
+	   WebDriver driver = new ChromeDriver();
+    	
+        String baseUrl = "https://the-internet.herokuapp.com/tables"
+        driver.get(baseUrl);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        
+        //Scenario to click on all Edit Links in Table 1
+        //No of Rows 
+          List<WebElement> Rows = driver.findElements(By.xpath("//*[@id="table1"]/tbody/tr"));
+          System.out.Println("No of rows are:" +Rows.Size());
+        //No of Coloumns   
+          List<WebElement> Rows = driver.findElements(By.xpath("//*[@id="table1"]/tbody/tr/td"));
+          System.out.Println("No of rows are:" +Col.Size());
+
+           int RowSizeneeded= Rows.size();
+           for (i=1;i<=RowSizeneeded;i++){
+           link= driver.findElement(By.xpath("//*[@id="table1"]/tbody/tr["+ i +"]/td[6]/a[1]"));
+           link.click
+           }
+          
+           
+    }
+
+}
+
+
+
+
+
+
+
+
+
