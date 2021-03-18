@@ -1,8 +1,9 @@
-FROM ruby:2.4.1
+FROM ruby:2.7.2
 
 ADD Gemfile /app/
 ADD Gemfile.lock /app/
 WORKDIR /app
+RUN bundle update --bundler
 RUN bundle install
 ADD . /app
 
