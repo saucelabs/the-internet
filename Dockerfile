@@ -1,9 +1,8 @@
-FROM ruby:2.7.2
+FROM ruby:2.5.3
 
 ADD Gemfile /app/
 ADD Gemfile.lock /app/
 WORKDIR /app
-RUN bundle update --bundler
 RUN bundle install
 ADD . /app
 
