@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage\16.5.0\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage\16.5.0\build\netstandard1.0\Microsoft.CodeCoverage.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk\16.5.0\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk\16.5.0\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.targets')" />
+    <Import Project="$(NuGetPackageRoot)specrun.runner\3.9.7\build\SpecRun.Runner.targets" Condition="Exists('$(NuGetPackageRoot)specrun.runner\3.9.7\build\SpecRun.Runner.targets')" />
+    <Import Project="$(NuGetPackageRoot)specflow\3.9.8\build\SpecFlow.targets" Condition="Exists('$(NuGetPackageRoot)specflow\3.9.8\build\SpecFlow.targets')" />
+    <Import Project="$(NuGetPackageRoot)specflow.tools.msbuild.generation\3.9.8\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('$(NuGetPackageRoot)specflow.tools.msbuild.generation\3.9.8\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
+    <Import Project="$(NuGetPackageRoot)specrun.specflow.3-9-0\3.9.7\build\SpecRun.SpecFlow.3-9-0.targets" Condition="Exists('$(NuGetPackageRoot)specrun.specflow.3-9-0\3.9.7\build\SpecRun.SpecFlow.3-9-0.targets')" />
+    <Import Project="$(NuGetPackageRoot)specflow.plus.livingdocplugin\3.9.5\build\SpecFlow.Plus.LivingDocPlugin.targets" Condition="Exists('$(NuGetPackageRoot)specflow.plus.livingdocplugin\3.9.5\build\SpecFlow.Plus.LivingDocPlugin.targets')" />
+  </ImportGroup>
+</Project>
