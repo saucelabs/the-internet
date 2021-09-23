@@ -39,13 +39,14 @@ namespace TheInternet.Steps
         [When(@"the user log out on the Internet")]
         public void WhenTheUserLogOutOnTheInternet()
         {
-            //ScenarioContext.Current.Pending();
+            _driver.FindElement(By.XPath("//button[text()='logout]'")).Click();
         }
 
         [Then(@"the logout is succesfull")]
         public void ThenTheLogoutIsSuccesfull()
         {
-            //ScenarioContext.Current.Pending();
+            var logout = _driver.FindElement(By.Id("flash"));
+            logout.Should().Be("You logged out of the secure area!");
         }
 
 
