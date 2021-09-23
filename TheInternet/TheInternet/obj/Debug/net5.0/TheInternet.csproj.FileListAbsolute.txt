@@ -260,3 +260,6 @@ C:\Users\kayung.cheung\Desktop\Temp\the-internet\TheInternet\TheInternet\obj\Deb
 C:\Users\kayung.cheung\Desktop\Temp\the-internet\TheInternet\TheInternet\obj\Debug\net5.0\TheInternet.genruntimeconfig.cache
 C:\Users\kayung.cheung\Desktop\Temp\the-internet\TheInternet\TheInternet\bin\Debug\net5.0\SeleniumExtras.PageObjects.dll
 C:\Users\kayung.cheung\Desktop\Temp\the-internet\TheInternet\TheInternet\bin\Debug\net5.0\WebDriver.dll
+C:\Users\kayung.cheung\Desktop\Temp\the-internet\TheInternet\TheInternet\bin\Debug\net5.0\Microsoft.Extensions.Configuration.dll
+C:\Users\kayung.cheung\Desktop\Temp\the-internet\TheInternet\TheInternet\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\kayung.cheung\Desktop\Temp\the-internet\TheInternet\TheInternet\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll

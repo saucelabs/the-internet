@@ -36,6 +36,18 @@ namespace TheInternet.Steps
             _driver.FindElement(By.ClassName("radius")).Click();
 
         }
+        [When(@"the user log out on the Internet")]
+        public void WhenTheUserLogOutOnTheInternet()
+        {
+            //ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"the logout is succesfull")]
+        public void ThenTheLogoutIsSuccesfull()
+        {
+            //ScenarioContext.Current.Pending();
+        }
+
 
 
         [Then(@"the login is succesfull")]
