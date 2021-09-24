@@ -7,3 +7,7 @@ Then the login is succesfull
 When the user log out on the Internet
 Then the logout is succesfull
 
+Scenario: User upload a file
+Given the user wants to upload a file
+When the user upload a file
+Then the upload is succesfull
