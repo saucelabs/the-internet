@@ -106,6 +106,7 @@ DEPENDENCIES
   compass
   faker
   pony
+  rack
   rake
   rspec (~> 3.5.0)
   sauce_whisk (~> 0.1.0)
