@@ -7,7 +7,7 @@ class Page
   end
 
   def visit(url_path)
-    @driver.get ENV['base_url'] + url_path
+    @driver.navigate.to(ENV['base_url'] + url_path)
   end
 
   def find(locator)

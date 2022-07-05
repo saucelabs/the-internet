@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.2'
+ruby '2.7.6'
 
 gem 'sinatra', '~> 2.1'
 gem 'sinatra-flash'
@@ -13,7 +13,7 @@ gem 'faker'
 gem 'uuid'
 
 group :test do
-  gem 'selenium-webdriver', '~> 3.4.0'
-  gem 'rspec', '~> 3.5.0'
-  gem 'sauce_whisk', '~> 0.1.0'
+  gem 'selenium-webdriver', '~> 3.142.7'
+  gem 'rspec', '~> 3.11'
+  gem 'webdrivers'
 end

@@ -2,18 +2,17 @@ require_relative 'page'
 
 class Login < Page
 
-  LOGIN_FORM      = { id: 'login' }
-  USERNAME_INPUT  = { id: 'username' }
-  PASSWORD_INPUT  = { id: 'password' }
-  SUBMIT_BUTTON   = { css: 'button'  }
+  LOGIN_FORM = { id: 'login' }
+  USERNAME_INPUT = { id: 'username' }
+  PASSWORD_INPUT = { id: 'password' }
+  SUBMIT_BUTTON = { css: 'button' }
   SUCCESS_MESSAGE = { css: '.flash.success' }
   FAILURE_MESSAGE = { css: '.flash.error' }
 
   def initialize(driver)
     super
-    visit '/login'
-    raise 'Login page not ready' unless
-      is_displayed?(LOGIN_FORM)
+    visit ('/login')
+    raise 'Login page not ready' unless is_displayed?(LOGIN_FORM)
   end
 
   def with(username, password)
