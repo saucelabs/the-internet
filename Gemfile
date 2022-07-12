@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.7.6'
 
 gem 'sinatra', '~> 2.1'
 gem 'sinatra-flash'
@@ -7,6 +6,7 @@ gem 'sinatra-contrib', '~> 2.1'
 gem 'shotgun'
 gem 'zurb-foundation'
 gem 'compass'
+gem 'rack'
 gem 'rake'
 gem 'pony'
 gem 'faker'

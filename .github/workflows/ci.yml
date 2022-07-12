@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.7', '3.0']
+        ruby-version: ['2.7']
 
     steps:
     - uses: actions/checkout@v3
@@ -33,6 +33,9 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run the application locally
-      run: rackup
+      run: |
+        bundle exec rackup &
+        sleep 5 &&
+        curl http://localhost:9292 -I
     - name: Run the automated tests
-      run: bundle exec rspec spec
+      run: CI=true bundle exec rspec spec
