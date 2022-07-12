@@ -1,5 +1,5 @@
 desc 'Generate docs'
-task :gen_docs  do
+task :gen_docs do
   update_readme
   update_examples_view
 end
@@ -23,7 +23,7 @@ def examples(file = 'examples.csv')
 end
 
 def convert_to_markdown_links(examples)
-  markdown_string = ""
+  markdown_string = ''
   examples.each do |example|
     markdown_string << "+ [#{example[:title]}](http://the-internet.herokuapp.com#{example[:url_path]})"
     markdown_string << " (#{example[:notes]})" if example[:notes]
@@ -43,10 +43,10 @@ def update_examples_view
   examples.each do |example|
     index_html << "  <li><a href='#{example[:url_path]}'>#{example[:title]}</a>"
     index_html << " (#{example[:notes]})" if example[:notes]
-    index_html << "</li>"
+    index_html << '</li>'
     index_html << "\n"
   end
-  index_html << "</ul>"
+  index_html << '</ul>'
   File.open('views/examples.erb', 'w') { |file| file.puts index_html }
 end
 

@@ -16,7 +16,7 @@ class Protected < Sinatra::Base
 
   def self.new(*)
     app = Rack::Auth::Digest::MD5.new(super) do |username|
-      {'admin' => 'admin'}[username]
+      { 'admin' => 'admin' }[username]
     end
     app.realm = 'Protected Area'
     app.opaque = 'secretkey'
@@ -26,7 +26,7 @@ end
 
 class Public < Sinatra::Base
   helpers Sinatra::Cookies
-  set :cookie_options, :domain => nil
+  set :cookie_options, domain: nil
   enable :sessions, :logging
   register Sinatra::Flash
 
@@ -48,7 +48,7 @@ class Public < Sinatra::Base
   end
 
   get '/download' do
-    @file_list = Dir.glob("public/uploads/*.*").map { |f| f.split('/').last }
+    @file_list = Dir.glob('public/uploads/*.*').map { |f| f.split('/').last }
     erb :download
   end
 
@@ -56,21 +56,21 @@ class Public < Sinatra::Base
     mime_type = get_mime_type_for(filename)
 
     send_file "public/uploads/#{filename}",
-      :filename => filename,
-      :type => mime_type
+              filename: filename,
+              type: mime_type
   end
 
   get '/download/jqueryui/menu/:filename' do |filename|
     mime_type = get_mime_type_for(filename)
 
     send_file "public/uploads/jqueryui/menu/#{filename}",
-      :filename => filename,
-      :type => mime_type
+              filename: filename,
+              type: mime_type
   end
 
   get '/download_secure' do
     protected!
-    @file_list = Dir.glob("public/uploads/*.*").map { |f| f.split('/').last }
+    @file_list = Dir.glob('public/uploads/*.*').map { |f| f.split('/').last }
     erb :download_secure
   end
 
@@ -79,8 +79,8 @@ class Public < Sinatra::Base
     mime_type = get_mime_type_for(filename)
 
     send_file "public/uploads/#{filename}",
-      :filename => filename,
-      :type => mime_type
+              filename: filename,
+              type: mime_type
   end
 
   get '/horizontal_slider' do
@@ -90,41 +90,41 @@ class Public < Sinatra::Base
   def get_mime_type_for(filename)
     file_type = filename.split('.').last
     case file_type
-      when 'csv'
-        'text/csv'
-      when 'jpg'
-        'image/jpeg'
-      when 'pdf'
-        'application/pdf'
-      when 'xls'
-        'application/vnd.ms-excel'
-      else
-        'application/octet-stream'
+    when 'csv'
+      'text/csv'
+    when 'jpg'
+      'image/jpeg'
+    when 'pdf'
+      'application/pdf'
+    when 'xls'
+      'application/vnd.ms-excel'
+    else
+      'application/octet-stream'
     end
   end
 
   get '/frame_top' do
-    erb :frame_top, :layout => false
+    erb :frame_top, layout: false
   end
 
   get '/frame_bottom' do
-    erb :frame_bottom, :layout => false
+    erb :frame_bottom, layout: false
   end
 
   get '/frame_left' do
-    erb :frame_left, :layout => false
+    erb :frame_left, layout: false
   end
 
   get '/frame_right' do
-    erb :frame_right, :layout => false
+    erb :frame_right, layout: false
   end
 
   get '/frame_middle' do
-    erb :frame_middle, :layout => false
+    erb :frame_middle, layout: false
   end
 
   get '/nested_frames' do
-    erb :nested_frames, :layout => false
+    erb :nested_frames, layout: false
   end
 
   get '/frames' do
@@ -195,13 +195,14 @@ class Public < Sinatra::Base
   helpers do
     def protected!
       return if authorized?
+
       headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
       halt 401, "Not authorized\n"
     end
 
     def authorized?
-      @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['admin', 'admin']
+      @auth ||= Rack::Auth::Basic::Request.new(request.env)
+      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == %w[admin admin]
     end
   end
 
@@ -222,11 +223,11 @@ class Public < Sinatra::Base
   get '/status_codes/:status_code' do |status_code|
     status status_code
     @status_code = status_code
-    erb :status_code, :layout => true
+    erb :status_code, layout: true
   end
 
   get '/javascript_error' do
-    erb :javascript_error, :layout => false
+    erb :javascript_error, layout: false
   end
 
   get '/javascript_alerts' do
@@ -245,7 +246,7 @@ class Public < Sinatra::Base
     erb :login
   end
 
-  post "/authenticate" do
+  post '/authenticate' do
     username = 'tomsmith'
     password = 'SuperSecretPassword!'
 
@@ -274,7 +275,7 @@ class Public < Sinatra::Base
   get '/logout' do
     session[:username] = nil
     flash[:success] = 'You logged out of the secure area!'
-    redirect "/login"
+    redirect '/login'
   end
 
   get '/dynamic_controls' do
@@ -327,10 +328,10 @@ class Public < Sinatra::Base
   post '/forgot_password' do
     require 'pony'
     Pony.mail(
-      from:     "no-reply@the-internet.herokuapp.com",
-      to:       params[:email],
-      subject:  "Forgot Password from the-internet",
-      body:     "A forgot password retrieval was initiated from http://the-internet.herokuapp.com/forgot_password to #{params[:email]}.
+      from: 'no-reply@the-internet.herokuapp.com',
+      to: params[:email],
+      subject: 'Forgot Password from the-internet',
+      body: "A forgot password retrieval was initiated from http://the-internet.herokuapp.com/forgot_password to #{params[:email]}.
 
   If this were a real message, you would likely see a link or some relevant text that would help you retrieve a password.
 
@@ -338,16 +339,17 @@ class Public < Sinatra::Base
 
   username: tomsmith
   password: SuperSecretPassword!",
-      via:      'smtp',
+      via: 'smtp',
       via_options: {
-        address:              'smtp.' + settings.email_service,
-        port:                 '587',
+        address: 'smtp.' + settings.email_service,
+        port: '587',
         enable_starttls_auto: true,
-        user_name:            settings.email_username,
-        password:             settings.email_password,
-        authentication:       :plain,
-        domain:               settings.email_domain
-      })
+        user_name: settings.email_username,
+        password: settings.email_password,
+        authentication: :plain,
+        domain: settings.email_domain
+      }
+    )
 
     redirect '/email_sent'
   end
@@ -394,11 +396,11 @@ class Public < Sinatra::Base
   end
 
   def shift_tracker
-    if params[:pixel_shift]
-      pixel_count = [0, params[:pixel_shift].to_i]
-    else
-      pixel_count = [0, 25]
-    end
+    pixel_count = if params[:pixel_shift]
+                    [0, params[:pixel_shift].to_i]
+                  else
+                    [0, 25]
+                  end
 
     if params[:mode] == 'random'
       @pixel_shift = pixel_count[rand(2)]
@@ -406,11 +408,11 @@ class Public < Sinatra::Base
       cookies[:page_visit_count] ||= '0'
       page_visit_count = cookies[:page_visit_count].to_i
 
-      if page_visit_count.even?
-        @pixel_shift = pixel_count[0]
-      else
-        @pixel_shift = pixel_count[1]
-      end
+      @pixel_shift = if page_visit_count.even?
+                       pixel_count[0]
+                     else
+                       pixel_count[1]
+                     end
       page_visit_count += 1
       cookies[:page_visit_count] = page_visit_count.to_s
     end
@@ -427,47 +429,47 @@ class Public < Sinatra::Base
 
   get '/shifting_content/image' do
     shift_tracker
-    if params[:image_type] == 'simple'
-      @file = '/img/avatars/Original-Facebook-Geek-Profile-Avatar-2.jpg'
-    else
-      @file = '/img/avatar.jpg'
-    end
+    @file = if params[:image_type] == 'simple'
+              '/img/avatars/Original-Facebook-Geek-Profile-Avatar-2.jpg'
+            else
+              '/img/avatar.jpg'
+            end
     erb :shifting_content_image
   end
 
   get '/shifting_content/list' do
     @copy = []
     @copy << "Important Information You're Looking For"
-    @copy << "Nesciunt autem eum odit fuga tempora deleniti."
-    @copy << "Vel aliquid dolores veniam enim nesciunt libero quaerat."
-    @copy << "Sed deleniti blanditiis odio laudantium."
-    @copy << "Et numquam et aliquam."
+    @copy << 'Nesciunt autem eum odit fuga tempora deleniti.'
+    @copy << 'Vel aliquid dolores veniam enim nesciunt libero quaerat.'
+    @copy << 'Sed deleniti blanditiis odio laudantium.'
+    @copy << 'Et numquam et aliquam.'
     @copy.shuffle!
     erb :shifting_content_list
   end
 
   get '/challenging_dom' do
     require 'uuid'
-    @text = %w(foo bar baz qux)
+    @text = %w[foo bar baz qux]
     @id = []
     20.times { @id << UUID.new.generate }
     erb :challenging_dom
   end
 
   get '/disappearing_elements' do
-    markup = [%q{<ul>
+    markup = ['<ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/about/">About</a></li>
                     <li><a href="/contact-us/">Contact Us</a></li>
                     <li><a href="/portfolio/">Portfolio</a></li>
                     <li><a href="/gallery/">Gallery</a></li>
-                  <ul>},
-                %q{<ul>
+                  <ul>',
+              '<ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/about/">About</a></li>
                     <li><a href="/contact-us/">Contact Us</a></li>
                     <li><a href="/portfolio/">Portfolio</a></li>
-                  <ul>}]
+                  <ul>']
     @payload = markup[rand(2)]
     erb :disappear
   end
