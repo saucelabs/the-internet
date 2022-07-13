@@ -13,6 +13,10 @@ class Page
     @driver.find_element locator
   end
 
+  def all(locator)
+    @driver.find_elements(locator)
+  end
+
   def type(text, locator)
     find(locator).send_keys text
   end
