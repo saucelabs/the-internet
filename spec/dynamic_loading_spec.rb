@@ -2,7 +2,6 @@ require_relative 'spec_helper'
 require_relative 'pages/dynamic_loading'
 
 describe 'Dynamic Loading' do
-
   before(:each) do
     @dynamic_loading = DynamicLoading.new(@driver)
   end
@@ -18,5 +17,4 @@ describe 'Dynamic Loading' do
     @dynamic_loading.start
     expect(@dynamic_loading.finish_text_present?).to eql true
   end
-
 end

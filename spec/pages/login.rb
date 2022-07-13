@@ -1,7 +1,6 @@
 require_relative 'page'
 
 class Login < Page
-
   LOGIN_FORM = { id: 'login' }
   USERNAME_INPUT = { id: 'username' }
   PASSWORD_INPUT = { id: 'password' }
@@ -11,7 +10,7 @@ class Login < Page
 
   def initialize(driver)
     super
-    visit ('/login')
+    visit('/login')
     raise 'Login page not ready' unless is_displayed?(LOGIN_FORM)
   end
 
@@ -30,5 +29,4 @@ class Login < Page
     wait_for(1) { is_displayed? FAILURE_MESSAGE }
     is_displayed? FAILURE_MESSAGE
   end
-
 end

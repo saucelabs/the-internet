@@ -1,7 +1,6 @@
 require 'selenium-webdriver'
 
 class Page
-
   def initialize(driver)
     @driver = driver
   end
@@ -23,16 +22,18 @@ class Page
   end
 
   def is_displayed?(locator)
-    begin
-      find(locator).displayed?
-    rescue Selenium::WebDriver::Error::NoSuchElementError
-      false
-    end
+    find(locator).displayed?
+  rescue Selenium::WebDriver::Error::NoSuchElementError
+    false
   end
 
-  def wait_for(seconds = 15)
-    Selenium::WebDriver::Wait.new(timeout: seconds).until { yield }
+  def not_displayed?(locator)
+    find(locator).displayed?
+  rescue Selenium::WebDriver::Error::NoSuchElementError
+    true
   end
 
+  def wait_for(seconds = 15, &block)
+    Selenium::WebDriver::Wait.new(timeout: seconds).until(&block)
+  end
 end
-
