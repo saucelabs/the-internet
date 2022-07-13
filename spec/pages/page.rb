@@ -27,6 +27,12 @@ class Page
     false
   end
 
+  def not_displayed?(locator)
+    find(locator).displayed?
+  rescue Selenium::WebDriver::Error::NoSuchElementError
+    true
+  end
+
   def wait_for(seconds = 15, &block)
     Selenium::WebDriver::Wait.new(timeout: seconds).until(&block)
   end
