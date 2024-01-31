@@ -127,6 +127,10 @@ class Public < Sinatra::Base
     erb :nested_frames, :layout => false
   end
 
+  get '/nested_Iframes' do
+    erb :nested_Iframes, :layout => false
+  end
+
   get '/frames' do
     erb :frames
   end
