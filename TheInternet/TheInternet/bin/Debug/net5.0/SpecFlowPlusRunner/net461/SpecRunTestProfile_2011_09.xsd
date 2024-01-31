@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SpecRunTestProfile"
+    targetNamespace="http://www.specrun.com/schemas/2011/09/TestProfile"
+    elementFormDefault="qualified"
+    xmlns="http://www.specrun.com/schemas/2011/09/TestProfile"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="TestProfile" type="TestProfile" />
+
+  <xs:complexType name="TestProfile">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="Settings" type="TestProfileSettings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Server" type="ServerSettings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Execution" type="ExecutionSettings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Environment" type="EnvironmentSettings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TestAssemblyPaths" type="TestAssemblyPaths" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Report" type="ReportSettings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Filter" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Targets" type="Targets" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeploymentTransformation" type="DeploymentTransformation" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TestThreads" type="TestThreads" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VSTest" type="VSTest" />
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="TestProfileSettings">
+    <xs:attribute name="name" type="xs:string" use="optional" />
+    <xs:attribute name="projectName" type="xs:string" use="required" />
+    <xs:attribute name="licenseKey" type="xs:string" use="optional" />
+    <xs:attribute name="baseFolder" type="xs:string" use="optional" />
+    <xs:attribute name="outputFolder" type="xs:string" use="optional" />
+    <xs:attribute name="reportTemplate" type="xs:string" use="optional" />
+    <xs:attribute name="projectId" type="guid" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="ServerSettings">
+    <xs:attribute name="serverUrl" type="xs:string" use="optional" />
+    <xs:attribute name="publishResults" type="xs:boolean" use="optional" default="false" />
+  </xs:complexType>
+
+  <xs:complexType name="ExecutionSettings">
+    <xs:attribute name="stopAfterFailures" type="xs:int" use="optional" default="10" />
+    <xs:attribute name="testSchedulingMode" type="TestSchedulingMode" use="optional" default="Sequential" />
+    <xs:attribute name="testThreadCount" type="TestThreadCount" use="optional" default="1" />
+    <xs:attribute name="retryFor" type="RetryMode" use="optional" default="Failing" />
+    <xs:attribute name="retryCount" type="xs:int" use="optional" default="2"  />
+    <xs:attribute name="apartmentState" type="ApartmentState" use="optional" default="Unknown" />
+    <xs:attribute name="isDryRun" type="xs:boolean" use="optional" default="false" />
+  </xs:complexType>
+
+  <xs:complexType name="EnvironmentSettings">
+    <xs:attribute name="framework" type="FrameworkVersion" use="optional" default="Default" />
+    <xs:attribute name="platform" type="Platform" use="optional" default="Default" />
+    <xs:attribute name="testThreadIsolation" type="TestThreadIsolation" use="optional" default="AppDomain" />
+    <xs:attribute name="apartmentState" type="ApartmentState" use="optional" default="Unknown" />
+  </xs:complexType>
+
+  <xs:complexType name="TestAssemblyPaths">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TestAssemblyPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Report settings -->
+  <xs:complexType name="Template">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="outputName" type="xs:string" use="optional" />
+    <xs:attribute name="outputCulture" type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="ReportSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Template" type="Template" />
+    </xs:sequence>
+
+    <xs:attribute name="copyAlsoToBaseFolder" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="disable" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="existingFileHandlingStrategy" type="ExistingFileHandlingStrategy" use="optional" default="Default" />
+  </xs:complexType>
+
+  <!-- test targets -->
+
+  <xs:complexType name="Targets">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Target" type="Target" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Target">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="Filter" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Environment" type="EnvironmentSettings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DeploymentTransformationSteps" type="DeploymentTransformationSteps" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <!-- test threads -->
+
+  <xs:complexType name="TestThreads">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TestThread" type="TestThread" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TestThread">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TestAffinity" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:int" use="required" />
+  </xs:complexType>
+
+  <!-- deployment transformations -->
+
+  <xs:complexType name="DeploymentTransformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="GlobalSteps" type="DeploymentTransformationSteps" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Steps" type="DeploymentTransformationSteps" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeploymentTransformationSteps">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="1" maxOccurs="1" name="CopyFolder" type="CopyFolder" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DeleteFolder" type="DeleteFolder" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConfigFileTransformation" type="ConfigFileTransformation" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Relocate" type="Relocate" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RelocateConfigurationFile" type="RelocateConfigurationFile" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Custom" type="CustomStep" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IISExpress" type="IISExpressStep" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CopyFile" type="CopyFile" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EnvironmentVariable" type="EnvironmentVariable" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="CopyFolder">
+    <xs:attribute name="source" type="xs:string" use="required" />
+    <xs:attribute name="target" type="xs:string" use="required" />
+    <xs:attribute name="deleteFolderOnRestore" type="xs:boolean" use="optional" default="true" />
+    <xs:attribute name="deleteFolderOnApply" type="xs:boolean" use="optional" default="true" />
+  </xs:complexType>
+  <xs:complexType name="EnvironmentVariable">
+    <xs:attribute name="variable" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="DeleteFolder">
+    <xs:attribute name="path" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Relocate">
+    <xs:attribute name="targetFolder" type="xs:string" use="required" />
+    <xs:attribute name="deleteFolderOnRestore" type="xs:boolean" use="optional" default="true" />
+  </xs:complexType>
+  <xs:complexType name="ConfigFileTransformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Transformation" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="configFile" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="RelocateConfigurationFile">
+    <xs:attribute name="target" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="CustomStep">
+    <xs:attribute name="type" type="xs:string" use="required" />
+    <xs:attribute name="arguments" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="IISExpressStep">
+    <xs:attribute name="webAppFolder" type="xs:string" use="required" />
+    <xs:attribute name="iisExpressPath" type="xs:string" use="optional" />
+    <xs:attribute name="port" type="xs:string" use="optional" default="8080" />
+    <xs:attribute name="useShellExecute" type="xs:boolean" use="optional" default="true" />
+  </xs:complexType>
+  <xs:complexType name="CopyFile">
+    <xs:attribute name="source" type="xs:string" use="required" />
+    <xs:attribute name="target" type="xs:string" use="optional" />
+    <xs:attribute name="targetFolder" type="xs:string" use="optional" />
+    <xs:attribute name="deleteOnRestore" type="xs:boolean" use="optional" default="true" />
+  </xs:complexType>
+
+  <!-- VSTest -->
+
+  <xs:complexType name="VSTest">
+    <xs:attribute name="testRetryResults" type="TestRetryResultsMode" use="optional" default="Separate" />
+    <xs:attribute name="passRateRelative" type="RelativePassRate" use="optional" default="1"/>
+    <xs:attribute name="passRateAbsolute" type="xs:int" use="optional"/>
+  </xs:complexType>
+
+
+
+  <!-- simple types-->
+
+
+  <xs:simpleType name="RelativePassRate">
+    <xs:union memberTypes="floatPassRate percentagePassRate" />
+  </xs:simpleType>
+
+  <xs:simpleType name="floatPassRate">
+    <xs:restriction base="xs:float">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="percentagePassRate">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(100(\.0*)?|[0-9][0-9](\.\d*)?)%" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TestThreadCount">
+    <xs:union memberTypes="testThreadCountName testThreadCountNumber" />
+  </xs:simpleType>
+
+
+  <xs:simpleType name="testThreadCountNumber">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="testThreadCountName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Max" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TestSchedulingMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sequential" />
+      <xs:enumeration value="Random" />
+      <xs:enumeration value="Adaptive" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="RetryMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Failing" />
+      <xs:enumeration value="All" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ApartmentState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="STA" />
+      <xs:enumeration value="MTA" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FrameworkVersion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="net461" />
+      <xs:enumeration value="Netcoreapp2.1" />
+      <xs:enumeration value="Netcoreapp3.1" />
+      <xs:enumeration value="Net5.0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Platform">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="x86" />
+      <xs:enumeration value="x64" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TestThreadIsolation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SharedAppDomain" />
+      <xs:enumeration value="AppDomain" />
+      <xs:enumeration value="Process" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ExistingFileHandlingStrategy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default"/>
+      <xs:enumeration value="Overwrite"/>
+      <xs:enumeration value="IncrementFilename"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TestRetryResultsMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Separate" />
+      <xs:enumeration value="Unified" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+</xs:schema>
