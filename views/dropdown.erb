@@ -8,6 +8,21 @@
     <option value="2">Option 2</option>
   </select>
 </div>
+
+<div class="example">
+  <h3>Multiple value Dropdown List</h3>
+  <select id="dropdown1" multiple="true">
+    <option value="" disabled="disabled" selected="selected"
+      >Please select an option</option
+    >
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+    <option value="4">Option 4</option>
+  </select>
+</div>
+
+
 <script>
   var dropdown = document.getElementById('dropdown');
   dropdown.onchange = function(event) {
@@ -17,6 +32,19 @@
     }
     document
       .querySelector(`#dropdown option[value='${event.target.value}']`)
+      .setAttribute('selected', 'selected');
+  };
+</script>
+
+<script>
+  var dropdown = document.getElementById('dropdown1');
+  dropdown.onchange = function(event) {
+    var options = dropdown.getElementsByTagName('option');
+    for (var i = 0; i < options.length; i++) {
+      options[i].removeAttribute('selected');
+    }
+    document
+      .querySelector(`#dropdown1 option[value='${event.target.value}']`)
       .setAttribute('selected', 'selected');
   };
 </script>
