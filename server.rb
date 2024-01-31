@@ -448,26 +448,26 @@ class Public < Sinatra::Base
 
   get '/challenging_dom' do
     require 'uuid'
-    @text = %w(foo bar baz qux)
+    @text = %w[foo bar baz qux]
     @id = []
     20.times { @id << UUID.new.generate }
     erb :challenging_dom
   end
 
   get '/disappearing_elements' do
-    markup = [%q{<ul>
+    markup = [%q(<ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/about/">About</a></li>
                     <li><a href="/contact-us/">Contact Us</a></li>
                     <li><a href="/portfolio/">Portfolio</a></li>
                     <li><a href="/gallery/">Gallery</a></li>
-                  <ul>},
-                %q{<ul>
+                  <ul>),
+                %q(<ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/about/">About</a></li>
                     <li><a href="/contact-us/">Contact Us</a></li>
                     <li><a href="/portfolio/">Portfolio</a></li>
-                  <ul>}]
+                  <ul>)]
     @payload = markup[rand(2)]
     erb :disappear
   end
@@ -512,4 +512,16 @@ class Public < Sinatra::Base
   get '/inputs' do
     erb :inputs
   end
+
+  # subdirectories
+  get '/subdirectories' do
+    erb :'subdirectories/index'
+  end
+
+  %w[one two].each do |dir|
+    get "/subdirectories/#{dir}" do
+      erb :"/subdirectories/#{dir}/index"
+    end
+  end
+  # /subdirectories
 end
