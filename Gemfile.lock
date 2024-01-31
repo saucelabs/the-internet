@@ -118,7 +118,7 @@ DEPENDENCIES
   zurb-foundation
 
 RUBY VERSION
-   ruby 2.7.2
+   ruby 2.5.3
 
 BUNDLED WITH
    1.17.3
