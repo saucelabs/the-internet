@@ -1,0 +1,24 @@
+# Node.js dependencies
+node_modules/
+
+# Yarn lock file
+yarn.lock
+
+# Cypress specific files
+cypress/videos/
+cypress/screenshots/
+
+# Cypress binary cache
+cypress/.cypress_cache/
+
+# Cypress configuration file (if you want to ignore it)
+# cypress.json
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
