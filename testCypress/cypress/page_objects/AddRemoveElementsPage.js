@@ -1,18 +1,23 @@
 class AddRemoveElementsPage {
+  constructor() {
+    this.addButtonSelector = "button[onclick='addElement()']";
+    this.addedElementSelector = ".added-manually";
+  }
+
   visit() {
-	cy.visit("/add_remove_elements/");
+    cy.visit("/add_remove_elements/");
   }
 
   addElement() {
-	cy.get("button[onclick='addElement()']").click();
+    cy.get(this.addButtonSelector).click();
   }
 
   removeElement() {
-	cy.get(".added-manually").click();
+    cy.get(this.addedElementSelector).click();
   }
 
   getElement() {
-	return cy.get(".added-manually");
+    return cy.get(this.addedElementSelector);
   }
 }
 

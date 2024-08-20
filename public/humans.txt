@@ -1,8 +1,0 @@
-/* The Internet was made by Dave Haeffner */
-/* davehaeffner.com */
-/* humanstxt.org */
-
-/* SITE */
-  Standards: HTML5, CSS3
-  Components: jQuery, Orbit, Reveal
-  Software: Coda, Textmate, Git
