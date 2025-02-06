@@ -47,13 +47,13 @@
       btn.text("Add");
       btn.after("<p id='message'>It's gone!</p>");
       btn.attr("disabled", false);
-      load.hide();
+      load.remove();
     } else {
       btn.text("Remove");
       btn.after("<div><input type='checkbox' id='checkbox'> A checkbox</div>");
       btn.after("<p id='message'>It's back!</p>");
       btn.attr("disabled", false);
-      load.hide();
+      load.remove();
     }
   };
 
@@ -66,13 +66,13 @@
       btn.after("<p id='message'>It's enabled!</p>");
       btn.text("Disable");
       btn.attr("disabled", false);
-      load.hide();
+      load.remove();
     } else {
       btn.text("Enable");
       input.prop("disabled", true)
       btn.after("<p id='message'>It's disabled!</p>");
       btn.attr("disabled", false);
-      load.hide();
+      load.remove();
     }
   };
 </script>
