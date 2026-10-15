@@ -1,9 +1,9 @@
-# The Internet 0.58.0 (8, July 2020)
+# The Internet
 =======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
-Deployed and available at [https://the-internet.herokuapp.com](https://the-internet.herokuapp.com).
+Deployed and available at [https://the-internet.herokuapp.com](https://the-internet.herokuapp.com). What changed in each release is in [changelog.md](changelog.md).
 
 The-internet is now wholly owned by Sauce Labs Inc.!
 
