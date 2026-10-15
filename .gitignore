@@ -6,3 +6,8 @@ tests/evidence/
 vendor/*
 .rbenv-version
 .rvmrc
+
+# Files uploaded through /upload (keep the seeded ones)
+public/uploads/*
+!public/uploads/some-file.txt
+!public/uploads/jqueryui/
