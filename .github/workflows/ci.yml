@@ -104,3 +104,27 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy to Heroku
+    needs: [contract, e2e, docker]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: heroku-deploy
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # Heroku rejects pushes from shallow clones
+      # Heroku's git remote only builds what we push; GitHub is the source of truth.
+      - run: git push --force "https://heroku:${HEROKU_API_KEY}@git.heroku.com/the-internet.git" HEAD:refs/heads/main
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - name: Smoke test
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf https://the-internet.herokuapp.com/ > /dev/null && exit 0
+            sleep 5
+          done
+          exit 1
