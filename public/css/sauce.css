@@ -1,0 +1,339 @@
+/*
+ * Sauce Labs theme, loaded after app.css.
+ * Colours and type follow saucelabs.com. Only colours, fonts, borders and the
+ * page chrome change here: example widgets keep their sizes and positions,
+ * and no markup, id, class or text depends on this file.
+ */
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("/fonts/atkinson-hyperlegible-next.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono";
+  src: url("/fonts/atkinson-hyperlegible-mono.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+/* saucelabs.com uses P22 Mackinac Pro for headings; Fraunces is the closest open font. */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --sl-pine: #192319;
+  --sl-pine-light: rgba(25, 35, 25, 0.64);
+  --sl-pine-xlight: rgba(25, 35, 25, 0.24);
+  --sl-forest: #043423;
+  --sl-moss: #3c483c;
+  --sl-ivory: #f0f0ec;
+  --sl-off-white: #f8f8f8;
+  --sl-warm-gray: #dcdcd7;
+  --sl-stone: #c8c8be;
+  --sl-highlight: #abe082;
+  --sl-light-highlight: #f3ffcc;
+  --sl-flare: #f55524;
+  --sl-clay-red: #961001;
+  --sl-deep-shock: #334bc3;
+  --sl-sunflower: #f1be23;
+  --sl-sans: "Atkinson Hyperlegible Next", Arial, sans-serif;
+  --sl-serif: "Fraunces", "Times New Roman", serif;
+  --sl-mono: "Atkinson Hyperlegible Mono", Menlo, monospace;
+}
+
+/* Page */
+html,
+body {
+  background: var(--sl-ivory);
+}
+body {
+  color: var(--sl-pine);
+  font-family: var(--sl-sans);
+}
+
+/* Top bar, drawn with CSS so the DOM stays as it was. Layout pages only. */
+body:has(> #page-footer)::before {
+  content: "The Internet";
+  display: block;
+  background: var(--sl-pine);
+  color: var(--sl-ivory);
+  font-family: var(--sl-serif);
+  font-size: 1.375em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  padding: 1.1em 1.5em;
+  border-bottom: 4px solid var(--sl-highlight);
+}
+
+#flash-messages {
+  padding-top: 1.5em;
+}
+
+body:has(> #page-footer) #content {
+  background: white;
+  border: 1px solid var(--sl-warm-gray);
+  border-radius: 1.5rem;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+/* Type */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sl-serif);
+  font-weight: 600;
+  color: var(--sl-pine);
+  letter-spacing: -0.01em;
+}
+h4, h5, h6 {
+  color: var(--sl-pine-light);
+}
+.subheader {
+  font-family: var(--sl-sans);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--sl-pine-light);
+}
+/* Icon text (e.g. the Login button label) falls back to the sans font, not serif. */
+.fa {
+  font-family: FontAwesome, "Atkinson Hyperlegible Next", Arial, sans-serif;
+}
+p,
+li,
+label {
+  color: var(--sl-pine);
+}
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--sl-mono);
+}
+hr {
+  border-color: var(--sl-warm-gray);
+}
+
+a {
+  color: var(--sl-deep-shock);
+  text-decoration: underline;
+  text-decoration-color: rgba(51, 75, 195, 0.35);
+  text-underline-offset: 0.2em;
+}
+a:hover,
+a:focus {
+  color: var(--sl-pine);
+  text-decoration-color: var(--sl-flare);
+}
+
+/* Home page list of examples */
+#content h1.heading ~ ul {
+  columns: 2 18em;
+  column-gap: 2em;
+}
+#content h1.heading ~ ul li {
+  break-inside: avoid;
+  padding: 0.35em 0;
+  border-bottom: 1px solid var(--sl-ivory);
+  color: var(--sl-pine-light);
+}
+
+/* Buttons (sizes unchanged) */
+button,
+.button {
+  font-family: var(--sl-sans);
+  background-color: var(--sl-pine);
+  border-color: var(--sl-pine);
+  color: var(--sl-ivory);
+  border-radius: 9999px;
+  text-decoration: none;
+}
+button.radius,
+.button.radius {
+  border-radius: 9999px;
+}
+button:hover,
+button:focus,
+.button:hover,
+.button:focus {
+  background-color: var(--sl-moss);
+  border-color: var(--sl-moss);
+  color: white;
+}
+button.secondary,
+.button.secondary {
+  background-color: var(--sl-ivory);
+  border-color: var(--sl-stone);
+  color: var(--sl-pine);
+}
+button.secondary:hover,
+button.secondary:focus,
+.button.secondary:hover,
+.button.secondary:focus {
+  background-color: var(--sl-warm-gray);
+  color: var(--sl-pine);
+}
+button.success,
+.button.success {
+  background-color: var(--sl-highlight);
+  border-color: #8cc865;
+  color: var(--sl-pine);
+}
+button.success:hover,
+button.success:focus,
+.button.success:hover,
+.button.success:focus {
+  background-color: #96d26c;
+  color: var(--sl-pine);
+}
+button.alert,
+.button.alert {
+  background-color: var(--sl-flare);
+  border-color: #d9431a;
+  color: white;
+}
+button.alert:hover,
+button.alert:focus,
+.button.alert:hover,
+.button.alert:focus {
+  background-color: #d9431a;
+}
+button[disabled],
+.button[disabled],
+button.disabled,
+.button.disabled {
+  background-color: var(--sl-stone);
+  border-color: var(--sl-stone);
+  color: var(--sl-pine-light);
+}
+
+/* Form fields */
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  font-family: var(--sl-sans);
+  color: var(--sl-pine);
+  border-color: var(--sl-stone);
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--sl-pine);
+  outline: 2px solid var(--sl-highlight);
+  outline-offset: 0;
+  background-color: white;
+}
+input[readonly] {
+  background-color: var(--sl-off-white);
+}
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] {
+  accent-color: var(--sl-forest);
+}
+
+/* Tables */
+table {
+  border-color: var(--sl-warm-gray);
+  border-radius: 0.5rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+table thead,
+table tfoot {
+  background: var(--sl-pine);
+}
+table thead tr th,
+table thead tr td,
+table tfoot tr th,
+table tfoot tr td {
+  color: var(--sl-ivory);
+}
+table thead tr th a,
+table thead tr th span {
+  color: var(--sl-ivory);
+}
+table tr th,
+table tr td {
+  color: var(--sl-pine);
+}
+table tr.even,
+table tr.alt,
+table tr:nth-of-type(even) {
+  background: var(--sl-off-white);
+}
+
+/* Flash messages and status colours */
+.flash {
+  border-radius: 0.5rem;
+  font-weight: 700;
+}
+.success {
+  background-color: var(--sl-forest);
+  border-color: var(--sl-forest);
+  color: var(--sl-ivory);
+}
+.notice {
+  background-color: var(--sl-deep-shock);
+  border-color: var(--sl-deep-shock);
+  color: white;
+}
+.error {
+  background-color: var(--sl-clay-red);
+  border-color: var(--sl-clay-red);
+  color: white;
+}
+.flash .close {
+  color: white;
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+/* Panels and modals used by some examples */
+.panel {
+  background: var(--sl-ivory);
+  border-color: var(--sl-warm-gray);
+  border-radius: 0.5rem;
+}
+.modal {
+  border-radius: 1rem;
+  border-color: var(--sl-warm-gray);
+}
+.modal-title h3 {
+  color: var(--sl-pine);
+}
+
+/* Footer */
+#page-footer {
+  color: var(--sl-pine-light);
+  font-size: 0.875em;
+  padding: 1.5em 0 2.5em;
+}
+#page-footer hr {
+  display: none;
+}
