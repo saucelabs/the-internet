@@ -64,7 +64,8 @@ jobs:
           region: us
           tunnelName: ${{ env.SAUCE_TUNNEL_NAME }}
           proxyLocalhost: allow
-      - run: bundle exec rspec spec/e2e
+      # 4 Sauce sessions per browser (16 in total); the tunnel is shared.
+      - run: bundle exec parallel_rspec -n 4 spec/e2e
       - name: App log
         if: failure()
         run: cat puma.log
