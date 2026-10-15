@@ -4,9 +4,15 @@ task :gen_docs  do
   update_examples_view
 end
 
-desc 'Pushes tags and code to master, develop, and heroku'
+desc 'Tags origin/main with the version in VERSION and pushes the tag'
 task :release do
-  `git push origin master; git push --tags; git push heroku master`
+  version = File.read('VERSION').strip
+  sh 'git fetch --quiet origin main --tags'
+  on_main = `git branch --show-current`.strip == 'main' && `git rev-parse HEAD` == `git rev-parse origin/main`
+  abort 'Check out an up-to-date main first' unless on_main
+  abort "Tag #{version} already exists; bump VERSION first" if system("git rev-parse -q --verify refs/tags/#{version} > /dev/null")
+  sh "git tag -a #{version} -m #{version}"
+  sh "git push origin #{version}"
 end
 
 def examples(file = 'examples.csv')
@@ -25,7 +31,7 @@ end
 def convert_to_markdown_links(examples)
   markdown_string = ""
   examples.each do |example|
-    markdown_string << "+ [#{example[:title]}](http://the-internet.herokuapp.com#{example[:url_path]})"
+    markdown_string << "+ [#{example[:title]}](https://the-internet.herokuapp.com#{example[:url_path]})"
     markdown_string << " (#{example[:notes]})" if example[:notes]
     markdown_string << "\n"
   end
@@ -57,5 +63,36 @@ end
 
 desc 'Run server'
 task :run do
-  `bundle exec ruby server.rb`
+  exec 'bundle exec rackup'
 end
+
+# Boots the app with puma on a free port and yields its base URL.
+def with_app
+  require 'net/http'
+  require 'socket'
+  port = Addrinfo.tcp('127.0.0.1', 0).bind { |s| s.local_address.ip_port }
+  pid = spawn({ 'PORT' => port.to_s }, 'bundle exec puma -C config/puma.rb -q', out: File::NULL)
+  begin
+    50.times do
+      break if (Net::HTTP.get_response(URI("http://127.0.0.1:#{port}/")) rescue nil)
+      sleep 0.2
+    end
+    yield "http://127.0.0.1:#{port}"
+  ensure
+    Process.kill('TERM', pid)
+    Process.wait(pid)
+  end
+end
+
+desc 'Boot the app and run the HTTP contract suite against it'
+task :contract do
+  with_app { |url| sh({ 'BASE_URL' => url }, 'bundle exec rspec spec/contract') }
+end
+
+desc 'Boot the app and run the browser suite against it (BROWSER, HEADLESS, TARGET, E2E_PROCESSES)'
+task :e2e do
+  processes = ENV.fetch('E2E_PROCESSES', '4')
+  with_app { |url| sh({ 'BASE_URL' => url }, "bundle exec parallel_rspec -n #{processes} spec/e2e") }
+end
+
+task default: :contract

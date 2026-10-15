@@ -1,0 +1,12 @@
+<div class="large-12 columns" id="content">
+  <h3>
+    Add/Remove Elements
+  <div class="example">
+    <button onclick="addElement()">
+      Add Element
+    <hr>
+    <div id="elements">
+  <script>
+    function addElement() { $("<button class='added-manually' onclick='deleteElement()'>Delete</button>").appendTo('#elements'); } function deleteElement() { $('#elements button:first-child').remove(); }
+  <style>
+    button.added-manually { margin-right: 0.285em; } button { margin-bottom: 10px; }

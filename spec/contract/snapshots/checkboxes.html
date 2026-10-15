@@ -1,0 +1,11 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Checkboxes
+    <form id="checkboxes">
+      <input type="checkbox">
+      checkbox 1
+      <input checked="checked" type="checkbox">
+      checkbox 2
+  <script>
+    var form = document.getElementById('checkboxes'); var checkboxes = form.getElementsByTagName('input'); for (var i=0, len=checkboxes.length; i<len; i++) { checkboxes[i].onclick = function() { this.checked ? this.setAttribute("checked", "") : this.removeAttribute("checked"); } }

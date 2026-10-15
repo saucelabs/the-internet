@@ -1,0 +1,11 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Context Menu
+    <p>
+      Context menu items are custom additions that appear in the right-click menu.
+    <p>
+      Right-click in the box below to see one called 'the-internet'. When you click it, it will trigger a JavaScript alert.
+    <div id="hot-spot" oncontextmenu="displayMessage()" style="border-style: dashed; border-width: 5px; width: 250px; height: 150px;">
+  <script>
+    function displayMessage() { window.alert('You selected a context menu') }

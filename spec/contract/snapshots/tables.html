@@ -1,0 +1,191 @@
+<div class="large-12 columns" id="content">
+  <script src="/js/vendor/jquery.tablesorter.min.js">
+  <script>
+    $(function(){ $("#table1").tablesorter(); $("#table2").tablesorter(); });
+  <style>
+    span { padding-right: 20px; background-repeat: no-repeat; background-position: 100% 100%; } .tablesorter-headerAsc span { background-image: url('img/down-arrow.png'); } .tablesorter-headerDesc span { background-image: url('img/up-arrow.png'); }
+  <div class="example">
+    <h3>
+      Data Tables
+    <p>
+      Often times when you see a table it contains data which is sortable -- sometimes with actions that can be taken within each row (e.g. edit, delete). And it can be challenging to automate interaction with sets of data in a table depending on how it is constructed.
+    <h4>
+      Example 1
+    <p>
+      No Class or ID attributes to signify groupings of rows and columns
+    <table class="tablesorter" id="table1">
+      <thead>
+        <tr>
+          <th>
+            <span>
+              Last Name
+          <th>
+            <span>
+              First Name
+          <th>
+            <span>
+              Email
+          <th>
+            <span>
+              Due
+          <th>
+            <span>
+              Web Site
+          <th>
+            <span>
+              Action
+      <tbody>
+        <tr>
+          <td>
+            Smith
+          <td>
+            John
+          <td>
+            jsmith@gmail.com
+          <td>
+            $50.00
+          <td>
+            http://www.jsmith.com
+          <td>
+            <a href="#edit">
+              edit
+            <a href="#delete">
+              delete
+        <tr>
+          <td>
+            Bach
+          <td>
+            Frank
+          <td>
+            fbach@yahoo.com
+          <td>
+            $51.00
+          <td>
+            http://www.frank.com
+          <td>
+            <a href="#edit">
+              edit
+            <a href="#delete">
+              delete
+        <tr>
+          <td>
+            Doe
+          <td>
+            Jason
+          <td>
+            jdoe@hotmail.com
+          <td>
+            $100.00
+          <td>
+            http://www.jdoe.com
+          <td>
+            <a href="#edit">
+              edit
+            <a href="#delete">
+              delete
+        <tr>
+          <td>
+            Conway
+          <td>
+            Tim
+          <td>
+            tconway@earthlink.net
+          <td>
+            $50.00
+          <td>
+            http://www.timconway.com
+          <td>
+            <a href="#edit">
+              edit
+            <a href="#delete">
+              delete
+    <h4>
+      Example 2
+    <p>
+      Class and ID attributes to signify groupings of rows and columns
+    <table class="tablesorter" id="table2">
+      <thead>
+        <tr>
+          <th>
+            <span class="last-name">
+              Last Name
+          <th>
+            <span class="first-name">
+              First Name
+          <th>
+            <span class="email">
+              Email
+          <th>
+            <span class="dues">
+              Due
+          <th>
+            <span class="web-site">
+              Web Site
+          <th>
+            <span class="action">
+              Action
+      <tbody>
+        <tr>
+          <td class="last-name">
+            Smith
+          <td class="first-name">
+            John
+          <td class="email">
+            jsmith@gmail.com
+          <td class="dues">
+            $50.00
+          <td class="web-site">
+            http://www.jsmith.com
+          <td class="action">
+            <a href="#edit">
+              edit
+            <a href="#delete">
+              delete
+        <tr>
+          <td class="last-name">
+            Bach
+          <td class="first-name">
+            Frank
+          <td class="email">
+            fbach@yahoo.com
+          <td class="dues">
+            $51.00
+          <td class="web-site">
+            http://www.frank.com
+          <td class="action">
+            <a href="#edit">
+              edit
+            <a href="#delete">
+              delete
+        <tr>
+          <td class="last-name">
+            Doe
+          <td class="first-name">
+            Jason
+          <td class="email">
+            jdoe@hotmail.com
+          <td class="dues">
+            $100.00
+          <td class="web-site">
+            http://www.jdoe.com
+          <td class="action">
+            <a href="#edit">
+              edit
+            <a href="#delete">
+              delete
+        <tr>
+          <td class="last-name">
+            Conway
+          <td class="first-name">
+            Tim
+          <td class="email">
+            tconway@earthlink.net
+          <td class="dues">
+            $50.00
+          <td class="web-site">
+            http://www.timconway.com
+          <td class="action">
+            <a href="#edit">
+              edit
+            <a href="#delete">
+              delete

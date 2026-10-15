@@ -1,8 +1,13 @@
 <html>
-  <head><!-- CDN hosted by Cachefly -->
-    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+  <head>
+    <script src="/js/vendor/tinymce/tinymce.min.js"></script>
     <script>
-      tinymce.init({selector:'textarea'});
+      tinymce.init({
+        selector:'textarea',
+        theme: "silver",
+        skin: "tinymce-5",
+        promotion: false
+      });
     </script>
   </head>
   <body>

@@ -5,5 +5,9 @@ tests/evidence/
 .DS_Store
 vendor/*
 .rbenv-version
-.ruby-version
 .rvmrc
+
+# Files uploaded through /upload (keep the seeded ones)
+public/uploads/*
+!public/uploads/some-file.txt
+!public/uploads/jqueryui/
