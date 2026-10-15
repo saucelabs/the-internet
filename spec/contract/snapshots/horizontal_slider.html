@@ -1,0 +1,13 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Horizontal Slider
+    <h4 class="subheader">
+      Set the focus on the slider (by clicking on it) and use the arrow keys to move it right and left. Or click and drag the slider with your mouse. It will indicate the value of the slider to the right.
+    <div class="sliderContainer">
+      <input max="5.0" min="0.0" onchange="showValue(this.value)" step="0.5" type="range" value="0">
+       
+      <span id="range">
+        0
+  <script type="text/javascript">
+    function showValue(newValue) { $("#range").html(newValue); }

@@ -1,0 +1,84 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Large & Deep DOM
+    <p>
+      Some pages have very large and deeply nested page layouts, which can trigger odd rendering issues and test performance bottlenecks (depending on your locator strategy). These examples are nested 3 levels deep.
+    <h4>
+      No Siblings
+    <div class="parent">
+      <div>
+        <div>
+          <div>
+            <div id="no-siblings">
+              No siblings
+    <h4>
+      Siblings
+    <div>
+      <div>
+        <div>
+          <div>
+            <div class="parent large-12 large-centered columns" id="siblings">
+              <div class="parent large-12 columns tier-1 item-1" id="sibling-1.1">
+                1.1
+                <div class="large-12 tier-1 item-2" id="sibling-1.2">
+                  1.2
+                <div class="large-12 tier-1 item-3" id="sibling-1.3">
+                  1.3
+                <div class="parent large-12 columns tier-2 item-1" id="sibling-2.1">
+                  2.1
+                  <div class="large-12 tier-2 item-2" id="sibling-2.2">
+                    2.2
+                  <div class="large-12 tier-2 item-3" id="sibling-2.3">
+                    2.3
+                  <div class="parent large-12 columns tier-3 item-1" id="sibling-3.1">
+                    3.1
+                    <div class="large-12 tier-3 item-2" id="sibling-3.2">
+                      3.2
+                    <div class="large-12 tier-3 item-3" id="sibling-3.3">
+                      3.3
+          <h4>
+            Table
+          <table id="large-table">
+            <thead>
+              <th id="header-1">
+                <span class="column-1">
+                  1
+              <th id="header-2">
+                <span class="column-2">
+                  2
+              <th id="header-3">
+                <span class="column-3">
+                  3
+            <tbody>
+              <tr class="row-1">
+                <td class="column-1">
+                  1.1
+                <td class="column-2">
+                  1.2
+                <td class="column-3">
+                  1.3
+              <tr class="row-2">
+                <td class="column-1">
+                  2.1
+                <td class="column-2">
+                  2.2
+                <td class="column-3">
+                  2.3
+              <tr class="row-3">
+                <td class="column-1">
+                  3.1
+                <td class="column-2">
+                  3.2
+                <td class="column-3">
+                  3.3
+    <div class="row" id="page-footer">
+      <div class="large-6 large-centered columns">
+        <hr>
+        <div style="text-align: center;">
+          Powered by
+          <a href="http://elementalselenium.com/" target="_blank">
+            Elemental Selenium
+          and
+          <a href="https://saucelabs.com/" target="_blank">
+            Sauce Labs

@@ -1,11 +1,15 @@
 require 'bundler/setup'
+require 'securerandom'
+require 'uri'
 require 'sinatra/base'
 require 'sinatra/flash'
-require 'sinatra/contrib'
 require 'sinatra/cookies'
-require 'zurb-foundation'
-require 'compass'
 require 'faker'
+require_relative 'lib/digest_auth'
+
+# Shared by every process (puma workers) so sessions and digest nonces
+# issued by one worker are accepted by the others.
+SESSION_SECRET = ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
 
 class Protected < Sinatra::Base
   register Sinatra::Flash
@@ -15,12 +19,9 @@ class Protected < Sinatra::Base
   end
 
   def self.new(*)
-    app = Rack::Auth::Digest::MD5.new(super) do |username|
+    DigestAuth.new(super, realm: 'Protected Area', opaque: 'secretkey', private_key: SESSION_SECRET) do |username|
       {'admin' => 'admin'}[username]
     end
-    app.realm = 'Protected Area'
-    app.opaque = 'secretkey'
-    app
   end
 end
 
@@ -28,6 +29,7 @@ class Public < Sinatra::Base
   helpers Sinatra::Cookies
   set :cookie_options, :domain => nil
   enable :sessions, :logging
+  set :session_secret, SESSION_SECRET
   register Sinatra::Flash
 
   get '/' do
@@ -38,11 +40,17 @@ class Public < Sinatra::Base
     erb :upload
   end
 
+  # Files shipped with the app; uploads may not overwrite them.
+  SEEDED_UPLOADS = Dir.children('public/uploads').freeze
+
   post '/upload' do
     file = params['file']
     puts file.inspect
-    File.open('public/uploads/' + file[:filename], 'w') do |f|
-      f.write(file[:tempfile].read)
+    filename = File.basename(file[:filename])
+    unless SEEDED_UPLOADS.include?(filename)
+      File.open(File.join('public/uploads', filename), 'wb') do |f|
+        f.write(file[:tempfile].read)
+      end
     end
     erb :uploaded, locals: { file: file }
   end
@@ -55,7 +63,7 @@ class Public < Sinatra::Base
   get '/download/:filename' do |filename|
     mime_type = get_mime_type_for(filename)
 
-    send_file "public/uploads/#{filename}",
+    send_file "public/uploads/#{File.basename(filename)}",
       :filename => filename,
       :type => mime_type
   end
@@ -78,7 +86,7 @@ class Public < Sinatra::Base
     protected!
     mime_type = get_mime_type_for(filename)
 
-    send_file "public/uploads/#{filename}",
+    send_file "public/uploads/#{File.basename(filename)}",
       :filename => filename,
       :type => mime_type
   end
@@ -220,7 +228,7 @@ class Public < Sinatra::Base
   end
 
   get '/status_codes/:status_code' do |status_code|
-    status status_code
+    status status_code.to_i
     @status_code = status_code
     erb :status_code, :layout => true
   end
@@ -318,36 +326,75 @@ class Public < Sinatra::Base
     erb :forgot_password
   end
 
-  set :email_username, ENV['SENDGRID_USERNAME'] || ''
-  set :email_password, ENV['SENDGRID_PASSWORD'] || ''
-  set :email_address, 'dhaeffner@gmail.com'
-  set :email_service, ENV['EMAIL_SERVICE'] || 'gmail.com'
-  set :email_domain, ENV['SENDGRID_DOMAIN'] || 'localhost.localdomain'
+  # Real email is sent when SMTP_ADDRESS is configured (e.g. SendGrid: user
+  # "apikey", password = API key). Otherwise messages go to Mail's test
+  # deliveries and are only logged.
+  set :mail_from, ENV.fetch('MAIL_FROM', 'no-reply@the-internet.herokuapp.com')
+  set :mail_delivery, if ENV['SMTP_ADDRESS']
+    [:smtp, {
+      address:              ENV['SMTP_ADDRESS'],
+      port:                 Integer(ENV.fetch('SMTP_PORT', 587)),
+      user_name:            ENV['SMTP_USERNAME'],
+      password:             ENV['SMTP_PASSWORD'],
+      domain:               ENV.fetch('SMTP_DOMAIN', 'the-internet.herokuapp.com'),
+      authentication:       :plain,
+      enable_starttls_auto: true
+    }]
+  else
+    [:test, {}]
+  end
+
+  # The form accepts any address, so cap how often it can send mail.
+  MAIL_LIMITS = { per_ip: 5, per_recipient: 3, window: 3600 }.freeze
+  MAIL_LOG = Hash.new { |h, k| h[k] = [] }
+  MAIL_LOG_LOCK = Mutex.new
+
+  helpers do
+    def client_ip
+      # Heroku's router appends the connecting client's address last.
+      request.env['HTTP_X_FORWARDED_FOR'].to_s.split(',').last&.strip || request.ip
+    end
+
+    def mail_allowed?(email)
+      now = Time.now.to_i
+      keys = { [:ip, client_ip] => MAIL_LIMITS[:per_ip], [:to, email.downcase] => MAIL_LIMITS[:per_recipient] }
+      MAIL_LOG_LOCK.synchronize do
+        keys.each_key { |k| MAIL_LOG[k].reject! { |t| t < now - MAIL_LIMITS[:window] } }
+        return false if keys.any? { |k, limit| MAIL_LOG[k].size >= limit }
+
+        keys.each_key { |k| MAIL_LOG[k] << now }
+        true
+      end
+    end
+  end
 
   post '/forgot_password' do
     require 'pony'
-    Pony.mail(
-      from:     "no-reply@the-internet.herokuapp.com",
-      to:       params[:email],
-      subject:  "Forgot Password from the-internet",
-      body:     "A forgot password retrieval was initiated from http://the-internet.herokuapp.com/forgot_password to #{params[:email]}.
+    email = params[:email].to_s.strip
+
+    if email.match?(URI::MailTo::EMAIL_REGEXP) && mail_allowed?(email)
+      method, options = settings.mail_delivery
+      begin
+        Pony.mail(
+          from:     settings.mail_from,
+          to:       email,
+          subject:  "Forgot Password from the-internet",
+          body:     "A forgot password retrieval was initiated from https://the-internet.herokuapp.com/forgot_password to #{email}.
 
   If this were a real message, you would likely see a link or some relevant text that would help you retrieve a password.
 
-  If you want to test login, visit http://the-internet.herokuapp.com/login and use the following credentials:
+  If you want to test login, visit https://the-internet.herokuapp.com/login and use the following credentials:
 
   username: tomsmith
   password: SuperSecretPassword!",
-      via:      'smtp',
-      via_options: {
-        address:              'smtp.' + settings.email_service,
-        port:                 '587',
-        enable_starttls_auto: true,
-        user_name:            settings.email_username,
-        password:             settings.email_password,
-        authentication:       :plain,
-        domain:               settings.email_domain
-      })
+          via:         method,
+          via_options: options)
+      rescue StandardError => e
+        logger.error "forgot_password: mail delivery failed: #{e.class}: #{e.message}"
+      end
+    else
+      logger.info 'forgot_password: invalid address or rate limited; not sending'
+    end
 
     redirect '/email_sent'
   end
@@ -388,7 +435,7 @@ class Public < Sinatra::Base
   get '/dynamic_content' do
     @static_content = (params[:with_content] == 'static')
     @copy = []
-    3.times { @copy << Faker::Lorem.sentence(30) }
+    3.times { @copy << Faker::Lorem.sentence(word_count: 30) }
     @images = Dir.glob('public/img/avatars/*').map { |f| f.split('/').last }
     erb :dynamic_content
   end
@@ -447,10 +494,9 @@ class Public < Sinatra::Base
   end
 
   get '/challenging_dom' do
-    require 'uuid'
     @text = %w[foo bar baz qux]
     @id = []
-    20.times { @id << UUID.new.generate }
+    20.times { @id << SecureRandom.uuid }
     erb :challenging_dom
   end
 
@@ -483,13 +529,13 @@ class Public < Sinatra::Base
   end
 
   get '/infinite_scroll/:number' do |number|
-    "<br />#{Faker::Lorem.sentence(300)}\
+    "<br />#{Faker::Lorem.sentence(word_count: 300)}\
     <a href='/infinite_scroll/#{number.to_i + 1}'>next page</a>"
   end
 
   get '/floating_menu' do
     @copy = []
-    10.times { @copy << Faker::Lorem.sentence(300) }
+    10.times { @copy << Faker::Lorem.sentence(word_count: 300) }
     erb :floating_menu
   end
 

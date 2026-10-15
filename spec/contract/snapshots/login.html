@@ -1,0 +1,26 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h2>
+      Login Page
+    <h4 class="subheader">
+      This is where you can log into the secure area. Enter
+      <em>
+        tomsmith
+      for the username and
+      <em>
+        SuperSecretPassword!
+      for the password. If the information is wrong you should see error messages.
+    <form action="/authenticate" id="login" method="post" name="login">
+      <div class="row">
+        <div class="large-6 small-12 columns">
+          <label for="username">
+            Username
+          <input id="username" name="username" type="text">
+      <div class="row">
+        <div class="large-6 small-12 columns">
+          <label for="password">
+            Password
+          <input id="password" name="password" type="password">
+      <button class="radius" type="submit">
+        <i class="fa fa-2x fa-sign-in">
+          Login

@@ -1,0 +1,13 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Dropdown List
+    <select id="dropdown">
+      <option disabled="disabled" selected="selected" value="">
+        Please select an option
+      <option value="1">
+        Option 1
+      <option value="2">
+        Option 2
+  <script>
+    var dropdown = document.getElementById('dropdown'); dropdown.onchange = function(event) { var options = dropdown.getElementsByTagName('option'); for (var i = 0; i < options.length; i++) { options[i].removeAttribute('selected'); } document .querySelector(`#dropdown option[value='${event.target.value}']`) .setAttribute('selected', 'selected'); };

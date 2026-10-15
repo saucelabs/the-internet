@@ -1,2 +1,6 @@
 .git
-.gitignore
+.github
+.idea
+spec
+docs
+*.md
