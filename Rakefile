@@ -4,9 +4,15 @@ task :gen_docs  do
   update_examples_view
 end
 
-desc 'Pushes code and tags to main (Heroku deploys main automatically once CI passes)'
+desc 'Tags origin/main with the version in VERSION and pushes the tag'
 task :release do
-  sh 'git push origin main && git push --tags'
+  version = File.read('VERSION').strip
+  sh 'git fetch --quiet origin main --tags'
+  on_main = `git branch --show-current`.strip == 'main' && `git rev-parse HEAD` == `git rev-parse origin/main`
+  abort 'Check out an up-to-date main first' unless on_main
+  abort "Tag #{version} already exists; bump VERSION first" if system("git rev-parse -q --verify refs/tags/#{version} > /dev/null")
+  sh "git tag -a #{version} -m #{version}"
+  sh "git push origin #{version}"
 end
 
 def examples(file = 'examples.csv')
