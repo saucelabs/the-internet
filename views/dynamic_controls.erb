@@ -25,6 +25,8 @@
   };
 
   function showDelay(locator) {
+    /* One loading bar per form: drop the previous one (and its line break) first. */
+    $(locator).closest("form").find("#loading").next("br").addBack().remove();
     $(locator).after("<div id='loading'>Wait for it... <img src='/img/ajax-loader.gif'></div></br>");
   };
 
@@ -41,38 +43,38 @@
   function toggleCheckboxControls() {
     var btn = $("#checkbox-example button").first();
     var check = $("#checkbox").first();
-    var load = $("#loading");
+    var load = $("#checkbox-example #loading");
     if ( btn.text() == "Remove") {
       check.remove();
       btn.text("Add");
       btn.after("<p id='message'>It's gone!</p>");
       btn.attr("disabled", false);
-      load.remove();
+      load.hide();
     } else {
       btn.text("Remove");
       btn.after("<div><input type='checkbox' id='checkbox'> A checkbox</div>");
       btn.after("<p id='message'>It's back!</p>");
       btn.attr("disabled", false);
-      load.remove();
+      load.hide();
     }
   };
 
   function toggleInputControls() {
     var btn = $("#input-example button").first();
     var input = $("#input-example input").first();
-    var load = $("#loading");
+    var load = $("#input-example #loading");
     if ( btn.text() == "Enable") {
       input.prop("disabled", false)
       btn.after("<p id='message'>It's enabled!</p>");
       btn.text("Disable");
       btn.attr("disabled", false);
-      load.remove();
+      load.hide();
     } else {
       btn.text("Enable");
       input.prop("disabled", true)
       btn.after("<p id='message'>It's disabled!</p>");
       btn.attr("disabled", false);
-      load.remove();
+      load.hide();
     }
   };
 </script>
