@@ -183,11 +183,24 @@ describe 'Behaviour' do
       expect(html(res).at_css('#uploaded-files').text.strip).to eq name
       expect(client.get("/download/#{name}").body).to eq 'hello'
     end
+
+    it 'does not let uploads overwrite the seeded file' do
+      seeded = File.binread(File.join(REPO_ROOT, 'public/uploads/some-file.txt'))
+      res = client.post_multipart('/upload', [['file', StringIO.new('overwritten'), { filename: 'some-file.txt', content_type: 'text/plain' }]])
+      expect(res.code).to eq '200'
+      expect(client.get('/download/some-file.txt').body.b).to eq seeded
+    end
   end
 
   describe 'Forgot password', :writes do
     it 'redirects to /email_sent' do
       res = client.post('/forgot_password', email: 'contract-test@example.com')
+      expect(res.code).to eq '303'
+      expect(path_of(res['location'])).to eq '/email_sent'
+    end
+
+    it 'redirects to /email_sent even for an invalid address' do
+      res = client.post('/forgot_password', email: 'not-an-email')
       expect(res.code).to eq '303'
       expect(path_of(res['location'])).to eq '/email_sent'
     end

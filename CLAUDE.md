@@ -38,7 +38,7 @@ bundle exec rake contract     # boots the app and runs the HTTP contract suite
 Markup change on purpose? Re-record snapshots with `UPDATE_SNAPSHOTS=1` and review the diff.
 
 ## Deploy
-Heroku app `the-internet`, `web` process from `Procfile` (puma). Needs `SESSION_SECRET` set (shared by all puma workers). Plan: Heroku GitHub integration auto-deploys `main` after CI passes; Docker image goes to `ghcr.io/saucelabs/the-internet`.
+Heroku app `the-internet`, `web` process from `Procfile` (puma). Config vars: `SESSION_SECRET` (shared by all puma workers); for real Forgot Password email `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `MAIL_FROM` (without `SMTP_ADDRESS`, mail is only logged). Plan: Heroku GitHub integration auto-deploys `main` after CI passes; Docker image goes to `ghcr.io/saucelabs/the-internet`.
 
 ## Credentials baked into examples (intentional)
 - Form login: `tomsmith` / `SuperSecretPassword!`
