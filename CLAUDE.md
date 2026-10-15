@@ -19,7 +19,7 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 - `public/js/vendor/` — vendored jQuery 1.11, jQuery UI 1.11, tablesorter, jscroll, dropzone, ouibounce, stickyfloat; `298279967.js` is a dead Optimizely Classic snippet.
 - `public/uploads/` — target of `/upload`, listed by `/download` and `/download_secure`.
 - `spec/contract/` — HTTP contract suite (black-box, any `BASE_URL`): statuses, auth, redirects, flash, cookies and markup snapshots recorded from the live site. Run it after any change. See its README.
-- `spec/*.rb`, `spec/pages/` — Selenium RSpec examples (page objects).
+- `spec/e2e/` — Selenium 4 browser suite, one scenario per example; local headless (`rake e2e`, `BROWSER=chrome|firefox|edge|safari`) or Sauce Labs (`TARGET=saucelabs`, needs `SAUCE_USERNAME`/`SAUCE_ACCESS_KEY`, plus `SAUCE_TUNNEL_NAME` for a localhost app).
 - `config/puma.rb`, `Procfile` — server config for Heroku and Docker.
 
 ## Adding an example

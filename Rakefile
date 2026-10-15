@@ -60,8 +60,8 @@ task :run do
   exec 'bundle exec rackup'
 end
 
-desc 'Boot the app on a free port and run the HTTP contract suite against it'
-task :contract do
+# Boots the app with puma on a free port and yields its base URL.
+def with_app
   require 'net/http'
   require 'socket'
   port = Addrinfo.tcp('127.0.0.1', 0).bind { |s| s.local_address.ip_port }
@@ -71,11 +71,21 @@ task :contract do
       break if (Net::HTTP.get_response(URI("http://127.0.0.1:#{port}/")) rescue nil)
       sleep 0.2
     end
-    sh({ 'BASE_URL' => "http://127.0.0.1:#{port}" }, 'bundle exec rspec spec/contract')
+    yield "http://127.0.0.1:#{port}"
   ensure
     Process.kill('TERM', pid)
     Process.wait(pid)
   end
+end
+
+desc 'Boot the app and run the HTTP contract suite against it'
+task :contract do
+  with_app { |url| sh({ 'BASE_URL' => url }, 'bundle exec rspec spec/contract') }
+end
+
+desc 'Boot the app and run the browser suite against it (BROWSER, HEADLESS, TARGET)'
+task :e2e do
+  with_app { |url| sh({ 'BASE_URL' => url }, 'bundle exec rspec spec/e2e') }
 end
 
 task default: :contract

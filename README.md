@@ -93,3 +93,12 @@ Then open http://localhost:5000.
 Run the HTTP contract suite (boots the app and checks every example):
 
     bundle exec rake contract
+
+Run the browser suite (Selenium, headless Chrome by default):
+
+    bundle exec rake e2e
+    BROWSER=firefox HEADLESS=false bundle exec rake e2e
+
+Or on Sauce Labs (set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`):
+
+    TARGET=saucelabs BROWSER=safari BASE_URL=https://the-internet.herokuapp.com bundle exec rspec spec/e2e
