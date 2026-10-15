@@ -1,0 +1,20 @@
+<div class="large-12 columns" id="content">
+  <h1>
+    Simple template
+  <script>
+    customElements.define('my-paragraph', class extends HTMLElement { constructor() { super(); const template = document.getElementById('my-paragraph'); const templateContent = template.content; this.attachShadow({mode: 'open'}).appendChild( templateContent.cloneNode(true) ); } } ); const slottedSpan = document.querySelector('my-paragraph span');
+  <template id="my-paragraph">
+    <style>
+      p { color: white; background-color: #666; padding: 5px; }
+    <p>
+      <slot name="my-text">
+        My default text
+  <my-paragraph>
+    <span slot="my-text">
+      Let's have some different text!
+  <my-paragraph>
+    <ul slot="my-text">
+      <li>
+        Let's have some different text!
+      <li>
+        In a list!

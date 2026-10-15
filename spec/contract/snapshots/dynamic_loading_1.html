@@ -1,0 +1,14 @@
+<div class="large-12 columns" id="content">
+  <script>
+    $(function(){ $('#start button').click(function(){ $('#start').hide(); $('#start').before("<div id='loading'>Loading... <img src='/img/ajax-loader.gif'></div>"); setTimeout(function() { $('#loading').hide(); $('#finish').show(); } , 5000 ); }); });
+  <div class="example">
+    <h3>
+      Dynamically Loaded Page Elements
+    <h4>
+      Example 1: Element on page that is hidden
+    <div id="start">
+      <button>
+        Start
+    <div id="finish" style="display:none">
+      <h4>
+        Hello World!

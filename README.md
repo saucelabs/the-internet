@@ -1,57 +1,59 @@
-# The Internet 0.58.0 (10, February 2020)
+# The Internet 0.58.0 (8, July 2020)
 =======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
-Deployed and available at [http://the-internet.herokuapp.com](http://the-internet.herokuapp.com).
+Deployed and available at [https://the-internet.herokuapp.com](https://the-internet.herokuapp.com).
+
+The-internet is now wholly owned by Sauce Labs Inc.!
 
 ## Available Examples:
 
-+ [A/B Testing](http://the-internet.herokuapp.com/abtest)
-+ [Add/Remove Elements](http://the-internet.herokuapp.com/add_remove_elements/)
-+ [Basic Auth](http://the-internet.herokuapp.com/basic_auth) (user and pass: admin)
-+ [Broken Images](http://the-internet.herokuapp.com/broken_images)
-+ [Challenging DOM](http://the-internet.herokuapp.com/challenging_dom)
-+ [Checkboxes](http://the-internet.herokuapp.com/checkboxes)
-+ [Context Menu](http://the-internet.herokuapp.com/context_menu)
-+ [Digest Authentication](http://the-internet.herokuapp.com/digest_auth) (user and pass: admin)
-+ [Disappearing Elements](http://the-internet.herokuapp.com/disappearing_elements)
-+ [Drag and Drop](http://the-internet.herokuapp.com/drag_and_drop)
-+ [Dropdown](http://the-internet.herokuapp.com/dropdown)
-+ [Dynamic Content](http://the-internet.herokuapp.com/dynamic_content)
-+ [Dynamic Controls](http://the-internet.herokuapp.com/dynamic_controls)
-+ [Dynamic Loading](http://the-internet.herokuapp.com/dynamic_loading)
-+ [Entry Ad](http://the-internet.herokuapp.com/entry_ad)
-+ [Exit Intent](http://the-internet.herokuapp.com/exit_intent)
-+ [File Download](http://the-internet.herokuapp.com/download)
-+ [File Upload](http://the-internet.herokuapp.com/upload)
-+ [Floating Menu](http://the-internet.herokuapp.com/floating_menu)
-+ [Forgot Password](http://the-internet.herokuapp.com/forgot_password)
-+ [Form Authentication](http://the-internet.herokuapp.com/login)
-+ [Frames](http://the-internet.herokuapp.com/frames)
-+ [Geolocation](http://the-internet.herokuapp.com/geolocation)
-+ [Horizontal Slider](http://the-internet.herokuapp.com/horizontal_slider)
-+ [Hovers](http://the-internet.herokuapp.com/hovers)
-+ [Infinite Scroll](http://the-internet.herokuapp.com/infinite_scroll)
-+ [Inputs](http://the-internet.herokuapp.com/inputs)
-+ [JQuery UI Menus](http://the-internet.herokuapp.com/jqueryui/menu)
-+ [JavaScript Alerts](http://the-internet.herokuapp.com/javascript_alerts)
-+ [JavaScript onload event error](http://the-internet.herokuapp.com/javascript_error)
-+ [Key Presses](http://the-internet.herokuapp.com/key_presses)
-+ [Large & Deep DOM](http://the-internet.herokuapp.com/large)
-+ [Multiple Windows](http://the-internet.herokuapp.com/windows)
-+ [Nested Frames](http://the-internet.herokuapp.com/nested_frames)
-+ [Notification Messages](http://the-internet.herokuapp.com/notification_message)
-+ [Redirect Link](http://the-internet.herokuapp.com/redirector)
-+ [Secure File Download](http://the-internet.herokuapp.com/download_secure)
-+ [Shadow DOM](http://the-internet.herokuapp.com/shadowdom)
-+ [Shifting Content](http://the-internet.herokuapp.com/shifting_content)
-+ [Slow Resources](http://the-internet.herokuapp.com/slow)
-+ [Sortable Data Tables](http://the-internet.herokuapp.com/tables)
-+ [Status Codes](http://the-internet.herokuapp.com/status_codes)
-+ [Subdirectories](http://the-internet.herokuapp.com/subdirectories)
-+ [Typos](http://the-internet.herokuapp.com/typos)
-+ [WYSIWYG Editor](http://the-internet.herokuapp.com/tinymce)
++ [A/B Testing](https://the-internet.herokuapp.com/abtest)
++ [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/)
++ [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin)
++ [Broken Images](https://the-internet.herokuapp.com/broken_images)
++ [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom)
++ [Checkboxes](https://the-internet.herokuapp.com/checkboxes)
++ [Context Menu](https://the-internet.herokuapp.com/context_menu)
++ [Digest Authentication](https://the-internet.herokuapp.com/digest_auth) (user and pass: admin)
++ [Disappearing Elements](https://the-internet.herokuapp.com/disappearing_elements)
++ [Drag and Drop](https://the-internet.herokuapp.com/drag_and_drop)
++ [Dropdown](https://the-internet.herokuapp.com/dropdown)
++ [Dynamic Content](https://the-internet.herokuapp.com/dynamic_content)
++ [Dynamic Controls](https://the-internet.herokuapp.com/dynamic_controls)
++ [Dynamic Loading](https://the-internet.herokuapp.com/dynamic_loading)
++ [Entry Ad](https://the-internet.herokuapp.com/entry_ad)
++ [Exit Intent](https://the-internet.herokuapp.com/exit_intent)
++ [File Download](https://the-internet.herokuapp.com/download)
++ [File Upload](https://the-internet.herokuapp.com/upload)
++ [Floating Menu](https://the-internet.herokuapp.com/floating_menu)
++ [Forgot Password](https://the-internet.herokuapp.com/forgot_password)
++ [Form Authentication](https://the-internet.herokuapp.com/login)
++ [Frames](https://the-internet.herokuapp.com/frames)
++ [Geolocation](https://the-internet.herokuapp.com/geolocation)
++ [Horizontal Slider](https://the-internet.herokuapp.com/horizontal_slider)
++ [Hovers](https://the-internet.herokuapp.com/hovers)
++ [Infinite Scroll](https://the-internet.herokuapp.com/infinite_scroll)
++ [Inputs](https://the-internet.herokuapp.com/inputs)
++ [JQuery UI Menus](https://the-internet.herokuapp.com/jqueryui/menu)
++ [JavaScript Alerts](https://the-internet.herokuapp.com/javascript_alerts)
++ [JavaScript onload event error](https://the-internet.herokuapp.com/javascript_error)
++ [Key Presses](https://the-internet.herokuapp.com/key_presses)
++ [Large & Deep DOM](https://the-internet.herokuapp.com/large)
++ [Multiple Windows](https://the-internet.herokuapp.com/windows)
++ [Nested Frames](https://the-internet.herokuapp.com/nested_frames)
++ [Notification Messages](https://the-internet.herokuapp.com/notification_message)
++ [Redirect Link](https://the-internet.herokuapp.com/redirector)
++ [Secure File Download](https://the-internet.herokuapp.com/download_secure)
++ [Shadow DOM](https://the-internet.herokuapp.com/shadowdom)
++ [Shifting Content](https://the-internet.herokuapp.com/shifting_content)
++ [Slow Resources](https://the-internet.herokuapp.com/slow)
++ [Sortable Data Tables](https://the-internet.herokuapp.com/tables)
++ [Status Codes](https://the-internet.herokuapp.com/status_codes)
++ [Subdirectories](https://the-internet.herokuapp.com/subdirectories)
++ [Typos](https://the-internet.herokuapp.com/typos)
++ [WYSIWYG Editor](https://the-internet.herokuapp.com/tinymce)
 
 
 Don't see an example you need or think should be here? Contribute!
@@ -67,7 +69,7 @@ tldr;
 
 ## Getting Started
 
-Install your dependencies:
+Install Ruby (version in `.ruby-version`) and your dependencies:
 
     bundle install
 
@@ -79,6 +81,24 @@ Load the page you want to see in your browser:
 
     http://localhost:9292/url_path
 
-## See Also
+Or run it with Docker:
 
-- A Docker Image of the-internet ([link](https://hub.docker.com/r/gprestes/the-internet/))
+    docker build -t the-internet .
+    docker run -p 5000:5000 the-internet
+
+Then open http://localhost:5000.
+
+## Tests
+
+Run the HTTP contract suite (boots the app and checks every example):
+
+    bundle exec rake contract
+
+Run the browser suite (Selenium, headless Chrome by default):
+
+    bundle exec rake e2e
+    BROWSER=firefox HEADLESS=false bundle exec rake e2e
+
+Or on Sauce Labs (set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`):
+
+    TARGET=saucelabs BROWSER=safari BASE_URL=https://the-internet.herokuapp.com bundle exec rspec spec/e2e

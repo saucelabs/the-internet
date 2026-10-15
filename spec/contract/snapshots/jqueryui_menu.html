@@ -1,0 +1,48 @@
+<div class="large-12 columns" id="content">
+  <meta charset="utf-8">
+  <title>
+    jQuery UI Menu
+  <link href="/css/jqueryui/menu/menu.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+  <script>
+    $(function() { $( "#menu" ).menu(); });
+  <style>
+    .ui-menu { width: 150px; }
+  <div class="example">
+    <h3>
+      JQueryUI - Menu
+    <div class="description">
+      <p>
+        <a href="http://api.jqueryui.com/menu/">
+          JQuery UI Menus
+        are a nice UI element from a user perspective, but poses an interesting automation challenge since it requires mouse operations and synchronization between them.
+      <p>
+        Another 'fun' aspect is that the visibility of elements is actually not in the html itself, but done magically by JQuery so you cannot trust exactly what the html is telling you. A user cannot fire click events at certain UI elements, but you might -- if you have a big enough hammer to hit it with.
+      <ul id="menu">
+        <li class="ui-state-disabled">
+          <a href="#">
+            Disabled
+          <ul>
+            <li>
+              <a href="#">
+                Should not see this
+        <li>
+          <a href="#">
+            Enabled
+          <ul>
+            <li>
+              <a href="#">
+                Downloads
+              <ul>
+                <li>
+                  <a href="/download/jqueryui/menu/menu.pdf">
+                    PDF
+                <li>
+                  <a href="/download/jqueryui/menu/menu.csv">
+                    CSV
+                <li>
+                  <a href="/download/jqueryui/menu/menu.xls">
+                    Excel
+            <li>
+              <a href="/jqueryui">
+                Back to JQuery UI

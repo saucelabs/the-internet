@@ -1,10 +1,12 @@
 <html>
-  <head><!-- CDN hosted by Cachefly -->
-    <script src="https://cdn.tiny.cloud/1/mcq6n68fc0vsuywr7nx7awf11byv91g6ihxw5okkzj8aykz6/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <head>
+    <script src="/js/vendor/tinymce/tinymce.min.js"></script>
     <script>
       tinymce.init({
         selector:'textarea',
-        theme: "silver"
+        theme: "silver",
+        skin: "tinymce-5",
+        promotion: false
       });
     </script>
   </head>

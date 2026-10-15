@@ -3,7 +3,7 @@
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
-Deployed and available at [http://the-internet.herokuapp.com](http://the-internet.herokuapp.com).
+Deployed and available at [https://the-internet.herokuapp.com](https://the-internet.herokuapp.com).
 
 The-internet is now wholly owned by Sauce Labs Inc.!
 
@@ -24,7 +24,7 @@ tldr;
 
 ## Getting Started
 
-Install your dependencies:
+Install Ruby (version in `.ruby-version`) and your dependencies:
 
     bundle install
 
@@ -36,6 +36,24 @@ Load the page you want to see in your browser:
 
     http://localhost:9292/url_path
 
-## See Also
+Or run it with Docker:
 
-- A Docker Image of the-internet ([link](https://hub.docker.com/r/gprestes/the-internet/))
+    docker build -t the-internet .
+    docker run -p 5000:5000 the-internet
+
+Then open http://localhost:5000.
+
+## Tests
+
+Run the HTTP contract suite (boots the app and checks every example):
+
+    bundle exec rake contract
+
+Run the browser suite (Selenium, headless Chrome by default):
+
+    bundle exec rake e2e
+    BROWSER=firefox HEADLESS=false bundle exec rake e2e
+
+Or on Sauce Labs (set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`):
+
+    TARGET=saucelabs BROWSER=safari BASE_URL=https://the-internet.herokuapp.com bundle exec rspec spec/e2e

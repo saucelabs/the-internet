@@ -6,7 +6,7 @@ class DynamicLoading < Page
   FINISH_TEXT   = { id: 'finish' }
 
   def example(example_number)
-    visit "http://the-internet.herokuapp.com/dynamic_loading/#{example_number}"
+    visit "/dynamic_loading/#{example_number}"
   end
 
   def start
@@ -18,4 +18,3 @@ class DynamicLoading < Page
   end
 
 end
-
