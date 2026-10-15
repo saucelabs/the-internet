@@ -102,3 +102,14 @@ Run the browser suite (Selenium, headless Chrome by default):
 Or on Sauce Labs (set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`):
 
     TARGET=saucelabs BROWSER=safari BASE_URL=https://the-internet.herokuapp.com bundle exec rspec spec/e2e
+
+## Deploying and Releasing
+
+Every merge to `main` deploys to Heroku once CI passes. Releases are tagged with the version number (e.g. `0.59.0`, no `v` prefix):
+
+1. In a pull request, add an entry to `changelog.md` and bump `VERSION`.
+2. Once it's merged, check out `main`, pull, and tag it:
+
+        bundle exec rake release
+
+   This creates an annotated tag named after `VERSION` and pushes it.
