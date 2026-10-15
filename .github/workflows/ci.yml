@@ -37,7 +37,8 @@ jobs:
     env:
       TARGET: saucelabs
       BROWSER: ${{ matrix.browser }}
-      BASE_URL: http://localhost:9292
+      # Sauce browsers bypass the tunnel for localhost, so use another name for the runner.
+      BASE_URL: http://the-internet.test:9292
       SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
       SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
       SAUCE_REGION: us-west-1
@@ -49,9 +50,12 @@ jobs:
         with:
           bundler-cache: true
       - name: Start the app
+        env:
+          RACK_ENV: production # same mode as Heroku
         run: |
+          echo "127.0.0.1 the-internet.test" | sudo tee -a /etc/hosts
           bundle exec puma -C config/puma.rb > puma.log 2>&1 &
-          for i in $(seq 1 50); do curl -sf http://localhost:9292/ > /dev/null && exit 0; sleep 0.2; done
+          for i in $(seq 1 50); do curl -sf "$BASE_URL/" > /dev/null && exit 0; sleep 0.2; done
           cat puma.log; exit 1
       - uses: saucelabs/sauce-connect-action@v3
         with:
