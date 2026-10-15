@@ -1,0 +1,24 @@
+<div class="example">
+  <h3>Multiple Select Dropdown List</h3>
+  <p>Hold Ctrl (Cmd on a Mac) or Shift to select more than one option.</p>
+  <select id="multiple-dropdown" multiple>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+    <option value="4">Option 4</option>
+  </select>
+</div>
+
+<script>
+  var multipleDropdown = document.getElementById('multiple-dropdown');
+  multipleDropdown.onchange = function() {
+    var options = multipleDropdown.getElementsByTagName('option');
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        options[i].setAttribute('selected', 'selected');
+      } else {
+        options[i].removeAttribute('selected');
+      }
+    }
+  };
+</script>
