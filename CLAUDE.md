@@ -15,7 +15,7 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 - `config.ru` — `Rack::URLMap` mounting the two apps.
 - `views/*.erb` — one view per example; `layout.erb` is the shared shell. Some views render without layout (frames, `/windows/new`, `/javascript_error`).
 - `views/examples.erb` — **generated** from `examples.csv` by `rake gen_docs` (also regenerates `README.md` from `README.template`). Edit the CSV, not the view.
-- `views/scss/` — old Foundation 4 + Compass sources (no longer buildable); `public/css/app.css` is the source of truth until the styling rework.
+- `views/scss/` — old Foundation 4 + Compass sources (no longer buildable); `public/css/app.css` is the old base CSS; `public/css/sauce.css` (loaded after it) is the Sauce Labs theme: colours and fonts from saucelabs.com, fonts vendored in `public/fonts/`. Put style changes in `sauce.css`.
 - `public/js/vendor/` — vendored jQuery 1.11, jQuery UI 1.11, tablesorter, jscroll, dropzone, ouibounce, stickyfloat. `298279967.js` is a self-contained Optimizely Classic snippet that **drives `/abtest`** ("A/B Test Control"/"Variation 1", `optimizelyOptOut` cookie) — only on the `the-internet.herokuapp.com` hostname, so locally `/abtest` always shows "No A/B Test". Do not remove it.
 - `/tinymce` uses TinyMCE 6.8.6 (MIT, last MIT release; 7+ is GPL), vendored minimal in `public/js/vendor/tinymce/` with the `tinymce-5` skin to match the old look. Do not switch to Tiny Cloud (editor-load quota made it read-only).
 - `public/uploads/` — target of `/upload`, listed by `/download` and `/download_secure`.

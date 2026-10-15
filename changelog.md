@@ -1,3 +1,7 @@
+#0.62.0
++ New look based on saucelabs.com: colours, fonts (Atkinson Hyperlegible Next, Fraunces), top bar, buttons, forms, tables and a matching GitHub ribbon
++ Only CSS and the page chrome changed: every id, class, text and URL of the examples is the same
+
 #0.61.0
 + Added Radio Buttons (/radio_buttons). Fixes #70
 + Added Read-only Inputs (/readonly). Fixes #44
