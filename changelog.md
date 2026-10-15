@@ -1,3 +1,14 @@
+#0.59.0
++ Upgraded to Ruby 4.0, Sinatra 4, Rack 3 and puma (Heroku stack heroku-26)
++ Fixed /tinymce (read-only on Tiny Cloud): self-hosted TinyMCE 6.8.6 with the TinyMCE 5 skin
++ Fixed /jqueryui/menu loading scripts over http
++ Released /subdirectories
++ Forgot Password sends email through configurable SMTP, rate-limited
++ Uploads can no longer overwrite the bundled files
++ Fork ribbon points to saucelabs/the-internet
++ Added an HTTP contract suite and a Selenium 4 browser suite running on Sauce Labs
++ CI on GitHub Actions deploys main to Heroku and publishes ghcr.io/saucelabs/the-internet
+
 #0.58.0
 + Added /shadowdom example (PR #45)
 
