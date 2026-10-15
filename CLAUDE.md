@@ -16,7 +16,8 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 - `views/*.erb` — one view per example; `layout.erb` is the shared shell. Some views render without layout (frames, `/windows/new`, `/javascript_error`).
 - `views/examples.erb` — **generated** from `examples.csv` by `rake gen_docs` (also regenerates `README.md` from `README.template`). Edit the CSV, not the view.
 - `views/scss/` — old Foundation 4 + Compass sources (no longer buildable); `public/css/app.css` is the source of truth until the styling rework.
-- `public/js/vendor/` — vendored jQuery 1.11, jQuery UI 1.11, tablesorter, jscroll, dropzone, ouibounce, stickyfloat; `298279967.js` is a dead Optimizely Classic snippet.
+- `public/js/vendor/` — vendored jQuery 1.11, jQuery UI 1.11, tablesorter, jscroll, dropzone, ouibounce, stickyfloat. `298279967.js` is a self-contained Optimizely Classic snippet that **drives `/abtest`** ("A/B Test Control"/"Variation 1", `optimizelyOptOut` cookie) — only on the `the-internet.herokuapp.com` hostname, so locally `/abtest` always shows "No A/B Test". Do not remove it.
+- `/tinymce` loads TinyMCE (GPL, `license_key: 'gpl'`) from jsDelivr.
 - `public/uploads/` — target of `/upload`, listed by `/download` and `/download_secure`.
 - `spec/contract/` — HTTP contract suite (black-box, any `BASE_URL`): statuses, auth, redirects, flash, cookies and markup snapshots recorded from the live site. Run it after any change. See its README.
 - `spec/e2e/` — Selenium 4 browser suite, one scenario per example; local headless (`rake e2e`, `BROWSER=chrome|firefox|edge|safari`) or Sauce Labs (`TARGET=saucelabs`, needs `SAUCE_USERNAME`/`SAUCE_ACCESS_KEY`, plus `SAUCE_TUNNEL_NAME` for a localhost app).

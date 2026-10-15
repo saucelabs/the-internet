@@ -146,7 +146,7 @@ describe 'Examples' do
     find(:link_text, 'Click Here').click
     wait { @driver.window_handles.size == 2 }
     @driver.switch_to.window((@driver.window_handles - [original]).first)
-    expect(@driver.title).to eq 'New Window'
+    wait { @driver.title == 'New Window' }
   end
 
   it 'Notification Messages shows a flash' do
@@ -164,8 +164,27 @@ describe 'Examples' do
   it 'Sortable Data Tables sort by last name' do
     visit '/tables'
     find(:css, '#table2 thead .last-name').click
-    names = @driver.find_elements(:css, '#table2 tbody .last-name').map(&:text)
-    expect(names).to eq names.sort
+    names = -> { @driver.find_elements(:css, '#table2 tbody .last-name').map(&:text) }
+    wait { names.call == names.call.sort }
+  end
+
+  it 'WYSIWYG Editor (TinyMCE) is editable' do
+    visit '/tinymce'
+    @driver.switch_to.frame(wait { find(:id, 'mce_0_ifr') })
+    editor = find(:id, 'tinymce')
+    expect(editor.text).to eq 'Your content goes here.'
+    editor.click
+    editor.clear
+    editor.send_keys('Hello World!')
+    expect(editor.text).to eq 'Hello World!'
+  end
+
+  it 'JQuery UI Menus open sub-menus on hover' do
+    visit '/jqueryui/menu'
+    enabled = find(:id, 'ui-id-3')
+    @driver.action.move_to(enabled).perform
+    # jQuery UI opens sub-menus after a short delay.
+    wait { find(:id, 'ui-id-4').displayed? }
   end
 
   it 'Status Codes link to pages that report the code' do
