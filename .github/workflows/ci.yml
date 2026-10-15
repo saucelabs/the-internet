@@ -19,6 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      # Every merged PR is a release, so each PR bumps VERSION and adds its changelog entry.
+      - name: Check VERSION and changelog
+        run: |
+          version=$(cat VERSION)
+          head -1 changelog.md | grep -qx "#$version" || { echo "::error::changelog.md must start with #$version"; exit 1; }
+          if [ "$GITHUB_EVENT_NAME" = pull_request ] && git ls-remote --exit-code --tags origin "refs/tags/$version" > /dev/null; then
+            echo "::error::$version is already released; bump VERSION"; exit 1
+          fi
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
@@ -110,6 +118,8 @@ jobs:
     needs: [contract, e2e, docker]
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the release tag
     concurrency:
       group: heroku-deploy
       cancel-in-progress: false
@@ -128,3 +138,13 @@ jobs:
             sleep 5
           done
           exit 1
+      - name: Tag the release
+        run: |
+          version=$(cat VERSION)
+          if git ls-remote --exit-code --tags origin "refs/tags/$version" > /dev/null; then
+            echo "$version is already tagged"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$version" -m "$version"
+          git push origin "$version"

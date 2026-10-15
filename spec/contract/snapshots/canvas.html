@@ -1,0 +1,11 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Canvas
+    <p>
+      Click inside the canvas to draw a dot. Click it, then type to write text; press Enter to submit it. Everything is drawn on the canvas, so it is not in the DOM.
+    <canvas height="300" id="canvas" style="border: 1px solid #333; cursor: crosshair;" tabindex="0" width="500">
+    <p id="canvas-log">
+      Nothing yet
+  <script>
+    var canvas = document.getElementById('canvas'); var ctx = canvas.getContext('2d'); var log = document.getElementById('canvas-log'); var typed = ''; function drawText() { ctx.clearRect(0, 260, canvas.width, 40); ctx.fillStyle = '#000'; ctx.font = '20px sans-serif'; ctx.fillText(typed + '|', 10, 285); } canvas.addEventListener('click', function(event) { var rect = canvas.getBoundingClientRect(); var x = Math.round(event.clientX - rect.left); var y = Math.round(event.clientY - rect.top); ctx.fillStyle = '#e2231a'; ctx.beginPath(); ctx.arc(x, y, 5, 0, 2 * Math.PI); ctx.fill(); canvas.focus(); log.textContent = 'Clicked at ' + x + ', ' + y; }); canvas.addEventListener('keydown', function(event) { if (event.key === 'Enter') { log.textContent = 'Submitted: ' + typed; typed = ''; } else if (event.key === 'Backspace') { typed = typed.slice(0, -1); } else if (event.key.length === 1) { typed += event.key; } else { return; } event.preventDefault(); drawText(); }); drawText();

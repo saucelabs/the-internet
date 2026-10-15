@@ -1,3 +1,16 @@
+#0.61.0
++ Added Radio Buttons (/radio_buttons). Fixes #70
++ Added Read-only Inputs (/readonly). Fixes #44
++ Added Two-Factor Login with a one-time code in a password field (/two_factor). Fixes #82
++ Added Large Form with many field types and good, bad and missing ids (/large_form). Fixes #43
++ Added Canvas you click and type into (/canvas). Fixes #41
++ File Download always lists sample files: textfile.txt, sample.csv, sample.json and sample.pdf. Fixes #20
++ File Upload rejects programs (.exe, .dll, .sh, ...) and files over 2 MB. Fixes #53
++ File Upload without a file still returns 500, now with an explanation
++ File Upload escapes the file name it shows
++ README lists every page, including the ones reached from other examples
++ Releases: every merged pull request bumps VERSION and is tagged automatically after deploy
+
 #0.60.0
 + Added a Multiple Select Dropdown example (/multiple_dropdown) (PR #55)
 + Fixed /dynamic_controls showing more than one "Wait for it..." loading bar; the bar is still hidden (not removed) when loading ends (PR #88, fixes #46)

@@ -1,0 +1,34 @@
+<div class="example">
+  <h3>Radio Buttons</h3>
+  <form id="radio-buttons">
+    <fieldset>
+      <legend>Favorite color</legend>
+      <input type="radio" id="red" name="color" value="red"> <label for="red">Red</label><br>
+      <input type="radio" id="blue" name="color" value="blue" checked> <label for="blue">Blue</label><br>
+      <input type="radio" id="green" name="color" value="green"> <label for="green">Green</label>
+    </fieldset>
+    <fieldset>
+      <legend>Favorite sport</legend>
+      <input type="radio" name="sport" value="football"> Football<br>
+      <input type="radio" name="sport" value="tennis"> Tennis<br>
+      <input type="radio" name="sport" value="hockey" disabled> Hockey (not available)
+    </fieldset>
+  </form>
+  <p id="result">Color: blue, Sport: none</p>
+</div>
+<script>
+  var form = document.getElementById('radio-buttons');
+  var radios = form.querySelectorAll('input[type=radio]');
+  for (var i = 0; i < radios.length; i++) {
+    radios[i].onchange = function() {
+      var group = form.querySelectorAll('input[name=' + this.name + ']');
+      for (var j = 0; j < group.length; j++) {
+        group[j].checked ? group[j].setAttribute('checked', '') : group[j].removeAttribute('checked');
+      }
+      var color = form.querySelector('input[name=color]:checked');
+      var sport = form.querySelector('input[name=sport]:checked');
+      document.getElementById('result').textContent =
+        'Color: ' + (color ? color.value : 'none') + ', Sport: ' + (sport ? sport.value : 'none');
+    };
+  }
+</script>

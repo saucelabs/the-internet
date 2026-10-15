@@ -1,0 +1,13 @@
+<div class="example">
+  <h2>Enter Your Code</h2>
+  <h4 class="subheader">We sent a 6-digit code to your phone. For this example it is shown here: <strong id="otp-code"><%= code %></strong>. It expires in 3 minutes.</h4>
+  <form id="two-factor-code" action="/two_factor/verify" method="post">
+    <div class="row">
+      <div class="large-6 small-12 columns">
+        <label for="code">One-time code</label>
+        <input type="password" name="code" id="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+      </div>
+    </div>
+    <button class="radius" type="submit">Verify</button>
+  </form>
+</div>

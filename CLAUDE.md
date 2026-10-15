@@ -27,7 +27,8 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 1. Route in `server.rb` (`Public` class) + view in `views/`.
 2. Row in `examples.csv` (`title,url_path,notes`).
 3. `bundle exec rake gen_docs`.
-4. Entry in `changelog.md`, bump `VERSION`.
+4. Contract entry in `spec/contract/pages.rb` (+ snapshot) and an E2E scenario in `spec/e2e/examples/`.
+5. Bump `VERSION` and add a matching entry at the top of `changelog.md` (every PR; CI checks it).
 
 ## Run
 Ruby version is in `.ruby-version` (Gemfile reads it).
@@ -39,7 +40,7 @@ bundle exec rake contract     # boots the app and runs the HTTP contract suite
 Markup change on purpose? Re-record snapshots with `UPDATE_SNAPSHOTS=1` and review the diff.
 
 ## Deploy
-Heroku app `the-internet`, `web` process from `Procfile` (puma). Config vars: `SESSION_SECRET` (shared by all puma workers); for real Forgot Password email `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `MAIL_FROM` (without `SMTP_ADDRESS`, mail is only logged). `WEB_CONCURRENCY` sets puma workers. Deploys: the `deploy` job in `.github/workflows/ci.yml` pushes `main` to Heroku git after all CI jobs pass (secret `HEROKU_API_KEY`; the Heroku GitHub integration is not allowed in the saucelabs org). Docker image goes to `ghcr.io/saucelabs/the-internet` (private).
+Heroku app `the-internet`, `web` process from `Procfile` (puma). Config vars: `SESSION_SECRET` (shared by all puma workers); for real Forgot Password email `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `MAIL_FROM` (without `SMTP_ADDRESS`, mail is only logged). `WEB_CONCURRENCY` sets puma workers. Deploys: the `deploy` job in `.github/workflows/ci.yml` pushes `main` to Heroku git after all CI jobs pass (secret `HEROKU_API_KEY`; the Heroku GitHub integration is not allowed in the saucelabs org). After deploying, it tags the commit with `VERSION` (every merged PR is a release). Docker image goes to `ghcr.io/saucelabs/the-internet` (private).
 
 ## Credentials baked into examples (intentional)
 - Form login: `tomsmith` / `SuperSecretPassword!`

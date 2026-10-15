@@ -190,6 +190,84 @@ describe 'Behaviour' do
       expect(res.code).to eq '200'
       expect(client.get('/download/some-file.txt').body.b).to eq seeded
     end
+
+    it 'answers 500 with an explanation when no file is chosen' do
+      res = client.post('/upload', file: '')
+      expect(res.code).to eq '500'
+      expect(html(res).at_css('#upload-error').text).to include 'No file was chosen'
+    end
+
+    it 'rejects programs' do
+      res = client.post_multipart('/upload', [['file', StringIO.new('MZ'), { filename: 'contract.exe', content_type: 'application/octet-stream' }]])
+      expect(res.code).to eq '422'
+      expect(html(res).at_css('#upload-error').text).to include ".exe files can't be uploaded."
+      expect(client.get('/download').body).not_to include 'contract.exe'
+    end
+
+    it 'rejects files over 2 MB' do
+      res = client.post_multipart('/upload', [['file', StringIO.new('a' * (2 * 1024 * 1024 + 1)), { filename: name, content_type: 'text/plain' }]])
+      expect(res.code).to eq '413'
+      expect(client.get('/download').body).not_to include name
+    end
+  end
+
+  describe 'Sample downloads' do
+    %w[some-file.txt textfile.txt sample.csv sample.json sample.pdf].each do |file|
+      it "lists and serves #{file}" do
+        expect(client.get('/download').body).to include "download/#{file}"
+        res = client.get("/download/#{file}")
+        expect(res.code).to eq '200'
+        expect(res['content-disposition']).to include 'attachment'
+        expect(res.body.b).to eq File.binread(File.join(REPO_ROOT, 'public/uploads', file)) if LOCAL
+      end
+    end
+  end
+
+  describe 'Two-factor login' do
+    def login(password = 'SuperSecretPassword!')
+      client.post('/two_factor/authenticate', username: 'tomsmith', password: password)
+    end
+
+    def code_page
+      client.follow(login)
+    end
+
+    it 'rejects a wrong password' do
+      res = login('nope')
+      expect(path_of(res['location'])).to eq '/two_factor'
+      expect(flash(client.follow(res)).text).to include 'Your username or password is invalid!'
+    end
+
+    it 'asks for a code in a password field, then opens the secure area' do
+      page = html(code_page)
+      code = page.at_css('#otp-code').text
+      expect(code).to match(/\A\d{6}\z/)
+      expect(page.at_css('input#code')['type']).to eq 'password'
+
+      res = client.post('/two_factor/verify', code: code)
+      expect(path_of(res['location'])).to eq '/two_factor/secure'
+      secure = client.follow(res)
+      expect(flash(secure).text).to include 'You logged in with two-factor authentication!'
+
+      out = client.get('/two_factor/logout')
+      expect(flash(client.follow(out)).text).to include 'You logged out of the secure area!'
+      expect(path_of(client.get('/two_factor/secure')['location'])).to eq '/two_factor'
+    end
+
+    it 'rejects a wrong code' do
+      code_page
+      res = client.post('/two_factor/verify', code: '000000x')
+      expect(path_of(res['location'])).to eq '/two_factor/code'
+      expect(flash(client.follow(res)).text).to include 'Your code is invalid!'
+    end
+  end
+
+  describe 'Large form' do
+    it 'echoes every submitted value and masks the password' do
+      res = client.post('/large_form', 'first_name' => 'Ana', 'languages[]' => %w[English Spanish], 'password' => 'secret')
+      rows = html(res).css('#submitted-data tbody tr').to_h { |tr| tr.css('td').map { |td| td.text.strip } }
+      expect(rows).to include('first_name' => 'Ana', 'languages' => 'English, Spanish', 'password' => '******')
+    end
   end
 
   describe 'Forgot password', :writes do

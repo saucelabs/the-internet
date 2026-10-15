@@ -1,0 +1,12 @@
+<div class="example">
+  <h3>Form Submitted</h3>
+  <table id="submitted-data">
+    <thead><tr><th>Field</th><th>Value</th></tr></thead>
+    <tbody>
+      <% fields.each do |name, value| %>
+        <tr><td><%= Rack::Utils.escape_html(name) %></td><td><%= Rack::Utils.escape_html(value) %></td></tr>
+      <% end %>
+    </tbody>
+  </table>
+  <a href="/large_form">Back to the form</a>
+</div>
