@@ -1,12 +1,15 @@
 # Browser tests (Selenium 4). Run locally (headless) or on Sauce Labs:
 #
-#   bundle exec rake e2e                                   # boots the app, local headless Chrome
+#   bundle exec rake e2e                                   # boots the app, local headless Chrome, 4 processes
+#   bundle exec parallel_rspec -n 4 spec/e2e               # against a running app; splits by file
 #   BROWSER=firefox HEADLESS=false bundle exec rake e2e
 #   TARGET=saucelabs BROWSER=safari bundle exec rspec spec/e2e   # needs SAUCE_USERNAME / SAUCE_ACCESS_KEY
 #
 # BASE_URL defaults to http://localhost:9292. On Sauce Labs an app on this machine
 # needs a Sauce Connect tunnel (set SAUCE_TUNNEL_NAME) and a hostname other than
 # localhost (Sauce browsers bypass the tunnel for localhost; see ci.yml).
+#
+# examples/ holds one file per example so parallel_rspec can spread them evenly.
 require 'selenium-webdriver'
 
 ENV['BASE_URL'] ||= 'http://localhost:9292'

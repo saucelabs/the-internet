@@ -83,9 +83,10 @@ task :contract do
   with_app { |url| sh({ 'BASE_URL' => url }, 'bundle exec rspec spec/contract') }
 end
 
-desc 'Boot the app and run the browser suite against it (BROWSER, HEADLESS, TARGET)'
+desc 'Boot the app and run the browser suite against it (BROWSER, HEADLESS, TARGET, E2E_PROCESSES)'
 task :e2e do
-  with_app { |url| sh({ 'BASE_URL' => url }, 'bundle exec rspec spec/e2e') }
+  processes = ENV.fetch('E2E_PROCESSES', '4')
+  with_app { |url| sh({ 'BASE_URL' => url }, "bundle exec parallel_rspec -n #{processes} spec/e2e") }
 end
 
 task default: :contract

@@ -18,4 +18,5 @@ end
 
 group :e2e do
   gem 'selenium-webdriver', '~> 4.51'
+  gem 'parallel_tests', '~> 5.8'
 end
