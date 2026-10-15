@@ -1,6 +1,0 @@
-# Standalone deps for the HTTP contract suite, so it can run before the app
-# itself is upgraded. Fold into the main Gemfile once the runtime is bumped.
-source 'https://rubygems.org'
-
-gem 'rspec', '~> 3.13'
-gem 'nokogiri', '~> 1.18'

@@ -1,11 +1,14 @@
 require 'bundler/setup'
+require 'securerandom'
 require 'sinatra/base'
 require 'sinatra/flash'
-require 'sinatra/contrib'
 require 'sinatra/cookies'
-require 'zurb-foundation'
-require 'compass'
 require 'faker'
+require_relative 'lib/digest_auth'
+
+# Shared by every process (puma workers) so sessions and digest nonces
+# issued by one worker are accepted by the others.
+SESSION_SECRET = ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
 
 class Protected < Sinatra::Base
   register Sinatra::Flash
@@ -15,12 +18,9 @@ class Protected < Sinatra::Base
   end
 
   def self.new(*)
-    app = Rack::Auth::Digest::MD5.new(super) do |username|
+    DigestAuth.new(super, realm: 'Protected Area', opaque: 'secretkey', private_key: SESSION_SECRET) do |username|
       {'admin' => 'admin'}[username]
     end
-    app.realm = 'Protected Area'
-    app.opaque = 'secretkey'
-    app
   end
 end
 
@@ -28,6 +28,7 @@ class Public < Sinatra::Base
   helpers Sinatra::Cookies
   set :cookie_options, :domain => nil
   enable :sessions, :logging
+  set :session_secret, SESSION_SECRET
   register Sinatra::Flash
 
   get '/' do
@@ -220,7 +221,7 @@ class Public < Sinatra::Base
   end
 
   get '/status_codes/:status_code' do |status_code|
-    status status_code
+    status status_code.to_i
     @status_code = status_code
     erb :status_code, :layout => true
   end
@@ -388,7 +389,7 @@ class Public < Sinatra::Base
   get '/dynamic_content' do
     @static_content = (params[:with_content] == 'static')
     @copy = []
-    3.times { @copy << Faker::Lorem.sentence(30) }
+    3.times { @copy << Faker::Lorem.sentence(word_count: 30) }
     @images = Dir.glob('public/img/avatars/*').map { |f| f.split('/').last }
     erb :dynamic_content
   end
@@ -447,10 +448,9 @@ class Public < Sinatra::Base
   end
 
   get '/challenging_dom' do
-    require 'uuid'
     @text = %w[foo bar baz qux]
     @id = []
-    20.times { @id << UUID.new.generate }
+    20.times { @id << SecureRandom.uuid }
     erb :challenging_dom
   end
 
@@ -483,13 +483,13 @@ class Public < Sinatra::Base
   end
 
   get '/infinite_scroll/:number' do |number|
-    "<br />#{Faker::Lorem.sentence(300)}\
+    "<br />#{Faker::Lorem.sentence(word_count: 300)}\
     <a href='/infinite_scroll/#{number.to_i + 1}'>next page</a>"
   end
 
   get '/floating_menu' do
     @copy = []
-    10.times { @copy << Faker::Lorem.sentence(300) }
+    10.times { @copy << Faker::Lorem.sentence(word_count: 300) }
     erb :floating_menu
   end
 

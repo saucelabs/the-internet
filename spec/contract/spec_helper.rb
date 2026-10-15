@@ -1,10 +1,8 @@
 # HTTP contract suite: black-box checks of every example's URL, status,
 # auth, redirects, flash messages and markup. It runs against any deployment:
 #
-#   BASE_URL=https://the-internet.herokuapp.com bundle exec rspec   # live baseline
-#   BASE_URL=http://localhost:9292 bundle exec rspec                # local app (default)
-#
-# (run from spec/contract, or with BUNDLE_GEMFILE=spec/contract/Gemfile)
+#   bundle exec rake contract                                                    # boots the app locally
+#   BASE_URL=https://the-internet.herokuapp.com bundle exec rspec spec/contract  # live baseline
 #
 # Tags:
 #   :writes     — changes server state (uploads, sends mail); only runs against

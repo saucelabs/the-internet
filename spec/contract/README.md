@@ -3,9 +3,8 @@
 Black-box checks that every example keeps the same URLs, status codes, auth challenges, redirects, flash messages, cookies and markup. It runs against any deployment, so the live site is the baseline and the upgraded app is compared to it.
 
 ```
-cd spec/contract && bundle install
-BASE_URL=https://the-internet.herokuapp.com bundle exec rspec   # against live
-BASE_URL=http://localhost:9292 bundle exec rspec                # against a local server (default)
+bundle exec rake contract                                                     # boots the app locally and runs the suite
+BASE_URL=https://the-internet.herokuapp.com bundle exec rspec spec/contract   # against live
 ```
 
 - `snapshots/` holds the canonical markup of each deterministic page (`#content` only, or the whole document for pages without the layout), recorded from the live site on 2026-10-15. After an intentional markup change, re-record with `UPDATE_SNAPSHOTS=1` and review the diff.

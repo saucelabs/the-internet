@@ -10,15 +10,17 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 
 ## Layout
 - `server.rb` — all routes. Two Rack apps:
-  - `Protected` — `/digest_auth` (Rack Digest auth, admin/admin), mounted in `config.ru`.
+  - `Protected` — `/digest_auth` (digest auth via `lib/digest_auth.rb`, admin/admin), mounted in `config.ru`.
   - `Public` — everything else.
 - `config.ru` — `Rack::URLMap` mounting the two apps.
 - `views/*.erb` — one view per example; `layout.erb` is the shared shell. Some views render without layout (frames, `/windows/new`, `/javascript_error`).
 - `views/examples.erb` — **generated** from `examples.csv` by `rake gen_docs` (also regenerates `README.md` from `README.template`). Edit the CSV, not the view.
-- `views/scss/` — Foundation 4 + Compass sources; compiled output is checked in at `public/css/app.css`. Compass is dead; treat `app.css` as the source of truth until the styling rework.
+- `views/scss/` — old Foundation 4 + Compass sources (no longer buildable); `public/css/app.css` is the source of truth until the styling rework.
 - `public/js/vendor/` — vendored jQuery 1.11, jQuery UI 1.11, tablesorter, jscroll, dropzone, ouibounce, stickyfloat; `298279967.js` is a dead Optimizely Classic snippet.
 - `public/uploads/` — target of `/upload`, listed by `/download` and `/download_secure`.
-- `spec/` — Selenium RSpec examples (page objects in `spec/pages/`). They hit the **live** site / Sauce Labs, not the local app. There are no app-level tests.
+- `spec/contract/` — HTTP contract suite (black-box, any `BASE_URL`): statuses, auth, redirects, flash, cookies and markup snapshots recorded from the live site. Run it after any change. See its README.
+- `spec/*.rb`, `spec/pages/` — Selenium RSpec examples (page objects).
+- `config/puma.rb`, `Procfile` — server config for Heroku and Docker.
 
 ## Adding an example
 1. Route in `server.rb` (`Public` class) + view in `views/`.
@@ -27,14 +29,16 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 4. Entry in `changelog.md`, bump `VERSION`.
 
 ## Run
+Ruby version is in `.ruby-version` (Gemfile reads it).
 ```
 bundle install
-bundle exec rackup          # http://localhost:9292
+bundle exec rackup            # http://localhost:9292
+bundle exec rake contract     # boots the app and runs the HTTP contract suite
 ```
-Selenium specs: `host=localhost base_url=http://localhost:9292 bundle exec rspec`.
+Markup change on purpose? Re-record snapshots with `UPDATE_SNAPSHOTS=1` and review the diff.
 
 ## Deploy
-Heroku app `the-internet` (no Procfile; Heroku Ruby buildpack runs `rackup`). Docker image `tourdedave/the-internet` was built by Travis (`.travis.yml`, `docker_push.sh`) — Travis is defunct.
+Heroku app `the-internet`, `web` process from `Procfile` (puma). Needs `SESSION_SECRET` set (shared by all puma workers). Plan: Heroku GitHub integration auto-deploys `main` after CI passes; Docker image goes to `ghcr.io/saucelabs/the-internet`.
 
 ## Credentials baked into examples (intentional)
 - Form login: `tomsmith` / `SuperSecretPassword!`
