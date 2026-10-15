@@ -1,0 +1,104 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Large Form
+    <p>
+      A long form with many kinds of fields. Some have good ids and labels, some only a name, and some nothing useful at all.
+    <form action="/large_form" id="large-form" method="post">
+      <fieldset>
+        <legend>
+          Account
+        <label for="first-name">
+          First name
+        <input id="first-name" name="first_name" type="text">
+        <label for="last-name">
+          Last name
+        <input id="last-name" name="last_name" type="text">
+        <label>
+          Email
+        <input name="email" type="email">
+        <label>
+          Password
+        <input name="password" type="password">
+        <input name="nickname" placeholder="Nickname (optional)" type="text">
+      <fieldset>
+        <legend>
+          Details
+        <div class="row">
+          <div class="large-6 columns">
+            <label for="birthday">
+              Birthday
+            <input id="birthday" name="birthday" type="date">
+          <div class="large-6 columns">
+            <div>
+              <div>
+                <span>
+                  Age
+                <input max="120" min="0" name="age" type="number">
+        <label for="country">
+          Country
+        <select id="country" name="country">
+          <option value="">
+            Choose a country
+          <option value="ar">
+            Argentina
+          <option value="de">
+            Germany
+          <option value="in">
+            India
+          <option value="us">
+            United States
+        <label>
+          Languages
+        <select multiple="multiple" name="languages[]">
+          <option>
+            English
+          <option>
+            German
+          <option>
+            Hindi
+          <option>
+            Spanish
+        <label for="bio">
+          About you
+        <textarea id="bio" name="bio" rows="3">
+      <fieldset>
+        <legend>
+          Preferences
+        <p>
+          Contact me by
+        <input checked="checked" name="contact" type="radio" value="email">
+        Email
+        <input name="contact" type="radio" value="phone">
+        Phone
+        <input name="contact" type="radio" value="none">
+        Don't contact me
+        <p>
+          Interests
+        <input class="interest" name="interests[]" type="checkbox" value="testing">
+        Testing
+        <input class="interest" name="interests[]" type="checkbox" value="automation">
+        Automation
+        <input class="interest" name="interests[]" type="checkbox" value="devops">
+        DevOps
+        <label for="experience">
+          Years of experience:
+          <span id="experience-value">
+            5
+        <input id="experience" max="30" min="0" name="experience" type="range" value="5">
+        <label>
+          Favorite color
+        <input name="color" type="color" value="#e2231a">
+      <fieldset>
+        <legend>
+          Terms
+        <input id="terms" name="terms" type="checkbox" value="accepted">
+        <label for="terms">
+          I accept the terms
+      <input name="form_id" type="hidden" value="large-form">
+      <button class="button radius" id="submit" type="submit">
+        Submit
+      <button class="button secondary radius" type="reset">
+        Reset
+  <script>
+    var experience = document.getElementById('experience'); experience.oninput = function() { document.getElementById('experience-value').textContent = this.value; };

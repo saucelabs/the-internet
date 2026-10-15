@@ -1,0 +1,19 @@
+<div class="example">
+  <h2>Two-Factor Login</h2>
+  <h4 class="subheader">Log in with <em>tomsmith</em> and <em>SuperSecretPassword!</em>. Then enter the one-time code shown on the next page.</h4>
+  <form id="two-factor-login" action="/two_factor/authenticate" method="post">
+    <div class="row">
+      <div class="large-6 small-12 columns">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" autocomplete="username">
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 small-12 columns">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" autocomplete="current-password">
+      </div>
+    </div>
+    <button class="radius" type="submit">Next</button>
+  </form>
+</div>

@@ -45,3 +45,8 @@ Digest Authentication,/digest_auth,user and pass: admin
 Shadow DOM,/shadowdom
 Subdirectories,/subdirectories
 Multiple Select Dropdown,/multiple_dropdown
+Radio Buttons,/radio_buttons
+Read-only Inputs,/readonly
+Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
+Large Form,/large_form
+Canvas,/canvas

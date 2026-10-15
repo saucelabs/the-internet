@@ -1,0 +1,24 @@
+<div class="example">
+  <h3>Read-only Inputs</h3>
+  <form id="readonly">
+    <input type="checkbox" id="checkbox"> <label for="checkbox">Text field is read-only</label><br>
+    <input type="text" id="textfield" value="I am editable">
+    <label for="always-readonly">Always read-only</label>
+    <input type="text" id="always-readonly" value="You cannot change me" readonly>
+    <label for="disabled">Disabled (not the same as read-only)</label>
+    <input type="text" id="disabled" value="I am disabled" disabled>
+  </form>
+</div>
+<script>
+  var checkbox = document.getElementById('checkbox');
+  checkbox.onclick = function() {
+    var textfield = document.getElementById('textfield');
+    if (this.checked) {
+      textfield.setAttribute('readonly', '');
+      textfield.value = 'You cannot change me';
+    } else {
+      textfield.removeAttribute('readonly');
+      textfield.value = 'I am editable';
+    }
+  };
+</script>

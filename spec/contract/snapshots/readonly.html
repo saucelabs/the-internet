@@ -1,0 +1,18 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Read-only Inputs
+    <form id="readonly">
+      <input id="checkbox" type="checkbox">
+      <label for="checkbox">
+        Text field is read-only
+      <br>
+      <input id="textfield" type="text" value="I am editable">
+      <label for="always-readonly">
+        Always read-only
+      <input id="always-readonly" readonly="readonly" type="text" value="You cannot change me">
+      <label for="disabled">
+        Disabled (not the same as read-only)
+      <input disabled="disabled" id="disabled" type="text" value="I am disabled">
+  <script>
+    var checkbox = document.getElementById('checkbox'); checkbox.onclick = function() { var textfield = document.getElementById('textfield'); if (this.checked) { textfield.setAttribute('readonly', ''); textfield.value = 'You cannot change me'; } else { textfield.removeAttribute('readonly'); textfield.value = 'I am editable'; } };

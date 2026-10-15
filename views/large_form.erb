@@ -1,0 +1,84 @@
+<div class="example">
+  <h3>Large Form</h3>
+  <p>A long form with many kinds of fields. Some have good ids and labels, some only a name, and some nothing useful at all.</p>
+  <form id="large-form" action="/large_form" method="post">
+    <fieldset>
+      <legend>Account</legend>
+      <label for="first-name">First name</label>
+      <input type="text" id="first-name" name="first_name">
+      <label for="last-name">Last name</label>
+      <input type="text" id="last-name" name="last_name">
+      <label>Email</label>
+      <input type="email" name="email">
+      <label>Password</label>
+      <input type="password" name="password">
+      <input type="text" name="nickname" placeholder="Nickname (optional)">
+    </fieldset>
+
+    <fieldset>
+      <legend>Details</legend>
+      <div class="row">
+        <div class="large-6 columns">
+          <label for="birthday">Birthday</label>
+          <input type="date" id="birthday" name="birthday">
+        </div>
+        <div class="large-6 columns">
+          <div>
+            <div>
+              <span>Age</span>
+              <input type="number" name="age" min="0" max="120">
+            </div>
+          </div>
+        </div>
+      </div>
+      <label for="country">Country</label>
+      <select id="country" name="country">
+        <option value="">Choose a country</option>
+        <option value="ar">Argentina</option>
+        <option value="de">Germany</option>
+        <option value="in">India</option>
+        <option value="us">United States</option>
+      </select>
+      <label>Languages</label>
+      <select name="languages[]" multiple>
+        <option>English</option>
+        <option>German</option>
+        <option>Hindi</option>
+        <option>Spanish</option>
+      </select>
+      <label for="bio">About you</label>
+      <textarea id="bio" name="bio" rows="3"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Preferences</legend>
+      <p>Contact me by</p>
+      <input type="radio" name="contact" value="email" checked> Email
+      <input type="radio" name="contact" value="phone"> Phone
+      <input type="radio" name="contact" value="none"> Don't contact me
+      <p>Interests</p>
+      <input type="checkbox" class="interest" name="interests[]" value="testing"> Testing
+      <input type="checkbox" class="interest" name="interests[]" value="automation"> Automation
+      <input type="checkbox" class="interest" name="interests[]" value="devops"> DevOps
+      <label for="experience">Years of experience: <span id="experience-value">5</span></label>
+      <input type="range" id="experience" name="experience" min="0" max="30" value="5">
+      <label>Favorite color</label>
+      <input type="color" name="color" value="#e2231a">
+    </fieldset>
+
+    <fieldset>
+      <legend>Terms</legend>
+      <input type="checkbox" id="terms" name="terms" value="accepted"> <label for="terms">I accept the terms</label>
+    </fieldset>
+
+    <input type="hidden" name="form_id" value="large-form">
+    <button class="button radius" type="submit" id="submit">Submit</button>
+    <button class="button secondary radius" type="reset">Reset</button>
+  </form>
+</div>
+<script>
+  var experience = document.getElementById('experience');
+  experience.oninput = function() {
+    document.getElementById('experience-value').textContent = this.value;
+  };
+</script>

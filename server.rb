@@ -43,10 +43,24 @@ class Public < Sinatra::Base
   # Files shipped with the app; uploads may not overwrite them.
   SEEDED_UPLOADS = Dir.children('public/uploads').freeze
 
+  # Uploads are listed publicly on /download, so keep out programs and big files.
+  BLOCKED_UPLOAD_EXTENSIONS = %w[.apk .app .bat .cmd .com .cpl .dll .dmg .exe .hta .jar .js .lnk .msi .ps1 .scr .sh .vbs .wsf].freeze
+  MAX_UPLOAD_BYTES = 2 * 1024 * 1024
+
   post '/upload' do
     file = params['file']
-    puts file.inspect
+    # No file chosen: still a 500 (as it always was), but with an explanation.
+    unless file.is_a?(Hash) && file[:tempfile]
+      halt 500, erb(:upload_error, locals: { title: 'Internal Server Error', message: 'No file was chosen. Please choose a file to upload.' })
+    end
     filename = File.basename(file[:filename])
+    extension = File.extname(filename).downcase
+    if BLOCKED_UPLOAD_EXTENSIONS.include?(extension)
+      halt 422, erb(:upload_error, locals: { title: 'File type not allowed', message: "#{extension} files can't be uploaded." })
+    end
+    if file[:tempfile].size > MAX_UPLOAD_BYTES
+      halt 413, erb(:upload_error, locals: { title: 'File too large', message: 'Files can be up to 2 MB.' })
+    end
     unless SEEDED_UPLOADS.include?(filename)
       File.open(File.join('public/uploads', filename), 'wb') do |f|
         f.write(file[:tempfile].read)
@@ -169,6 +183,81 @@ class Public < Sinatra::Base
 
   get '/multiple_dropdown' do
     erb :multiple_dropdown
+  end
+
+  get '/radio_buttons' do
+    erb :radio_buttons
+  end
+
+  get '/readonly' do
+    erb :readonly
+  end
+
+  get '/canvas' do
+    erb :canvas
+  end
+
+  get '/large_form' do
+    erb :large_form
+  end
+
+  post '/large_form' do
+    fields = params.to_h.transform_values { |value| Array(value).join(', ') }
+    fields['password'] = '*' * fields['password'].length if fields['password']
+    erb :large_form_result, locals: { fields: fields }
+  end
+
+  TWO_FACTOR_CODE_TTL = 180
+
+  get '/two_factor' do
+    erb :two_factor
+  end
+
+  post '/two_factor/authenticate' do
+    if params[:username] == 'tomsmith' && params[:password] == 'SuperSecretPassword!'
+      session[:two_factor] = { 'code' => format('%06d', SecureRandom.random_number(1_000_000)), 'expires_at' => Time.now.to_i + TWO_FACTOR_CODE_TTL }
+      redirect '/two_factor/code'
+    else
+      flash[:error] = 'Your username or password is invalid!'
+      redirect '/two_factor'
+    end
+  end
+
+  get '/two_factor/code' do
+    redirect '/two_factor' unless session[:two_factor]
+    erb :two_factor_code, locals: { code: session[:two_factor]['code'] }
+  end
+
+  post '/two_factor/verify' do
+    pending = session[:two_factor]
+    redirect '/two_factor' unless pending
+    if Time.now.to_i > pending['expires_at']
+      session[:two_factor] = nil
+      flash[:error] = 'Your code has expired! Please log in again.'
+      redirect '/two_factor'
+    elsif Rack::Utils.secure_compare(params[:code].to_s, pending['code'])
+      session[:two_factor] = nil
+      session[:two_factor_user] = 'tomsmith'
+      flash[:success] = 'You logged in with two-factor authentication!'
+      redirect '/two_factor/secure'
+    else
+      flash[:error] = 'Your code is invalid!'
+      redirect '/two_factor/code'
+    end
+  end
+
+  get '/two_factor/secure' do
+    unless session[:two_factor_user]
+      flash[:error] = 'You must log in to view the secure area!'
+      redirect '/two_factor'
+    end
+    erb :two_factor_secure
+  end
+
+  get '/two_factor/logout' do
+    session[:two_factor_user] = nil
+    flash[:success] = 'You logged out of the secure area!'
+    redirect '/two_factor'
   end
 
   get '/shadowdom' do
