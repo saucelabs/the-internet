@@ -1,0 +1,10 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Geolocation
+    <p id="demo">
+      Click the button to get your current latitude and longitude
+    <button onclick="getLocation()">
+      Where am I?
+    <script>
+      var x=document.getElementById("demo"); function getLocation() { if (navigator.geolocation) { navigator.geolocation.getCurrentPosition(showPosition); } else{x.innerHTML="Geolocation is not supported by this browser.";} } function showPosition(position) { x.innerHTML="Latitude: <div id='lat-value'>" + position.coords.latitude + "</div><br>Longitude: <div id='long-value'>" + position.coords.longitude + "</div><br><div id='map-link'><a href='http://maps.google.com/?q=" + position.coords.latitude + "," + position.coords.longitude + "'>See it on Google</a></div>"; }
