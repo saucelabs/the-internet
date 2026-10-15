@@ -6,8 +6,10 @@
 + Forgot Password sends email through configurable SMTP, rate-limited
 + Uploads can no longer overwrite the bundled files
 + Fork ribbon points to saucelabs/the-internet
++ Footer: Powered by Elemental Selenium and Sauce Labs
 + Added an HTTP contract suite and a Selenium 4 browser suite running on Sauce Labs
 + CI on GitHub Actions deploys main to Heroku and publishes ghcr.io/saucelabs/the-internet
++ Documented the release process; `rake release` tags main with VERSION
 
 #0.58.0
 + Added /shadowdom example (PR #45)
