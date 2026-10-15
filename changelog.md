@@ -1,3 +1,8 @@
+#0.60.0
++ Added a Multiple Select Dropdown example (/multiple_dropdown) (PR #55)
++ Fixed /dynamic_controls showing more than one "Wait for it..." loading bar; the bar is still hidden (not removed) when loading ends (PR #88, fixes #46)
++ README no longer shows the version; see this changelog
+
 #0.59.0
 + Upgraded to Ruby 4.0, Sinatra 4, Rack 3 and puma (Heroku stack heroku-26)
 + Fixed /tinymce (read-only on Tiny Cloud): self-hosted TinyMCE 6.8.6 with the TinyMCE 5 skin

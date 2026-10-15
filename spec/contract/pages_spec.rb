@@ -31,7 +31,7 @@ describe 'Pages' do
     end
   end
 
-  it 'lists every example from examples.csv on the index', :unreleased do
+  it 'lists every example from examples.csv on the index' do
     require 'csv'
     expected = CSV.read(File.expand_path('../../examples.csv', __dir__), headers: true)
                   .map { |r| [r['title'], r['url_path']] }.sort
