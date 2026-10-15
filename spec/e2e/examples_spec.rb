@@ -16,7 +16,7 @@ describe 'Examples' do
     expect(@driver.find_elements(:css, '#elements .added-manually').size).to eq 1
   end
 
-  it 'Basic Auth accepts credentials in the URL' do
+  it 'Basic Auth accepts credentials in the URL', unsupported: { 'safari' => 'Safari ignores credentials in URLs' } do
     uri = URI(ENV['BASE_URL'])
     @driver.get "#{uri.scheme}://admin:admin@#{uri.host}:#{uri.port}/basic_auth"
     expect(find(:css, '.example p').text).to include 'Congratulations!'
@@ -39,7 +39,7 @@ describe 'Examples' do
     expect([first.selected?, second.selected?]).to eq [true, false]
   end
 
-  it 'Context Menu opens an alert on right click' do
+  it 'Context Menu opens an alert on right click', unsupported: { 'safari' => 'safaridriver hangs when an action opens an alert' } do
     visit '/context_menu'
     @driver.action.context_click(find(:id, 'hot-spot')).perform
     alert = wait { @driver.switch_to.alert }
@@ -77,7 +77,7 @@ describe 'Examples' do
     @driver.file_detector = ->(args) { args.first.to_s if File.exist?(args.first.to_s) } if ENV['TARGET'] == 'saucelabs'
     find(:id, 'file-upload').send_keys(file.path)
     find(:id, 'file-submit').click
-    expect(wait { find(:id, 'uploaded-files') }.text).to eq File.basename(file.path)
+    expect(wait { find(:id, 'uploaded-files') }.text.strip).to eq File.basename(file.path)
   ensure
     file&.unlink
   end
@@ -89,7 +89,7 @@ describe 'Examples' do
     expect(find(:id, 'content').text).to eq 'MIDDLE'
     @driver.switch_to.default_content
     @driver.switch_to.frame(find(:name, 'frame-bottom'))
-    expect(find(:tag_name, 'body').text).to eq 'BOTTOM'
+    expect(find(:tag_name, 'body').text.strip).to eq 'BOTTOM'
   end
 
   it 'Horizontal Slider moves with arrow keys' do

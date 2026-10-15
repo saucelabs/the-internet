@@ -61,12 +61,15 @@ end
 RSpec.configure do |config|
   config.include E2EHelpers
 
+  # Tag a scenario with `unsupported: { 'browser' => 'reason' }` to skip it there.
   config.before(:each) do |example|
-    @driver = ENV['TARGET'] == 'saucelabs' ? Driver.saucelabs(example.metadata[:full_description]) : Driver.local
+    reason = example.metadata.dig(:unsupported, ENV['BROWSER'])
+    skip(reason) if reason
+    @driver =ENV['TARGET'] == 'saucelabs' ? Driver.saucelabs(example.metadata[:full_description]) : Driver.local
   end
 
   config.after(:each) do |example|
-    if ENV['TARGET'] == 'saucelabs'
+    if @driver && ENV['TARGET'] == 'saucelabs'
       @driver.execute_script("sauce:job-result=#{example.exception.nil?}")
       puts "Sauce Labs job: https://app.saucelabs.com/tests/#{@driver.session_id}" if example.exception
     end
