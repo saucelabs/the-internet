@@ -19,8 +19,18 @@ ENV['BROWSER']  ||= 'chrome'
 module Driver
   module_function
 
-  def local
+  # Chrome and Edge flag the example password as breached and open a dialog that eats keystrokes.
+  def options
     options = Selenium::WebDriver::Options.send(ENV['BROWSER'])
+    if %w[chrome edge].include?(ENV['BROWSER'])
+      options.add_preference(:credentials_enable_service, false)
+      options.add_preference(:profile, password_manager_enabled: false, password_manager_leak_detection: false)
+    end
+    options
+  end
+
+  def local
+    options = self.options
     if ENV.fetch('HEADLESS', 'true') == 'true'
       case ENV['BROWSER']
       when 'chrome', 'edge' then options.add_argument('--headless=new')
@@ -31,7 +41,7 @@ module Driver
   end
 
   def saucelabs(name)
-    options = Selenium::WebDriver::Options.send(ENV['BROWSER'])
+    options = self.options
     options.browser_version = ENV.fetch('BROWSER_VERSION', 'latest')
     options.platform_name = ENV.fetch('PLATFORM_NAME') { ENV['BROWSER'] == 'safari' ? 'macOS 15' : 'Windows 11' }
     sauce = {
