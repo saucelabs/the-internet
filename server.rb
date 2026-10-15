@@ -167,6 +167,10 @@ class Public < Sinatra::Base
     erb :dropdown
   end
 
+  get '/multiple_dropdown' do
+    erb :multiple_dropdown
+  end
+
   get '/shadowdom' do
     erb :shadowdom
   end

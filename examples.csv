@@ -44,3 +44,4 @@ Inputs,/inputs
 Digest Authentication,/digest_auth,user and pass: admin
 Shadow DOM,/shadowdom
 Subdirectories,/subdirectories
+Multiple Select Dropdown,/multiple_dropdown

@@ -16,6 +16,7 @@ PAGES = {
   '/download'                      => { text: 'File Downloader', snapshot: false }, # lists uploads
   '/drag_and_drop'                 => { text: 'Drag and Drop' },
   '/dropdown'                      => { text: 'Dropdown List' },
+  '/multiple_dropdown'             => { text: 'Multiple Select Dropdown List', unreleased: true },
   '/dynamic_content'               => { text: 'Dynamic Content', snapshot: false }, # random
   '/dynamic_controls'              => { text: 'Dynamic Controls' },
   '/dynamic_loading'               => { text: 'Dynamically Loaded Page Elements' },

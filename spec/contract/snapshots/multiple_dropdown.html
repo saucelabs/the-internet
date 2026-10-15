@@ -1,0 +1,17 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Multiple Select Dropdown List
+    <p>
+      Hold Ctrl (Cmd on a Mac) or Shift to select more than one option.
+    <select id="multiple-dropdown" multiple="multiple">
+      <option value="1">
+        Option 1
+      <option value="2">
+        Option 2
+      <option value="3">
+        Option 3
+      <option value="4">
+        Option 4
+  <script>
+    var multipleDropdown = document.getElementById('multiple-dropdown'); multipleDropdown.onchange = function() { var options = multipleDropdown.getElementsByTagName('option'); for (var i = 0; i < options.length; i++) { if (options[i].selected) { options[i].setAttribute('selected', 'selected'); } else { options[i].removeAttribute('selected'); } } };

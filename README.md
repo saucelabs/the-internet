@@ -41,6 +41,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [JavaScript onload event error](https://the-internet.herokuapp.com/javascript_error)
 + [Key Presses](https://the-internet.herokuapp.com/key_presses)
 + [Large & Deep DOM](https://the-internet.herokuapp.com/large)
++ [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown)
 + [Multiple Windows](https://the-internet.herokuapp.com/windows)
 + [Nested Frames](https://the-internet.herokuapp.com/nested_frames)
 + [Notification Messages](https://the-internet.herokuapp.com/notification_message)
