@@ -1,7 +1,7 @@
 <div class="example">
   <h3>File Downloader</h3>
   <% @file_list.each do |file| %>
-    <a href="download/<%= file %>"><%= file %></a>
+    <a href="download/<%= ERB::Util.url_encode(file) %>"><%= Rack::Utils.escape_html(file) %></a>
     </br>
   <% end %>
 </div>

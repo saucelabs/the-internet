@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require 'digest'
+require 'erb'
 require 'securerandom'
 
 REPO_ROOT = File.expand_path('../..', __dir__)
@@ -208,6 +209,50 @@ describe 'Behaviour' do
       res = client.post_multipart('/upload', [['file', StringIO.new('a' * (2 * 1024 * 1024 + 1)), { filename: name, content_type: 'text/plain' }]])
       expect(res.code).to eq '413'
       expect(client.get('/download').body).not_to include name
+    end
+  end
+
+  describe 'Upload file names', :writes do
+    let(:hex) { SecureRandom.hex(4) }
+    let(:cleaned) { "contract__b_#{hex}.txt" }
+    after { File.delete(File.join(REPO_ROOT, 'public/uploads', cleaned)) if LOCAL && File.exist?(File.join(REPO_ROOT, 'public/uploads', cleaned)) }
+
+    it 'stores the file under a cleaned name' do
+      res = client.post_multipart('/upload', [['file', StringIO.new('hello'), { filename: "contract <b>#{hex}.txt", content_type: 'text/plain' }]])
+      expect(res.code).to eq '200'
+      download = client.get('/download')
+      expect(download.body).not_to include '<b>'
+      expect(html(download).css('#content a').map(&:text)).to include cleaned
+      expect(client.get("/download/#{cleaned}").body).to eq 'hello'
+    end
+
+    it 'rejects a name without letters or digits' do
+      res = client.post_multipart('/upload', [['file', StringIO.new('hello'), { filename: '<>', content_type: 'text/plain' }]])
+      expect(res.code).to eq '422'
+      expect(html(res).at_css('#upload-error').text).to include 'at least one letter or digit'
+    end
+  end
+
+  describe 'Download lists escape file names', :writes do
+    let(:name) { "contract <b>#{SecureRandom.hex(4)}.txt" }
+    let(:path) { File.join(REPO_ROOT, 'public/uploads', name) }
+    before do
+      skip 'needs the app on this machine' unless LOCAL
+      File.write(path, 'hello')
+    end
+    after { File.delete(path) if File.exist?(path) }
+
+    {
+      '/download' => {},
+      '/download_secure' => { 'Authorization' => "Basic #{['admin:admin'].pack('m0')}" }
+    }.each do |page, headers|
+      it "#{page} shows the name as text" do
+        res = client.get(page, headers)
+        expect(res.code).to eq '200'
+        expect(res.body).not_to include '<b>'
+        link = html(res).css('#content a').find { |a| a.text == name }
+        expect(link['href']).to eq "#{page.delete_prefix('/')}/#{ERB::Util.url_encode(name)}"
+      end
     end
   end
 

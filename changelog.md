@@ -1,3 +1,7 @@
+#0.62.1
++ File Upload keeps only letters, digits, dot, dash and underscore in file names; other characters become "_"
++ File Download and Secure File Download escape the file names they list
+
 #0.62.0
 + New look based on saucelabs.com: colours, fonts (Atkinson Hyperlegible Next, Fraunces), top bar, buttons, forms, tables and a matching GitHub ribbon
 + Only CSS and the page chrome changed: every id, class, text and URL of the examples is the same
