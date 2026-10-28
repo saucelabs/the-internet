@@ -47,13 +47,21 @@ class Public < Sinatra::Base
   BLOCKED_UPLOAD_EXTENSIONS = %w[.apk .app .bat .cmd .com .cpl .dll .dmg .exe .hta .jar .js .lnk .msi .ps1 .scr .sh .vbs .wsf].freeze
   MAX_UPLOAD_BYTES = 2 * 1024 * 1024
 
+  # Keeps letters, digits, dot, dash and underscore; everything else becomes "_".
+  def self.clean_upload_name(name)
+    File.basename(name.to_s).gsub(/[^A-Za-z0-9._-]/, '_')
+  end
+
   post '/upload' do
     file = params['file']
     # No file chosen: still a 500 (as it always was), but with an explanation.
     unless file.is_a?(Hash) && file[:tempfile]
       halt 500, erb(:upload_error, locals: { title: 'Internal Server Error', message: 'No file was chosen. Please choose a file to upload.' })
     end
-    filename = File.basename(file[:filename])
+    filename = self.class.clean_upload_name(file[:filename])
+    unless filename.match?(/[A-Za-z0-9]/)
+      halt 422, erb(:upload_error, locals: { title: 'File name not allowed', message: 'The file name needs at least one letter or digit.' })
+    end
     extension = File.extname(filename).downcase
     if BLOCKED_UPLOAD_EXTENSIONS.include?(extension)
       halt 422, erb(:upload_error, locals: { title: 'File type not allowed', message: "#{extension} files can't be uploaded." })
