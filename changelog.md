@@ -1,3 +1,6 @@
+#0.80.0
++ Added Live Updates (/live_updates): updates pushed with Server-Sent Events (?count=, ?interval=)
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

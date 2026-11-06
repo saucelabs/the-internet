@@ -185,6 +185,14 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Live updates' do
+    it 'streams Server-Sent Events and ends with done' do
+      res = client.get('/live_updates/events?count=2&interval=200')
+      expect(res['content-type']).to start_with 'text/event-stream'
+      expect(res.body).to eq "id: 1\ndata: Update 1 of 2\n\nid: 2\ndata: Update 2 of 2\n\nevent: done\ndata: No more updates\n\n"
+    end
+  end
+
   describe 'Uploads', :writes do
     let(:name) { "contract-#{SecureRandom.hex(4)}.txt" }
     after { File.delete(File.join(REPO_ROOT, 'public/uploads', name)) if LOCAL && File.exist?(File.join(REPO_ROOT, 'public/uploads', name)) }
