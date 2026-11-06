@@ -11,6 +11,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 
 + [A/B Testing](https://the-internet.herokuapp.com/abtest) - Content that changes between visits
 + [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/) - Buttons that add and delete elements
++ [Advanced Iframes](https://the-internet.herokuapp.com/iframes_advanced) - A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM
 + [Advanced Shadow DOM](https://the-internet.herokuapp.com/shadowdom_advanced) - Nested and closed shadow roots / slots / a custom form field
 + [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin) - Log in through the browser's basic auth prompt
 + [Broken Images](https://the-internet.herokuapp.com/broken_images) - Images that fail to load
@@ -66,6 +67,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 ### Pages reached from the examples
 
 + [A/B Test Cookies](https://the-internet.herokuapp.com/abtest_cookies) and [A/B Test Manual](https://the-internet.herokuapp.com/abtest_manual) (unfinished A/B Testing variants)
++ [Advanced Iframes: frame page](https://the-internet.herokuapp.com/iframes_advanced/frame) (`/iframes_advanced/frame?name=:letters`)
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)

@@ -691,6 +691,16 @@ class Public < Sinatra::Base
     erb :shadowdom_advanced
   end
 
+  get '/iframes_advanced' do
+    erb :iframes_advanced
+  end
+
+  # Page loaded inside the frames of /iframes_advanced.
+  get '/iframes_advanced/frame' do
+    name = params[:name].to_s[/\A[a-z]{1,20}\z/] || 'plain'
+    erb :iframes_advanced_frame, layout: false, locals: { name: name }
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

@@ -1,3 +1,6 @@
+#0.66.0
++ Added Advanced Iframes (/iframes_advanced): a sandboxed frame that acts like cross-origin, a srcdoc frame and an iframe inside shadow DOM
+
 #0.65.0
 + Added Advanced Shadow DOM (/shadowdom_advanced): nested and closed shadow roots, slots and a form-associated custom element
 

@@ -51,3 +51,4 @@ Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!,Log in 
 Large Form,/large_form,,A long form with many field types
 Canvas,/canvas,,Click and type into a canvas
 Advanced Shadow DOM,/shadowdom_advanced,,Nested and closed shadow roots / slots / a custom form field
+Advanced Iframes,/iframes_advanced,,A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM
