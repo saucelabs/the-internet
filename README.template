@@ -27,6 +27,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Infinite Scroll page N](https://the-internet.herokuapp.com/infinite_scroll/2) (`/infinite_scroll/:number`)
 + [JQuery UI](https://the-internet.herokuapp.com/jqueryui) (linked from JQuery UI Menus)
 + [Large & Deep DOM with N levels](https://the-internet.herokuapp.com/large/3) (`/large/:level`)
++ Live Updates stream: `/live_updates/events?count=:n&interval=:ms` (Server-Sent Events)
 + [Multiple Windows: new window](https://the-internet.herokuapp.com/windows/new)
 + [Notification Message (rendered)](https://the-internet.herokuapp.com/notification_message_rendered)
 + [Redirect](https://the-internet.herokuapp.com/redirect) (from Redirect Link)

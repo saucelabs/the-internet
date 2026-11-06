@@ -49,6 +49,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Key Presses](https://the-internet.herokuapp.com/key_presses) - Shows the last key you pressed
 + [Large & Deep DOM](https://the-internet.herokuapp.com/large) - Deeply nested elements and a big table
 + [Large Form](https://the-internet.herokuapp.com/large_form) - A long form with many field types
++ [Live Updates](https://the-internet.herokuapp.com/live_updates) - Updates pushed by the server with Server-Sent Events
 + [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown) - A select list that allows many options
 + [Multiple Windows](https://the-internet.herokuapp.com/windows) - A link that opens a new window
 + [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
@@ -93,6 +94,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Infinite Scroll page N](https://the-internet.herokuapp.com/infinite_scroll/2) (`/infinite_scroll/:number`)
 + [JQuery UI](https://the-internet.herokuapp.com/jqueryui) (linked from JQuery UI Menus)
 + [Large & Deep DOM with N levels](https://the-internet.herokuapp.com/large/3) (`/large/:level`)
++ Live Updates stream: `/live_updates/events?count=:n&interval=:ms` (Server-Sent Events)
 + [Multiple Windows: new window](https://the-internet.herokuapp.com/windows/new)
 + [Notification Message (rendered)](https://the-internet.herokuapp.com/notification_message_rendered)
 + [Redirect](https://the-internet.herokuapp.com/redirect) (from Redirect Link)

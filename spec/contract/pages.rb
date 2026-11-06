@@ -87,6 +87,7 @@ PAGES = {
   '/svg'                           => { text: 'SVG' },
   '/network_console'               => { text: 'Network &amp; Console' },
   '/slow_api'                      => { text: 'Slow &amp; Failing API' },
+  '/live_updates'                  => { text: 'Live Updates' },
 }.freeze
 
 def snapshot_name(path)

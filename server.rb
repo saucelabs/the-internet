@@ -824,6 +824,26 @@ class Public < Sinatra::Base
     end
   end
 
+  get '/live_updates' do
+    erb :live_updates
+  end
+
+  # Server-Sent Events for /live_updates: up to 10 numbered updates, one per interval
+  # (ms, 200 to 2000), then a "done" event. Short so a connection doesn't hold a thread for long.
+  get '/live_updates/events' do
+    count = params.fetch(:count, 5).to_i.clamp(1, 10)
+    interval = params.fetch(:interval, 1000).to_i.clamp(200, 2000) / 1000.0
+    content_type 'text/event-stream'
+    headers 'Cache-Control' => 'no-cache', 'X-Accel-Buffering' => 'no'
+    stream do |out|
+      count.times do |i|
+        sleep interval
+        out << "id: #{i + 1}\ndata: Update #{i + 1} of #{count}\n\n"
+      end
+      out << "event: done\ndata: No more updates\n\n"
+    end
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

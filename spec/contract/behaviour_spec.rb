@@ -31,6 +31,14 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Live updates' do
+    it 'streams Server-Sent Events and ends with done' do
+      res = client.get('/live_updates/events?count=2&interval=200')
+      expect(res['content-type']).to start_with 'text/event-stream'
+      expect(res.body).to eq "id: 1\ndata: Update 1 of 2\n\nid: 2\ndata: Update 2 of 2\n\nevent: done\ndata: No more updates\n\n"
+    end
+  end
+
   describe 'Slow and failing API' do
     it 'fails the first attempts with the chosen status, then answers' do
       res = client.get('/slow_api/data?fail=2&status=429&attempt=2')
