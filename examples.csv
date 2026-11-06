@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Advanced Iframes,/iframes_advanced,,A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM

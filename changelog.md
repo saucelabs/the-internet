@@ -1,3 +1,6 @@
+#0.66.0
++ Added Advanced Iframes (/iframes_advanced): a sandboxed frame that acts like cross-origin, a srcdoc frame and an iframe inside shadow DOM
+
 #0.62.2
 + Footer links to Elemental Selenium over https
 

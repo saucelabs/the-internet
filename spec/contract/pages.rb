@@ -70,6 +70,8 @@ PAGES = {
   '/typos'                         => { text: 'Typos', snapshot: false }, # random
   '/windows'                       => { text: 'Opening a new window' },
   '/windows/new'                   => { text: 'New Window', layout: false },
+  '/iframes_advanced'              => { text: 'Advanced Iframes' },
+  '/iframes_advanced/frame'        => { text: 'Frame: plain', layout: false },
 }.freeze
 
 def snapshot_name(path)
