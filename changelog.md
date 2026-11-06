@@ -1,3 +1,6 @@
+#0.79.0
++ Added Slow & Failing API (/slow_api): an API with a chosen delay and 429/500/503 errors, and a page that retries
+
 #0.78.0
 + Added Network & Console (/network_console): requests, console messages, a thrown error and a CSP violation to watch with Selenium BiDi
 

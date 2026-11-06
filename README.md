@@ -64,6 +64,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Secure File Download](https://the-internet.herokuapp.com/download_secure) - Downloads behind basic auth
 + [Shadow DOM](https://the-internet.herokuapp.com/shadowdom) - Content inside shadow roots and slots
 + [Shifting Content](https://the-internet.herokuapp.com/shifting_content) - Elements that move between page loads
++ [Slow & Failing API](https://the-internet.herokuapp.com/slow_api) - Calls to an API with a delay and 429 / 500 errors you choose / and a retry
 + [Slow Resources](https://the-internet.herokuapp.com/slow) - A request that takes 30 seconds to finish
 + [Sortable Data Tables](https://the-internet.herokuapp.com/tables) - Tables you can sort by column
 + [Stale Element](https://the-internet.herokuapp.com/stale_element) - A list that is rebuilt on a timer or a click so old element references go stale
@@ -98,6 +99,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Secure Area](https://the-internet.herokuapp.com/secure) and [Logout](https://the-internet.herokuapp.com/logout) (after Form Authentication)
 + Shifting Content: [Menu](https://the-internet.herokuapp.com/shifting_content/menu), [Image](https://the-internet.herokuapp.com/shifting_content/image), [List](https://the-internet.herokuapp.com/shifting_content/list)
 + [Slow external resource](https://the-internet.herokuapp.com/slow_external) (used by Slow Resources; takes 30 seconds)
++ Slow & Failing API: `/slow_api/data?delay=:ms&fail=:count&status=429|500|503&attempt=:n` (JSON)
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
 + Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in

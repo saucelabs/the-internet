@@ -64,3 +64,4 @@ Virtualized List,/virtual_list,,A list of 10000 rows where only the visible rows
 Pointer Events,/pointer_events,,Sort a list / swipe and long-press with pointer events instead of HTML5 drag and drop
 SVG,/svg,,Click and read shapes and text inside an inline SVG chart
 Network & Console,/network_console,,Requests / console messages / a JavaScript error and a CSP violation to catch with Selenium BiDi
+Slow & Failing API,/slow_api,,Calls to an API with a delay and 429 / 500 errors you choose / and a retry

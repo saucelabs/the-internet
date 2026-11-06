@@ -31,6 +31,22 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Slow and failing API' do
+    it 'fails the first attempts with the chosen status, then answers' do
+      res = client.get('/slow_api/data?fail=2&status=429&attempt=2')
+      expect(res.code).to eq '429'
+      expect(res['retry-after']).to eq '1'
+      expect(JSON.parse(res.body)).to eq('error' => 'Attempt 2 failed with 429')
+      res = client.get('/slow_api/data?fail=2&status=429&attempt=3')
+      expect(res.code).to eq '200'
+      expect(JSON.parse(res.body)).to eq('message' => 'Data loaded on attempt 3')
+    end
+
+    it 'uses 500 for unknown statuses' do
+      expect(client.get('/slow_api/data?fail=1&status=418').code).to eq '500'
+    end
+  end
+
   describe 'Network & Console' do
     it 'sends a report-only CSP for images' do
       expect(client.get('/network_console')['content-security-policy-report-only']).to eq "img-src 'self'"

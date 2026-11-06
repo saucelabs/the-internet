@@ -86,6 +86,7 @@ PAGES = {
   '/pointer_events'                => { text: 'Pointer Events' },
   '/svg'                           => { text: 'SVG' },
   '/network_console'               => { text: 'Network &amp; Console' },
+  '/slow_api'                      => { text: 'Slow &amp; Failing API' },
 }.freeze
 
 def snapshot_name(path)
