@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require 'digest'
+require 'json'
 require 'erb'
 require 'securerandom'
 
@@ -182,6 +183,20 @@ describe 'Behaviour' do
         expect(res['content-disposition']).to include 'attachment', file
         expect(res.body.b).to eq File.binread(File.join(REPO_ROOT, 'public/uploads/jqueryui/menu', file)) if LOCAL
       end
+    end
+  end
+
+  describe 'Autocomplete suggestions' do
+    it 'returns names that start with the query as JSON' do
+      res = client.get('/autocomplete/suggestions?q=gr')
+      expect(res.code).to eq '200'
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq %w[Grape Grapefruit]
+    end
+
+    it 'returns an empty list for an empty or unknown query' do
+      expect(JSON.parse(client.get('/autocomplete/suggestions?q=').body)).to eq []
+      expect(JSON.parse(client.get('/autocomplete/suggestions?q=zz').body)).to eq []
     end
   end
 

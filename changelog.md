@@ -1,3 +1,6 @@
+#0.69.0
++ Added Autocomplete (/autocomplete): debounced suggestions from the server (/autocomplete/suggestions, ?delay=) picked with the keyboard or mouse
+
 #0.62.3
 + The JQuery UI menu download route only serves files from its own folder, like the other download routes
 

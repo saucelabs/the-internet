@@ -70,6 +70,7 @@ PAGES = {
   '/typos'                         => { text: 'Typos', snapshot: false }, # random
   '/windows'                       => { text: 'Opening a new window' },
   '/windows/new'                   => { text: 'New Window', layout: false },
+  '/autocomplete'                  => { text: 'Autocomplete' },
 }.freeze
 
 def snapshot_name(path)

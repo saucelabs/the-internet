@@ -1,0 +1,21 @@
+<div class="large-12 columns" id="content">
+  <style>
+    #autocomplete-box { position: relative; max-width: 24em; } #suggestions { position: absolute; left: 0; right: 0; top: 100%; margin: 0; padding: 0; list-style: none; background: white; border: 1px solid #c8c8be; border-radius: 0.5rem; z-index: 10; } #suggestions[hidden] { display: none; } #suggestions li { padding: 0.4em 0.75em; cursor: pointer; margin: 0; } #suggestions li[aria-selected="true"] { background: #f3ffcc; }
+  <div class="example">
+    <h3>
+      Autocomplete
+    <p>
+      Type the start of a fruit name. Suggestions come from the server 300 ms after you stop typing, and the server takes a while to answer (set with
+      <code>
+        ?delay=
+      in milliseconds, default 500). Use the arrow keys and Enter, or click a suggestion.
+    <div id="autocomplete-box">
+      <label for="autocomplete">
+        Fruit
+      <input aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false" autocomplete="off" id="autocomplete" role="combobox" type="text">
+      <ul hidden="" id="suggestions" role="listbox">
+    <p id="status">
+    <p id="selected">
+      Nothing selected
+  <script>
+    (function() { var input = document.getElementById('autocomplete'); var list = document.getElementById('suggestions'); var status = document.getElementById('status'); var delay = new URLSearchParams(location.search).get('delay'); delay = delay !== null && /^\d+$/.test(delay) ? delay : '500'; var timer = null, request = 0, active = -1; function options() { return list.querySelectorAll('[role=option]'); } function close() { list.hidden = true; list.innerHTML = ''; active = -1; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); } function highlight(index) { var items = options(); if (!items.length) return; active = (index + items.length) % items.length; items.forEach(function(item, i) { item.setAttribute('aria-selected', i === active ? 'true' : 'false'); }); input.setAttribute('aria-activedescendant', items[active].id); } function choose(value) { input.value = value; document.getElementById('selected').textContent = 'You selected: ' + value; close(); } function show(words) { list.innerHTML = ''; words.forEach(function(word, i) { var li = document.createElement('li'); li.id = 'suggestion-' + i; li.setAttribute('role', 'option'); li.setAttribute('aria-selected', 'false'); li.textContent = word; li.addEventListener('mousedown', function(event) { event.preventDefault(); choose(word); }); list.appendChild(li); }); list.hidden = words.length === 0; input.setAttribute('aria-expanded', words.length ? 'true' : 'false'); status.textContent = words.length ? words.length + ' suggestions' : 'No suggestions'; } input.addEventListener('input', function() { clearTimeout(timer); var query = input.value.trim(); if (!query) { close(); status.textContent = ''; return; } timer = setTimeout(function() { var id = ++request; status.textContent = 'Loading...'; fetch('/autocomplete/suggestions?q=' + encodeURIComponent(query) + '&delay=' + delay) .then(function(res) { return res.json(); }) .then(function(words) { if (id === request) show(words); }); }, 300); }); input.addEventListener('keydown', function(event) { if (list.hidden) return; if (event.key === 'ArrowDown') { highlight(active + 1); event.preventDefault(); } else if (event.key === 'ArrowUp') { highlight(active - 1); event.preventDefault(); } else if (event.key === 'Enter' && active >= 0) { choose(options()[active].textContent); event.preventDefault(); } else if (event.key === 'Escape') { close(); } }); input.addEventListener('blur', close); })();
