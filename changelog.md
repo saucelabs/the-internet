@@ -1,6 +1,26 @@
 #0.65.0
 + Added Advanced Shadow DOM (/shadowdom_advanced): nested and closed shadow roots, slots and a form-associated custom element
 
+#0.64.0
++ Upgraded jQuery from 1.11.3 to 3.7.1 on every page. jQuery UI stays 1.11.4, so the JQuery UI menu markup is the same
++ /dynamic_controls uses the shared jQuery instead of loading jQuery 1.10.2 from Google
++ Removed /js/vendor/jquery-1.11.3.min.js
+
+#0.63.1
++ Page chrome accessibility: landmarks (main, contentinfo, messages region), a skip link, a visible keyboard focus ring and a label on the flash close link
++ Examples that are meant to be bad stay as they are
+
+#0.63.0
++ Home page: a filter box and a short description under each example. The list of links and the text of each item are the same
++ Home page uses the full width, with up to 4 columns; every item takes two lines and shows its full text on hover
++ README lists the description of each example
+
+#0.62.4
++ Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
+
+#0.62.3
++ The JQuery UI menu download route only serves files from its own folder, like the other download routes
+
 #0.62.2
 + Footer links to Elemental Selenium over https
 
