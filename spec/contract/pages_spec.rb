@@ -26,6 +26,7 @@ describe 'Pages' do
           LAYOUT_SELECTORS.each { |sel| expect(doc.at_css(sel)).not_to be_nil, "missing #{sel}" }
           expect(doc.at_css('title').text).to eq 'The Internet'
           expect(doc.at_css('#page-footer').text).to include 'Powered by Elemental Selenium'
+          expect(doc.css('#page-footer a').map { |a| a['href'] }).to all(start_with('https://'))
         end
       end
     end
