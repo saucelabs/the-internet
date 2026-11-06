@@ -60,6 +60,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Sortable Data Tables](https://the-internet.herokuapp.com/tables) - Tables you can sort by column
 + [Status Codes](https://the-internet.herokuapp.com/status_codes) - Pages that answer 200 / 301 / 404 / 500
 + [Subdirectories](https://the-internet.herokuapp.com/subdirectories) - Pages in nested folders
++ [Toasts](https://the-internet.herokuapp.com/toasts) - Notifications that hide themselves after a set time
 + [Two-Factor Login](https://the-internet.herokuapp.com/two_factor) (user: tomsmith / pass: SuperSecretPassword!) - Log in with a password and a one-time code
 + [Typos](https://the-internet.herokuapp.com/typos) - Text that sometimes has a typo
 + [WYSIWYG Editor](https://the-internet.herokuapp.com/tinymce) - A rich text editor inside an iframe

@@ -1,3 +1,6 @@
+#0.68.0
++ Added Toasts (/toasts): notifications that hide themselves after a time you set (?duration=)
+
 #0.67.0
 + Added Native Dialog (/dialog): modal and non-modal <dialog> with Escape and form buttons
 

@@ -53,3 +53,4 @@ Canvas,/canvas,,Click and type into a canvas
 Advanced Shadow DOM,/shadowdom_advanced,,Nested and closed shadow roots / slots / a custom form field
 Advanced Iframes,/iframes_advanced,,A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM
 Native Dialog,/dialog,,Modal and non-modal <dialog> elements with Escape and focus handling
+Toasts,/toasts,,Notifications that hide themselves after a set time
