@@ -1,0 +1,40 @@
+<div class="example">
+  <h3>Advanced Iframes</h3>
+  <p>Three kinds of iframes that need more than a plain frame switch.</p>
+
+  <h4>Sandboxed iframe (acts like cross-origin)</h4>
+  <p>The <code>sandbox</code> attribute gives this frame its own origin, so the page can't read its document. It talks to the page with <code>postMessage</code>.</p>
+  <iframe id="sandboxed-frame" src="/iframes_advanced/frame?name=sandboxed" sandbox="allow-scripts" width="400" height="120"></iframe>
+  <p id="parent-access">Checking access to the sandboxed frame...</p>
+  <p id="message-log">No message yet</p>
+
+  <h4>srcdoc iframe</h4>
+  <p>This frame has no URL: its HTML is in the <code>srcdoc</code> attribute.</p>
+  <iframe id="srcdoc-frame" width="400" height="120" srcdoc="<p id='srcdoc-text'>Hello from srcdoc</p><input id='srcdoc-input' placeholder='Type here'>"></iframe>
+
+  <h4>Iframe inside shadow DOM</h4>
+  <p>Find the shadow host first, then the iframe in its shadow root.</p>
+  <frame-host id="frame-host"></frame-host>
+</div>
+<script>
+  customElements.define('frame-host', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' }).innerHTML =
+        '<iframe id="shadow-frame" src="/iframes_advanced/frame?name=shadow" width="400" height="120"></iframe>';
+    }
+  });
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.from) {
+      document.getElementById('message-log').textContent = 'Message from the ' + event.data.from + ' frame: ' + event.data.text;
+    }
+  });
+
+  document.getElementById('sandboxed-frame').addEventListener('load', function() {
+    var readable;
+    try { readable = !!this.contentDocument; } catch (e) { readable = false; }
+    document.getElementById('parent-access').textContent =
+      readable ? 'The page can read the sandboxed frame' : "The page can't read the sandboxed frame";
+  });
+</script>
