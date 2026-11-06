@@ -904,6 +904,26 @@ class Public < Sinatra::Base
     erb :visual_diff, locals: { changes: changes }
   end
 
+  get '/download_modern' do
+    erb :download_modern
+  end
+
+  # Downloads for /download_modern, each with a different Content-Disposition.
+  MODERN_DOWNLOADS = {
+    'inline' => ['text/plain', 'inline; filename="inline.txt"', "This file opens in the browser instead of downloading.\n"],
+    'utf8' => ['text/plain', %(attachment; filename="resume.txt"; filename*=UTF-8''r%C3%A9sum%C3%A9.txt), "A file whose name has accents: résumé.txt\n"],
+    'spaces' => ['text/plain', 'attachment; filename="my report 2026.txt"', "A file whose name has spaces.\n"],
+    'no_name' => ['text/plain', 'attachment', "A file without a name; the browser picks one from the URL.\n"],
+    'report.json' => ['application/json', 'attachment; filename="report.json"', %({"fruit":"apple","count":3}\n)]
+  }.freeze
+
+  get '/download_modern/file/:name' do |name|
+    type, disposition, body = MODERN_DOWNLOADS.fetch(name) { halt 404 }
+    content_type type
+    headers 'Content-Disposition' => disposition, 'Access-Control-Expose-Headers' => 'Content-Disposition'
+    body
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

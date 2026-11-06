@@ -72,3 +72,4 @@ Locale & Time Zone,/locale,,Content in the language your browser asks for / date
 Responsive Layout,/responsive,,A menu that turns into a hamburger button on narrow screens
 Accessibility Issues,/accessibility_issues,,A page with known accessibility problems for scanners like axe / and a fixed version
 Visual Differences,/visual_diff,,A card with small changes you turn on in the URL for visual testing
+Modern File Download,/download_modern,,Downloads made with Blob / fetch and data URLs / and Content-Disposition quirks

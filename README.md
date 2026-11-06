@@ -54,6 +54,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Large Form](https://the-internet.herokuapp.com/large_form) - A long form with many field types
 + [Live Updates](https://the-internet.herokuapp.com/live_updates) - Updates pushed by the server with Server-Sent Events
 + [Locale & Time Zone](https://the-internet.herokuapp.com/locale) - Content in the language your browser asks for / dates and numbers in your locale and time zone
++ [Modern File Download](https://the-internet.herokuapp.com/download_modern) - Downloads made with Blob / fetch and data URLs / and Content-Disposition quirks
 + [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown) - A select list that allows many options
 + [Multiple Windows](https://the-internet.herokuapp.com/windows) - A link that opens a new window
 + [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
@@ -97,6 +98,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + Network & Console JSON: [/network_console/data](https://the-internet.herokuapp.com/network_console/data)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`
++ Modern File Download files: `/download_modern/file/:name` (`inline`, `utf8`, `spaces`, `no_name`, `report.json`)
 + Frames: [iFrame](https://the-internet.herokuapp.com/iframe), [top](https://the-internet.herokuapp.com/frame_top), [left](https://the-internet.herokuapp.com/frame_left), [middle](https://the-internet.herokuapp.com/frame_middle), [right](https://the-internet.herokuapp.com/frame_right), [bottom](https://the-internet.herokuapp.com/frame_bottom)
 + [Infinite Scroll page N](https://the-internet.herokuapp.com/infinite_scroll/2) (`/infinite_scroll/:number`)
 + [JQuery UI](https://the-internet.herokuapp.com/jqueryui) (linked from JQuery UI Menus)

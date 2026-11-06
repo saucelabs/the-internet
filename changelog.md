@@ -1,3 +1,6 @@
+#0.87.0
++ Added Modern File Download (/download_modern): Blob, fetch and data URL downloads, and Content-Disposition quirks
+
 #0.86.0
 + Added Visual Differences (/visual_diff): small changes turned on from the URL (shift, color, font, hide_logo, typo) for visual testing
 

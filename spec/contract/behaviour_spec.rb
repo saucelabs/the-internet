@@ -31,6 +31,26 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Modern downloads' do
+    {
+      'inline' => 'inline; filename="inline.txt"',
+      'utf8' => %(attachment; filename="resume.txt"; filename*=UTF-8''r%C3%A9sum%C3%A9.txt),
+      'spaces' => 'attachment; filename="my report 2026.txt"',
+      'no_name' => 'attachment',
+      'report.json' => 'attachment; filename="report.json"'
+    }.each do |name, disposition|
+      it "sends #{name} with its Content-Disposition" do
+        res = client.get("/download_modern/file/#{name}")
+        expect(res.code).to eq '200'
+        expect(res['content-disposition']).to eq disposition
+      end
+    end
+
+    it 'answers 404 for other names' do
+      expect(client.get('/download_modern/file/other').code).to eq '404'
+    end
+  end
+
   describe 'Visual differences' do
     it 'turns on each change from the URL and ignores unknown values' do
       text = ->(path) { html(client.get(path)).at_css('#active-changes').text }
