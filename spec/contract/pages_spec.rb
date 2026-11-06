@@ -27,6 +27,9 @@ describe 'Pages' do
           expect(doc.at_css('title').text).to eq 'The Internet'
           expect(doc.at_css('#page-footer').text).to include 'Powered by Elemental Selenium'
           expect(doc.css('#page-footer a').map { |a| a['href'] }).to all(start_with('https://'))
+          # One jQuery for every page: the layout's.
+          jquery = doc.css('script[src]').map { |s| s['src'] }.grep(%r{/jquery[-.]\d|ajax/libs/jquery/})
+          expect(jquery).to eq ['/js/vendor/jquery-3.7.1.min.js']
         end
       end
     end
