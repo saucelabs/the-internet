@@ -1,3 +1,6 @@
+#0.69.0
++ Added Autocomplete (/autocomplete): debounced suggestions from the server (/autocomplete/suggestions, ?delay=) picked with the keyboard or mouse
+
 #0.68.0
 + Added Toasts (/toasts): notifications that hide themselves after a time you set (?duration=)
 

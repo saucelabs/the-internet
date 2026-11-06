@@ -75,6 +75,7 @@ PAGES = {
   '/iframes_advanced/frame'        => { text: 'Frame: plain', layout: false },
   '/dialog'                        => { text: 'Native Dialog' },
   '/toasts'                        => { text: 'Toasts' },
+  '/autocomplete'                  => { text: 'Autocomplete' },
 }.freeze
 
 def snapshot_name(path)

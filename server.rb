@@ -709,6 +709,27 @@ class Public < Sinatra::Base
     erb :toasts
   end
 
+  get '/autocomplete' do
+    erb :autocomplete
+  end
+
+  AUTOCOMPLETE_WORDS = %w[
+    Apple Apricot Avocado Banana Blackberry Blueberry Cantaloupe Cherry Coconut Cranberry
+    Date Dragonfruit Durian Elderberry Fig Gooseberry Grape Grapefruit Guava Honeydew
+    Jackfruit Kiwi Kumquat Lemon Lime Lychee Mango Melon Nectarine Orange
+    Papaya Passionfruit Peach Pear Persimmon Pineapple Plum Pomegranate Raspberry Strawberry
+  ].freeze
+
+  # Suggestions for /autocomplete: names that start with q (up to 8), after an optional delay in ms (max 3000).
+  get '/autocomplete/suggestions' do
+    require 'json'
+    sleep(params[:delay].to_i.clamp(0, 3000) / 1000.0)
+    query = params[:q].to_s.strip.downcase
+    words = query.empty? ? [] : AUTOCOMPLETE_WORDS.select { |w| w.downcase.start_with?(query) }.first(8)
+    content_type :json
+    JSON.generate(words)
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

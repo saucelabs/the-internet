@@ -13,6 +13,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/) - Buttons that add and delete elements
 + [Advanced Iframes](https://the-internet.herokuapp.com/iframes_advanced) - A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM
 + [Advanced Shadow DOM](https://the-internet.herokuapp.com/shadowdom_advanced) - Nested and closed shadow roots / slots / a custom form field
++ [Autocomplete](https://the-internet.herokuapp.com/autocomplete) - A search box with suggestions from the server that you pick with the keyboard
 + [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin) - Log in through the browser's basic auth prompt
 + [Broken Images](https://the-internet.herokuapp.com/broken_images) - Images that fail to load
 + [Canvas](https://the-internet.herokuapp.com/canvas) - Click and type into a canvas
@@ -70,6 +71,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 
 + [A/B Test Cookies](https://the-internet.herokuapp.com/abtest_cookies) and [A/B Test Manual](https://the-internet.herokuapp.com/abtest_manual) (unfinished A/B Testing variants)
 + [Advanced Iframes: frame page](https://the-internet.herokuapp.com/iframes_advanced/frame) (`/iframes_advanced/frame?name=:letters`)
++ Autocomplete suggestions as JSON: `/autocomplete/suggestions?q=:text&delay=:ms`
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
