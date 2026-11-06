@@ -687,6 +687,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/virtual_list' do
+    erb :virtual_list
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

@@ -1,3 +1,6 @@
+#0.75.0
++ Added Virtualized List (/virtual_list): 10,000 items with only the visible rows in the DOM
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 
