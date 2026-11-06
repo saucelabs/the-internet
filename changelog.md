@@ -1,3 +1,7 @@
+#0.63.0
++ Home page: a filter box and a short description under each example. The list of links and the text of each item are the same
++ README lists the description of each example
+
 #0.62.1
 + File Upload keeps only letters, digits, dot, dash and underscore in file names; other characters become "_"
 + File Download and Secure File Download escape the file names they list

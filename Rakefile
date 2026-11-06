@@ -13,8 +13,8 @@ def examples(file = 'examples.csv')
   end.sort_by { |key| key[:title] }
 
   # Returns an Array of Hashes in alphabetical order by :title like so:
-  # {:title=>"A/B Testing", :url_path=>"/abtest", :notes=>nil}
-  # {:title=>"Basic Auth", :url_path=>"/basic_auth", :notes=>"user and pass: admin"}
+  # {:title=>"A/B Testing", :url_path=>"/abtest", :notes=>nil, :description=>"Content that changes between visits"}
+  # {:title=>"Basic Auth", :url_path=>"/basic_auth", :notes=>"user and pass: admin", :description=>"..."}
 end
 
 def convert_to_markdown_links(examples)
@@ -22,6 +22,7 @@ def convert_to_markdown_links(examples)
   examples.each do |example|
     markdown_string << "+ [#{example[:title]}](https://the-internet.herokuapp.com#{example[:url_path]})"
     markdown_string << " (#{example[:notes]})" if example[:notes]
+    markdown_string << " - #{example[:description]}" if example[:description]
     markdown_string << "\n"
   end
   markdown_string
@@ -33,10 +34,14 @@ def update_readme
   File.open('README.md', 'w') { |file| file.puts readme_text }
 end
 
+# The description is an attribute (shown with CSS), so the text of each <li> stays the same.
 def update_examples_view
+  require 'erb'
   index_html = "<ul>\n"
   examples.each do |example|
-    index_html << "  <li><a href='#{example[:url_path]}'>#{example[:title]}</a>"
+    index_html << "  <li"
+    index_html << " data-description='#{ERB::Util.html_escape(example[:description])}'" if example[:description]
+    index_html << "><a href='#{example[:url_path]}'>#{example[:title]}</a>"
     index_html << " (#{example[:notes]})" if example[:notes]
     index_html << "</li>"
     index_html << "\n"
