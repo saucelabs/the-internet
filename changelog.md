@@ -1,3 +1,6 @@
+#0.85.0
++ Added Accessibility Issues (/accessibility_issues): known axe violations, and a fixed version (?fixed=true)
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

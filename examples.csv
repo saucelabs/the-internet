@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Accessibility Issues,/accessibility_issues,,A page with known accessibility problems for scanners like axe / and a fixed version
