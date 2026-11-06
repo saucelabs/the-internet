@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require 'digest'
+require 'json'
 require 'erb'
 require 'securerandom'
 
@@ -182,6 +183,18 @@ describe 'Behaviour' do
         expect(res['content-disposition']).to include 'attachment', file
         expect(res.body.b).to eq File.binread(File.join(REPO_ROOT, 'public/uploads/jqueryui/menu', file)) if LOCAL
       end
+    end
+  end
+
+  describe 'Network & Console' do
+    it 'sends a report-only CSP for images' do
+      expect(client.get('/network_console')['content-security-policy-report-only']).to eq "img-src 'self'"
+    end
+
+    it 'serves JSON data' do
+      res = client.get('/network_console/data')
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq('fruit' => 'apple', 'count' => 3)
     end
   end
 

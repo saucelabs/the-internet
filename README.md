@@ -46,6 +46,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown)
 + [Multiple Windows](https://the-internet.herokuapp.com/windows)
 + [Nested Frames](https://the-internet.herokuapp.com/nested_frames)
++ [Network & Console](https://the-internet.herokuapp.com/network_console)
 + [Notification Messages](https://the-internet.herokuapp.com/notification_message)
 + [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons)
 + [Read-only Inputs](https://the-internet.herokuapp.com/readonly)
@@ -68,6 +69,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
++ Network & Console JSON: [/network_console/data](https://the-internet.herokuapp.com/network_console/data)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`
 + Frames: [iFrame](https://the-internet.herokuapp.com/iframe), [top](https://the-internet.herokuapp.com/frame_top), [left](https://the-internet.herokuapp.com/frame_left), [middle](https://the-internet.herokuapp.com/frame_middle), [right](https://the-internet.herokuapp.com/frame_right), [bottom](https://the-internet.herokuapp.com/frame_bottom)
@@ -82,7 +84,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Slow external resource](https://the-internet.herokuapp.com/slow_external) (used by Slow Resources; takes 30 seconds)
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
-+ Two-Factor Login: code page (`/two_factor/code`) and secure area (`/two_factor/secure`), after logging in
++ Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
 
 Don't see an example you need or think should be here? Contribute!
 

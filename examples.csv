@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Network & Console,/network_console,,Requests / console messages / a JavaScript error and a CSP violation to catch with Selenium BiDi

@@ -1,3 +1,6 @@
+#0.78.0
++ Added Network & Console (/network_console): requests, console messages, a thrown error and a CSP violation to watch with Selenium BiDi
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 
