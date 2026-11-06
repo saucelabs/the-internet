@@ -29,6 +29,38 @@ describe 'Behaviour' do
         expect(client.request(req).code).to eq '200'
       end
     end
+  end
+
+  describe 'Network & Console' do
+    it 'sends a report-only CSP for images' do
+      expect(client.get('/network_console')['content-security-policy-report-only']).to eq "img-src 'self'"
+    end
+
+    it 'serves JSON data' do
+      res = client.get('/network_console/data')
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq('fruit' => 'apple', 'count' => 3)
+    end
+  end
+
+  describe 'Form validation' do
+    let(:valid) { { username: 'ana', email: 'ana@example.com', password: 'longenough', terms: 'on' } }
+
+    it 'accepts a valid form' do
+      res = client.post('/form_validation', valid)
+      expect(res.code).to eq '200'
+      expect(JSON.parse(res.body)).to eq('message' => 'Account created for ana')
+    end
+
+    it 'answers 422 with errors per field' do
+      res = client.post('/form_validation', valid.merge(username: 'tomsmith', password: 'short', terms: ''))
+      expect(res.code).to eq '422'
+      expect(JSON.parse(res.body)['errors']).to eq(
+        'username' => 'Username is already taken',
+        'password' => 'Password must be at least 8 characters',
+        'terms' => 'You must accept the terms'
+      )
+    end
 
     it 'shows the success message' do
       req = Net::HTTP::Get.new('/basic_auth').tap { |r| r.basic_auth('admin', 'admin') }
@@ -186,15 +218,17 @@ describe 'Behaviour' do
     end
   end
 
-  describe 'Network & Console' do
-    it 'sends a report-only CSP for images' do
-      expect(client.get('/network_console')['content-security-policy-report-only']).to eq "img-src 'self'"
+  describe 'Autocomplete suggestions' do
+    it 'returns names that start with the query as JSON' do
+      res = client.get('/autocomplete/suggestions?q=gr')
+      expect(res.code).to eq '200'
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq %w[Grape Grapefruit]
     end
 
-    it 'serves JSON data' do
-      res = client.get('/network_console/data')
-      expect(res['content-type']).to start_with 'application/json'
-      expect(JSON.parse(res.body)).to eq('fruit' => 'apple', 'count' => 3)
+    it 'returns an empty list for an empty or unknown query' do
+      expect(JSON.parse(client.get('/autocomplete/suggestions?q=').body)).to eq []
+      expect(JSON.parse(client.get('/autocomplete/suggestions?q=zz').body)).to eq []
     end
   end
 
