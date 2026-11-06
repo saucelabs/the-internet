@@ -1,3 +1,6 @@
+#0.68.0
++ Added Toasts (/toasts): notifications that hide themselves after a time you set (?duration=)
+
 #0.62.3
 + The JQuery UI menu download route only serves files from its own folder, like the other download routes
 

@@ -660,6 +660,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/toasts' do
+    erb :toasts
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
