@@ -2,6 +2,15 @@
 + Home page: a filter box and a short description under each example. The list of links and the text of each item are the same
 + README lists the description of each example
 
+#0.62.4
++ Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
+
+#0.62.3
++ The JQuery UI menu download route only serves files from its own folder, like the other download routes
+
+#0.62.2
++ Footer links to Elemental Selenium over https
+
 #0.62.1
 + File Upload keeps only letters, digits, dot, dash and underscore in file names; other characters become "_"
 + File Download and Secure File Download escape the file names they list
