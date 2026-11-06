@@ -1,3 +1,6 @@
+#0.62.2
++ Footer links to Elemental Selenium over https
+
 #0.62.1
 + File Upload keeps only letters, digits, dot, dash and underscore in file names; other characters become "_"
 + File Download and Secure File Download escape the file names they list
