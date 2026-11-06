@@ -174,6 +174,17 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'JQuery UI menu downloads' do
+    %w[menu.pdf menu.csv menu.xls].each do |file|
+      it "serves #{file} as an attachment" do
+        res = client.get("/download/jqueryui/menu/#{file}")
+        expect(res.code).to eq '200'
+        expect(res['content-disposition']).to include 'attachment', file
+        expect(res.body.b).to eq File.binread(File.join(REPO_ROOT, 'public/uploads/jqueryui/menu', file)) if LOCAL
+      end
+    end
+  end
+
   describe 'Uploads', :writes do
     let(:name) { "contract-#{SecureRandom.hex(4)}.txt" }
     after { File.delete(File.join(REPO_ROOT, 'public/uploads', name)) if LOCAL && File.exist?(File.join(REPO_ROOT, 'public/uploads', name)) }

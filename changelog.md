@@ -1,3 +1,6 @@
+#0.62.3
++ The JQuery UI menu download route only serves files from its own folder, like the other download routes
+
 #0.62.2
 + Footer links to Elemental Selenium over https
 
