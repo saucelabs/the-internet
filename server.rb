@@ -701,6 +701,10 @@ class Public < Sinatra::Base
     erb :iframes_advanced_frame, layout: false, locals: { name: name }
   end
 
+  get '/dialog' do
+    erb :dialog
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

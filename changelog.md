@@ -1,3 +1,6 @@
+#0.67.0
++ Added Native Dialog (/dialog): modal and non-modal <dialog> with Escape and form buttons
+
 #0.66.0
 + Added Advanced Iframes (/iframes_advanced): a sandboxed frame that acts like cross-origin, a srcdoc frame and an iframe inside shadow DOM
 

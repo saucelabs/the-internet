@@ -47,6 +47,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Large Form](https://the-internet.herokuapp.com/large_form) - A long form with many field types
 + [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown) - A select list that allows many options
 + [Multiple Windows](https://the-internet.herokuapp.com/windows) - A link that opens a new window
++ [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
 + [Nested Frames](https://the-internet.herokuapp.com/nested_frames) - Frames inside frames
 + [Notification Messages](https://the-internet.herokuapp.com/notification_message) - A flash message that changes on each click
 + [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons) - Pick one option per group

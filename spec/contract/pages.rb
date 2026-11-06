@@ -73,6 +73,7 @@ PAGES = {
   '/shadowdom_advanced'            => { text: 'Advanced Shadow DOM' },
   '/iframes_advanced'              => { text: 'Advanced Iframes' },
   '/iframes_advanced/frame'        => { text: 'Frame: plain', layout: false },
+  '/dialog'                        => { text: 'Native Dialog' },
 }.freeze
 
 def snapshot_name(path)
