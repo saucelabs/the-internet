@@ -1,53 +1,59 @@
-title,url_path,notes
-A/B Testing,/abtest
-Basic Auth,/basic_auth,user and pass: admin
-File Download,/download
-File Upload,/upload
-Frames,/frames
-JavaScript onload event error,/javascript_error
-JavaScript Alerts,/javascript_alerts
-JQuery UI Menus,/jqueryui/menu
-Form Authentication,/login
-Multiple Windows,/windows
-Notification Messages,/notification_message
-Redirect Link,/redirector
-Status Codes,/status_codes
-Dynamic Loading,/dynamic_loading
-Sortable Data Tables,/tables
-Geolocation,/geolocation
-Large & Deep DOM,/large
-Drag and Drop,/drag_and_drop
-Dropdown,/dropdown
-Forgot Password,/forgot_password
-Checkboxes,/checkboxes
-Hovers,/hovers
-WYSIWYG Editor,/tinymce
-Key Presses,/key_presses
-Context Menu,/context_menu
-Slow Resources,/slow
-Broken Images,/broken_images
-Secure File Download,/download_secure
-Shifting Content,/shifting_content
-Dynamic Content,/dynamic_content
-Challenging DOM,/challenging_dom
-Disappearing Elements,/disappearing_elements
-Dynamic Controls,/dynamic_controls
-Typos,/typos
-Nested Frames,/nested_frames
-Floating Menu,/floating_menu
-Infinite Scroll,/infinite_scroll
-Exit Intent,/exit_intent
-Horizontal Slider,/horizontal_slider
-Entry Ad,/entry_ad
-Add/Remove Elements,/add_remove_elements/
-Inputs,/inputs
-Digest Authentication,/digest_auth,user and pass: admin
-Shadow DOM,/shadowdom
-Subdirectories,/subdirectories
-Multiple Select Dropdown,/multiple_dropdown
-Radio Buttons,/radio_buttons
-Read-only Inputs,/readonly
-Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
-Large Form,/large_form
-Canvas,/canvas
+title,url_path,notes,description
+A/B Testing,/abtest,,Content that changes between visits
+Basic Auth,/basic_auth,user and pass: admin,Log in through the browser's basic auth prompt
+File Download,/download,,Download files from a list of links
+File Upload,/upload,,Upload a file with a file input or drag and drop
+Frames,/frames,,Nested frames and an iframe with an editor
+JavaScript onload event error,/javascript_error,,A page that throws a JavaScript error when it loads
+JavaScript Alerts,/javascript_alerts,,Handle JavaScript alert / confirm / prompt dialogs
+JQuery UI Menus,/jqueryui/menu,,Nested menu built with jQuery UI
+Form Authentication,/login,,Log in and out of a secure area
+Multiple Windows,/windows,,A link that opens a new window
+Notification Messages,/notification_message,,A flash message that changes on each click
+Redirect Link,/redirector,,A link that redirects to another page
+Status Codes,/status_codes,,Pages that answer 200 / 301 / 404 / 500
+Dynamic Loading,/dynamic_loading,,Elements that appear after a delay
+Sortable Data Tables,/tables,,Tables you can sort by column
+Geolocation,/geolocation,,Show the browser's location
+Large & Deep DOM,/large,,Deeply nested elements and a big table
+Drag and Drop,/drag_and_drop,,Swap two boxes with HTML5 drag and drop
+Dropdown,/dropdown,,Pick an option from a select list
+Forgot Password,/forgot_password,,A form that sends an email
+Checkboxes,/checkboxes,,Check and uncheck boxes
+Hovers,/hovers,,Captions that show on mouse hover
+WYSIWYG Editor,/tinymce,,A rich text editor inside an iframe
+Key Presses,/key_presses,,Shows the last key you pressed
+Context Menu,/context_menu,,Right-click to open an alert
+Slow Resources,/slow,,A request that takes 30 seconds to finish
+Broken Images,/broken_images,,Images that fail to load
+Secure File Download,/download_secure,,Downloads behind basic auth
+Shifting Content,/shifting_content,,Elements that move between page loads
+Dynamic Content,/dynamic_content,,Text and images that change on reload
+Challenging DOM,/challenging_dom,,Elements without useful ids and a canvas
+Disappearing Elements,/disappearing_elements,,Menu items that come and go
+Dynamic Controls,/dynamic_controls,,Elements that get added / removed / enabled / disabled
+Typos,/typos,,Text that sometimes has a typo
+Nested Frames,/nested_frames,,Frames inside frames
+Floating Menu,/floating_menu,,A menu that stays in view while you scroll
+Infinite Scroll,/infinite_scroll,,Content that loads as you scroll
+Exit Intent,/exit_intent,,A modal that opens when the mouse leaves the page
+Horizontal Slider,/horizontal_slider,,Move a range slider with the mouse or keys
+Entry Ad,/entry_ad,,A modal ad that opens on page load
+Add/Remove Elements,/add_remove_elements/,,Buttons that add and delete elements
+Inputs,/inputs,,A number input field
+Digest Authentication,/digest_auth,user and pass: admin,Log in through the browser's digest auth prompt
+Shadow DOM,/shadowdom,,Content inside shadow roots and slots
+Subdirectories,/subdirectories,,Pages in nested folders
+Multiple Select Dropdown,/multiple_dropdown,,A select list that allows many options
+Radio Buttons,/radio_buttons,,Pick one option per group
+Read-only Inputs,/readonly,,Fields you can read but not change
+Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!,Log in with a password and a one-time code
+Large Form,/large_form,,A long form with many field types
+Canvas,/canvas,,Click and type into a canvas
+Advanced Shadow DOM,/shadowdom_advanced,,Nested and closed shadow roots / slots / a custom form field
+Advanced Iframes,/iframes_advanced,,A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM
+Native Dialog,/dialog,,Modal and non-modal <dialog> elements with Escape and focus handling
+Toasts,/toasts,,Notifications that hide themselves after a set time
+Autocomplete,/autocomplete,,A search box with suggestions from the server that you pick with the keyboard
+Date & Time Pickers,/date_pickers,,Native date and time inputs and a calendar widget built with JavaScript
 Custom Dropdown,/custom_dropdown,,A select list built from divs with ARIA roles instead of <select>

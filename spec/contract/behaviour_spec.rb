@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require 'digest'
+require 'json'
 require 'erb'
 require 'securerandom'
 
@@ -185,6 +186,20 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Autocomplete suggestions' do
+    it 'returns names that start with the query as JSON' do
+      res = client.get('/autocomplete/suggestions?q=gr')
+      expect(res.code).to eq '200'
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq %w[Grape Grapefruit]
+    end
+
+    it 'returns an empty list for an empty or unknown query' do
+      expect(JSON.parse(client.get('/autocomplete/suggestions?q=').body)).to eq []
+      expect(JSON.parse(client.get('/autocomplete/suggestions?q=zz').body)).to eq []
+    end
+  end
+
   describe 'Uploads', :writes do
     let(:name) { "contract-#{SecureRandom.hex(4)}.txt" }
     after { File.delete(File.join(REPO_ROOT, 'public/uploads', name)) if LOCAL && File.exist?(File.join(REPO_ROOT, 'public/uploads', name)) }
@@ -220,6 +235,44 @@ describe 'Behaviour' do
       res = client.post_multipart('/upload', [['file', StringIO.new('a' * (2 * 1024 * 1024 + 1)), { filename: name, content_type: 'text/plain' }]])
       expect(res.code).to eq '413'
       expect(client.get('/download').body).not_to include name
+    end
+  end
+
+  describe 'Uploads cleanup', :writes do
+    let(:dir) { File.join(REPO_ROOT, 'public/uploads') }
+    let(:hex) { SecureRandom.hex(4) }
+    before { skip 'needs the app on this machine' unless LOCAL }
+    after { Dir.glob(File.join(dir, "contract-cleanup-#{hex}-*")).each { |f| File.delete(f) } }
+
+    def upload_file(name, age: 0)
+      path = File.join(dir, name)
+      File.write(path, 'hello')
+      File.utime(Time.now - age, Time.now - age, path)
+      path
+    end
+
+    it 'deletes uploads older than an hour' do
+      old = upload_file("contract-cleanup-#{hex}-old.txt", age: 2 * 60 * 60)
+      fresh = upload_file("contract-cleanup-#{hex}-fresh.txt")
+      body = client.get('/download').body
+      expect(body).not_to include File.basename(old)
+      expect(body).to include File.basename(fresh)
+      expect(File.exist?(old)).to be false
+    end
+
+    it 'keeps only the newest 100 uploads' do
+      oldest = upload_file("contract-cleanup-#{hex}-0.txt", age: 30 * 60)
+      100.times { |i| upload_file("contract-cleanup-#{hex}-#{i + 1}.txt") }
+      client.get('/download')
+      expect(File.exist?(oldest)).to be false
+      expect(File.exist?(File.join(dir, "contract-cleanup-#{hex}-100.txt"))).to be true
+    end
+
+    it 'never deletes the seeded files' do
+      seeded = %w[some-file.txt textfile.txt sample.csv sample.json sample.pdf]
+      seeded.each { |f| File.utime(Time.now - 48 * 60 * 60, Time.now - 48 * 60 * 60, File.join(dir, f)) }
+      client.get('/download')
+      seeded.each { |f| expect(File.exist?(File.join(dir, f))).to be(true), "#{f} was deleted" }
     end
   end
 
