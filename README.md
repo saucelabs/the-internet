@@ -9,63 +9,72 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 
 ## Available Examples:
 
-+ [A/B Testing](https://the-internet.herokuapp.com/abtest)
-+ [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/)
-+ [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin)
-+ [Broken Images](https://the-internet.herokuapp.com/broken_images)
-+ [Canvas](https://the-internet.herokuapp.com/canvas)
-+ [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom)
-+ [Checkboxes](https://the-internet.herokuapp.com/checkboxes)
-+ [Context Menu](https://the-internet.herokuapp.com/context_menu)
-+ [Digest Authentication](https://the-internet.herokuapp.com/digest_auth) (user and pass: admin)
-+ [Disappearing Elements](https://the-internet.herokuapp.com/disappearing_elements)
-+ [Drag and Drop](https://the-internet.herokuapp.com/drag_and_drop)
-+ [Dropdown](https://the-internet.herokuapp.com/dropdown)
-+ [Dynamic Content](https://the-internet.herokuapp.com/dynamic_content)
-+ [Dynamic Controls](https://the-internet.herokuapp.com/dynamic_controls)
-+ [Dynamic Loading](https://the-internet.herokuapp.com/dynamic_loading)
-+ [Entry Ad](https://the-internet.herokuapp.com/entry_ad)
-+ [Exit Intent](https://the-internet.herokuapp.com/exit_intent)
-+ [File Download](https://the-internet.herokuapp.com/download)
-+ [File Upload](https://the-internet.herokuapp.com/upload)
-+ [Floating Menu](https://the-internet.herokuapp.com/floating_menu)
-+ [Forgot Password](https://the-internet.herokuapp.com/forgot_password)
-+ [Form Authentication](https://the-internet.herokuapp.com/login)
-+ [Form Validation](https://the-internet.herokuapp.com/form_validation)
-+ [Frames](https://the-internet.herokuapp.com/frames)
-+ [Geolocation](https://the-internet.herokuapp.com/geolocation)
-+ [Horizontal Slider](https://the-internet.herokuapp.com/horizontal_slider)
-+ [Hovers](https://the-internet.herokuapp.com/hovers)
-+ [Infinite Scroll](https://the-internet.herokuapp.com/infinite_scroll)
-+ [Inputs](https://the-internet.herokuapp.com/inputs)
-+ [JQuery UI Menus](https://the-internet.herokuapp.com/jqueryui/menu)
-+ [JavaScript Alerts](https://the-internet.herokuapp.com/javascript_alerts)
-+ [JavaScript onload event error](https://the-internet.herokuapp.com/javascript_error)
-+ [Key Presses](https://the-internet.herokuapp.com/key_presses)
-+ [Large & Deep DOM](https://the-internet.herokuapp.com/large)
-+ [Large Form](https://the-internet.herokuapp.com/large_form)
-+ [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown)
-+ [Multiple Windows](https://the-internet.herokuapp.com/windows)
-+ [Nested Frames](https://the-internet.herokuapp.com/nested_frames)
-+ [Notification Messages](https://the-internet.herokuapp.com/notification_message)
-+ [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons)
-+ [Read-only Inputs](https://the-internet.herokuapp.com/readonly)
-+ [Redirect Link](https://the-internet.herokuapp.com/redirector)
-+ [Secure File Download](https://the-internet.herokuapp.com/download_secure)
-+ [Shadow DOM](https://the-internet.herokuapp.com/shadowdom)
-+ [Shifting Content](https://the-internet.herokuapp.com/shifting_content)
-+ [Slow Resources](https://the-internet.herokuapp.com/slow)
-+ [Sortable Data Tables](https://the-internet.herokuapp.com/tables)
-+ [Status Codes](https://the-internet.herokuapp.com/status_codes)
-+ [Subdirectories](https://the-internet.herokuapp.com/subdirectories)
-+ [Two-Factor Login](https://the-internet.herokuapp.com/two_factor) (user: tomsmith / pass: SuperSecretPassword!)
-+ [Typos](https://the-internet.herokuapp.com/typos)
-+ [WYSIWYG Editor](https://the-internet.herokuapp.com/tinymce)
++ [A/B Testing](https://the-internet.herokuapp.com/abtest) - Content that changes between visits
++ [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/) - Buttons that add and delete elements
++ [Advanced Iframes](https://the-internet.herokuapp.com/iframes_advanced) - A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM
++ [Advanced Shadow DOM](https://the-internet.herokuapp.com/shadowdom_advanced) - Nested and closed shadow roots / slots / a custom form field
++ [Autocomplete](https://the-internet.herokuapp.com/autocomplete) - A search box with suggestions from the server that you pick with the keyboard
++ [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin) - Log in through the browser's basic auth prompt
++ [Broken Images](https://the-internet.herokuapp.com/broken_images) - Images that fail to load
++ [Canvas](https://the-internet.herokuapp.com/canvas) - Click and type into a canvas
++ [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom) - Elements without useful ids and a canvas
++ [Checkboxes](https://the-internet.herokuapp.com/checkboxes) - Check and uncheck boxes
++ [Context Menu](https://the-internet.herokuapp.com/context_menu) - Right-click to open an alert
++ [Custom Dropdown](https://the-internet.herokuapp.com/custom_dropdown) - A select list built from divs with ARIA roles instead of <select>
++ [Date & Time Pickers](https://the-internet.herokuapp.com/date_pickers) - Native date and time inputs and a calendar widget built with JavaScript
++ [Digest Authentication](https://the-internet.herokuapp.com/digest_auth) (user and pass: admin) - Log in through the browser's digest auth prompt
++ [Disappearing Elements](https://the-internet.herokuapp.com/disappearing_elements) - Menu items that come and go
++ [Drag and Drop](https://the-internet.herokuapp.com/drag_and_drop) - Swap two boxes with HTML5 drag and drop
++ [Dropdown](https://the-internet.herokuapp.com/dropdown) - Pick an option from a select list
++ [Dynamic Content](https://the-internet.herokuapp.com/dynamic_content) - Text and images that change on reload
++ [Dynamic Controls](https://the-internet.herokuapp.com/dynamic_controls) - Elements that get added / removed / enabled / disabled
++ [Dynamic Loading](https://the-internet.herokuapp.com/dynamic_loading) - Elements that appear after a delay
++ [Entry Ad](https://the-internet.herokuapp.com/entry_ad) - A modal ad that opens on page load
++ [Exit Intent](https://the-internet.herokuapp.com/exit_intent) - A modal that opens when the mouse leaves the page
++ [File Download](https://the-internet.herokuapp.com/download) - Download files from a list of links
++ [File Upload](https://the-internet.herokuapp.com/upload) - Upload a file with a file input or drag and drop
++ [Floating Menu](https://the-internet.herokuapp.com/floating_menu) - A menu that stays in view while you scroll
++ [Forgot Password](https://the-internet.herokuapp.com/forgot_password) - A form that sends an email
++ [Form Authentication](https://the-internet.herokuapp.com/login) - Log in and out of a secure area
++ [Form Validation](https://the-internet.herokuapp.com/form_validation) - HTML5 validation in the browser and errors that come back from the server
++ [Frames](https://the-internet.herokuapp.com/frames) - Nested frames and an iframe with an editor
++ [Geolocation](https://the-internet.herokuapp.com/geolocation) - Show the browser's location
++ [Horizontal Slider](https://the-internet.herokuapp.com/horizontal_slider) - Move a range slider with the mouse or keys
++ [Hovers](https://the-internet.herokuapp.com/hovers) - Captions that show on mouse hover
++ [Infinite Scroll](https://the-internet.herokuapp.com/infinite_scroll) - Content that loads as you scroll
++ [Inputs](https://the-internet.herokuapp.com/inputs) - A number input field
++ [JQuery UI Menus](https://the-internet.herokuapp.com/jqueryui/menu) - Nested menu built with jQuery UI
++ [JavaScript Alerts](https://the-internet.herokuapp.com/javascript_alerts) - Handle JavaScript alert / confirm / prompt dialogs
++ [JavaScript onload event error](https://the-internet.herokuapp.com/javascript_error) - A page that throws a JavaScript error when it loads
++ [Key Presses](https://the-internet.herokuapp.com/key_presses) - Shows the last key you pressed
++ [Large & Deep DOM](https://the-internet.herokuapp.com/large) - Deeply nested elements and a big table
++ [Large Form](https://the-internet.herokuapp.com/large_form) - A long form with many field types
++ [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown) - A select list that allows many options
++ [Multiple Windows](https://the-internet.herokuapp.com/windows) - A link that opens a new window
++ [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
++ [Nested Frames](https://the-internet.herokuapp.com/nested_frames) - Frames inside frames
++ [Notification Messages](https://the-internet.herokuapp.com/notification_message) - A flash message that changes on each click
++ [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons) - Pick one option per group
++ [Read-only Inputs](https://the-internet.herokuapp.com/readonly) - Fields you can read but not change
++ [Redirect Link](https://the-internet.herokuapp.com/redirector) - A link that redirects to another page
++ [Secure File Download](https://the-internet.herokuapp.com/download_secure) - Downloads behind basic auth
++ [Shadow DOM](https://the-internet.herokuapp.com/shadowdom) - Content inside shadow roots and slots
++ [Shifting Content](https://the-internet.herokuapp.com/shifting_content) - Elements that move between page loads
++ [Slow Resources](https://the-internet.herokuapp.com/slow) - A request that takes 30 seconds to finish
++ [Sortable Data Tables](https://the-internet.herokuapp.com/tables) - Tables you can sort by column
++ [Status Codes](https://the-internet.herokuapp.com/status_codes) - Pages that answer 200 / 301 / 404 / 500
++ [Subdirectories](https://the-internet.herokuapp.com/subdirectories) - Pages in nested folders
++ [Toasts](https://the-internet.herokuapp.com/toasts) - Notifications that hide themselves after a set time
++ [Two-Factor Login](https://the-internet.herokuapp.com/two_factor) (user: tomsmith / pass: SuperSecretPassword!) - Log in with a password and a one-time code
++ [Typos](https://the-internet.herokuapp.com/typos) - Text that sometimes has a typo
++ [WYSIWYG Editor](https://the-internet.herokuapp.com/tinymce) - A rich text editor inside an iframe
 
 
 ### Pages reached from the examples
 
 + [A/B Test Cookies](https://the-internet.herokuapp.com/abtest_cookies) and [A/B Test Manual](https://the-internet.herokuapp.com/abtest_manual) (unfinished A/B Testing variants)
++ [Advanced Iframes: frame page](https://the-internet.herokuapp.com/iframes_advanced/frame) (`/iframes_advanced/frame?name=:letters`)
++ Autocomplete suggestions as JSON: `/autocomplete/suggestions?q=:text&delay=:ms`
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)

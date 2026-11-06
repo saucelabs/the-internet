@@ -130,15 +130,55 @@ a:focus {
   text-decoration-color: var(--sl-flare);
 }
 
-/* Home page list of examples */
-#content h1.heading ~ ul {
-  columns: 2 18em;
-  column-gap: 2em;
+/* Home page list of examples: the page uses the full width, with up to 4 columns. */
+.row:has(> #content > h1.heading) {
+  max-width: calc(100% - 3em);
 }
+#content h1.heading + h2 {
+  text-align: center;
+}
+#content h1.heading ~ ul {
+  columns: 4 16em;
+  column-gap: 2.5em;
+}
+/* Every item is two lines (name, description). Longer text ends with "..."; the full text is in the title. */
 #content h1.heading ~ ul li {
   break-inside: avoid;
   padding: 0.35em 0;
   border-bottom: 1px solid var(--sl-ivory);
+  color: var(--sl-pine-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Items clip overflow, so keep a link's focus ring inside the item. */
+#content h1.heading ~ ul li a:focus-visible {
+  outline-offset: -2px;
+}
+#content h1.heading ~ ul li[hidden] {
+  display: none;
+}
+/* The description lives in an attribute so the text of each item stays the same. */
+#content h1.heading ~ ul li[data-description]::after {
+  content: attr(data-description);
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.85em;
+  color: var(--sl-pine-light);
+}
+#example-filter-box {
+  max-width: 28em;
+  margin: 0 auto 1.75em;
+  text-align: center;
+}
+#example-filter-box label {
+  font-weight: 600;
+}
+#example-filter-box input {
+  margin-bottom: 0.25em;
+}
+#example-filter-empty {
   color: var(--sl-pine-light);
 }
 
@@ -336,4 +376,48 @@ table tr:nth-of-type(even) {
 }
 #page-footer hr {
   display: none;
+}
+
+/* Accessibility of the page chrome */
+.skip-link {
+  position: absolute;
+  left: 1em;
+  top: -10em;
+  z-index: 1000;
+  padding: 0.5em 1em;
+  background: var(--sl-highlight);
+  color: var(--sl-pine);
+  font-weight: 700;
+  border-radius: 0.5rem;
+}
+.skip-link:focus {
+  top: 1em;
+}
+/* A clear focus ring for keyboard users; the mouse doesn't trigger it. */
+a:focus-visible,
+button:focus-visible,
+.button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible,
+input[type="range"]:focus-visible,
+input[type="file"]:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="button"]:focus-visible {
+  outline: 3px solid var(--sl-deep-shock);
+  outline-offset: 2px;
+}
+a:focus:not(:focus-visible) {
+  outline: 0;
+}
+.flash .close {
+  opacity: 0.85;
+}
+.flash .close:hover,
+.flash .close:focus {
+  opacity: 1;
+}
+.flash .close:focus-visible {
+  outline-color: white;
 }

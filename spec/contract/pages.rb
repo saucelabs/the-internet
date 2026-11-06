@@ -70,6 +70,14 @@ PAGES = {
   '/typos'                         => { text: 'Typos', snapshot: false }, # random
   '/windows'                       => { text: 'Opening a new window' },
   '/windows/new'                   => { text: 'New Window', layout: false },
+  '/shadowdom_advanced'            => { text: 'Advanced Shadow DOM' },
+  '/iframes_advanced'              => { text: 'Advanced Iframes' },
+  '/iframes_advanced/frame'        => { text: 'Frame: plain', layout: false },
+  '/dialog'                        => { text: 'Native Dialog' },
+  '/toasts'                        => { text: 'Toasts' },
+  '/autocomplete'                  => { text: 'Autocomplete' },
+  '/date_pickers'                  => { text: 'Date &amp; Time Pickers' },
+  '/custom_dropdown'               => { text: 'Custom Dropdown' },
   '/form_validation'               => { text: 'Form Validation' },
 }.freeze
 
