@@ -185,6 +185,24 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Locale' do
+    def greeting(path, headers = {})
+      html(client.get(path, headers)).at_css('#greeting').text
+    end
+
+    it 'greets in the language of Accept-Language' do
+      expect(greeting('/locale', 'Accept-Language' => 'fr-CA,fr;q=0.9,en;q=0.8')).to eq 'Bonjour !'
+      expect(greeting('/locale', 'Accept-Language' => 'en;q=0.5, de')).to eq 'Hallo!'
+      expect(greeting('/locale', 'Accept-Language' => 'pt-BR')).to eq 'Hello!'
+      expect(greeting('/locale')).to eq 'Hello!'
+    end
+
+    it 'lets ?lang= win over the header' do
+      expect(greeting('/locale?lang=ja', 'Accept-Language' => 'es')).to eq 'こんにちは！'
+      expect(greeting('/locale?lang=xx', 'Accept-Language' => 'es')).to eq '¡Hola!'
+    end
+  end
+
   describe 'Uploads', :writes do
     let(:name) { "contract-#{SecureRandom.hex(4)}.txt" }
     after { File.delete(File.join(REPO_ROOT, 'public/uploads', name)) if LOCAL && File.exist?(File.join(REPO_ROOT, 'public/uploads', name)) }

@@ -1,0 +1,62 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Locale & Time Zone
+    <p>
+      The server picks the greeting from your browser's
+      <code>
+        Accept-Language
+      header (English, Spanish, German, French or Japanese). Override it with
+      <code>
+        ?lang=
+      , e.g.
+      <a href="/locale?lang=es">
+        /locale?lang=es
+      . The browser formats the date, number and price below with its own locale and time zone.
+    <h4>
+      From the server
+    <p id="greeting" lang="en">
+      Hello!
+    <p>
+      Language:
+      <span id="server-language">
+        en
+      (English)
+    <p>
+      Languages:
+      <a class="language-link" href="/locale?lang=en">
+        en
+      <a class="language-link" href="/locale?lang=es">
+        es
+      <a class="language-link" href="/locale?lang=de">
+        de
+      <a class="language-link" href="/locale?lang=fr">
+        fr
+      <a class="language-link" href="/locale?lang=ja">
+        ja
+    <h4>
+      From the browser
+    <table id="browser-locale">
+      <tbody>
+        <tr>
+          <td>
+            Browser language
+          <td id="browser-language">
+        <tr>
+          <td>
+            Time zone
+          <td id="browser-timezone">
+        <tr>
+          <td>
+            2026-04-15 12:00 UTC in your time zone
+          <td id="formatted-date">
+        <tr>
+          <td>
+            1234567.891 as a number
+          <td id="formatted-number">
+        <tr>
+          <td>
+            1234.5 euros as a price
+          <td id="formatted-price">
+  <script>
+    (function() { var language = navigator.language; var fixed = new Date(Date.UTC(2026, 3, 15, 12, 0, 0)); document.getElementById('browser-language').textContent = language; document.getElementById('browser-timezone').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone; document.getElementById('formatted-date').textContent = new Intl.DateTimeFormat(language, { dateStyle: 'full', timeStyle: 'short' }).format(fixed); document.getElementById('formatted-number').textContent = new Intl.NumberFormat(language).format(1234567.891); document.getElementById('formatted-price').textContent = new Intl.NumberFormat(language, { style: 'currency', currency: 'EUR' }).format(1234.5); })();

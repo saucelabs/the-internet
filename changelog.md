@@ -1,3 +1,6 @@
+#0.83.0
++ Added Locale & Time Zone (/locale): a greeting from Accept-Language or ?lang=, and dates and numbers in the browser's locale and time zone
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 
