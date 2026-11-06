@@ -12,4 +12,14 @@ describe 'Examples' do
     skip_link.click
     expect(@driver.current_url).to end_with '#content'
   end
+
+  it 'Page chrome links the title in the top bar to the home page' do
+    visit '/checkboxes'
+    home = find(:css, 'a.home-link')
+    expect(home.text).to eq ''
+    expect(home.accessible_name).to eq 'The Internet: home'
+    home.click
+    wait { @driver.current_url == "#{ENV['BASE_URL']}/" }
+    expect(find(:css, 'h1.heading').text).to eq 'Welcome to the-internet'
+  end
 end

@@ -56,18 +56,41 @@ body {
   font-family: var(--sl-sans);
 }
 
-/* Top bar, drawn with CSS so the DOM stays as it was. Layout pages only. */
-body:has(> #page-footer)::before {
-  content: "The Internet";
-  display: block;
-  background: var(--sl-pine);
-  color: var(--sl-ivory);
+/* Top bar, drawn with CSS so the DOM stays as it was. Layout pages only.
+   The title is a link home (a.home-link) placed over the bar; its text comes from CSS too,
+   so the page text that tests read is unchanged. */
+body:has(> #page-footer)::before,
+body:has(> #page-footer) > a.home-link {
   font-family: var(--sl-serif);
   font-size: 1.375em;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1;
   padding: 1.1em 1.5em;
+}
+body:has(> #page-footer) > a.home-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  color: var(--sl-ivory);
+  text-decoration: none;
+}
+body:has(> #page-footer) > a.home-link::before {
+  content: "The Internet";
+}
+body:has(> #page-footer) > a.home-link:hover,
+body:has(> #page-footer) > a.home-link:focus {
+  color: var(--sl-highlight);
+}
+body:has(> #page-footer) > a.home-link:focus-visible {
+  outline: 3px solid var(--sl-highlight);
+  outline-offset: -0.5em;
+}
+body:has(> #page-footer)::before {
+  content: "\00a0";
+  display: block;
+  background: var(--sl-pine);
   border-bottom: 4px solid var(--sl-highlight);
 }
 

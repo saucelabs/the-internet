@@ -31,6 +31,10 @@ describe 'Pages' do
           expect(doc.at_css('#page-footer')['role']).to eq 'contentinfo'
           expect(doc.at_css('#flash-messages')['aria-live']).to eq 'polite'
           expect(doc.at_css('body > a.skip-link')['href']).to eq '#content'
+          # Link home in the top bar; its text is drawn by CSS, so the page text is unchanged.
+          home = doc.at_css('body > a.home-link')
+          expect(home['href']).to eq '/'
+          expect(home.text).to eq ''
           expect(doc.css('#page-footer a').map { |a| a['href'] }).to all(start_with('https://'))
           # One jQuery for every page: the layout's.
           jquery = doc.css('script[src]').map { |s| s['src'] }.grep(%r{/jquery[-.]\d|ajax/libs/jquery/})

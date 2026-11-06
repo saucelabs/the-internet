@@ -1,3 +1,6 @@
+#0.87.2
++ The title in the top bar links to the home page
+
 #0.71.0
 + Added Custom Dropdown (/custom_dropdown): an ARIA combobox and listbox built from divs
 
