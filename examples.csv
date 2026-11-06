@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Modern File Download,/download_modern,,Downloads made with Blob / fetch and data URLs / and Content-Disposition quirks

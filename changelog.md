@@ -1,3 +1,6 @@
+#0.87.0
++ Added Modern File Download (/download_modern): Blob, fetch and data URL downloads, and Content-Disposition quirks
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

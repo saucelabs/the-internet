@@ -43,6 +43,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Key Presses](https://the-internet.herokuapp.com/key_presses)
 + [Large & Deep DOM](https://the-internet.herokuapp.com/large)
 + [Large Form](https://the-internet.herokuapp.com/large_form)
++ [Modern File Download](https://the-internet.herokuapp.com/download_modern)
 + [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown)
 + [Multiple Windows](https://the-internet.herokuapp.com/windows)
 + [Nested Frames](https://the-internet.herokuapp.com/nested_frames)
@@ -70,6 +71,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`
++ Modern File Download files: `/download_modern/file/:name` (`inline`, `utf8`, `spaces`, `no_name`, `report.json`)
 + Frames: [iFrame](https://the-internet.herokuapp.com/iframe), [top](https://the-internet.herokuapp.com/frame_top), [left](https://the-internet.herokuapp.com/frame_left), [middle](https://the-internet.herokuapp.com/frame_middle), [right](https://the-internet.herokuapp.com/frame_right), [bottom](https://the-internet.herokuapp.com/frame_bottom)
 + [Infinite Scroll page N](https://the-internet.herokuapp.com/infinite_scroll/2) (`/infinite_scroll/:number`)
 + [JQuery UI](https://the-internet.herokuapp.com/jqueryui) (linked from JQuery UI Menus)
@@ -82,7 +84,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Slow external resource](https://the-internet.herokuapp.com/slow_external) (used by Slow Resources; takes 30 seconds)
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
-+ Two-Factor Login: code page (`/two_factor/code`) and secure area (`/two_factor/secure`), after logging in
++ Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
 
 Don't see an example you need or think should be here? Contribute!
 
