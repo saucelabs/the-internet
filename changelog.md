@@ -1,6 +1,83 @@
 #0.86.0
 + Added Visual Differences (/visual_diff): small changes turned on from the URL (shift, color, font, hide_logo, typo) for visual testing
 
+#0.85.0
++ Added Accessibility Issues (/accessibility_issues): known axe violations, and a fixed version (?fixed=true)
+
+#0.84.0
++ Added Responsive Layout (/responsive): a menu that becomes a hamburger button below 640px
+
+#0.83.0
++ Added Locale & Time Zone (/locale): a greeting from Accept-Language or ?lang=, and dates and numbers in the browser's locale and time zone
+
+#0.82.0
++ Added Browser Permissions (/permissions): notifications, clipboard and camera access, with each permission's state
+
+#0.81.0
++ Added Cookie Consent (/cookie_consent): a banner that stays until you accept, reject or customize cookies
+
+#0.80.0
++ Added Live Updates (/live_updates): updates pushed with Server-Sent Events (?count=, ?interval=)
+
+#0.79.0
++ Added Slow & Failing API (/slow_api): an API with a chosen delay and 429/500/503 errors, and a page that retries
+
+#0.78.0
++ Added Network & Console (/network_console): requests, console messages, a thrown error and a CSP violation to watch with Selenium BiDi
+
+#0.77.0
++ Added SVG (/svg): click and read shapes and text in an inline SVG chart
+
+#0.76.0
++ Added Pointer Events (/pointer_events): a sortable list, swipe and long press built on pointer events
+
+#0.75.0
++ Added Virtualized List (/virtual_list): 10,000 items with only the visible rows in the DOM
+
+#0.74.0
++ Added SPA Routing (/spa): History API navigation with working Back/Forward and deep links (/spa/about, /spa/contact)
+
+#0.73.0
++ Added Stale Element (/stale_element): a list rebuilt on click or on a timer (?interval=)
+
+#0.72.0
++ Added Form Validation (/form_validation): HTML5 validation in the browser and per-field errors from the server
+
+#0.71.0
++ Added Custom Dropdown (/custom_dropdown): an ARIA combobox and listbox built from divs
+
+#0.70.0
++ Added Date & Time Pickers (/date_pickers): native date and time inputs and a JavaScript calendar widget (?month=YYYY-MM)
+
+#0.69.0
++ Added Autocomplete (/autocomplete): debounced suggestions from the server (/autocomplete/suggestions, ?delay=) picked with the keyboard or mouse
+
+#0.68.0
++ Added Toasts (/toasts): notifications that hide themselves after a time you set (?duration=)
+
+#0.67.0
++ Added Native Dialog (/dialog): modal and non-modal <dialog> with Escape and form buttons
+
+#0.66.0
++ Added Advanced Iframes (/iframes_advanced): a sandboxed frame that acts like cross-origin, a srcdoc frame and an iframe inside shadow DOM
+
+#0.65.0
++ Added Advanced Shadow DOM (/shadowdom_advanced): nested and closed shadow roots, slots and a form-associated custom element
+
+#0.64.0
++ Upgraded jQuery from 1.11.3 to 3.7.1 on every page. jQuery UI stays 1.11.4, so the JQuery UI menu markup is the same
++ /dynamic_controls uses the shared jQuery instead of loading jQuery 1.10.2 from Google
++ Removed /js/vendor/jquery-1.11.3.min.js
+
+#0.63.1
++ Page chrome accessibility: landmarks (main, contentinfo, messages region), a skip link, a visible keyboard focus ring and a label on the flash close link
++ Examples that are meant to be bad stay as they are
+
+#0.63.0
++ Home page: a filter box and a short description under each example. The list of links and the text of each item are the same
++ Home page uses the full width, with up to 4 columns; every item takes two lines and shows its full text on hover
++ README lists the description of each example
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 
