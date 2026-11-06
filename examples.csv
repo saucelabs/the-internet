@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Stale Element,/stale_element,,A list that is rebuilt on a timer or a click so old element references go stale

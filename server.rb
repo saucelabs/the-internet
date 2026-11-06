@@ -660,6 +660,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/stale_element' do
+    erb :stale_element
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

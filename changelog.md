@@ -1,3 +1,6 @@
+#0.73.0
++ Added Stale Element (/stale_element): a list rebuilt on click or on a timer (?interval=)
+
 #0.62.3
 + The JQuery UI menu download route only serves files from its own folder, like the other download routes
 
