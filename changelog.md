@@ -1,3 +1,6 @@
+#0.87.2
++ The title in the top bar links to the home page
+
 #0.87.1
 + Buttons with the success class (e.g. on Toasts) no longer show a broken icon before their text
 
