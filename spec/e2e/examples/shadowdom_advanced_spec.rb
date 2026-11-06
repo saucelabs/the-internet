@@ -9,7 +9,8 @@ describe 'Examples' do
     expect(find(:id, 'nested-result').text).to eq 'You clicked the button in the inner shadow root'
   end
 
-  it 'Advanced Shadow DOM: a closed shadow root is hidden from page scripts but not from WebDriver' do
+  it 'Advanced Shadow DOM: a closed shadow root is hidden from page scripts but not from WebDriver',
+     unsupported: { 'safari' => 'safaridriver does not return closed shadow roots' } do
     host = find(:id, 'closed-card')
     expect(@driver.execute_script('return arguments[0].shadowRoot', host)).to be_nil
     expect(host.shadow_root.find_element(:css, '#closed-text').text).to eq 'This text is in a closed shadow root'
