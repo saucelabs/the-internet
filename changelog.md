@@ -1,3 +1,6 @@
+#0.87.1
++ Buttons with the success class (e.g. on Toasts) no longer show a broken icon before their text
+
 #0.87.0
 + Added Modern File Download (/download_modern): Blob, fetch and data URL downloads, and Content-Disposition quirks
 
