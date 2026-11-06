@@ -31,6 +31,18 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Network & Console' do
+    it 'sends a report-only CSP for images' do
+      expect(client.get('/network_console')['content-security-policy-report-only']).to eq "img-src 'self'"
+    end
+
+    it 'serves JSON data' do
+      res = client.get('/network_console/data')
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq('fruit' => 'apple', 'count' => 3)
+    end
+  end
+
   describe 'Form validation' do
     let(:valid) { { username: 'ana', email: 'ana@example.com', password: 'longenough', terms: 'on' } }
 

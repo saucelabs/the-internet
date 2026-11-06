@@ -53,6 +53,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Multiple Windows](https://the-internet.herokuapp.com/windows) - A link that opens a new window
 + [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
 + [Nested Frames](https://the-internet.herokuapp.com/nested_frames) - Frames inside frames
++ [Network & Console](https://the-internet.herokuapp.com/network_console) - Requests / console messages / a JavaScript error and a CSP violation to catch with Selenium BiDi
 + [Notification Messages](https://the-internet.herokuapp.com/notification_message) - A flash message that changes on each click
 + [Pointer Events](https://the-internet.herokuapp.com/pointer_events) - Sort a list / swipe and long-press with pointer events instead of HTML5 drag and drop
 + [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons) - Pick one option per group
@@ -84,6 +85,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
 + Form Validation server check: `POST /form_validation` (JSON; 422 with errors per field)
++ Network & Console JSON: [/network_console/data](https://the-internet.herokuapp.com/network_console/data)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`
 + Frames: [iFrame](https://the-internet.herokuapp.com/iframe), [top](https://the-internet.herokuapp.com/frame_top), [left](https://the-internet.herokuapp.com/frame_left), [middle](https://the-internet.herokuapp.com/frame_middle), [right](https://the-internet.herokuapp.com/frame_right), [bottom](https://the-internet.herokuapp.com/frame_bottom)

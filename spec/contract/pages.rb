@@ -85,6 +85,7 @@ PAGES = {
   '/virtual_list'                  => { text: 'Virtualized List' },
   '/pointer_events'                => { text: 'Pointer Events' },
   '/svg'                           => { text: 'SVG' },
+  '/network_console'               => { text: 'Network &amp; Console' },
 }.freeze
 
 def snapshot_name(path)

@@ -791,6 +791,18 @@ class Public < Sinatra::Base
     erb :svg
   end
 
+  # The report-only policy reports the data: image as a violation without blocking anything.
+  get '/network_console' do
+    headers 'Content-Security-Policy-Report-Only' => "img-src 'self'"
+    erb :network_console
+  end
+
+  get '/network_console/data' do
+    require 'json'
+    content_type :json
+    JSON.generate(fruit: 'apple', count: 3)
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

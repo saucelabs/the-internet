@@ -1,3 +1,6 @@
+#0.78.0
++ Added Network & Console (/network_console): requests, console messages, a thrown error and a CSP violation to watch with Selenium BiDi
+
 #0.77.0
 + Added SVG (/svg): click and read shapes and text in an inline SVG chart
 
