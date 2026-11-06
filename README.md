@@ -63,6 +63,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons) - Pick one option per group
 + [Read-only Inputs](https://the-internet.herokuapp.com/readonly) - Fields you can read but not change
 + [Redirect Link](https://the-internet.herokuapp.com/redirector) - A link that redirects to another page
++ [Responsive Layout](https://the-internet.herokuapp.com/responsive) - A menu that turns into a hamburger button on narrow screens
 + [SPA Routing](https://the-internet.herokuapp.com/spa) - A single-page app that changes the URL with the History API
 + [SVG](https://the-internet.herokuapp.com/svg) - Click and read shapes and text inside an inline SVG chart
 + [Secure File Download](https://the-internet.herokuapp.com/download_secure) - Downloads behind basic auth

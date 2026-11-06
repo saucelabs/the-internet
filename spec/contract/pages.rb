@@ -91,6 +91,7 @@ PAGES = {
   '/cookie_consent'                => { text: 'Cookie Consent' },
   '/permissions'                   => { text: 'Browser Permissions' },
   '/locale'                        => { text: 'Locale &amp; Time Zone' },
+  '/responsive'                    => { text: 'Responsive Layout' },
 }.freeze
 
 def snapshot_name(path)

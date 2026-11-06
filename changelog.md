@@ -1,3 +1,6 @@
+#0.84.0
++ Added Responsive Layout (/responsive): a menu that becomes a hamburger button below 640px
+
 #0.83.0
 + Added Locale & Time Zone (/locale): a greeting from Accept-Language or ?lang=, and dates and numbers in the browser's locale and time zone
 

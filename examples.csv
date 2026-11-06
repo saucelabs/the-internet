@@ -69,3 +69,4 @@ Live Updates,/live_updates,,Updates pushed by the server with Server-Sent Events
 Cookie Consent,/cookie_consent,,A cookie banner that comes back until you accept / reject or pick cookies
 Browser Permissions,/permissions,,Ask for notifications / clipboard and camera access and see each permission's state
 Locale & Time Zone,/locale,,Content in the language your browser asks for / dates and numbers in your locale and time zone
+Responsive Layout,/responsive,,A menu that turns into a hamburger button on narrow screens
