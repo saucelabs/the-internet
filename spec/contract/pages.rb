@@ -89,6 +89,7 @@ PAGES = {
   '/slow_api'                      => { text: 'Slow &amp; Failing API' },
   '/live_updates'                  => { text: 'Live Updates' },
   '/cookie_consent'                => { text: 'Cookie Consent' },
+  '/permissions'                   => { text: 'Browser Permissions' },
 }.freeze
 
 def snapshot_name(path)

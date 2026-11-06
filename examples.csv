@@ -67,3 +67,4 @@ Network & Console,/network_console,,Requests / console messages / a JavaScript e
 Slow & Failing API,/slow_api,,Calls to an API with a delay and 429 / 500 errors you choose / and a retry
 Live Updates,/live_updates,,Updates pushed by the server with Server-Sent Events
 Cookie Consent,/cookie_consent,,A cookie banner that comes back until you accept / reject or pick cookies
+Browser Permissions,/permissions,,Ask for notifications / clipboard and camera access and see each permission's state

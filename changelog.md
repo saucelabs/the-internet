@@ -1,3 +1,6 @@
+#0.82.0
++ Added Browser Permissions (/permissions): notifications, clipboard and camera access, with each permission's state
+
 #0.81.0
 + Added Cookie Consent (/cookie_consent): a banner that stays until you accept, reject or customize cookies
 

@@ -16,6 +16,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Autocomplete](https://the-internet.herokuapp.com/autocomplete) - A search box with suggestions from the server that you pick with the keyboard
 + [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin) - Log in through the browser's basic auth prompt
 + [Broken Images](https://the-internet.herokuapp.com/broken_images) - Images that fail to load
++ [Browser Permissions](https://the-internet.herokuapp.com/permissions) - Ask for notifications / clipboard and camera access and see each permission's state
 + [Canvas](https://the-internet.herokuapp.com/canvas) - Click and type into a canvas
 + [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom) - Elements without useful ids and a canvas
 + [Checkboxes](https://the-internet.herokuapp.com/checkboxes) - Check and uncheck boxes
