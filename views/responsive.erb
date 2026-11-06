@@ -1,0 +1,60 @@
+<style>
+  #site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; background: #192319; border-radius: 0.75rem; padding: 0.75em 1em; margin-bottom: 1.5em; }
+  #site-header .brand { color: #f0f0ec; font-weight: 700; }
+  #site-nav ul { display: flex; gap: 1.5em; list-style: none; margin: 0; padding: 0; }
+  #site-nav a { color: #f0f0ec; }
+  #menu-toggle { display: none; margin: 0; padding: 0.4em 0.8em; background: #abe082; color: #192319; }
+  #cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; }
+  #cards .card { border: 1px solid #c8c8be; border-radius: 0.75rem; padding: 1em; }
+  #layout-name::after { content: "desktop"; }
+
+  @media (max-width: 640px) {
+    #menu-toggle { display: block; }
+    #site-nav { display: none; width: 100%; }
+    #site-nav.open { display: block; }
+    #site-nav ul { flex-direction: column; gap: 0.5em; padding-top: 0.75em; }
+    #cards { grid-template-columns: 1fr; }
+    #layout-name::after { content: "mobile"; }
+  }
+</style>
+<div class="example">
+  <h3>Responsive Layout</h3>
+  <p>Make the window narrower than 640 pixels: the menu turns into a button that opens it, and the cards stack in one column. Tests can resize the window or use a mobile emulation to see it.</p>
+  <header id="site-header">
+    <span class="brand">Example Shop</span>
+    <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">&#9776; Menu</button>
+    <nav id="site-nav" aria-label="Example shop">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <p>Layout: <span id="layout-name"></span></p>
+  <p id="nav-result">No menu item clicked</p>
+  <div id="cards">
+    <div class="card" id="card-1"><h4>Fast</h4><p>Pages load quickly.</p></div>
+    <div class="card" id="card-2"><h4>Simple</h4><p>Nothing to set up.</p></div>
+    <div class="card" id="card-3"><h4>Cheap</h4><p>Free to try.</p></div>
+  </div>
+</div>
+<script>
+  (function() {
+    var toggle = document.getElementById('menu-toggle');
+    var nav = document.getElementById('site-nav');
+    toggle.addEventListener('click', function() {
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    nav.addEventListener('click', function(event) {
+      var link = event.target.closest('a');
+      if (!link) return;
+      event.preventDefault();
+      document.getElementById('nav-result').textContent = 'You clicked ' + link.textContent;
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  })();
+</script>

@@ -1,3 +1,6 @@
+#0.84.0
++ Added Responsive Layout (/responsive): a menu that becomes a hamburger button below 640px
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

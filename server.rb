@@ -687,6 +687,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/responsive' do
+    erb :responsive
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

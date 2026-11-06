@@ -50,6 +50,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons)
 + [Read-only Inputs](https://the-internet.herokuapp.com/readonly)
 + [Redirect Link](https://the-internet.herokuapp.com/redirector)
++ [Responsive Layout](https://the-internet.herokuapp.com/responsive)
 + [Secure File Download](https://the-internet.herokuapp.com/download_secure)
 + [Shadow DOM](https://the-internet.herokuapp.com/shadowdom)
 + [Shifting Content](https://the-internet.herokuapp.com/shifting_content)
@@ -82,7 +83,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Slow external resource](https://the-internet.herokuapp.com/slow_external) (used by Slow Resources; takes 30 seconds)
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
-+ Two-Factor Login: code page (`/two_factor/code`) and secure area (`/two_factor/secure`), after logging in
++ Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
 
 Don't see an example you need or think should be here? Contribute!
 
