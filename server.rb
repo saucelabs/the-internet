@@ -93,7 +93,7 @@ class Public < Sinatra::Base
   get '/download/jqueryui/menu/:filename' do |filename|
     mime_type = get_mime_type_for(filename)
 
-    send_file "public/uploads/jqueryui/menu/#{filename}",
+    send_file "public/uploads/jqueryui/menu/#{File.basename(filename)}",
       :filename => filename,
       :type => mime_type
   end
