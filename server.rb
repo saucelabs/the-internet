@@ -660,6 +660,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/date_pickers' do
+    erb :date_pickers
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

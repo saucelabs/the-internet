@@ -1,3 +1,6 @@
+#0.70.0
++ Added Date & Time Pickers (/date_pickers): native date and time inputs and a JavaScript calendar widget (?month=YYYY-MM)
+
 #0.62.3
 + The JQuery UI menu download route only serves files from its own folder, like the other download routes
 
