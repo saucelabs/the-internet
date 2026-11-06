@@ -1,0 +1,111 @@
+<style>
+  #calendar { display: inline-block; border: 1px solid #c8c8be; border-radius: 0.5rem; padding: 0.5em; background: white; }
+  #calendar[hidden] { display: none; }
+  #calendar table { margin: 0; border: 0; }
+  #calendar td, #calendar th { padding: 0.15em; text-align: center; }
+  #calendar td button { margin: 0; padding: 0.3em 0.5em; min-width: 2.2em; background: white; color: #192319; border: 1px solid transparent; border-radius: 0.5rem; }
+  #calendar td button.selected { background: #abe082; }
+  #calendar-header { display: flex; justify-content: space-between; align-items: center; gap: 0.5em; }
+  #calendar-header button { margin: 0; padding: 0.3em 0.75em; }
+</style>
+<div class="example">
+  <h3>Date &amp; Time Pickers</h3>
+
+  <h4>Native inputs</h4>
+  <p>The browser draws these pickers, and each browser draws them differently. Their value is always in the same format (e.g. <code>2026-04-15</code>).</p>
+  <form id="native-pickers">
+    <label for="date">Date</label> <input type="date" id="date" name="date" min="2000-01-01" max="2099-12-31">
+    <label for="time">Time</label> <input type="time" id="time" name="time">
+    <label for="datetime">Date and time</label> <input type="datetime-local" id="datetime" name="datetime">
+    <label for="month">Month</label> <input type="month" id="month" name="month">
+    <label for="week">Week</label> <input type="week" id="week" name="week">
+  </form>
+  <p id="native-result">No values yet</p>
+
+  <h4>Calendar widget</h4>
+  <p>A picker built with JavaScript. The field is read-only: open the calendar and click a day. It opens on the current month, or on <code>?month=YYYY-MM</code>.</p>
+  <label for="widget-date">Appointment</label>
+  <input type="text" id="widget-date" readonly placeholder="YYYY-MM-DD">
+  <button type="button" id="open-calendar" class="button secondary" aria-expanded="false" aria-controls="calendar">Open calendar</button>
+  <div id="calendar" hidden>
+    <div id="calendar-header">
+      <button type="button" id="previous-month" class="button secondary" aria-label="Previous month">&lsaquo;</button>
+      <strong id="calendar-month"></strong>
+      <button type="button" id="next-month" class="button secondary" aria-label="Next month">&rsaquo;</button>
+    </div>
+    <table>
+      <thead><tr><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th></tr></thead>
+      <tbody id="calendar-days"></tbody>
+    </table>
+  </div>
+</div>
+<script>
+  (function() {
+    var form = document.getElementById('native-pickers');
+    form.addEventListener('input', function() {
+      var parts = [];
+      form.querySelectorAll('input').forEach(function(input) {
+        if (input.value) parts.push(input.name + ': ' + input.value);
+      });
+      document.getElementById('native-result').textContent = parts.length ? parts.join(', ') : 'No values yet';
+    });
+
+    var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var field = document.getElementById('widget-date');
+    var calendar = document.getElementById('calendar');
+    var toggle = document.getElementById('open-calendar');
+    var start = new URLSearchParams(location.search).get('month');
+    var now = new Date();
+    var year = now.getFullYear(), month = now.getMonth();
+    if (start && /^\d{4}-(0[1-9]|1[0-2])$/.test(start)) {
+      year = parseInt(start.slice(0, 4), 10);
+      month = parseInt(start.slice(5), 10) - 1;
+    }
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function render() {
+      document.getElementById('calendar-month').textContent = monthNames[month] + ' ' + year;
+      var body = document.getElementById('calendar-days');
+      body.innerHTML = '';
+      var offset = (new Date(year, month, 1).getDay() + 6) % 7;
+      var days = new Date(year, month + 1, 0).getDate();
+      var row = document.createElement('tr');
+      for (var i = 0; i < offset; i++) row.appendChild(document.createElement('td'));
+      for (var day = 1; day <= days; day++) {
+        var cell = document.createElement('td');
+        var button = document.createElement('button');
+        var value = year + '-' + pad(month + 1) + '-' + pad(day);
+        button.type = 'button';
+        button.textContent = day;
+        button.setAttribute('data-date', value);
+        if (value === field.value) button.className = 'selected';
+        button.addEventListener('click', pick);
+        cell.appendChild(button);
+        row.appendChild(cell);
+        if ((offset + day) % 7 === 0) { body.appendChild(row); row = document.createElement('tr'); }
+      }
+      if (row.children.length) body.appendChild(row);
+    }
+
+    function pick() {
+      field.value = this.getAttribute('data-date');
+      setOpen(false);
+    }
+
+    function setOpen(open) {
+      calendar.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? 'Close calendar' : 'Open calendar';
+      if (open) render();
+    }
+
+    toggle.addEventListener('click', function() { setOpen(calendar.hidden); });
+    document.getElementById('previous-month').addEventListener('click', function() {
+      month--; if (month < 0) { month = 11; year--; } render();
+    });
+    document.getElementById('next-month').addEventListener('click', function() {
+      month++; if (month > 11) { month = 0; year++; } render();
+    });
+  })();
+</script>
