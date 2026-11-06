@@ -2,6 +2,20 @@
 + Page chrome accessibility: landmarks (main, contentinfo, messages region), a skip link, a visible keyboard focus ring and a label on the flash close link
 + Examples that are meant to be bad stay as they are
 
+#0.63.0
++ Home page: a filter box and a short description under each example. The list of links and the text of each item are the same
++ Home page uses the full width, with up to 4 columns; every item takes two lines and shows its full text on hover
++ README lists the description of each example
+
+#0.62.4
++ Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
+
+#0.62.3
++ The JQuery UI menu download route only serves files from its own folder, like the other download routes
+
+#0.62.2
++ Footer links to Elemental Selenium over https
+
 #0.62.1
 + File Upload keeps only letters, digits, dot, dash and underscore in file names; other characters become "_"
 + File Download and Secure File Download escape the file names they list

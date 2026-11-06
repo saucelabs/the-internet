@@ -31,6 +31,7 @@ describe 'Pages' do
           expect(doc.at_css('#page-footer')['role']).to eq 'contentinfo'
           expect(doc.at_css('#flash-messages')['aria-live']).to eq 'polite'
           expect(doc.at_css('body > a.skip-link')['href']).to eq '#content'
+          expect(doc.css('#page-footer a').map { |a| a['href'] }).to all(start_with('https://'))
         end
       end
     end
@@ -42,6 +43,23 @@ describe 'Pages' do
                   .map { |r| [r['title'], r['url_path']] }.sort
     links = html(client.get('/')).css('#content ul li a').map { |a| [a.text, a['href']] }.sort
     expect(links).to eq expected
+  end
+
+  it 'describes every example on the index without changing the item text' do
+    require 'csv'
+    rows = CSV.read(File.expand_path('../../examples.csv', __dir__), headers: true)
+    items = html(client.get('/')).css('#content ul li')
+    rows.each do |row|
+      item = items.find { |li| li.at_css('a')['href'] == row['url_path'] }
+      expect(item['data-description']).to eq row['description']
+      expect(item.text.strip).to eq [row['title'], row['notes'] && "(#{row['notes']})"].compact.join(' ')
+    end
+  end
+
+  it 'has a filter box on the index' do
+    doc = html(client.get('/'))
+    expect(doc.at_css('#content label[for=example-filter]').text).to eq 'Filter examples'
+    expect(doc.at_css('#content input#example-filter[type=search]')).not_to be_nil
   end
 
   it 'links every example on the index to a working page' do
