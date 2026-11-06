@@ -1,3 +1,6 @@
+#0.62.4
++ Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
+
 #0.62.3
 + The JQuery UI menu download route only serves files from its own folder, like the other download routes
 
