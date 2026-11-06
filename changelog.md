@@ -1,3 +1,6 @@
+#0.65.0
++ Added Advanced Shadow DOM (/shadowdom_advanced): nested and closed shadow roots, slots and a form-associated custom element
+
 #0.62.2
 + Footer links to Elemental Selenium over https
 

@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Advanced Shadow DOM,/shadowdom_advanced,,Nested and closed shadow roots / slots / a custom form field

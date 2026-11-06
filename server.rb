@@ -660,6 +660,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/shadowdom_advanced' do
+    erb :shadowdom_advanced
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

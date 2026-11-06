@@ -11,6 +11,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 
 + [A/B Testing](https://the-internet.herokuapp.com/abtest)
 + [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/)
++ [Advanced Shadow DOM](https://the-internet.herokuapp.com/shadowdom_advanced)
 + [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin)
 + [Broken Images](https://the-internet.herokuapp.com/broken_images)
 + [Canvas](https://the-internet.herokuapp.com/canvas)
@@ -82,7 +83,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Slow external resource](https://the-internet.herokuapp.com/slow_external) (used by Slow Resources; takes 30 seconds)
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
-+ Two-Factor Login: code page (`/two_factor/code`) and secure area (`/two_factor/secure`), after logging in
++ Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
 
 Don't see an example you need or think should be here? Contribute!
 
