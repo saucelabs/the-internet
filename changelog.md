@@ -1,3 +1,6 @@
+#0.86.0
++ Added Visual Differences (/visual_diff): small changes turned on from the URL (shift, color, font, hide_logo, typo) for visual testing
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

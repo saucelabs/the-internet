@@ -1,0 +1,60 @@
+<div class="large-12 columns" id="content">
+  <style>
+    #card { width: 22em; border: 1px solid #c8c8be; border-radius: 1rem; padding: 1.5em; background: white; } #card-logo { display: block; width: 64px; height: 64px; border-radius: 50%; margin-bottom: 1em; } #card-button { position: relative; }
+  <div class="example">
+    <h3>
+      Visual Differences
+    <p>
+      Without parameters this card is the baseline. Each parameter turns on one small change, so you can check that a visual test notices it. Changes are drawn by the server, so the same URL always looks the same.
+    <ul id="variants">
+      <li>
+        <a href="/visual_diff">
+          Baseline
+      <li>
+        <a href="/visual_diff?shift=10">
+          Button moved 10px
+        (
+        <code>
+          ?shift=0..50
+        )
+      <li>
+        <a href="/visual_diff?color=red">
+          Button colour changed
+        (
+        <code>
+          ?color=green|red|blue
+        )
+      <li>
+        <a href="/visual_diff?font=large">
+          Larger text
+        (
+        <code>
+          ?font=large
+        )
+      <li>
+        <a href="/visual_diff?hide_logo=true">
+          Logo missing
+        (
+        <code>
+          ?hide_logo=true
+        )
+      <li>
+        <a href="/visual_diff?typo=true">
+          Typo in the heading
+        (
+        <code>
+          ?typo=true
+        )
+    <div id="card">
+      <img alt="Logo" id="card-logo" src="/img/avatar-blank.jpg">
+      <h4 id="card-title">
+        Sign up for our newsletter
+      <p id="card-text">
+        One email a month with new examples. No spam.
+      <label for="card-email">
+        Email
+      <input id="card-email" type="email">
+      <button class="button" id="card-button" style="background-color: #043423; border-color: #043423; left: 0px;" type="button">
+        Subscribe
+    <p id="active-changes">
+      Changes: none

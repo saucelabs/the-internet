@@ -1,0 +1,27 @@
+<% colors = { 'green' => '#043423', 'red' => '#961001', 'blue' => '#334bc3' } %>
+<style>
+  #card { width: 22em; border: 1px solid #c8c8be; border-radius: 1rem; padding: 1.5em; background: white; }
+  #card-logo { display: block; width: 64px; height: 64px; border-radius: 50%; margin-bottom: 1em; }
+  #card-button { position: relative; }
+</style>
+<div class="example">
+  <h3>Visual Differences</h3>
+  <p>Without parameters this card is the baseline. Each parameter turns on one small change, so you can check that a visual test notices it. Changes are drawn by the server, so the same URL always looks the same.</p>
+  <ul id="variants">
+    <li><a href="/visual_diff">Baseline</a></li>
+    <li><a href="/visual_diff?shift=10">Button moved 10px</a> (<code>?shift=0..50</code>)</li>
+    <li><a href="/visual_diff?color=red">Button colour changed</a> (<code>?color=green|red|blue</code>)</li>
+    <li><a href="/visual_diff?font=large">Larger text</a> (<code>?font=large</code>)</li>
+    <li><a href="/visual_diff?hide_logo=true">Logo missing</a> (<code>?hide_logo=true</code>)</li>
+    <li><a href="/visual_diff?typo=true">Typo in the heading</a> (<code>?typo=true</code>)</li>
+  </ul>
+  <div id="card"<% if changes[:font] %> style="font-size: 1.15em;"<% end %>>
+    <img id="card-logo" src="/img/avatar-blank.jpg" alt="Logo"<% if changes[:hide_logo] %> style="visibility: hidden;"<% end %>>
+    <h4 id="card-title"><%= changes[:typo] ? 'Sign up for our newsleter' : 'Sign up for our newsletter' %></h4>
+    <p id="card-text">One email a month with new examples. No spam.</p>
+    <label for="card-email">Email</label>
+    <input type="email" id="card-email">
+    <button id="card-button" type="button" class="button" style="background-color: <%= colors[changes[:color]] %>; border-color: <%= colors[changes[:color]] %>; left: <%= changes[:shift] %>px;">Subscribe</button>
+  </div>
+  <p id="active-changes">Changes: <%= [("shift #{changes[:shift]}px" if changes[:shift] > 0), ("color #{changes[:color]}" unless changes[:color] == 'green'), ('large font' if changes[:font]), ('logo hidden' if changes[:hide_logo]), ('typo' if changes[:typo])].compact.join(', ').then { |s| s.empty? ? 'none' : s } %></p>
+</div>
