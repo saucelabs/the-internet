@@ -1,3 +1,6 @@
+#0.77.0
++ Added SVG (/svg): click and read shapes and text in an inline SVG chart
+
 #0.76.0
 + Added Pointer Events (/pointer_events): a sortable list, swipe and long press built on pointer events
 

@@ -787,6 +787,10 @@ class Public < Sinatra::Base
     erb :pointer_events
   end
 
+  get '/svg' do
+    erb :svg
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
