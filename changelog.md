@@ -1,3 +1,7 @@
+#0.63.1
++ Page chrome accessibility: landmarks (main, contentinfo, messages region), a skip link, a visible keyboard focus ring and a label on the flash close link
++ Examples that are meant to be bad stay as they are
+
 #0.62.1
 + File Upload keeps only letters, digits, dot, dash and underscore in file names; other characters become "_"
 + File Download and Secure File Download escape the file names they list
