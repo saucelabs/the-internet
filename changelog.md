@@ -1,3 +1,6 @@
+#0.82.0
++ Added Browser Permissions (/permissions): notifications, clipboard and camera access, with each permission's state
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

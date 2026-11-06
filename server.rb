@@ -687,6 +687,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/permissions' do
+    erb :permissions
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
