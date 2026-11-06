@@ -1,3 +1,7 @@
+#0.63.1
++ Page chrome accessibility: landmarks (main, contentinfo, messages region), a skip link, a visible keyboard focus ring and a label on the flash close link
++ Examples that are meant to be bad stay as they are
+
 #0.63.0
 + Home page: a filter box and a short description under each example. The list of links and the text of each item are the same
 + Home page uses the full width, with up to 4 columns; every item takes two lines and shows its full text on hover

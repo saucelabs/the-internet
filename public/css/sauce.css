@@ -377,3 +377,47 @@ table tr:nth-of-type(even) {
 #page-footer hr {
   display: none;
 }
+
+/* Accessibility of the page chrome */
+.skip-link {
+  position: absolute;
+  left: 1em;
+  top: -10em;
+  z-index: 1000;
+  padding: 0.5em 1em;
+  background: var(--sl-highlight);
+  color: var(--sl-pine);
+  font-weight: 700;
+  border-radius: 0.5rem;
+}
+.skip-link:focus {
+  top: 1em;
+}
+/* A clear focus ring for keyboard users; the mouse doesn't trigger it. */
+a:focus-visible,
+button:focus-visible,
+.button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible,
+input[type="range"]:focus-visible,
+input[type="file"]:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="button"]:focus-visible {
+  outline: 3px solid var(--sl-deep-shock);
+  outline-offset: 2px;
+}
+a:focus:not(:focus-visible) {
+  outline: 0;
+}
+.flash .close {
+  opacity: 0.85;
+}
+.flash .close:hover,
+.flash .close:focus {
+  opacity: 1;
+}
+.flash .close:focus-visible {
+  outline-color: white;
+}

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-
-<html>
   <head>
     <script src="/js/vendor/298279967.js"></script>
     <meta charset="utf-8" />
@@ -20,25 +18,26 @@
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="row">
-      <div id="flash-messages" class="large-12 columns">
+      <div id="flash-messages" class="large-12 columns" role="region" aria-label="Messages" aria-live="polite">
       <% %w[notice error success].each do |type| %>
         <% if flash[type.to_sym] %>
           <div data-alert id='flash' class='flash <%= type %>'>
             <%= flash[type.to_sym] %>
-            <a href="#" class="close">&times;</a>
+            <a href="#" class="close" aria-label="Close">&times;</a>
           </div>
         <% end %>
       <% end %>
       </div>
     </div>
     <div class="row">
-      <a href="https://github.com/saucelabs/the-internet"><img style="position: absolute; top: 0; right: 0; border: 0;" src="/img/forkme_right_sauce.svg" alt="Fork me on GitHub"></a>
-      <div id="content" class="large-12 columns">
+      <nav aria-label="Source code"><a href="https://github.com/saucelabs/the-internet"><img style="position: absolute; top: 0; right: 0; border: 0;" src="/img/forkme_right_sauce.svg" alt="Fork me on GitHub"></a></nav>
+      <div id="content" class="large-12 columns" role="main">
         <%= yield %>
       </div>
     </div>
-    <div id='page-footer' class="row">
+    <div id='page-footer' class="row" role="contentinfo">
       <div class="large-6 large-centered columns">
         <hr>
         <div style="text-align: center;">Powered by <a target="_blank" href="https://elementalselenium.com/">Elemental Selenium</a> and <a target="_blank" href="https://saucelabs.com/">Sauce Labs</a></div>

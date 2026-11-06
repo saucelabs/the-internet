@@ -26,6 +26,11 @@ describe 'Pages' do
           LAYOUT_SELECTORS.each { |sel| expect(doc.at_css(sel)).not_to be_nil, "missing #{sel}" }
           expect(doc.at_css('title').text).to eq 'The Internet'
           expect(doc.at_css('#page-footer').text).to include 'Powered by Elemental Selenium'
+          # Landmarks and the skip link (accessibility of the chrome).
+          expect(doc.at_css('#content')['role']).to eq 'main'
+          expect(doc.at_css('#page-footer')['role']).to eq 'contentinfo'
+          expect(doc.at_css('#flash-messages')['aria-live']).to eq 'polite'
+          expect(doc.at_css('body > a.skip-link')['href']).to eq '#content'
           expect(doc.css('#page-footer a').map { |a| a['href'] }).to all(start_with('https://'))
         end
       end
