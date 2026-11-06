@@ -25,7 +25,7 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 
 ## Adding an example
 1. Route in `server.rb` (`Public` class) + view in `views/`.
-2. Row in `examples.csv` (`title,url_path,notes`).
+2. Row in `examples.csv` (`title,url_path,notes,description`). The description shows on the home page and in the README.
 3. `bundle exec rake gen_docs`.
 4. Contract entry in `spec/contract/pages.rb` (+ snapshot) and an E2E scenario in `spec/e2e/examples/`.
 5. Bump `VERSION` and add a matching entry at the top of `changelog.md` (every PR; CI checks it).

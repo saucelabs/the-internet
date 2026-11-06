@@ -1,3 +1,8 @@
+#0.63.0
++ Home page: a filter box and a short description under each example. The list of links and the text of each item are the same
++ Home page uses the full width, with up to 4 columns; every item takes two lines and shows its full text on hover
++ README lists the description of each example
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 
