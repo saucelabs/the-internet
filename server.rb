@@ -47,6 +47,30 @@ class Public < Sinatra::Base
   BLOCKED_UPLOAD_EXTENSIONS = %w[.apk .app .bat .cmd .com .cpl .dll .dmg .exe .hta .jar .js .lnk .msi .ps1 .scr .sh .vbs .wsf].freeze
   MAX_UPLOAD_BYTES = 2 * 1024 * 1024
 
+  # Uploaded files are deleted after an hour, and only the newest ones are kept.
+  UPLOAD_MAX_AGE = 60 * 60
+  UPLOAD_MAX_COUNT = 100
+
+  # Deletes old uploads and the ones over the cap. Seeded files stay.
+  # Several puma workers may prune at once, so a file can vanish mid-way.
+  def self.prune_uploads(now = Time.now)
+    uploads = (Dir.children('public/uploads') - SEEDED_UPLOADS).filter_map do |name|
+      path = File.join('public/uploads', name)
+      [path, File.mtime(path)] if File.file?(path)
+    rescue Errno::ENOENT
+      nil
+    end
+    uploads.sort_by { |_, mtime| -mtime.to_f }.each_with_index do |(path, mtime), i|
+      next unless i >= UPLOAD_MAX_COUNT || mtime < now - UPLOAD_MAX_AGE
+
+      begin
+        File.delete(path)
+      rescue Errno::ENOENT
+        nil
+      end
+    end
+  end
+
   # Keeps letters, digits, dot, dash and underscore; everything else becomes "_".
   def self.clean_upload_name(name)
     File.basename(name.to_s).gsub(/[^A-Za-z0-9._-]/, '_')
@@ -73,11 +97,13 @@ class Public < Sinatra::Base
       File.open(File.join('public/uploads', filename), 'wb') do |f|
         f.write(file[:tempfile].read)
       end
+      self.class.prune_uploads
     end
     erb :uploaded, locals: { file: file }
   end
 
   get '/download' do
+    self.class.prune_uploads
     @file_list = Dir.glob("public/uploads/*.*").map { |f| f.split('/').last }
     erb :download
   end
@@ -93,13 +119,14 @@ class Public < Sinatra::Base
   get '/download/jqueryui/menu/:filename' do |filename|
     mime_type = get_mime_type_for(filename)
 
-    send_file "public/uploads/jqueryui/menu/#{filename}",
+    send_file "public/uploads/jqueryui/menu/#{File.basename(filename)}",
       :filename => filename,
       :type => mime_type
   end
 
   get '/download_secure' do
     protected!
+    self.class.prune_uploads
     @file_list = Dir.glob("public/uploads/*.*").map { |f| f.split('/').last }
     erb :download_secure
   end
@@ -658,6 +685,10 @@ class Public < Sinatra::Base
 
   get '/inputs' do
     erb :inputs
+  end
+
+  get '/shadowdom_advanced' do
+    erb :shadowdom_advanced
   end
 
   get '/iframes_advanced' do

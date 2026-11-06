@@ -1,0 +1,113 @@
+<div class="example">
+  <h3>Advanced Shadow DOM</h3>
+  <p>Shadow roots inside shadow roots, a closed shadow root, slots, and a custom element that is part of a form.</p>
+
+  <h4>Nested open shadow roots</h4>
+  <outer-card id="outer-card"></outer-card>
+  <p id="nested-result">The button has not been clicked</p>
+
+  <h4>Closed shadow root</h4>
+  <p>Page scripts can't reach inside (<code>element.shadowRoot</code> is <code>null</code>), but WebDriver can.</p>
+  <closed-card id="closed-card"></closed-card>
+
+  <h4>Slots</h4>
+  <slot-card id="slot-card">
+    <span slot="title">Title from the light DOM</span>
+    <span slot="body">Body from the light DOM</span>
+  </slot-card>
+
+  <h4>Form-associated custom element</h4>
+  <form id="rating-form" novalidate>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name">
+    <p>Rating</p>
+    <star-rating id="rating" name="rating"></star-rating>
+    <button type="submit" class="button">Submit</button>
+  </form>
+  <p id="form-result"></p>
+</div>
+<script>
+  customElements.define('inner-card', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' }).innerHTML =
+        '<p>Inner shadow root</p><button id="inner-button">Click me</button>';
+      this.shadowRoot.getElementById('inner-button').addEventListener('click', function() {
+        document.getElementById('nested-result').textContent = 'You clicked the button in the inner shadow root';
+      });
+    }
+  });
+
+  customElements.define('outer-card', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' }).innerHTML =
+        '<div style="border: 1px solid #999; padding: 1em;"><p>Outer shadow root</p><inner-card id="inner-card"></inner-card></div>';
+    }
+  });
+
+  customElements.define('closed-card', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'closed' }).innerHTML =
+        '<p id="closed-text">This text is in a closed shadow root</p><input id="closed-input" placeholder="Closed input">';
+    }
+  });
+
+  customElements.define('slot-card', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' }).innerHTML =
+        '<div style="border: 1px solid #999; padding: 1em;">' +
+        '<strong><slot name="title">Default title</slot></strong>' +
+        '<p><slot name="body">Default body</slot></p>' +
+        '<p><slot name="footer">Default footer (nothing is slotted here)</slot></p>' +
+        '</div>';
+    }
+  });
+
+  customElements.define('star-rating', class extends HTMLElement {
+    static formAssociated = true;
+    constructor() {
+      super();
+      this.internals = this.attachInternals();
+      this.value = '';
+      var root = this.attachShadow({ mode: 'open' });
+      var html = '';
+      for (var i = 1; i <= 5; i++) {
+        html += '<button type="button" id="star-' + i + '" aria-label="' + i + ' star' + (i > 1 ? 's' : '') + '">&#9734;</button>';
+      }
+      root.innerHTML = html;
+      var self = this;
+      root.querySelectorAll('button').forEach(function(button, index) {
+        button.addEventListener('click', function() { self.rate(index + 1); });
+      });
+      this.rate(0);
+    }
+    rate(stars) {
+      this.value = stars ? String(stars) : '';
+      this.internals.setFormValue(this.value);
+      if (stars) {
+        this.internals.setValidity({});
+      } else {
+        this.internals.setValidity({ valueMissing: true }, 'Pick a rating');
+      }
+      this.shadowRoot.querySelectorAll('button').forEach(function(button, index) {
+        button.innerHTML = index < stars ? '&#9733;' : '&#9734;';
+      });
+    }
+    formResetCallback() { this.rate(0); }
+  });
+
+  document.getElementById('rating-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var result = document.getElementById('form-result');
+    var rating = document.getElementById('rating');
+    if (!rating.internals.checkValidity()) {
+      result.textContent = 'Error: ' + rating.internals.validationMessage;
+      return;
+    }
+    var data = new FormData(this);
+    result.textContent = 'Submitted name: ' + data.get('name') + ', rating: ' + data.get('rating');
+  });
+</script>

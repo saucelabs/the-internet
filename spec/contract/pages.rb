@@ -70,6 +70,7 @@ PAGES = {
   '/typos'                         => { text: 'Typos', snapshot: false }, # random
   '/windows'                       => { text: 'Opening a new window' },
   '/windows/new'                   => { text: 'New Window', layout: false },
+  '/shadowdom_advanced'            => { text: 'Advanced Shadow DOM' },
   '/iframes_advanced'              => { text: 'Advanced Iframes' },
   '/iframes_advanced/frame'        => { text: 'Frame: plain', layout: false },
 }.freeze
