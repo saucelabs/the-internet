@@ -1,0 +1,26 @@
+<div class="large-12 columns" id="content" role="main">
+  <style>
+    #toasts { position: fixed; top: 5em; right: 1em; z-index: 100; width: 20em; } .toast { padding: 0.75em 1em; margin-bottom: 0.5em; border-radius: 0.5rem; color: white; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); } .toast.toast-success { background: #043423; } .toast.toast-error { background: #961001; } .toast.toast-info { background: #334bc3; } .toast .toast-close { float: right; background: none; border: 0; color: white; font-size: 1.2em; padding: 0 0 0 0.5em; margin: 0; line-height: 1; cursor: pointer; }
+  <div class="example">
+    <h3>
+      Toasts
+    <p>
+      Toasts show up in the top right corner and hide themselves after a while. Set how long they stay, or 0 to keep them until you close them. The time can also come from the URL, e.g.
+      <a href="/toasts?duration=1000">
+        /toasts?duration=1000
+      .
+    <p>
+      <label for="duration">
+        Time on screen (milliseconds)
+      <input id="duration" min="0" step="500" type="number" value="3000">
+    <button class="button success" id="success-toast" type="button">
+      Show success toast
+    <button class="button alert" id="error-toast" type="button">
+      Show error toast
+    <button class="button" id="info-toast" type="button">
+      Show info toast
+    <p id="toast-count">
+      Toasts shown: 0
+  <div aria-live="polite" id="toasts">
+  <script>
+    (function() { var fromUrl = new URLSearchParams(location.search).get('duration'); if (fromUrl !== null && /^\d+$/.test(fromUrl)) document.getElementById('duration').value = fromUrl; var messages = { success: 'Saved successfully', error: 'Something went wrong', info: 'Here is some information' }; var shown = 0; function showToast(type) { shown++; var duration = parseInt(document.getElementById('duration').value, 10) || 0; var toast = document.createElement('div'); toast.className = 'toast toast-' + type; toast.id = 'toast-' + shown; toast.setAttribute('role', type === 'error' ? 'alert' : 'status'); toast.innerHTML = '<button type="button" class="toast-close" aria-label="Close">&times;</button><span class="toast-message"></span>'; toast.querySelector('.toast-message').textContent = messages[type]; toast.querySelector('.toast-close').addEventListener('click', function() { toast.remove(); }); document.getElementById('toasts').appendChild(toast); document.getElementById('toast-count').textContent = 'Toasts shown: ' + shown; if (duration > 0) setTimeout(function() { toast.remove(); }, duration); } ['success', 'error', 'info'].forEach(function(type) { document.getElementById(type + '-toast').addEventListener('click', function() { showToast(type); }); }); })();

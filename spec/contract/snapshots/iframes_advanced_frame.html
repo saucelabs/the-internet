@@ -1,0 +1,12 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Frame: plain
+  <body>
+    <h4 id="frame-title">
+      Frame: plain
+    <button id="send-message" type="button">
+      Send a message to the page
+    <script>
+      document.getElementById('send-message').addEventListener('click', function() { parent.postMessage({ from: 'plain', text: 'hello' }, '*'); this.textContent = 'Message sent'; });
