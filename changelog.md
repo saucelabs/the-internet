@@ -1,3 +1,6 @@
+#0.71.0
++ Added Custom Dropdown (/custom_dropdown): an ARIA combobox and listbox built from divs
+
 #0.62.3
 + The JQuery UI menu download route only serves files from its own folder, like the other download routes
 
