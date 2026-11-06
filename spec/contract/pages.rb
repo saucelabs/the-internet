@@ -90,6 +90,7 @@ PAGES = {
   '/live_updates'                  => { text: 'Live Updates' },
   '/cookie_consent'                => { text: 'Cookie Consent' },
   '/permissions'                   => { text: 'Browser Permissions' },
+  '/locale'                        => { text: 'Locale &amp; Time Zone' },
 }.freeze
 
 def snapshot_name(path)

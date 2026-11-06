@@ -859,6 +859,31 @@ class Public < Sinatra::Base
     erb :permissions
   end
 
+  get '/locale' do
+    headers 'Vary' => 'Accept-Language'
+    erb :locale, locals: { lang: preferred_language }
+  end
+
+  GREETINGS = {
+    'en' => ['Hello!', 'English'],
+    'es' => ['¡Hola!', 'Español'],
+    'de' => ['Hallo!', 'Deutsch'],
+    'fr' => ['Bonjour !', 'Français'],
+    'ja' => ['こんにちは！', '日本語']
+  }.freeze
+
+  helpers do
+    # First supported language from ?lang= or the Accept-Language header (by q value), else English.
+    def preferred_language
+      return params[:lang] if GREETINGS.key?(params[:lang])
+
+      request.env['HTTP_ACCEPT_LANGUAGE'].to_s.split(',').map.with_index do |part, i|
+        tag, q = part.strip.split(';q=')
+        [tag.to_s.downcase.split('-').first, (q || 1).to_f, i]
+      end.sort_by { |_, q, i| [-q, i] }.map(&:first).find { |lang| GREETINGS.key?(lang) } || 'en'
+    end
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

@@ -1,3 +1,6 @@
+#0.83.0
++ Added Locale & Time Zone (/locale): a greeting from Accept-Language or ?lang=, and dates and numbers in the browser's locale and time zone
+
 #0.82.0
 + Added Browser Permissions (/permissions): notifications, clipboard and camera access, with each permission's state
 

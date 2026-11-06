@@ -1,0 +1,31 @@
+<div class="example">
+  <h3>Locale &amp; Time Zone</h3>
+  <p>The server picks the greeting from your browser's <code>Accept-Language</code> header (English, Spanish, German, French or Japanese). Override it with <code>?lang=</code>, e.g. <a href="/locale?lang=es">/locale?lang=es</a>. The browser formats the date, number and price below with its own locale and time zone.</p>
+  <h4>From the server</h4>
+  <p id="greeting" lang="<%= lang %>"><%= GREETINGS[lang][0] %></p>
+  <p>Language: <span id="server-language"><%= lang %></span> (<%= GREETINGS[lang][1] %>)</p>
+  <p>Languages: <% GREETINGS.each_key do |code| %><a href="/locale?lang=<%= code %>" class="language-link"><%= code %></a> <% end %></p>
+  <h4>From the browser</h4>
+  <table id="browser-locale">
+    <tbody>
+      <tr><td>Browser language</td><td id="browser-language"></td></tr>
+      <tr><td>Time zone</td><td id="browser-timezone"></td></tr>
+      <tr><td>2026-04-15 12:00 UTC in your time zone</td><td id="formatted-date"></td></tr>
+      <tr><td>1234567.891 as a number</td><td id="formatted-number"></td></tr>
+      <tr><td>1234.5 euros as a price</td><td id="formatted-price"></td></tr>
+    </tbody>
+  </table>
+</div>
+<script>
+  (function() {
+    var language = navigator.language;
+    var fixed = new Date(Date.UTC(2026, 3, 15, 12, 0, 0));
+    document.getElementById('browser-language').textContent = language;
+    document.getElementById('browser-timezone').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    document.getElementById('formatted-date').textContent =
+      new Intl.DateTimeFormat(language, { dateStyle: 'full', timeStyle: 'short' }).format(fixed);
+    document.getElementById('formatted-number').textContent = new Intl.NumberFormat(language).format(1234567.891);
+    document.getElementById('formatted-price').textContent =
+      new Intl.NumberFormat(language, { style: 'currency', currency: 'EUR' }).format(1234.5);
+  })();
+</script>

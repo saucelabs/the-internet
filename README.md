@@ -52,6 +52,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Large & Deep DOM](https://the-internet.herokuapp.com/large) - Deeply nested elements and a big table
 + [Large Form](https://the-internet.herokuapp.com/large_form) - A long form with many field types
 + [Live Updates](https://the-internet.herokuapp.com/live_updates) - Updates pushed by the server with Server-Sent Events
++ [Locale & Time Zone](https://the-internet.herokuapp.com/locale) - Content in the language your browser asks for / dates and numbers in your locale and time zone
 + [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown) - A select list that allows many options
 + [Multiple Windows](https://the-internet.herokuapp.com/windows) - A link that opens a new window
 + [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
