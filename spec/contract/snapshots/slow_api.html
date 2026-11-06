@@ -1,0 +1,33 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      Slow & Failing API
+    <p>
+      Call an API that is slow and fails as often as you choose. With retries on, the page tries again (up to 3 more times, 1 second apart) when the API answers 429, 500 or 503.
+    <form id="api-options">
+      <label for="delay">
+        Delay before each answer (ms, up to 5000)
+      <input id="delay" max="5000" min="0" step="500" type="number" value="1000">
+      <label for="fail">
+        How many attempts fail (0 to 5)
+      <input id="fail" max="5" min="0" type="number" value="0">
+      <label for="status">
+        Error status
+      <select id="status">
+        <option value="500">
+          500 Internal Server Error
+        <option value="503">
+          503 Service Unavailable
+        <option value="429">
+          429 Too Many Requests
+      <p>
+        <input checked="checked" id="retry" type="checkbox">
+        <label for="retry" style="display: inline;">
+          Retry on errors
+      <button class="button" id="call-api" type="submit">
+        Call the API
+    <p id="status-text" role="status">
+      Not called yet
+    <ol id="attempts">
+  <script>
+    (function() { var MAX_RETRIES = 3; var form = document.getElementById('api-options'); var statusText = document.getElementById('status-text'); var attempts = document.getElementById('attempts'); var button = document.getElementById('call-api'); function call(attempt) { statusText.textContent = 'Loading (attempt ' + attempt + ')...'; var query = new URLSearchParams({ delay: document.getElementById('delay').value, fail: document.getElementById('fail').value, status: document.getElementById('status').value, attempt: attempt }); fetch('/slow_api/data?' + query).then(function(res) { return res.json().then(function(body) { var li = document.createElement('li'); li.textContent = res.status + ': ' + (body.message || body.error); attempts.appendChild(li); if (res.ok) { statusText.textContent = body.message; button.disabled = false; } else if (document.getElementById('retry').checked && attempt <= MAX_RETRIES) { statusText.textContent = 'Failed with ' + res.status + ', retrying in 1 second...'; setTimeout(function() { call(attempt + 1); }, 1000); } else { statusText.textContent = 'Gave up after ' + attempt + ' attempt' + (attempt === 1 ? '' : 's') + ' (last status ' + res.status + ')'; button.disabled = false; } }); }); } form.addEventListener('submit', function(event) { event.preventDefault(); attempts.innerHTML = ''; button.disabled = true; call(1); }); })();

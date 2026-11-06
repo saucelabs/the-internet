@@ -687,6 +687,27 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/slow_api' do
+    erb :slow_api
+  end
+
+  # API for /slow_api. delay: ms before answering (max 5000). fail: how many attempts fail
+  # (max 5) with status (429, 500 or 503). attempt: which attempt this is, sent by the page.
+  get '/slow_api/data' do
+    require 'json'
+    sleep(params[:delay].to_i.clamp(0, 5000) / 1000.0)
+    error_status = [429, 500, 503].include?(params[:status].to_i) ? params[:status].to_i : 500
+    attempt = [params[:attempt].to_i, 1].max
+    content_type :json
+    if attempt <= params[:fail].to_i.clamp(0, 5)
+      headers 'Retry-After' => '1' if error_status == 429
+      status error_status
+      JSON.generate(error: "Attempt #{attempt} failed with #{error_status}")
+    else
+      JSON.generate(message: "Data loaded on attempt #{attempt}")
+    end
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

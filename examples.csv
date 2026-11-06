@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Slow & Failing API,/slow_api,,Calls to an API with a delay and 429 / 500 errors you choose / and a retry

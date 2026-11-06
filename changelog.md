@@ -1,3 +1,6 @@
+#0.79.0
++ Added Slow & Failing API (/slow_api): an API with a chosen delay and 429/500/503 errors, and a page that retries
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 
