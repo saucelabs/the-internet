@@ -1,3 +1,6 @@
+#0.72.0
++ Added Form Validation (/form_validation): HTML5 validation in the browser and per-field errors from the server
+
 #0.71.0
 + Added Custom Dropdown (/custom_dropdown): an ARIA combobox and listbox built from divs
 

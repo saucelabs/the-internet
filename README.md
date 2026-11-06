@@ -36,6 +36,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Floating Menu](https://the-internet.herokuapp.com/floating_menu) - A menu that stays in view while you scroll
 + [Forgot Password](https://the-internet.herokuapp.com/forgot_password) - A form that sends an email
 + [Form Authentication](https://the-internet.herokuapp.com/login) - Log in and out of a secure area
++ [Form Validation](https://the-internet.herokuapp.com/form_validation) - HTML5 validation in the browser and errors that come back from the server
 + [Frames](https://the-internet.herokuapp.com/frames) - Nested frames and an iframe with an editor
 + [Geolocation](https://the-internet.herokuapp.com/geolocation) - Show the browser's location
 + [Horizontal Slider](https://the-internet.herokuapp.com/horizontal_slider) - Move a range slider with the mouse or keys
@@ -77,6 +78,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
++ Form Validation server check: `POST /form_validation` (JSON; 422 with errors per field)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`
 + Frames: [iFrame](https://the-internet.herokuapp.com/iframe), [top](https://the-internet.herokuapp.com/frame_top), [left](https://the-internet.herokuapp.com/frame_left), [middle](https://the-internet.herokuapp.com/frame_middle), [right](https://the-internet.herokuapp.com/frame_right), [bottom](https://the-internet.herokuapp.com/frame_bottom)

@@ -29,6 +29,26 @@ describe 'Behaviour' do
         expect(client.request(req).code).to eq '200'
       end
     end
+  end
+
+  describe 'Form validation' do
+    let(:valid) { { username: 'ana', email: 'ana@example.com', password: 'longenough', terms: 'on' } }
+
+    it 'accepts a valid form' do
+      res = client.post('/form_validation', valid)
+      expect(res.code).to eq '200'
+      expect(JSON.parse(res.body)).to eq('message' => 'Account created for ana')
+    end
+
+    it 'answers 422 with errors per field' do
+      res = client.post('/form_validation', valid.merge(username: 'tomsmith', password: 'short', terms: ''))
+      expect(res.code).to eq '422'
+      expect(JSON.parse(res.body)['errors']).to eq(
+        'username' => 'Username is already taken',
+        'password' => 'Password must be at least 8 characters',
+        'terms' => 'You must accept the terms'
+      )
+    end
 
     it 'shows the success message' do
       req = Net::HTTP::Get.new('/basic_auth').tap { |r| r.basic_auth('admin', 'admin') }

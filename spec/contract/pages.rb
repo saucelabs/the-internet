@@ -78,6 +78,7 @@ PAGES = {
   '/autocomplete'                  => { text: 'Autocomplete' },
   '/date_pickers'                  => { text: 'Date &amp; Time Pickers' },
   '/custom_dropdown'               => { text: 'Custom Dropdown' },
+  '/form_validation'               => { text: 'Form Validation' },
 }.freeze
 
 def snapshot_name(path)
