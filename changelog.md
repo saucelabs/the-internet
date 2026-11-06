@@ -1,3 +1,6 @@
+#0.74.0
++ Added SPA Routing (/spa): History API navigation with working Back/Forward and deep links (/spa/about, /spa/contact)
+
 #0.73.0
 + Added Stale Element (/stale_element): a list rebuilt on click or on a timer (?interval=)
 

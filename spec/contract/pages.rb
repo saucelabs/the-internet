@@ -80,6 +80,8 @@ PAGES = {
   '/custom_dropdown'               => { text: 'Custom Dropdown' },
   '/form_validation'               => { text: 'Form Validation' },
   '/stale_element'                 => { text: 'Stale Element' },
+  '/spa'                           => { text: 'SPA Routing' },
+  '/spa/about'                     => { text: 'SPA Routing' },
 }.freeze
 
 def snapshot_name(path)

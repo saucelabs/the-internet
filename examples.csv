@@ -59,3 +59,4 @@ Date & Time Pickers,/date_pickers,,Native date and time inputs and a calendar wi
 Custom Dropdown,/custom_dropdown,,A select list built from divs with ARIA roles instead of <select>
 Form Validation,/form_validation,,HTML5 validation in the browser and errors that come back from the server
 Stale Element,/stale_element,,A list that is rebuilt on a timer or a click so old element references go stale
+SPA Routing,/spa,,A single-page app that changes the URL with the History API
