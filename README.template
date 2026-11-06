@@ -14,9 +14,13 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 ### Pages reached from the examples
 
 + [A/B Test Cookies](https://the-internet.herokuapp.com/abtest_cookies) and [A/B Test Manual](https://the-internet.herokuapp.com/abtest_manual) (unfinished A/B Testing variants)
++ [Advanced Iframes: frame page](https://the-internet.herokuapp.com/iframes_advanced/frame) (`/iframes_advanced/frame?name=:letters`)
++ Autocomplete suggestions as JSON: `/autocomplete/suggestions?q=:text&delay=:ms`
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
++ Form Validation server check: `POST /form_validation` (JSON; 422 with errors per field)
++ Network & Console JSON: [/network_console/data](https://the-internet.herokuapp.com/network_console/data)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`
 + Frames: [iFrame](https://the-internet.herokuapp.com/iframe), [top](https://the-internet.herokuapp.com/frame_top), [left](https://the-internet.herokuapp.com/frame_left), [middle](https://the-internet.herokuapp.com/frame_middle), [right](https://the-internet.herokuapp.com/frame_right), [bottom](https://the-internet.herokuapp.com/frame_bottom)
@@ -30,6 +34,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Secure Area](https://the-internet.herokuapp.com/secure) and [Logout](https://the-internet.herokuapp.com/logout) (after Form Authentication)
 + Shifting Content: [Menu](https://the-internet.herokuapp.com/shifting_content/menu), [Image](https://the-internet.herokuapp.com/shifting_content/image), [List](https://the-internet.herokuapp.com/shifting_content/list)
 + [Slow external resource](https://the-internet.herokuapp.com/slow_external) (used by Slow Resources; takes 30 seconds)
++ Slow & Failing API: `/slow_api/data?delay=:ms&fail=:count&status=429|500|503&attempt=:n` (JSON)
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
 + Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
