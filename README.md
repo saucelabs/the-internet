@@ -69,6 +69,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Toasts](https://the-internet.herokuapp.com/toasts) - Notifications that hide themselves after a set time
 + [Two-Factor Login](https://the-internet.herokuapp.com/two_factor) (user: tomsmith / pass: SuperSecretPassword!) - Log in with a password and a one-time code
 + [Typos](https://the-internet.herokuapp.com/typos) - Text that sometimes has a typo
++ [Virtualized List](https://the-internet.herokuapp.com/virtual_list) - A list of 10000 rows where only the visible rows exist in the DOM
 + [WYSIWYG Editor](https://the-internet.herokuapp.com/tinymce) - A rich text editor inside an iframe
 
 

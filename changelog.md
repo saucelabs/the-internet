@@ -1,3 +1,6 @@
+#0.75.0
++ Added Virtualized List (/virtual_list): 10,000 items with only the visible rows in the DOM
+
 #0.74.0
 + Added SPA Routing (/spa): History API navigation with working Back/Forward and deep links (/spa/about, /spa/contact)
 

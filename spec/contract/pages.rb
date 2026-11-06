@@ -82,6 +82,7 @@ PAGES = {
   '/stale_element'                 => { text: 'Stale Element' },
   '/spa'                           => { text: 'SPA Routing' },
   '/spa/about'                     => { text: 'SPA Routing' },
+  '/virtual_list'                  => { text: 'Virtualized List' },
 }.freeze
 
 def snapshot_name(path)
