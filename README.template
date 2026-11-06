@@ -16,6 +16,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [A/B Test Cookies](https://the-internet.herokuapp.com/abtest_cookies) and [A/B Test Manual](https://the-internet.herokuapp.com/abtest_manual) (unfinished A/B Testing variants)
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
++ [Cookie Consent: forget my choice](https://the-internet.herokuapp.com/cookie_consent/reset) (clears the cookie and redirects)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`

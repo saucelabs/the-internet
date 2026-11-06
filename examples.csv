@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Cookie Consent,/cookie_consent,,A cookie banner that comes back until you accept / reject or pick cookies

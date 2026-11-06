@@ -1,3 +1,6 @@
+#0.81.0
++ Added Cookie Consent (/cookie_consent): a banner that stays until you accept, reject or customize cookies
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

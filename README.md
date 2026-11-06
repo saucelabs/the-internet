@@ -17,6 +17,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom)
 + [Checkboxes](https://the-internet.herokuapp.com/checkboxes)
 + [Context Menu](https://the-internet.herokuapp.com/context_menu)
++ [Cookie Consent](https://the-internet.herokuapp.com/cookie_consent)
 + [Digest Authentication](https://the-internet.herokuapp.com/digest_auth) (user and pass: admin)
 + [Disappearing Elements](https://the-internet.herokuapp.com/disappearing_elements)
 + [Drag and Drop](https://the-internet.herokuapp.com/drag_and_drop)
@@ -67,6 +68,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [A/B Test Cookies](https://the-internet.herokuapp.com/abtest_cookies) and [A/B Test Manual](https://the-internet.herokuapp.com/abtest_manual) (unfinished A/B Testing variants)
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
++ [Cookie Consent: forget my choice](https://the-internet.herokuapp.com/cookie_consent/reset) (clears the cookie and redirects)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`
@@ -82,7 +84,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Slow external resource](https://the-internet.herokuapp.com/slow_external) (used by Slow Resources; takes 30 seconds)
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
-+ Two-Factor Login: code page (`/two_factor/code`) and secure area (`/two_factor/secure`), after logging in
++ Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
 
 Don't see an example you need or think should be here? Contribute!
 

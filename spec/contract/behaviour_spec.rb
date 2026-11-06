@@ -185,6 +185,28 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Cookie consent' do
+    it 'shows the banner until the cookie is set' do
+      expect(html(client.get('/cookie_consent')).at_css('#cookie-banner')).not_to be_nil
+      client.cookies['cookie_consent'] = 'all'
+      doc = html(client.get('/cookie_consent'))
+      expect(doc.at_css('#cookie-banner')).to be_nil
+      expect(doc.at_css('#consent-status').text).to eq 'Analytics cookies: allowed'
+    end
+
+    it 'ignores unknown values' do
+      client.cookies['cookie_consent'] = 'bogus'
+      expect(html(client.get('/cookie_consent')).at_css('#cookie-banner')).not_to be_nil
+    end
+
+    it 'forgets the choice' do
+      client.cookies['cookie_consent'] = 'necessary'
+      res = client.get('/cookie_consent/reset')
+      expect(res.code).to eq '302'
+      expect(res['set-cookie']).to match(/cookie_consent=;.*max-age=0/i)
+    end
+  end
+
   describe 'Uploads', :writes do
     let(:name) { "contract-#{SecureRandom.hex(4)}.txt" }
     after { File.delete(File.join(REPO_ROOT, 'public/uploads', name)) if LOCAL && File.exist?(File.join(REPO_ROOT, 'public/uploads', name)) }
