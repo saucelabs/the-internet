@@ -687,6 +687,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/pointer_events' do
+    erb :pointer_events
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

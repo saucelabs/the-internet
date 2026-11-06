@@ -1,3 +1,6 @@
+#0.76.0
++ Added Pointer Events (/pointer_events): a sortable list, swipe and long press built on pointer events
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

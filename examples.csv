@@ -50,3 +50,4 @@ Read-only Inputs,/readonly
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!
 Large Form,/large_form
 Canvas,/canvas
+Pointer Events,/pointer_events,,Sort a list / swipe and long-press with pointer events instead of HTML5 drag and drop
