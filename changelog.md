@@ -1,3 +1,6 @@
+#0.74.0
++ Added SPA Routing (/spa): History API navigation with working Back/Forward and deep links (/spa/about, /spa/contact)
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 

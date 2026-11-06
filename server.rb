@@ -687,6 +687,16 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/spa' do
+    erb :spa
+  end
+
+  # Deep links into /spa render the same page; the script shows the right view.
+  get '/spa/:view' do |view|
+    pass unless %w[about contact].include?(view)
+    erb :spa
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
