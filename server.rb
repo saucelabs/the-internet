@@ -888,6 +888,10 @@ class Public < Sinatra::Base
     erb :responsive
   end
 
+  get '/accessibility_issues' do
+    erb :accessibility_issues, locals: { fixed: params[:fixed] == 'true' }
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

@@ -92,6 +92,8 @@ PAGES = {
   '/permissions'                   => { text: 'Browser Permissions' },
   '/locale'                        => { text: 'Locale &amp; Time Zone' },
   '/responsive'                    => { text: 'Responsive Layout' },
+  '/accessibility_issues'          => { text: 'Accessibility Issues' },
+  '/accessibility_issues?fixed=true' => { text: 'All issues on this page are fixed', snapshot: false },
 }.freeze
 
 def snapshot_name(path)

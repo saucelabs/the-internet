@@ -1,3 +1,6 @@
+#0.85.0
++ Added Accessibility Issues (/accessibility_issues): known axe violations, and a fixed version (?fixed=true)
+
 #0.84.0
 + Added Responsive Layout (/responsive): a menu that becomes a hamburger button below 640px
 

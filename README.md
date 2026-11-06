@@ -10,6 +10,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 ## Available Examples:
 
 + [A/B Testing](https://the-internet.herokuapp.com/abtest) - Content that changes between visits
++ [Accessibility Issues](https://the-internet.herokuapp.com/accessibility_issues) - A page with known accessibility problems for scanners like axe / and a fixed version
 + [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/) - Buttons that add and delete elements
 + [Advanced Iframes](https://the-internet.herokuapp.com/iframes_advanced) - A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM
 + [Advanced Shadow DOM](https://the-internet.herokuapp.com/shadowdom_advanced) - Nested and closed shadow roots / slots / a custom form field
