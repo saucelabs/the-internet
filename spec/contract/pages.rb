@@ -79,6 +79,7 @@ PAGES = {
   '/date_pickers'                  => { text: 'Date &amp; Time Pickers' },
   '/custom_dropdown'               => { text: 'Custom Dropdown' },
   '/form_validation'               => { text: 'Form Validation' },
+  '/stale_element'                 => { text: 'Stale Element' },
 }.freeze
 
 def snapshot_name(path)

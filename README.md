@@ -62,6 +62,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Shifting Content](https://the-internet.herokuapp.com/shifting_content) - Elements that move between page loads
 + [Slow Resources](https://the-internet.herokuapp.com/slow) - A request that takes 30 seconds to finish
 + [Sortable Data Tables](https://the-internet.herokuapp.com/tables) - Tables you can sort by column
++ [Stale Element](https://the-internet.herokuapp.com/stale_element) - A list that is rebuilt on a timer or a click so old element references go stale
 + [Status Codes](https://the-internet.herokuapp.com/status_codes) - Pages that answer 200 / 301 / 404 / 500
 + [Subdirectories](https://the-internet.herokuapp.com/subdirectories) - Pages in nested folders
 + [Toasts](https://the-internet.herokuapp.com/toasts) - Notifications that hide themselves after a set time

@@ -1,3 +1,6 @@
+#0.73.0
++ Added Stale Element (/stale_element): a list rebuilt on click or on a timer (?interval=)
+
 #0.72.0
 + Added Form Validation (/form_validation): HTML5 validation in the browser and per-field errors from the server
 
