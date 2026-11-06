@@ -31,6 +31,14 @@ describe 'Behaviour' do
     end
   end
 
+  describe 'Visual differences' do
+    it 'turns on each change from the URL and ignores unknown values' do
+      text = ->(path) { html(client.get(path)).at_css('#active-changes').text }
+      expect(text.call('/visual_diff?shift=999&color=purple&font=large')).to eq 'Changes: shift 50px, large font'
+      expect(text.call('/visual_diff?hide_logo=true&typo=true')).to eq 'Changes: logo hidden, typo'
+    end
+  end
+
   describe 'Locale' do
     def greeting(path, headers = {})
       html(client.get(path, headers)).at_css('#greeting').text

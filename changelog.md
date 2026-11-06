@@ -1,3 +1,6 @@
+#0.86.0
++ Added Visual Differences (/visual_diff): small changes turned on from the URL (shift, color, font, hide_logo, typo) for visual testing
+
 #0.85.0
 + Added Accessibility Issues (/accessibility_issues): known axe violations, and a fixed version (?fixed=true)
 

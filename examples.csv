@@ -71,3 +71,4 @@ Browser Permissions,/permissions,,Ask for notifications / clipboard and camera a
 Locale & Time Zone,/locale,,Content in the language your browser asks for / dates and numbers in your locale and time zone
 Responsive Layout,/responsive,,A menu that turns into a hamburger button on narrow screens
 Accessibility Issues,/accessibility_issues,,A page with known accessibility problems for scanners like axe / and a fixed version
+Visual Differences,/visual_diff,,A card with small changes you turn on in the URL for visual testing

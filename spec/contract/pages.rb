@@ -94,6 +94,7 @@ PAGES = {
   '/responsive'                    => { text: 'Responsive Layout' },
   '/accessibility_issues'          => { text: 'Accessibility Issues' },
   '/accessibility_issues?fixed=true' => { text: 'All issues on this page are fixed', snapshot: false },
+  '/visual_diff'                   => { text: 'Visual Differences' },
 }.freeze
 
 def snapshot_name(path)

@@ -892,6 +892,18 @@ class Public < Sinatra::Base
     erb :accessibility_issues, locals: { fixed: params[:fixed] == 'true' }
   end
 
+  # Each parameter turns on one small change; without parameters the card is the baseline.
+  get '/visual_diff' do
+    changes = {
+      shift: params[:shift].to_i.clamp(0, 50),
+      color: %w[green red blue].include?(params[:color]) ? params[:color] : 'green',
+      font: params[:font] == 'large',
+      hide_logo: params[:hide_logo] == 'true',
+      typo: params[:typo] == 'true'
+    }
+    erb :visual_diff, locals: { changes: changes }
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
