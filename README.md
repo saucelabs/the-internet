@@ -20,6 +20,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom) - Elements without useful ids and a canvas
 + [Checkboxes](https://the-internet.herokuapp.com/checkboxes) - Check and uncheck boxes
 + [Context Menu](https://the-internet.herokuapp.com/context_menu) - Right-click to open an alert
++ [Date & Time Pickers](https://the-internet.herokuapp.com/date_pickers) - Native date and time inputs and a calendar widget built with JavaScript
 + [Digest Authentication](https://the-internet.herokuapp.com/digest_auth) (user and pass: admin) - Log in through the browser's digest auth prompt
 + [Disappearing Elements](https://the-internet.herokuapp.com/disappearing_elements) - Menu items that come and go
 + [Drag and Drop](https://the-internet.herokuapp.com/drag_and_drop) - Swap two boxes with HTML5 drag and drop

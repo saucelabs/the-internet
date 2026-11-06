@@ -55,3 +55,4 @@ Advanced Iframes,/iframes_advanced,,A sandboxed (cross-origin) iframe / srcdoc /
 Native Dialog,/dialog,,Modal and non-modal <dialog> elements with Escape and focus handling
 Toasts,/toasts,,Notifications that hide themselves after a set time
 Autocomplete,/autocomplete,,A search box with suggestions from the server that you pick with the keyboard
+Date & Time Pickers,/date_pickers,,Native date and time inputs and a calendar widget built with JavaScript

@@ -1,3 +1,6 @@
+#0.70.0
++ Added Date & Time Pickers (/date_pickers): native date and time inputs and a JavaScript calendar widget (?month=YYYY-MM)
+
 #0.69.0
 + Added Autocomplete (/autocomplete): debounced suggestions from the server (/autocomplete/suggestions, ?delay=) picked with the keyboard or mouse
 

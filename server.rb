@@ -730,6 +730,10 @@ class Public < Sinatra::Base
     JSON.generate(words)
   end
 
+  get '/date_pickers' do
+    erb :date_pickers
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
