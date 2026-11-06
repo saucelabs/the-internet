@@ -130,10 +130,16 @@ a:focus {
   text-decoration-color: var(--sl-flare);
 }
 
-/* Home page list of examples */
+/* Home page list of examples: the page uses the full width, with up to 4 columns. */
+.row:has(> #content > h1.heading) {
+  max-width: calc(100% - 3em);
+}
+#content h1.heading + h2 {
+  text-align: center;
+}
 #content h1.heading ~ ul {
-  columns: 2 18em;
-  column-gap: 2em;
+  columns: 4 16em;
+  column-gap: 2.5em;
 }
 #content h1.heading ~ ul li {
   break-inside: avoid;
@@ -153,7 +159,8 @@ a:focus {
 }
 #example-filter-box {
   max-width: 28em;
-  margin-bottom: 1.25em;
+  margin: 0 auto 1.75em;
+  text-align: center;
 }
 #example-filter-box label {
   font-weight: 600;
