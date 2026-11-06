@@ -10,16 +10,19 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 ## Available Examples:
 
 + [A/B Testing](https://the-internet.herokuapp.com/abtest) - Content that changes between visits
++ [Accessibility Issues](https://the-internet.herokuapp.com/accessibility_issues) - A page with known accessibility problems for scanners like axe / and a fixed version
 + [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/) - Buttons that add and delete elements
 + [Advanced Iframes](https://the-internet.herokuapp.com/iframes_advanced) - A sandboxed (cross-origin) iframe / srcdoc / an iframe inside shadow DOM
 + [Advanced Shadow DOM](https://the-internet.herokuapp.com/shadowdom_advanced) - Nested and closed shadow roots / slots / a custom form field
 + [Autocomplete](https://the-internet.herokuapp.com/autocomplete) - A search box with suggestions from the server that you pick with the keyboard
 + [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin) - Log in through the browser's basic auth prompt
 + [Broken Images](https://the-internet.herokuapp.com/broken_images) - Images that fail to load
++ [Browser Permissions](https://the-internet.herokuapp.com/permissions) - Ask for notifications / clipboard and camera access and see each permission's state
 + [Canvas](https://the-internet.herokuapp.com/canvas) - Click and type into a canvas
 + [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom) - Elements without useful ids and a canvas
 + [Checkboxes](https://the-internet.herokuapp.com/checkboxes) - Check and uncheck boxes
 + [Context Menu](https://the-internet.herokuapp.com/context_menu) - Right-click to open an alert
++ [Cookie Consent](https://the-internet.herokuapp.com/cookie_consent) - A cookie banner that comes back until you accept / reject or pick cookies
 + [Custom Dropdown](https://the-internet.herokuapp.com/custom_dropdown) - A select list built from divs with ARIA roles instead of <select>
 + [Date & Time Pickers](https://the-internet.herokuapp.com/date_pickers) - Native date and time inputs and a calendar widget built with JavaScript
 + [Digest Authentication](https://the-internet.herokuapp.com/digest_auth) (user and pass: admin) - Log in through the browser's digest auth prompt
@@ -36,6 +39,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Floating Menu](https://the-internet.herokuapp.com/floating_menu) - A menu that stays in view while you scroll
 + [Forgot Password](https://the-internet.herokuapp.com/forgot_password) - A form that sends an email
 + [Form Authentication](https://the-internet.herokuapp.com/login) - Log in and out of a secure area
++ [Form Validation](https://the-internet.herokuapp.com/form_validation) - HTML5 validation in the browser and errors that come back from the server
 + [Frames](https://the-internet.herokuapp.com/frames) - Nested frames and an iframe with an editor
 + [Geolocation](https://the-internet.herokuapp.com/geolocation) - Show the browser's location
 + [Horizontal Slider](https://the-internet.herokuapp.com/horizontal_slider) - Move a range slider with the mouse or keys
@@ -48,24 +52,36 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Key Presses](https://the-internet.herokuapp.com/key_presses) - Shows the last key you pressed
 + [Large & Deep DOM](https://the-internet.herokuapp.com/large) - Deeply nested elements and a big table
 + [Large Form](https://the-internet.herokuapp.com/large_form) - A long form with many field types
++ [Live Updates](https://the-internet.herokuapp.com/live_updates) - Updates pushed by the server with Server-Sent Events
++ [Locale & Time Zone](https://the-internet.herokuapp.com/locale) - Content in the language your browser asks for / dates and numbers in your locale and time zone
++ [Modern File Download](https://the-internet.herokuapp.com/download_modern) - Downloads made with Blob / fetch and data URLs / and Content-Disposition quirks
 + [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown) - A select list that allows many options
 + [Multiple Windows](https://the-internet.herokuapp.com/windows) - A link that opens a new window
 + [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
 + [Nested Frames](https://the-internet.herokuapp.com/nested_frames) - Frames inside frames
++ [Network & Console](https://the-internet.herokuapp.com/network_console) - Requests / console messages / a JavaScript error and a CSP violation to catch with Selenium BiDi
 + [Notification Messages](https://the-internet.herokuapp.com/notification_message) - A flash message that changes on each click
++ [Pointer Events](https://the-internet.herokuapp.com/pointer_events) - Sort a list / swipe and long-press with pointer events instead of HTML5 drag and drop
 + [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons) - Pick one option per group
 + [Read-only Inputs](https://the-internet.herokuapp.com/readonly) - Fields you can read but not change
 + [Redirect Link](https://the-internet.herokuapp.com/redirector) - A link that redirects to another page
++ [Responsive Layout](https://the-internet.herokuapp.com/responsive) - A menu that turns into a hamburger button on narrow screens
++ [SPA Routing](https://the-internet.herokuapp.com/spa) - A single-page app that changes the URL with the History API
++ [SVG](https://the-internet.herokuapp.com/svg) - Click and read shapes and text inside an inline SVG chart
 + [Secure File Download](https://the-internet.herokuapp.com/download_secure) - Downloads behind basic auth
 + [Shadow DOM](https://the-internet.herokuapp.com/shadowdom) - Content inside shadow roots and slots
 + [Shifting Content](https://the-internet.herokuapp.com/shifting_content) - Elements that move between page loads
++ [Slow & Failing API](https://the-internet.herokuapp.com/slow_api) - Calls to an API with a delay and 429 / 500 errors you choose / and a retry
 + [Slow Resources](https://the-internet.herokuapp.com/slow) - A request that takes 30 seconds to finish
 + [Sortable Data Tables](https://the-internet.herokuapp.com/tables) - Tables you can sort by column
++ [Stale Element](https://the-internet.herokuapp.com/stale_element) - A list that is rebuilt on a timer or a click so old element references go stale
 + [Status Codes](https://the-internet.herokuapp.com/status_codes) - Pages that answer 200 / 301 / 404 / 500
 + [Subdirectories](https://the-internet.herokuapp.com/subdirectories) - Pages in nested folders
 + [Toasts](https://the-internet.herokuapp.com/toasts) - Notifications that hide themselves after a set time
 + [Two-Factor Login](https://the-internet.herokuapp.com/two_factor) (user: tomsmith / pass: SuperSecretPassword!) - Log in with a password and a one-time code
 + [Typos](https://the-internet.herokuapp.com/typos) - Text that sometimes has a typo
++ [Virtualized List](https://the-internet.herokuapp.com/virtual_list) - A list of 10000 rows where only the visible rows exist in the DOM
++ [Visual Differences](https://the-internet.herokuapp.com/visual_diff) - A card with small changes you turn on in the URL for visual testing
 + [WYSIWYG Editor](https://the-internet.herokuapp.com/tinymce) - A rich text editor inside an iframe
 
 
@@ -76,19 +92,25 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + Autocomplete suggestions as JSON: `/autocomplete/suggestions?q=:text&delay=:ms`
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
++ [Cookie Consent: forget my choice](https://the-internet.herokuapp.com/cookie_consent/reset) (clears the cookie and redirects)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
++ Form Validation server check: `POST /form_validation` (JSON; 422 with errors per field)
++ Network & Console JSON: [/network_console/data](https://the-internet.herokuapp.com/network_console/data)
 + [Email Sent](https://the-internet.herokuapp.com/email_sent) (after Forgot Password)
 + File downloads: `/download/:filename`, `/download_secure/:filename` and `/download/jqueryui/menu/:filename`
++ Modern File Download files: `/download_modern/file/:name` (`inline`, `utf8`, `spaces`, `no_name`, `report.json`)
 + Frames: [iFrame](https://the-internet.herokuapp.com/iframe), [top](https://the-internet.herokuapp.com/frame_top), [left](https://the-internet.herokuapp.com/frame_left), [middle](https://the-internet.herokuapp.com/frame_middle), [right](https://the-internet.herokuapp.com/frame_right), [bottom](https://the-internet.herokuapp.com/frame_bottom)
 + [Infinite Scroll page N](https://the-internet.herokuapp.com/infinite_scroll/2) (`/infinite_scroll/:number`)
 + [JQuery UI](https://the-internet.herokuapp.com/jqueryui) (linked from JQuery UI Menus)
 + [Large & Deep DOM with N levels](https://the-internet.herokuapp.com/large/3) (`/large/:level`)
++ Live Updates stream: `/live_updates/events?count=:n&interval=:ms` (Server-Sent Events)
 + [Multiple Windows: new window](https://the-internet.herokuapp.com/windows/new)
 + [Notification Message (rendered)](https://the-internet.herokuapp.com/notification_message_rendered)
 + [Redirect](https://the-internet.herokuapp.com/redirect) (from Redirect Link)
 + [Secure Area](https://the-internet.herokuapp.com/secure) and [Logout](https://the-internet.herokuapp.com/logout) (after Form Authentication)
 + Shifting Content: [Menu](https://the-internet.herokuapp.com/shifting_content/menu), [Image](https://the-internet.herokuapp.com/shifting_content/image), [List](https://the-internet.herokuapp.com/shifting_content/list)
 + [Slow external resource](https://the-internet.herokuapp.com/slow_external) (used by Slow Resources; takes 30 seconds)
++ Slow & Failing API: `/slow_api/data?delay=:ms&fail=:count&status=429|500|503&attempt=:n` (JSON)
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
 + Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in

@@ -1,0 +1,13 @@
+<div class="large-12 columns" id="content" role="main">
+  <style>
+    #viewport { height: 400px; overflow-y: auto; border: 1px solid #c8c8be; border-radius: 0.5rem; position: relative; max-width: 30em; } #spacer { position: relative; } .virtual-row { position: absolute; left: 0; right: 0; height: 30px; line-height: 30px; padding: 0 0.75em; border-bottom: 1px solid #f0f0ec; box-sizing: border-box; }
+  <div class="example">
+    <h3>
+      Virtualized List
+    <p>
+      This list has 10,000 items, but only the rows you can see (and a few around them) are in the DOM. Scroll the box to make other rows exist. Searching the DOM for an item that is far away finds nothing.
+    <div aria-label="Virtualized list" id="viewport" role="list" tabindex="0">
+      <div id="spacer">
+    <p id="rendered-range">
+  <script>
+    (function() { var TOTAL = 10000, ROW = 30, BUFFER = 5; var viewport = document.getElementById('viewport'); var spacer = document.getElementById('spacer'); spacer.style.height = (TOTAL * ROW) + 'px'; function render() { var first = Math.max(0, Math.floor(viewport.scrollTop / ROW) - BUFFER); var last = Math.min(TOTAL - 1, Math.ceil((viewport.scrollTop + viewport.clientHeight) / ROW) + BUFFER); spacer.innerHTML = ''; for (var i = first; i <= last; i++) { var row = document.createElement('div'); row.className = 'virtual-row'; row.setAttribute('role', 'listitem'); row.setAttribute('data-index', i + 1); row.style.top = (i * ROW) + 'px'; row.textContent = 'Item ' + (i + 1); spacer.appendChild(row); } document.getElementById('rendered-range').textContent = 'Rows in the DOM: ' + (first + 1) + ' to ' + (last + 1) + ' of ' + TOTAL; } viewport.addEventListener('scroll', render); render(); })();

@@ -1,6 +1,54 @@
 #0.87.1
 + Buttons with the success class (e.g. on Toasts) no longer show a broken icon before their text
 
+#0.87.0
++ Added Modern File Download (/download_modern): Blob, fetch and data URL downloads, and Content-Disposition quirks
+
+#0.86.0
++ Added Visual Differences (/visual_diff): small changes turned on from the URL (shift, color, font, hide_logo, typo) for visual testing
+
+#0.85.0
++ Added Accessibility Issues (/accessibility_issues): known axe violations, and a fixed version (?fixed=true)
+
+#0.84.0
++ Added Responsive Layout (/responsive): a menu that becomes a hamburger button below 640px
+
+#0.83.0
++ Added Locale & Time Zone (/locale): a greeting from Accept-Language or ?lang=, and dates and numbers in the browser's locale and time zone
+
+#0.82.0
++ Added Browser Permissions (/permissions): notifications, clipboard and camera access, with each permission's state
+
+#0.81.0
++ Added Cookie Consent (/cookie_consent): a banner that stays until you accept, reject or customize cookies
+
+#0.80.0
++ Added Live Updates (/live_updates): updates pushed with Server-Sent Events (?count=, ?interval=)
+
+#0.79.0
++ Added Slow & Failing API (/slow_api): an API with a chosen delay and 429/500/503 errors, and a page that retries
+
+#0.78.0
++ Added Network & Console (/network_console): requests, console messages, a thrown error and a CSP violation to watch with Selenium BiDi
+
+#0.77.0
++ Added SVG (/svg): click and read shapes and text in an inline SVG chart
+
+#0.76.0
++ Added Pointer Events (/pointer_events): a sortable list, swipe and long press built on pointer events
+
+#0.75.0
++ Added Virtualized List (/virtual_list): 10,000 items with only the visible rows in the DOM
+
+#0.74.0
++ Added SPA Routing (/spa): History API navigation with working Back/Forward and deep links (/spa/about, /spa/contact)
+
+#0.73.0
++ Added Stale Element (/stale_element): a list rebuilt on click or on a timer (?interval=)
+
+#0.72.0
++ Added Form Validation (/form_validation): HTML5 validation in the browser and per-field errors from the server
+
 #0.71.0
 + Added Custom Dropdown (/custom_dropdown): an ARIA combobox and listbox built from divs
 

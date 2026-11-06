@@ -29,6 +29,130 @@ describe 'Behaviour' do
         expect(client.request(req).code).to eq '200'
       end
     end
+  end
+
+  describe 'Modern downloads' do
+    {
+      'inline' => 'inline; filename="inline.txt"',
+      'utf8' => %(attachment; filename="resume.txt"; filename*=UTF-8''r%C3%A9sum%C3%A9.txt),
+      'spaces' => 'attachment; filename="my report 2026.txt"',
+      'no_name' => 'attachment',
+      'report.json' => 'attachment; filename="report.json"'
+    }.each do |name, disposition|
+      it "sends #{name} with its Content-Disposition" do
+        res = client.get("/download_modern/file/#{name}")
+        expect(res.code).to eq '200'
+        expect(res['content-disposition']).to eq disposition
+      end
+    end
+
+    it 'answers 404 for other names' do
+      expect(client.get('/download_modern/file/other').code).to eq '404'
+    end
+  end
+
+  describe 'Visual differences' do
+    it 'turns on each change from the URL and ignores unknown values' do
+      text = ->(path) { html(client.get(path)).at_css('#active-changes').text }
+      expect(text.call('/visual_diff?shift=999&color=purple&font=large')).to eq 'Changes: shift 50px, large font'
+      expect(text.call('/visual_diff?hide_logo=true&typo=true')).to eq 'Changes: logo hidden, typo'
+    end
+  end
+
+  describe 'Locale' do
+    def greeting(path, headers = {})
+      html(client.get(path, headers)).at_css('#greeting').text
+    end
+
+    it 'greets in the language of Accept-Language' do
+      expect(greeting('/locale', 'Accept-Language' => 'fr-CA,fr;q=0.9,en;q=0.8')).to eq 'Bonjour !'
+      expect(greeting('/locale', 'Accept-Language' => 'en;q=0.5, de')).to eq 'Hallo!'
+      expect(greeting('/locale', 'Accept-Language' => 'pt-BR')).to eq 'Hello!'
+      expect(greeting('/locale')).to eq 'Hello!'
+    end
+
+    it 'lets ?lang= win over the header' do
+      expect(greeting('/locale?lang=ja', 'Accept-Language' => 'es')).to eq 'こんにちは！'
+      expect(greeting('/locale?lang=xx', 'Accept-Language' => 'es')).to eq '¡Hola!'
+    end
+  end
+
+  describe 'Cookie consent' do
+    it 'shows the banner until the cookie is set' do
+      expect(html(client.get('/cookie_consent')).at_css('#cookie-banner')).not_to be_nil
+      client.cookies['cookie_consent'] = 'all'
+      doc = html(client.get('/cookie_consent'))
+      expect(doc.at_css('#cookie-banner')).to be_nil
+      expect(doc.at_css('#consent-status').text).to eq 'Analytics cookies: allowed'
+    end
+
+    it 'ignores unknown values' do
+      client.cookies['cookie_consent'] = 'bogus'
+      expect(html(client.get('/cookie_consent')).at_css('#cookie-banner')).not_to be_nil
+    end
+
+    it 'forgets the choice' do
+      client.cookies['cookie_consent'] = 'necessary'
+      res = client.get('/cookie_consent/reset')
+      expect(res.code).to eq '302'
+      expect(res['set-cookie']).to match(/cookie_consent=;.*max-age=0/i)
+    end
+  end
+
+  describe 'Live updates' do
+    it 'streams Server-Sent Events and ends with done' do
+      res = client.get('/live_updates/events?count=2&interval=200')
+      expect(res['content-type']).to start_with 'text/event-stream'
+      expect(res.body).to eq "id: 1\ndata: Update 1 of 2\n\nid: 2\ndata: Update 2 of 2\n\nevent: done\ndata: No more updates\n\n"
+    end
+  end
+
+  describe 'Slow and failing API' do
+    it 'fails the first attempts with the chosen status, then answers' do
+      res = client.get('/slow_api/data?fail=2&status=429&attempt=2')
+      expect(res.code).to eq '429'
+      expect(res['retry-after']).to eq '1'
+      expect(JSON.parse(res.body)).to eq('error' => 'Attempt 2 failed with 429')
+      res = client.get('/slow_api/data?fail=2&status=429&attempt=3')
+      expect(res.code).to eq '200'
+      expect(JSON.parse(res.body)).to eq('message' => 'Data loaded on attempt 3')
+    end
+
+    it 'uses 500 for unknown statuses' do
+      expect(client.get('/slow_api/data?fail=1&status=418').code).to eq '500'
+    end
+  end
+
+  describe 'Network & Console' do
+    it 'sends a report-only CSP for images' do
+      expect(client.get('/network_console')['content-security-policy-report-only']).to eq "img-src 'self'"
+    end
+
+    it 'serves JSON data' do
+      res = client.get('/network_console/data')
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq('fruit' => 'apple', 'count' => 3)
+    end
+  end
+
+  describe 'Form validation' do
+    let(:valid) { { username: 'ana', email: 'ana@example.com', password: 'longenough', terms: 'on' } }
+
+    it 'accepts a valid form' do
+      res = client.post('/form_validation', valid)
+      expect(res.code).to eq '200'
+      expect(JSON.parse(res.body)).to eq('message' => 'Account created for ana')
+    end
+
+    it 'answers 422 with errors per field' do
+      res = client.post('/form_validation', valid.merge(username: 'tomsmith', password: 'short', terms: ''))
+      expect(res.code).to eq '422'
+      expect(JSON.parse(res.body)['errors']).to eq(
+        'username' => 'Username is already taken',
+        'password' => 'Password must be at least 8 characters',
+        'terms' => 'You must accept the terms'
+      )
+    end
 
     it 'shows the success message' do
       req = Net::HTTP::Get.new('/basic_auth').tap { |r| r.basic_auth('admin', 'admin') }

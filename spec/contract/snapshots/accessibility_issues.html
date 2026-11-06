@@ -1,0 +1,98 @@
+<div class="large-12 columns" id="content" role="main">
+  <div class="example">
+    <h3>
+      Accessibility Issues
+    <p id="mode">
+      This page has accessibility issues on purpose, for testing scanners such as axe.
+      <a href="/accessibility_issues?fixed=true">
+        Show the fixed page
+      .
+    <table id="known-issues">
+      <thead>
+        <tr>
+          <th>
+            axe rule
+          <th>
+            Element
+          <th>
+            Problem
+      <tbody>
+        <tr data-rule="image-alt">
+          <td>
+            image-alt
+          <td>
+            #profile-image
+          <td>
+            Image without alt text
+        <tr data-rule="label">
+          <td>
+            label
+          <td>
+            #search-input
+          <td>
+            Text field without a label
+        <tr data-rule="select-name">
+          <td>
+            select-name
+          <td>
+            #size-select
+          <td>
+            Select list without a label
+        <tr data-rule="button-name">
+          <td>
+            button-name
+          <td>
+            #icon-button
+          <td>
+            Button with an icon and no name
+        <tr data-rule="link-name">
+          <td>
+            link-name
+          <td>
+            #icon-link
+          <td>
+            Link with an icon and no name
+        <tr data-rule="color-contrast">
+          <td>
+            color-contrast
+          <td>
+            #faint-text
+          <td>
+            Light grey text on white
+        <tr data-rule="aria-roles">
+          <td>
+            aria-roles
+          <td>
+            #bad-role
+          <td>
+            Misspelled ARIA role
+        <tr data-rule="heading-order">
+          <td>
+            heading-order
+          <td>
+            #skipped-heading
+          <td>
+            Heading that skips a level
+    <div id="widgets">
+      <img id="profile-image" src="/img/avatar.jpg" width="100">
+      <p>
+        Search
+        <input id="search-input" type="text">
+      <p>
+        <select id="size-select">
+          <option>
+            Small
+          <option>
+            Large
+      <p>
+        <button class="button" id="icon-button" type="button">
+          <i class="fa fa-cog">
+      <p>
+        <a href="/accessibility_issues" id="icon-link">
+          <i class="fa fa-home">
+      <p id="faint-text" style="color: #cccccc;">
+        This text is hard to read.
+      <div id="bad-role" role="buton" tabindex="0">
+        A div acting as a button
+      <h6 id="skipped-heading">
+        A heading that skips levels
