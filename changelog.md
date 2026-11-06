@@ -1,3 +1,6 @@
+#0.67.0
++ Added Native Dialog (/dialog): modal and non-modal <dialog> with Escape and form buttons
+
 #0.62.2
 + Footer links to Elemental Selenium over https
 

@@ -660,6 +660,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/dialog' do
+    erb :dialog
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
