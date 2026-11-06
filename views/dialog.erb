@@ -1,0 +1,56 @@
+<div class="example">
+  <h3>Native Dialog</h3>
+  <p>The HTML <code>&lt;dialog&gt;</code> element. A modal dialog blocks the rest of the page, keeps focus inside and closes with Escape. A non-modal dialog leaves the page usable.</p>
+  <button id="open-modal" class="button" type="button">Open modal dialog</button>
+  <button id="open-non-modal" class="button secondary" type="button">Open non-modal dialog</button>
+  <p><label for="page-input">A field on the page</label><input id="page-input" type="text"></p>
+  <p id="result">No dialog opened yet</p>
+
+  <dialog id="modal-dialog" aria-labelledby="modal-title">
+    <form method="dialog">
+      <h4 id="modal-title">Modal dialog</h4>
+      <p>Pick an answer. Escape closes it without one.</p>
+      <label for="modal-name">Your name</label>
+      <input id="modal-name" name="name" type="text">
+      <button id="modal-confirm" class="button" value="confirm">Confirm</button>
+      <button id="modal-cancel" class="button secondary" value="cancel">Cancel</button>
+    </form>
+  </dialog>
+
+  <dialog id="non-modal-dialog" aria-labelledby="non-modal-title">
+    <h4 id="non-modal-title">Non-modal dialog</h4>
+    <p>You can still use the page behind me.</p>
+    <button id="non-modal-close" class="button secondary" type="button">Close</button>
+  </dialog>
+</div>
+<script>
+  var modal = document.getElementById('modal-dialog');
+  var nonModal = document.getElementById('non-modal-dialog');
+  var result = document.getElementById('result');
+  var closedWithEscape = false;
+
+  document.getElementById('open-modal').addEventListener('click', function() {
+    closedWithEscape = false;
+    modal.returnValue = '';
+    modal.showModal();
+    result.textContent = 'Modal dialog is open';
+  });
+  modal.addEventListener('cancel', function() { closedWithEscape = true; });
+  modal.addEventListener('close', function() {
+    if (closedWithEscape) {
+      result.textContent = 'Modal dialog closed with Escape';
+    } else {
+      var name = document.getElementById('modal-name').value;
+      result.textContent = 'Modal dialog closed with: ' + modal.returnValue + (name ? ' (name: ' + name + ')' : '');
+    }
+  });
+
+  document.getElementById('open-non-modal').addEventListener('click', function() {
+    nonModal.show();
+    result.textContent = 'Non-modal dialog is open';
+  });
+  document.getElementById('non-modal-close').addEventListener('click', function() {
+    nonModal.close();
+    result.textContent = 'Non-modal dialog closed';
+  });
+</script>

@@ -1,0 +1,99 @@
+<style>
+  #sortable { list-style: none; margin: 0 0 1em; padding: 0; max-width: 20em; touch-action: none; }
+  #sortable li { padding: 0.6em 0.9em; margin: 0 0 0.4em; background: #f0f0ec; border: 1px solid #c8c8be; border-radius: 0.5rem; cursor: grab; user-select: none; }
+  #sortable li.dragging { opacity: 0.6; cursor: grabbing; }
+  #swipe-area { width: 20em; height: 8em; background: #f3ffcc; border: 2px dashed #3c483c; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; touch-action: none; user-select: none; margin-bottom: 1em; }
+  #long-press { touch-action: none; user-select: none; }
+</style>
+<div class="example">
+  <h3>Pointer Events</h3>
+  <p>These widgets use pointer events (<code>pointerdown</code>, <code>pointermove</code>, <code>pointerup</code>), which work the same for mouse, pen and touch. HTML5 drag and drop is not used, unlike <a href="/drag_and_drop">Drag and Drop</a>.</p>
+
+  <h4>Sortable list</h4>
+  <p>Drag an item up or down.</p>
+  <ul id="sortable">
+    <li data-id="1">First</li>
+    <li data-id="2">Second</li>
+    <li data-id="3">Third</li>
+    <li data-id="4">Fourth</li>
+  </ul>
+  <p id="order">Order: First, Second, Third, Fourth</p>
+
+  <h4>Swipe</h4>
+  <div id="swipe-area">Swipe left or right here</div>
+  <p id="swipe-result">No swipe yet</p>
+
+  <h4>Long press</h4>
+  <button id="long-press" class="button" type="button">Press and hold</button>
+  <p id="press-result">Not pressed yet</p>
+</div>
+<script>
+  (function() {
+    // Sortable list
+    var list = document.getElementById('sortable');
+    var dragged = null;
+    function showOrder() {
+      var names = Array.prototype.map.call(list.children, function(li) { return li.textContent; });
+      document.getElementById('order').textContent = 'Order: ' + names.join(', ');
+    }
+    list.addEventListener('pointerdown', function(event) {
+      var item = event.target.closest('li');
+      if (!item) return;
+      dragged = item;
+      item.classList.add('dragging');
+      list.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+    list.addEventListener('pointermove', function(event) {
+      if (!dragged) return;
+      var items = Array.prototype.filter.call(list.children, function(li) { return li !== dragged; });
+      var before = items.find(function(li) {
+        var box = li.getBoundingClientRect();
+        return event.clientY < box.top + box.height / 2;
+      });
+      list.insertBefore(dragged, before || null);
+    });
+    function drop() {
+      if (!dragged) return;
+      dragged.classList.remove('dragging');
+      dragged = null;
+      showOrder();
+    }
+    list.addEventListener('pointerup', drop);
+    list.addEventListener('pointercancel', drop);
+
+    // Swipe
+    var area = document.getElementById('swipe-area');
+    var startX = null;
+    area.addEventListener('pointerdown', function(event) {
+      startX = event.clientX;
+      area.setPointerCapture(event.pointerId);
+    });
+    area.addEventListener('pointerup', function(event) {
+      if (startX === null) return;
+      var distance = event.clientX - startX;
+      startX = null;
+      var result = document.getElementById('swipe-result');
+      if (Math.abs(distance) < 50) result.textContent = 'Too short to be a swipe';
+      else result.textContent = 'Swiped ' + (distance > 0 ? 'right' : 'left') + ' (' + event.pointerType + ')';
+    });
+
+    // Long press
+    var button = document.getElementById('long-press');
+    var timer = null, longPressed = false;
+    button.addEventListener('pointerdown', function() {
+      longPressed = false;
+      timer = setTimeout(function() {
+        longPressed = true;
+        document.getElementById('press-result').textContent = 'Long press';
+      }, 800);
+    });
+    function release() {
+      clearTimeout(timer);
+      if (!longPressed) document.getElementById('press-result').textContent = 'Short press (hold for 800 ms)';
+    }
+    button.addEventListener('pointerup', release);
+    button.addEventListener('pointerleave', function() { clearTimeout(timer); });
+    button.addEventListener('contextmenu', function(event) { event.preventDefault(); });
+  })();
+</script>
