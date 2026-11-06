@@ -54,6 +54,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
 + [Nested Frames](https://the-internet.herokuapp.com/nested_frames) - Frames inside frames
 + [Notification Messages](https://the-internet.herokuapp.com/notification_message) - A flash message that changes on each click
++ [Pointer Events](https://the-internet.herokuapp.com/pointer_events) - Sort a list / swipe and long-press with pointer events instead of HTML5 drag and drop
 + [Radio Buttons](https://the-internet.herokuapp.com/radio_buttons) - Pick one option per group
 + [Read-only Inputs](https://the-internet.herokuapp.com/readonly) - Fields you can read but not change
 + [Redirect Link](https://the-internet.herokuapp.com/redirector) - A link that redirects to another page

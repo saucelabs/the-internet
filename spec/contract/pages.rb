@@ -83,6 +83,7 @@ PAGES = {
   '/spa'                           => { text: 'SPA Routing' },
   '/spa/about'                     => { text: 'SPA Routing' },
   '/virtual_list'                  => { text: 'Virtualized List' },
+  '/pointer_events'                => { text: 'Pointer Events' },
 }.freeze
 
 def snapshot_name(path)

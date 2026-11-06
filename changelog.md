@@ -1,3 +1,6 @@
+#0.76.0
++ Added Pointer Events (/pointer_events): a sortable list, swipe and long press built on pointer events
+
 #0.75.0
 + Added Virtualized List (/virtual_list): 10,000 items with only the visible rows in the DOM
 
