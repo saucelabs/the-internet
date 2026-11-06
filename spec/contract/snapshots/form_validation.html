@@ -1,0 +1,45 @@
+<div class="large-12 columns" id="content">
+  <style>
+    #signup .field-error { color: #961001; font-weight: 700; display: block; margin: -0.75em 0 1em; } #signup .field-error:empty { display: none; } #signup input[aria-invalid="true"] { border-color: #961001; }
+  <div class="example">
+    <h3>
+      Form Validation
+    <p>
+      The browser checks the fields first (required, length, pattern, email, number range). When they pass, the form is sent to the server, which can still say no: the usernames
+      <code>
+        tomsmith
+      and
+      <code>
+        admin
+      are taken. Server errors show under each field.
+    <form action="/form_validation" id="signup" method="post">
+      <label for="username">
+        Username (lowercase letters and digits, 3 to 20)
+      <input id="username" maxlength="20" minlength="3" name="username" pattern="[a-z0-9]+" required="" type="text">
+      <span class="field-error" id="username-error">
+      <label for="email">
+        Email
+      <input id="email" name="email" required="" type="email">
+      <span class="field-error" id="email-error">
+      <label for="age">
+        Age (18 to 120)
+      <input id="age" max="120" min="18" name="age" type="number">
+      <span class="field-error" id="age-error">
+      <label for="website">
+        Website (optional)
+      <input id="website" name="website" placeholder="https://" type="url">
+      <span class="field-error" id="website-error">
+      <label for="password">
+        Password (at least 8 characters)
+      <input id="password" minlength="8" name="password" required="" type="password">
+      <span class="field-error" id="password-error">
+      <input id="terms" name="terms" required="" type="checkbox">
+      <label for="terms" style="display: inline;">
+        I accept the terms
+      <span class="field-error" id="terms-error">
+      <p>
+        <button class="button" type="submit">
+          Create account
+    <p id="result" role="status">
+  <script>
+    (function() { var form = document.getElementById('signup'); var result = document.getElementById('result'); function clearErrors() { form.querySelectorAll('.field-error').forEach(function(el) { el.textContent = ''; }); form.querySelectorAll('[aria-invalid]').forEach(function(el) { el.removeAttribute('aria-invalid'); }); } form.addEventListener('submit', function(event) { event.preventDefault(); clearErrors(); result.textContent = 'Checking...'; var button = form.querySelector('button[type=submit]'); button.disabled = true; fetch(form.action, { method: 'POST', body: new URLSearchParams(new FormData(form)) }) .then(function(res) { return res.json().then(function(body) { return { ok: res.ok, body: body }; }); }) .then(function(answer) { button.disabled = false; if (answer.ok) { result.textContent = answer.body.message; return; } result.textContent = 'Please fix the errors below'; Object.keys(answer.body.errors).forEach(function(field) { document.getElementById(field + '-error').textContent = answer.body.errors[field]; document.getElementById(field).setAttribute('aria-invalid', 'true'); }); }); }); })();

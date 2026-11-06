@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require 'digest'
+require 'json'
 require 'erb'
 require 'securerandom'
 
@@ -182,6 +183,26 @@ describe 'Behaviour' do
         expect(res['content-disposition']).to include 'attachment', file
         expect(res.body.b).to eq File.binread(File.join(REPO_ROOT, 'public/uploads/jqueryui/menu', file)) if LOCAL
       end
+    end
+  end
+
+  describe 'Form validation' do
+    let(:valid) { { username: 'ana', email: 'ana@example.com', password: 'longenough', terms: 'on' } }
+
+    it 'accepts a valid form' do
+      res = client.post('/form_validation', valid)
+      expect(res.code).to eq '200'
+      expect(JSON.parse(res.body)).to eq('message' => 'Account created for ana')
+    end
+
+    it 'answers 422 with errors per field' do
+      res = client.post('/form_validation', valid.merge(username: 'tomsmith', password: 'short', terms: ''))
+      expect(res.code).to eq '422'
+      expect(JSON.parse(res.body)['errors']).to eq(
+        'username' => 'Username is already taken',
+        'password' => 'Password must be at least 8 characters',
+        'terms' => 'You must accept the terms'
+      )
     end
   end
 

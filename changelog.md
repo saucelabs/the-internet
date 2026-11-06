@@ -1,3 +1,6 @@
+#0.72.0
++ Added Form Validation (/form_validation): HTML5 validation in the browser and per-field errors from the server
+
 #0.62.3
 + The JQuery UI menu download route only serves files from its own folder, like the other download routes
 

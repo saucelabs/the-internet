@@ -660,6 +660,33 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/form_validation' do
+    erb :form_validation
+  end
+
+  # Server-side checks for /form_validation. Answers JSON: 200 when valid, 422 with errors per field.
+  post '/form_validation' do
+    require 'json'
+    username = params[:username].to_s.strip
+    errors = {}
+    if username.empty?
+      errors['username'] = 'Username is required'
+    elsif %w[tomsmith admin].include?(username.downcase)
+      errors['username'] = 'Username is already taken'
+    end
+    errors['email'] = 'Email is required' if params[:email].to_s.strip.empty?
+    errors['password'] = 'Password must be at least 8 characters' if params[:password].to_s.length < 8
+    errors['terms'] = 'You must accept the terms' unless params[:terms] == 'on'
+    sleep 0.5 # the check takes a moment, like a real server
+    content_type :json
+    if errors.empty?
+      JSON.generate(message: "Account created for #{username}")
+    else
+      status 422
+      JSON.generate(errors: errors)
+    end
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
