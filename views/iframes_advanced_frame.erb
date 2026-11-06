@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Frame: <%= name %></title>
+  </head>
+  <body>
+    <h4 id="frame-title">Frame: <%= name %></h4>
+    <button id="send-message" type="button">Send a message to the page</button>
+    <script>
+      document.getElementById('send-message').addEventListener('click', function() {
+        parent.postMessage({ from: '<%= name %>', text: 'hello' }, '*');
+        this.textContent = 'Message sent';
+      });
+    </script>
+  </body>
+</html>

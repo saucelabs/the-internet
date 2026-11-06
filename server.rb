@@ -687,6 +687,163 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/shadowdom_advanced' do
+    erb :shadowdom_advanced
+  end
+
+  get '/iframes_advanced' do
+    erb :iframes_advanced
+  end
+
+  # Page loaded inside the frames of /iframes_advanced.
+  get '/iframes_advanced/frame' do
+    name = params[:name].to_s[/\A[a-z]{1,20}\z/] || 'plain'
+    erb :iframes_advanced_frame, layout: false, locals: { name: name }
+  end
+
+  get '/dialog' do
+    erb :dialog
+  end
+
+  get '/toasts' do
+    erb :toasts
+  end
+
+  get '/autocomplete' do
+    erb :autocomplete
+  end
+
+  AUTOCOMPLETE_WORDS = %w[
+    Apple Apricot Avocado Banana Blackberry Blueberry Cantaloupe Cherry Coconut Cranberry
+    Date Dragonfruit Durian Elderberry Fig Gooseberry Grape Grapefruit Guava Honeydew
+    Jackfruit Kiwi Kumquat Lemon Lime Lychee Mango Melon Nectarine Orange
+    Papaya Passionfruit Peach Pear Persimmon Pineapple Plum Pomegranate Raspberry Strawberry
+  ].freeze
+
+  # Suggestions for /autocomplete: names that start with q (up to 8), after an optional delay in ms (max 3000).
+  get '/autocomplete/suggestions' do
+    require 'json'
+    sleep(params[:delay].to_i.clamp(0, 3000) / 1000.0)
+    query = params[:q].to_s.strip.downcase
+    words = query.empty? ? [] : AUTOCOMPLETE_WORDS.select { |w| w.downcase.start_with?(query) }.first(8)
+    content_type :json
+    JSON.generate(words)
+  end
+
+  get '/date_pickers' do
+    erb :date_pickers
+  end
+
+  get '/custom_dropdown' do
+    erb :custom_dropdown
+  end
+
+  get '/form_validation' do
+    erb :form_validation
+  end
+
+  # Server-side checks for /form_validation. Answers JSON: 200 when valid, 422 with errors per field.
+  post '/form_validation' do
+    require 'json'
+    username = params[:username].to_s.strip
+    errors = {}
+    if username.empty?
+      errors['username'] = 'Username is required'
+    elsif %w[tomsmith admin].include?(username.downcase)
+      errors['username'] = 'Username is already taken'
+    end
+    errors['email'] = 'Email is required' if params[:email].to_s.strip.empty?
+    errors['password'] = 'Password must be at least 8 characters' if params[:password].to_s.length < 8
+    errors['terms'] = 'You must accept the terms' unless params[:terms] == 'on'
+    sleep 0.5 # the check takes a moment, like a real server
+    content_type :json
+    if errors.empty?
+      JSON.generate(message: "Account created for #{username}")
+    else
+      status 422
+      JSON.generate(errors: errors)
+    end
+  end
+
+  get '/stale_element' do
+    erb :stale_element
+  end
+
+  get '/spa' do
+    erb :spa
+  end
+
+  # Deep links into /spa render the same page; the script shows the right view.
+  get '/spa/:view' do |view|
+    pass unless %w[about contact].include?(view)
+    erb :spa
+  end
+
+  get '/virtual_list' do
+    erb :virtual_list
+  end
+
+  get '/pointer_events' do
+    erb :pointer_events
+  end
+
+  get '/svg' do
+    erb :svg
+  end
+
+  # The report-only policy reports the data: image as a violation without blocking anything.
+  get '/network_console' do
+    headers 'Content-Security-Policy-Report-Only' => "img-src 'self'"
+    erb :network_console
+  end
+
+  get '/network_console/data' do
+    require 'json'
+    content_type :json
+    JSON.generate(fruit: 'apple', count: 3)
+  end
+
+  get '/slow_api' do
+    erb :slow_api
+  end
+
+  # API for /slow_api. delay: ms before answering (max 5000). fail: how many attempts fail
+  # (max 5) with status (429, 500 or 503). attempt: which attempt this is, sent by the page.
+  get '/slow_api/data' do
+    require 'json'
+    sleep(params[:delay].to_i.clamp(0, 5000) / 1000.0)
+    error_status = [429, 500, 503].include?(params[:status].to_i) ? params[:status].to_i : 500
+    attempt = [params[:attempt].to_i, 1].max
+    content_type :json
+    if attempt <= params[:fail].to_i.clamp(0, 5)
+      headers 'Retry-After' => '1' if error_status == 429
+      status error_status
+      JSON.generate(error: "Attempt #{attempt} failed with #{error_status}")
+    else
+      JSON.generate(message: "Data loaded on attempt #{attempt}")
+    end
+  end
+
+  get '/live_updates' do
+    erb :live_updates
+  end
+
+  # Server-Sent Events for /live_updates: up to 10 numbered updates, one per interval
+  # (ms, 200 to 2000), then a "done" event. Short so a connection doesn't hold a thread for long.
+  get '/live_updates/events' do
+    count = params.fetch(:count, 5).to_i.clamp(1, 10)
+    interval = params.fetch(:interval, 1000).to_i.clamp(200, 2000) / 1000.0
+    content_type 'text/event-stream'
+    headers 'Cache-Control' => 'no-cache', 'X-Accel-Buffering' => 'no'
+    stream do |out|
+      count.times do |i|
+        sleep interval
+        out << "id: #{i + 1}\ndata: Update #{i + 1} of #{count}\n\n"
+      end
+      out << "event: done\ndata: No more updates\n\n"
+    end
+  end
+
   # The banner shows until the cookie_consent cookie is "all" or "necessary".
   get '/cookie_consent' do
     consent = request.cookies['cookie_consent']

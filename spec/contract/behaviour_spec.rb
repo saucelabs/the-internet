@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require 'digest'
+require 'json'
 require 'erb'
 require 'securerandom'
 
@@ -27,6 +28,84 @@ describe 'Behaviour' do
         req = Net::HTTP::Get.new(path).tap { |r| r.basic_auth('admin', 'admin') }
         expect(client.request(req).code).to eq '200'
       end
+    end
+  end
+
+  describe 'Cookie consent' do
+    it 'shows the banner until the cookie is set' do
+      expect(html(client.get('/cookie_consent')).at_css('#cookie-banner')).not_to be_nil
+      client.cookies['cookie_consent'] = 'all'
+      doc = html(client.get('/cookie_consent'))
+      expect(doc.at_css('#cookie-banner')).to be_nil
+      expect(doc.at_css('#consent-status').text).to eq 'Analytics cookies: allowed'
+    end
+
+    it 'ignores unknown values' do
+      client.cookies['cookie_consent'] = 'bogus'
+      expect(html(client.get('/cookie_consent')).at_css('#cookie-banner')).not_to be_nil
+    end
+
+    it 'forgets the choice' do
+      client.cookies['cookie_consent'] = 'necessary'
+      res = client.get('/cookie_consent/reset')
+      expect(res.code).to eq '302'
+      expect(res['set-cookie']).to match(/cookie_consent=;.*max-age=0/i)
+    end
+  end
+
+  describe 'Live updates' do
+    it 'streams Server-Sent Events and ends with done' do
+      res = client.get('/live_updates/events?count=2&interval=200')
+      expect(res['content-type']).to start_with 'text/event-stream'
+      expect(res.body).to eq "id: 1\ndata: Update 1 of 2\n\nid: 2\ndata: Update 2 of 2\n\nevent: done\ndata: No more updates\n\n"
+    end
+  end
+
+  describe 'Slow and failing API' do
+    it 'fails the first attempts with the chosen status, then answers' do
+      res = client.get('/slow_api/data?fail=2&status=429&attempt=2')
+      expect(res.code).to eq '429'
+      expect(res['retry-after']).to eq '1'
+      expect(JSON.parse(res.body)).to eq('error' => 'Attempt 2 failed with 429')
+      res = client.get('/slow_api/data?fail=2&status=429&attempt=3')
+      expect(res.code).to eq '200'
+      expect(JSON.parse(res.body)).to eq('message' => 'Data loaded on attempt 3')
+    end
+
+    it 'uses 500 for unknown statuses' do
+      expect(client.get('/slow_api/data?fail=1&status=418').code).to eq '500'
+    end
+  end
+
+  describe 'Network & Console' do
+    it 'sends a report-only CSP for images' do
+      expect(client.get('/network_console')['content-security-policy-report-only']).to eq "img-src 'self'"
+    end
+
+    it 'serves JSON data' do
+      res = client.get('/network_console/data')
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq('fruit' => 'apple', 'count' => 3)
+    end
+  end
+
+  describe 'Form validation' do
+    let(:valid) { { username: 'ana', email: 'ana@example.com', password: 'longenough', terms: 'on' } }
+
+    it 'accepts a valid form' do
+      res = client.post('/form_validation', valid)
+      expect(res.code).to eq '200'
+      expect(JSON.parse(res.body)).to eq('message' => 'Account created for ana')
+    end
+
+    it 'answers 422 with errors per field' do
+      res = client.post('/form_validation', valid.merge(username: 'tomsmith', password: 'short', terms: ''))
+      expect(res.code).to eq '422'
+      expect(JSON.parse(res.body)['errors']).to eq(
+        'username' => 'Username is already taken',
+        'password' => 'Password must be at least 8 characters',
+        'terms' => 'You must accept the terms'
+      )
     end
 
     it 'shows the success message' do
@@ -185,25 +264,17 @@ describe 'Behaviour' do
     end
   end
 
-  describe 'Cookie consent' do
-    it 'shows the banner until the cookie is set' do
-      expect(html(client.get('/cookie_consent')).at_css('#cookie-banner')).not_to be_nil
-      client.cookies['cookie_consent'] = 'all'
-      doc = html(client.get('/cookie_consent'))
-      expect(doc.at_css('#cookie-banner')).to be_nil
-      expect(doc.at_css('#consent-status').text).to eq 'Analytics cookies: allowed'
+  describe 'Autocomplete suggestions' do
+    it 'returns names that start with the query as JSON' do
+      res = client.get('/autocomplete/suggestions?q=gr')
+      expect(res.code).to eq '200'
+      expect(res['content-type']).to start_with 'application/json'
+      expect(JSON.parse(res.body)).to eq %w[Grape Grapefruit]
     end
 
-    it 'ignores unknown values' do
-      client.cookies['cookie_consent'] = 'bogus'
-      expect(html(client.get('/cookie_consent')).at_css('#cookie-banner')).not_to be_nil
-    end
-
-    it 'forgets the choice' do
-      client.cookies['cookie_consent'] = 'necessary'
-      res = client.get('/cookie_consent/reset')
-      expect(res.code).to eq '302'
-      expect(res['set-cookie']).to match(/cookie_consent=;.*max-age=0/i)
+    it 'returns an empty list for an empty or unknown query' do
+      expect(JSON.parse(client.get('/autocomplete/suggestions?q=').body)).to eq []
+      expect(JSON.parse(client.get('/autocomplete/suggestions?q=zz').body)).to eq []
     end
   end
 
