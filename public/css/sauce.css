@@ -141,11 +141,19 @@ a:focus {
   columns: 4 16em;
   column-gap: 2.5em;
 }
+/* Every item is two lines (name, description). Longer text ends with "..."; the full text is in the title. */
 #content h1.heading ~ ul li {
   break-inside: avoid;
   padding: 0.35em 0;
   border-bottom: 1px solid var(--sl-ivory);
   color: var(--sl-pine-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Items clip overflow, so keep a link's focus ring inside the item. */
+#content h1.heading ~ ul li a:focus-visible {
+  outline-offset: -2px;
 }
 #content h1.heading ~ ul li[hidden] {
   display: none;
@@ -154,6 +162,8 @@ a:focus {
 #content h1.heading ~ ul li[data-description]::after {
   content: attr(data-description);
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 0.85em;
   color: var(--sl-pine-light);
 }

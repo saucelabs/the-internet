@@ -34,12 +34,14 @@ def update_readme
   File.open('README.md', 'w') { |file| file.puts readme_text }
 end
 
-# The description is an attribute (shown with CSS), so the text of each <li> stays the same.
+# The description and the full text (title) are attributes, so the text of each <li> stays the same.
 def update_examples_view
   require 'erb'
   index_html = "<ul>\n"
   examples.each do |example|
     index_html << "  <li"
+    full_text = [example[:title], example[:notes] && "(#{example[:notes]})", example[:description] && "- #{example[:description]}"].compact.join(' ')
+    index_html << " title='#{ERB::Util.html_escape(full_text)}'"
     index_html << " data-description='#{ERB::Util.html_escape(example[:description])}'" if example[:description]
     index_html << "><a href='#{example[:url_path]}'>#{example[:title]}</a>"
     index_html << " (#{example[:notes]})" if example[:notes]
