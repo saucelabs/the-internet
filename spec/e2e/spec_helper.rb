@@ -20,17 +20,23 @@ module Driver
   module_function
 
   # Chrome and Edge flag the example password as breached and open a dialog that eats keystrokes.
-  def options
+  # fake_media: a fake camera and microphone that are allowed without a prompt.
+  def options(fake_media: false)
     options = Selenium::WebDriver::Options.send(ENV['BROWSER'])
     if %w[chrome edge].include?(ENV['BROWSER'])
       options.add_preference(:credentials_enable_service, false)
       options.add_preference(:profile, password_manager_enabled: false, password_manager_leak_detection: false)
+      options.add_argument('--use-fake-device-for-media-stream') if fake_media
+      options.add_argument('--use-fake-ui-for-media-stream') if fake_media
+    elsif ENV['BROWSER'] == 'firefox' && fake_media
+      options.add_preference('media.navigator.streams.fake', true)
+      options.add_preference('media.navigator.permission.disabled', true)
     end
     options
   end
 
-  def local
-    options = self.options
+  def local(fake_media: false)
+    options = self.options(fake_media: fake_media)
     if ENV.fetch('HEADLESS', 'true') == 'true'
       case ENV['BROWSER']
       when 'chrome', 'edge' then options.add_argument('--headless=new')
@@ -40,8 +46,8 @@ module Driver
     Selenium::WebDriver.for(ENV['BROWSER'].to_sym, options: options)
   end
 
-  def saucelabs(name)
-    options = self.options
+  def saucelabs(name, fake_media: false)
+    options = self.options(fake_media: fake_media)
     options.browser_version = ENV.fetch('BROWSER_VERSION', 'latest')
     options.platform_name = ENV.fetch('PLATFORM_NAME') { ENV['BROWSER'] == 'safari' ? 'macOS 15' : 'Windows 11' }
     sauce = {
@@ -78,7 +84,13 @@ RSpec.configure do |config|
   config.before(:each) do |example|
     reason = example.metadata.dig(:unsupported, ENV['BROWSER'])
     skip(reason) if reason
-    @driver =ENV['TARGET'] == 'saucelabs' ? Driver.saucelabs(example.metadata[:full_description]) : Driver.local
+    # Tag a scenario with `fake_media: true` for a fake camera and microphone (Chrome, Edge, Firefox).
+    fake_media = example.metadata.fetch(:fake_media, false)
+    @driver = if ENV['TARGET'] == 'saucelabs'
+                Driver.saucelabs(example.metadata[:full_description], fake_media: fake_media)
+              else
+                Driver.local(fake_media: fake_media)
+              end
   end
 
   config.after(:each) do |example|

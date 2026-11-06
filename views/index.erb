@@ -7,4 +7,27 @@ ul {
 </style>
 <h1 class="heading">Welcome to the-internet</h1>
 <h2>Available Examples</h2>
+<div id="example-filter-box">
+  <label for="example-filter">Filter examples</label>
+  <input type="search" id="example-filter" placeholder="Type a name or a word from the description" autocomplete="off">
+  <p id="example-filter-empty" hidden>No examples match.</p>
+</div>
 <%= erb :examples %>
+<script>
+  (function() {
+    var filter = document.getElementById('example-filter');
+    var empty = document.getElementById('example-filter-empty');
+    var items = document.querySelectorAll('#content h1.heading ~ ul li');
+    filter.addEventListener('input', function() {
+      var words = filter.value.toLowerCase().split(/\s+/).filter(Boolean);
+      var shown = 0;
+      for (var i = 0; i < items.length; i++) {
+        var text = (items[i].textContent + ' ' + (items[i].getAttribute('data-description') || '')).toLowerCase();
+        var match = words.every(function(word) { return text.indexOf(word) !== -1; });
+        items[i].hidden = !match;
+        if (match) shown++;
+      }
+      empty.hidden = shown > 0;
+    });
+  })();
+</script>
