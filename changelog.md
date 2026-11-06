@@ -1,3 +1,6 @@
+#0.65.0
++ Added Advanced Shadow DOM (/shadowdom_advanced): nested and closed shadow roots, slots and a form-associated custom element
+
 #0.64.0
 + Upgraded jQuery from 1.11.3 to 3.7.1 on every page. jQuery UI stays 1.11.4, so the JQuery UI menu markup is the same
 + /dynamic_controls uses the shared jQuery instead of loading jQuery 1.10.2 from Google

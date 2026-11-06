@@ -11,6 +11,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 
 + [A/B Testing](https://the-internet.herokuapp.com/abtest) - Content that changes between visits
 + [Add/Remove Elements](https://the-internet.herokuapp.com/add_remove_elements/) - Buttons that add and delete elements
++ [Advanced Shadow DOM](https://the-internet.herokuapp.com/shadowdom_advanced) - Nested and closed shadow roots / slots / a custom form field
 + [Basic Auth](https://the-internet.herokuapp.com/basic_auth) (user and pass: admin) - Log in through the browser's basic auth prompt
 + [Broken Images](https://the-internet.herokuapp.com/broken_images) - Images that fail to load
 + [Canvas](https://the-internet.herokuapp.com/canvas) - Click and type into a canvas

@@ -50,3 +50,4 @@ Read-only Inputs,/readonly,,Fields you can read but not change
 Two-Factor Login,/two_factor,user: tomsmith / pass: SuperSecretPassword!,Log in with a password and a one-time code
 Large Form,/large_form,,A long form with many field types
 Canvas,/canvas,,Click and type into a canvas
+Advanced Shadow DOM,/shadowdom_advanced,,Nested and closed shadow roots / slots / a custom form field
