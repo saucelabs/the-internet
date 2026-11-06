@@ -1,0 +1,66 @@
+<style>
+  #spa-nav a { margin-right: 1em; }
+  #spa-nav a[aria-current="page"] { font-weight: 700; text-decoration: none; }
+</style>
+<div class="example">
+  <h3>SPA Routing</h3>
+  <p>The links change the URL with the History API (<code>pushState</code>) and swap the view without loading a new page. Back and Forward work, and each URL can be opened directly.</p>
+  <nav id="spa-nav" aria-label="SPA">
+    <a href="/spa" data-view="home">Home</a>
+    <a href="/spa/about" data-view="about">About</a>
+    <a href="/spa/contact" data-view="contact">Contact</a>
+  </nav>
+  <div id="spa-view" aria-live="polite"></div>
+  <p id="page-loads"></p>
+</div>
+<script>
+  (function() {
+    var views = {
+      home: { title: 'Home', text: 'Welcome to the single-page app.' },
+      about: { title: 'About', text: 'This view was drawn by JavaScript.' },
+      contact: { title: 'Contact', text: 'Write to us at contact@example.com.' }
+    };
+    var navigations = 0;
+
+    function viewFor(path) {
+      var match = path.match(/^\/spa\/(about|contact)\/?$/);
+      return match ? match[1] : 'home';
+    }
+
+    function render(name) {
+      var view = views[name];
+      var container = document.getElementById('spa-view');
+      container.innerHTML = '';
+      var heading = document.createElement('h4');
+      heading.id = 'view-title';
+      heading.textContent = view.title;
+      var text = document.createElement('p');
+      text.id = 'view-text';
+      text.textContent = view.text;
+      container.appendChild(heading);
+      container.appendChild(text);
+      document.querySelectorAll('#spa-nav a').forEach(function(link) {
+        if (link.getAttribute('data-view') === name) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
+      });
+      document.getElementById('page-loads').textContent = 'Page loaded once; views shown without a reload: ' + navigations;
+    }
+
+    document.getElementById('spa-nav').addEventListener('click', function(event) {
+      var link = event.target.closest('a');
+      if (!link) return;
+      event.preventDefault();
+      if (link.getAttribute('href') === location.pathname) return;
+      history.pushState({}, '', link.getAttribute('href'));
+      navigations++;
+      render(link.getAttribute('data-view'));
+    });
+
+    window.addEventListener('popstate', function() {
+      navigations++;
+      render(viewFor(location.pathname));
+    });
+
+    render(viewFor(location.pathname));
+  })();
+</script>
