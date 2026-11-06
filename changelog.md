@@ -1,3 +1,6 @@
+#0.71.0
++ Added Custom Dropdown (/custom_dropdown): an ARIA combobox and listbox built from divs
+
 #0.70.0
 + Added Date & Time Pickers (/date_pickers): native date and time inputs and a JavaScript calendar widget (?month=YYYY-MM)
 

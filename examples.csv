@@ -56,3 +56,4 @@ Native Dialog,/dialog,,Modal and non-modal <dialog> elements with Escape and foc
 Toasts,/toasts,,Notifications that hide themselves after a set time
 Autocomplete,/autocomplete,,A search box with suggestions from the server that you pick with the keyboard
 Date & Time Pickers,/date_pickers,,Native date and time inputs and a calendar widget built with JavaScript
+Custom Dropdown,/custom_dropdown,,A select list built from divs with ARIA roles instead of <select>

@@ -734,6 +734,10 @@ class Public < Sinatra::Base
     erb :date_pickers
   end
 
+  get '/custom_dropdown' do
+    erb :custom_dropdown
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'
