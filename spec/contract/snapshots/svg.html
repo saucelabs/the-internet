@@ -1,0 +1,29 @@
+<div class="large-12 columns" id="content">
+  <div class="example">
+    <h3>
+      SVG
+    <p>
+      An inline SVG chart. SVG elements live in their own namespace, so some locators need care (for example XPath needs
+      <code>
+        *[local-name()='rect']
+      ). Click a bar to select it, or click the circle to change its colour.
+    <svg aria-labelledby="chart-title" height="260" id="chart" role="img" viewbox="0 0 420 260" width="420" xmlns="http://www.w3.org/2000/svg">
+      <title id="chart-title">
+        Fruit sales
+      <g id="bars" transform="translate(40, 20)">
+        <rect class="bar" data-label="Apples" data-value="120" fill="#334bc3" height="120" id="bar-apples" width="50" x="0" y="80">
+        <rect class="bar" data-label="Bananas" data-value="180" fill="#334bc3" height="180" id="bar-bananas" width="50" x="70" y="20">
+        <rect class="bar" data-label="Cherries" data-value="60" fill="#334bc3" height="60" id="bar-cherries" width="50" x="140" y="140">
+        <text text-anchor="middle" x="25" y="220">
+          Apples
+        <text text-anchor="middle" x="95" y="220">
+          Bananas
+        <text text-anchor="middle" x="165" y="220">
+          Cherries
+      <circle cx="330" cy="110" fill="#abe082" id="toggle-circle" r="45" stroke="#192319" stroke-width="2">
+      <text id="circle-label" pointer-events="none" text-anchor="middle" x="330" y="115">
+        Click me
+    <p id="result">
+      Nothing selected
+  <script>
+    (function() { var bars = document.querySelectorAll('#chart .bar'); bars.forEach(function(bar) { bar.addEventListener('click', function() { bars.forEach(function(b) { b.setAttribute('fill', '#334bc3'); }); bar.setAttribute('fill', '#f55524'); document.getElementById('result').textContent = 'Selected ' + bar.getAttribute('data-label') + ': ' + bar.getAttribute('data-value'); }); }); var circle = document.getElementById('toggle-circle'); circle.addEventListener('click', function() { var on = circle.getAttribute('fill') === '#abe082'; circle.setAttribute('fill', on ? '#961001' : '#abe082'); document.getElementById('circle-label').textContent = on ? 'Clicked' : 'Click me'; document.getElementById('result').textContent = 'Circle is ' + (on ? 'red' : 'green'); }); })();

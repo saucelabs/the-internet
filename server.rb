@@ -687,6 +687,10 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/svg' do
+    erb :svg
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

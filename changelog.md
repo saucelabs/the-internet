@@ -1,3 +1,6 @@
+#0.77.0
++ Added SVG (/svg): click and read shapes and text in an inline SVG chart
+
 #0.62.4
 + Uploaded files are deleted after an hour, and only the newest 100 are kept. The sample files always stay
 
