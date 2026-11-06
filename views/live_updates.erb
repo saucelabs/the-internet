@@ -1,0 +1,45 @@
+<div class="example">
+  <h3>Live Updates</h3>
+  <p>The server pushes updates to the page with Server-Sent Events (<code>EventSource</code>). Each one shows up when it arrives; the server sends a few and then a "done" event. Change how many and how often with <code>?count=</code> (1 to 10) and <code>?interval=</code> (ms, 200 to 2000).</p>
+  <button id="start" class="button" type="button">Start updates</button>
+  <p id="connection" role="status">Not connected</p>
+  <ul id="updates"></ul>
+</div>
+<script>
+  (function() {
+    var params = new URLSearchParams(location.search);
+    var query = new URLSearchParams();
+    ['count', 'interval'].forEach(function(name) {
+      var value = params.get(name);
+      if (value && /^\d+$/.test(value)) query.set(name, value);
+    });
+    var connection = document.getElementById('connection');
+    var button = document.getElementById('start');
+
+    button.addEventListener('click', function() {
+      button.disabled = true;
+      document.getElementById('updates').innerHTML = '';
+      connection.textContent = 'Connecting...';
+      var source = new EventSource('/live_updates/events?' + query);
+      source.onopen = function() { connection.textContent = 'Connected, waiting for updates'; };
+      source.onmessage = function(event) {
+        var li = document.createElement('li');
+        li.className = 'update';
+        li.setAttribute('data-id', event.lastEventId);
+        li.textContent = event.data;
+        document.getElementById('updates').appendChild(li);
+      };
+      source.addEventListener('done', function() {
+        source.close();
+        connection.textContent = 'Done: the server sent all updates';
+        button.disabled = false;
+      });
+      source.onerror = function() {
+        if (source.readyState === EventSource.CLOSED) {
+          connection.textContent = 'Connection closed';
+          button.disabled = false;
+        }
+      };
+    });
+  })();
+</script>

@@ -240,6 +240,15 @@ button.secondary:focus,
   background-color: var(--sl-warm-gray);
   color: var(--sl-pine);
 }
+/* app.css puts a flash-message icon before every .success, .notice and .error; not on buttons. */
+button.success::before,
+.button.success::before,
+button.error::before,
+.button.error::before,
+button.notice::before,
+.button.notice::before {
+  content: none;
+}
 button.success,
 .button.success {
   background-color: var(--sl-highlight);

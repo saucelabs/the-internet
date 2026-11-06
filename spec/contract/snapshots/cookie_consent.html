@@ -1,0 +1,46 @@
+<div class="large-12 columns" id="content" role="main">
+  <style>
+    #cookie-banner { position: fixed; left: 1em; right: 1em; bottom: 1em; z-index: 200; background: #192319; color: #f0f0ec; padding: 1.25em; border-radius: 1rem; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); } #cookie-banner p, #cookie-banner label { color: #f0f0ec; } #cookie-banner .button { margin-bottom: 0; } #cookie-settings[hidden] { display: none; }
+  <div class="example">
+    <h3>
+      Cookie Consent
+    <p>
+      A cookie banner covers the bottom of the page until you make a choice. The choice is saved in the
+      <code>
+        cookie_consent
+      cookie (
+      <code>
+        all
+      or
+      <code>
+        necessary
+      ), and the server leaves the banner out once it's set.
+    <p id="consent-status">
+      Analytics cookies: not decided yet
+    <p>
+      <a href="/cookie_consent/reset" id="reset-consent">
+        Forget my choice
+  <div aria-labelledby="cookie-banner-title" aria-modal="false" id="cookie-banner" role="dialog">
+    <p id="cookie-banner-title">
+      <strong>
+        We use cookies.
+      Necessary cookies make the site work. Analytics cookies help us improve it.
+    <div hidden="" id="cookie-settings">
+      <p>
+        <input checked="checked" disabled="disabled" id="necessary-cookies" type="checkbox">
+        <label for="necessary-cookies" style="display: inline;">
+          Necessary (always on)
+      <p>
+        <input id="analytics-cookies" type="checkbox">
+        <label for="analytics-cookies" style="display: inline;">
+          Analytics
+      <button class="button success" id="save-settings" type="button">
+        Save my choice
+    <button class="button success" id="accept-all" type="button">
+      Accept all
+    <button class="button secondary" id="reject-all" type="button">
+      Only necessary
+    <button aria-controls="cookie-settings" aria-expanded="false" class="button secondary" id="customize" type="button">
+      Customize
+  <script>
+    (function() { function save(value) { document.cookie = 'cookie_consent=' + value + '; path=/; max-age=31536000; SameSite=Lax'; location.reload(); } document.getElementById('accept-all').addEventListener('click', function() { save('all'); }); document.getElementById('reject-all').addEventListener('click', function() { save('necessary'); }); document.getElementById('customize').addEventListener('click', function() { var settings = document.getElementById('cookie-settings'); settings.hidden = !settings.hidden; this.setAttribute('aria-expanded', String(!settings.hidden)); }); document.getElementById('save-settings').addEventListener('click', function() { save(document.getElementById('analytics-cookies').checked ? 'all' : 'necessary'); }); })();

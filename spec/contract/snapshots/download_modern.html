@@ -1,0 +1,50 @@
+<div class="large-12 columns" id="content" role="main">
+  <div class="example">
+    <h3>
+      Modern File Download
+    <p>
+      Downloads that don't come from a plain link to a file on the server.
+    <h4>
+      Made in the browser
+    <p>
+      <button class="button" id="blob-download" type="button">
+        Download a CSV made with a Blob
+      <button class="button" id="fetch-download" type="button">
+        Fetch JSON, then save it
+      <a class="button secondary" download="hello.txt" href="data:text/plain;charset=utf-8,Hello%20from%20a%20data%20URL%0A" id="data-url-download">
+        Download from a data URL
+    <p id="download-status" role="status">
+      Nothing downloaded yet
+    <h4>
+      Content-Disposition from the server
+    <ul id="disposition-links">
+      <li>
+        <a href="/download_modern/file/inline">
+          inline.txt
+        :
+        <code>
+          inline
+        , opens in the browser
+      <li>
+        <a href="/download_modern/file/utf8">
+          résumé.txt
+        : UTF-8 name in
+        <code>
+          filename*
+        (plain
+        <code>
+          filename="resume.txt"
+        as fallback)
+      <li>
+        <a href="/download_modern/file/spaces">
+          my report 2026.txt
+        : spaces in the name
+      <li>
+        <a href="/download_modern/file/no_name">
+          no name
+        :
+        <code>
+          attachment
+        without a file name
+  <script>
+    (function() { var status = document.getElementById('download-status'); function save(blob, name) { var url = URL.createObjectURL(blob); var link = document.createElement('a'); link.href = url; link.download = name; document.body.appendChild(link); link.click(); link.remove(); setTimeout(function() { URL.revokeObjectURL(url); }, 1000); status.textContent = 'Saved ' + name + ' (' + blob.size + ' bytes, ' + blob.type + ')'; } document.getElementById('blob-download').addEventListener('click', function() { var csv = 'name,count\napple,3\nbanana,5\n'; save(new Blob([csv], { type: 'text/csv' }), 'report.csv'); }); document.getElementById('fetch-download').addEventListener('click', function() { status.textContent = 'Fetching...'; fetch('/download_modern/file/report.json').then(function(res) { var match = /filename="([^"]+)"/.exec(res.headers.get('Content-Disposition') || ''); return res.blob().then(function(blob) { save(blob, match ? match[1] : 'download.json'); }); }); }); document.getElementById('data-url-download').addEventListener('click', function() { status.textContent = 'Saved hello.txt from a data URL'; }); })();

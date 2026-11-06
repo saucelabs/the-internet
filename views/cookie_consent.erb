@@ -1,0 +1,43 @@
+<style>
+  #cookie-banner { position: fixed; left: 1em; right: 1em; bottom: 1em; z-index: 200; background: #192319; color: #f0f0ec; padding: 1.25em; border-radius: 1rem; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); }
+  #cookie-banner p, #cookie-banner label { color: #f0f0ec; }
+  #cookie-banner .button { margin-bottom: 0; }
+  #cookie-settings[hidden] { display: none; }
+</style>
+<div class="example">
+  <h3>Cookie Consent</h3>
+  <p>A cookie banner covers the bottom of the page until you make a choice. The choice is saved in the <code>cookie_consent</code> cookie (<code>all</code> or <code>necessary</code>), and the server leaves the banner out once it's set.</p>
+  <p id="consent-status">Analytics cookies: <%= { 'all' => 'allowed', 'necessary' => 'blocked' }.fetch(consent, 'not decided yet') %></p>
+  <p><a href="/cookie_consent/reset" id="reset-consent">Forget my choice</a></p>
+</div>
+<% unless consent %>
+<div id="cookie-banner" role="dialog" aria-labelledby="cookie-banner-title" aria-modal="false">
+  <p id="cookie-banner-title"><strong>We use cookies.</strong> Necessary cookies make the site work. Analytics cookies help us improve it.</p>
+  <div id="cookie-settings" hidden>
+    <p><input type="checkbox" id="necessary-cookies" checked disabled> <label for="necessary-cookies" style="display: inline;">Necessary (always on)</label></p>
+    <p><input type="checkbox" id="analytics-cookies"> <label for="analytics-cookies" style="display: inline;">Analytics</label></p>
+    <button type="button" id="save-settings" class="button success">Save my choice</button>
+  </div>
+  <button type="button" id="accept-all" class="button success">Accept all</button>
+  <button type="button" id="reject-all" class="button secondary">Only necessary</button>
+  <button type="button" id="customize" class="button secondary" aria-expanded="false" aria-controls="cookie-settings">Customize</button>
+</div>
+<script>
+  (function() {
+    function save(value) {
+      document.cookie = 'cookie_consent=' + value + '; path=/; max-age=31536000; SameSite=Lax';
+      location.reload();
+    }
+    document.getElementById('accept-all').addEventListener('click', function() { save('all'); });
+    document.getElementById('reject-all').addEventListener('click', function() { save('necessary'); });
+    document.getElementById('customize').addEventListener('click', function() {
+      var settings = document.getElementById('cookie-settings');
+      settings.hidden = !settings.hidden;
+      this.setAttribute('aria-expanded', String(!settings.hidden));
+    });
+    document.getElementById('save-settings').addEventListener('click', function() {
+      save(document.getElementById('analytics-cookies').checked ? 'all' : 'necessary');
+    });
+  })();
+</script>
+<% end %>

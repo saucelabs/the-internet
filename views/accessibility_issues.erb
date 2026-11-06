@@ -1,0 +1,43 @@
+<div class="example">
+  <h3>Accessibility Issues</h3>
+  <% if fixed %>
+    <p id="mode">All issues on this page are fixed. <a href="/accessibility_issues">Show the page with issues</a>.</p>
+  <% else %>
+    <p id="mode">This page has accessibility issues on purpose, for testing scanners such as axe. <a href="/accessibility_issues?fixed=true">Show the fixed page</a>.</p>
+  <% end %>
+  <table id="known-issues">
+    <thead><tr><th>axe rule</th><th>Element</th><th>Problem</th></tr></thead>
+    <tbody>
+      <tr data-rule="image-alt"><td>image-alt</td><td>#profile-image</td><td>Image without alt text</td></tr>
+      <tr data-rule="label"><td>label</td><td>#search-input</td><td>Text field without a label</td></tr>
+      <tr data-rule="select-name"><td>select-name</td><td>#size-select</td><td>Select list without a label</td></tr>
+      <tr data-rule="button-name"><td>button-name</td><td>#icon-button</td><td>Button with an icon and no name</td></tr>
+      <tr data-rule="link-name"><td>link-name</td><td>#icon-link</td><td>Link with an icon and no name</td></tr>
+      <tr data-rule="color-contrast"><td>color-contrast</td><td>#faint-text</td><td>Light grey text on white</td></tr>
+      <tr data-rule="aria-roles"><td>aria-roles</td><td>#bad-role</td><td>Misspelled ARIA role</td></tr>
+      <tr data-rule="heading-order"><td>heading-order</td><td>#skipped-heading</td><td>Heading that skips a level</td></tr>
+    </tbody>
+  </table>
+
+  <div id="widgets">
+    <% if fixed %>
+      <img id="profile-image" src="/img/avatar.jpg" alt="Profile photo" width="100">
+      <p><label for="search-input">Search</label> <input type="text" id="search-input"></p>
+      <p><label for="size-select">Size</label> <select id="size-select"><option>Small</option><option>Large</option></select></p>
+      <p><button id="icon-button" type="button" class="button" aria-label="Settings"><i class="fa fa-cog" aria-hidden="true"></i></button></p>
+      <p><a id="icon-link" href="/accessibility_issues?fixed=true" aria-label="Home"><i class="fa fa-home" aria-hidden="true"></i></a></p>
+      <p id="faint-text" style="color: #595959;">This text is easy to read.</p>
+      <div id="bad-role" role="button" tabindex="0">A div acting as a button</div>
+      <h4 id="skipped-heading">A heading at the right level</h4>
+    <% else %>
+      <img id="profile-image" src="/img/avatar.jpg" width="100">
+      <p>Search <input type="text" id="search-input"></p>
+      <p><select id="size-select"><option>Small</option><option>Large</option></select></p>
+      <p><button id="icon-button" type="button" class="button"><i class="fa fa-cog"></i></button></p>
+      <p><a id="icon-link" href="/accessibility_issues"><i class="fa fa-home"></i></a></p>
+      <p id="faint-text" style="color: #cccccc;">This text is hard to read.</p>
+      <div id="bad-role" role="buton" tabindex="0">A div acting as a button</div>
+      <h6 id="skipped-heading">A heading that skips levels</h6>
+    <% end %>
+  </div>
+</div>
