@@ -1,3 +1,8 @@
+#0.64.0
++ Upgraded jQuery from 1.11.3 to 3.7.1 on every page. jQuery UI stays 1.11.4, so the JQuery UI menu markup is the same
++ /dynamic_controls uses the shared jQuery instead of loading jQuery 1.10.2 from Google
++ Removed /js/vendor/jquery-1.11.3.min.js
+
 #0.63.1
 + Page chrome accessibility: landmarks (main, contentinfo, messages region), a skip link, a visible keyboard focus ring and a label on the flash close link
 + Examples that are meant to be bad stay as they are
