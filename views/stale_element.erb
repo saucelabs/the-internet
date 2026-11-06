@@ -1,0 +1,37 @@
+<div class="example">
+  <h3>Stale Element</h3>
+  <p>The list below is thrown away and drawn again: when you click the button, and every few seconds if you turn on the timer (<code>?interval=</code> in milliseconds, e.g. <a href="/stale_element?interval=2000">/stale_element?interval=2000</a>). The items look the same, but they are new elements, so a reference to an old one is stale.</p>
+  <button id="rerender" class="button" type="button">Rebuild the list</button>
+  <ul id="items">
+    <li class="item" data-index="1">Item 1</li>
+    <li class="item" data-index="2">Item 2</li>
+    <li class="item" data-index="3">Item 3</li>
+  </ul>
+  <p id="render-count">Rebuilt 0 times</p>
+  <p id="timer-status">Timer: off</p>
+</div>
+<script>
+  (function() {
+    var count = 0;
+    function rebuild() {
+      var list = document.getElementById('items');
+      var fresh = list.cloneNode(false);
+      for (var i = 1; i <= 3; i++) {
+        var li = document.createElement('li');
+        li.className = 'item';
+        li.setAttribute('data-index', i);
+        li.textContent = 'Item ' + i;
+        fresh.appendChild(li);
+      }
+      list.parentNode.replaceChild(fresh, list);
+      count++;
+      document.getElementById('render-count').textContent = 'Rebuilt ' + count + ' time' + (count === 1 ? '' : 's');
+    }
+    document.getElementById('rerender').addEventListener('click', rebuild);
+    var interval = new URLSearchParams(location.search).get('interval');
+    if (interval && /^\d+$/.test(interval) && parseInt(interval, 10) >= 500) {
+      setInterval(rebuild, parseInt(interval, 10));
+      document.getElementById('timer-status').textContent = 'Timer: every ' + interval + ' ms';
+    }
+  })();
+</script>
