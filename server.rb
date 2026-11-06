@@ -687,6 +687,102 @@ class Public < Sinatra::Base
     erb :inputs
   end
 
+  get '/shadowdom_advanced' do
+    erb :shadowdom_advanced
+  end
+
+  get '/iframes_advanced' do
+    erb :iframes_advanced
+  end
+
+  # Page loaded inside the frames of /iframes_advanced.
+  get '/iframes_advanced/frame' do
+    name = params[:name].to_s[/\A[a-z]{1,20}\z/] || 'plain'
+    erb :iframes_advanced_frame, layout: false, locals: { name: name }
+  end
+
+  get '/dialog' do
+    erb :dialog
+  end
+
+  get '/toasts' do
+    erb :toasts
+  end
+
+  get '/autocomplete' do
+    erb :autocomplete
+  end
+
+  AUTOCOMPLETE_WORDS = %w[
+    Apple Apricot Avocado Banana Blackberry Blueberry Cantaloupe Cherry Coconut Cranberry
+    Date Dragonfruit Durian Elderberry Fig Gooseberry Grape Grapefruit Guava Honeydew
+    Jackfruit Kiwi Kumquat Lemon Lime Lychee Mango Melon Nectarine Orange
+    Papaya Passionfruit Peach Pear Persimmon Pineapple Plum Pomegranate Raspberry Strawberry
+  ].freeze
+
+  # Suggestions for /autocomplete: names that start with q (up to 8), after an optional delay in ms (max 3000).
+  get '/autocomplete/suggestions' do
+    require 'json'
+    sleep(params[:delay].to_i.clamp(0, 3000) / 1000.0)
+    query = params[:q].to_s.strip.downcase
+    words = query.empty? ? [] : AUTOCOMPLETE_WORDS.select { |w| w.downcase.start_with?(query) }.first(8)
+    content_type :json
+    JSON.generate(words)
+  end
+
+  get '/date_pickers' do
+    erb :date_pickers
+  end
+
+  get '/custom_dropdown' do
+    erb :custom_dropdown
+  end
+
+  get '/form_validation' do
+    erb :form_validation
+  end
+
+  # Server-side checks for /form_validation. Answers JSON: 200 when valid, 422 with errors per field.
+  post '/form_validation' do
+    require 'json'
+    username = params[:username].to_s.strip
+    errors = {}
+    if username.empty?
+      errors['username'] = 'Username is required'
+    elsif %w[tomsmith admin].include?(username.downcase)
+      errors['username'] = 'Username is already taken'
+    end
+    errors['email'] = 'Email is required' if params[:email].to_s.strip.empty?
+    errors['password'] = 'Password must be at least 8 characters' if params[:password].to_s.length < 8
+    errors['terms'] = 'You must accept the terms' unless params[:terms] == 'on'
+    sleep 0.5 # the check takes a moment, like a real server
+    content_type :json
+    if errors.empty?
+      JSON.generate(message: "Account created for #{username}")
+    else
+      status 422
+      JSON.generate(errors: errors)
+    end
+  end
+
+  get '/stale_element' do
+    erb :stale_element
+  end
+
+  get '/spa' do
+    erb :spa
+  end
+
+  # Deep links into /spa render the same page; the script shows the right view.
+  get '/spa/:view' do |view|
+    pass unless %w[about contact].include?(view)
+    erb :spa
+  end
+
+  get '/virtual_list' do
+    erb :virtual_list
+  end
+
   get '/pointer_events' do
     erb :pointer_events
   end
