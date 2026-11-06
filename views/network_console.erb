@@ -1,0 +1,59 @@
+<div class="example">
+  <h3>Network &amp; Console</h3>
+  <p>Each button makes the browser do something a test can watch from outside the page, for example with Selenium BiDi (network and log events). The result also shows below.</p>
+  <p>
+    <button id="fetch-json" class="button" type="button">Fetch JSON</button>
+    <button id="fetch-error" class="button" type="button">Request that fails (500)</button>
+    <button id="log-console" class="button secondary" type="button">Log to the console</button>
+    <button id="throw-error" class="button alert" type="button">Throw a JavaScript error</button>
+    <button id="csp-violation" class="button secondary" type="button">Cause a CSP violation</button>
+  </p>
+  <p>This page is sent with the header <code>Content-Security-Policy-Report-Only: img-src 'self'</code>, so loading a <code>data:</code> image is reported (but not blocked).</p>
+  <ul id="event-log"></ul>
+</div>
+<script>
+  (function() {
+    function log(id, text) {
+      var li = document.createElement('li');
+      li.className = id;
+      li.textContent = text;
+      document.getElementById('event-log').appendChild(li);
+    }
+
+    document.getElementById('fetch-json').addEventListener('click', function() {
+      fetch('/network_console/data')
+        .then(function(res) { return res.json(); })
+        .then(function(data) { log('fetch-json', 'Fetched JSON: ' + JSON.stringify(data)); });
+    });
+
+    document.getElementById('fetch-error').addEventListener('click', function() {
+      fetch('/status_codes/500').then(function(res) {
+        log('fetch-error', 'Request failed with status ' + res.status);
+      });
+    });
+
+    document.getElementById('log-console').addEventListener('click', function() {
+      console.log('the-internet: a log message');
+      console.warn('the-internet: a warning');
+      console.error('the-internet: an error message');
+      log('log-console', 'Logged a message, a warning and an error');
+    });
+
+    document.getElementById('throw-error').addEventListener('click', function() {
+      setTimeout(function() { throw new Error('the-internet: thrown on purpose'); }, 0);
+    });
+    window.addEventListener('error', function(event) {
+      log('throw-error', 'Uncaught error: ' + event.message);
+    });
+
+    document.addEventListener('securitypolicyviolation', function(event) {
+      log('csp-violation', 'CSP violation: ' + event.violatedDirective + ' (' + event.blockedURI + ')');
+    });
+    document.getElementById('csp-violation').addEventListener('click', function() {
+      var img = new Image();
+      img.alt = '';
+      img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+      document.getElementById('event-log').appendChild(img);
+    });
+  })();
+</script>

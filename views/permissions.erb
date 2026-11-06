@@ -1,0 +1,89 @@
+<div class="example">
+  <h3>Browser Permissions</h3>
+  <p>Some features need the user's permission. The browser asks with its own prompt, which is not part of the page, so tests usually grant or deny permissions up front (browser options, or Selenium's permission commands). The table shows each permission's state as the page sees it.</p>
+  <table id="permission-states">
+    <thead><tr><th>Permission</th><th>State</th></tr></thead>
+    <tbody>
+      <tr><td>geolocation</td><td id="state-geolocation">checking</td></tr>
+      <tr><td>notifications</td><td id="state-notifications">checking</td></tr>
+      <tr><td>camera</td><td id="state-camera">checking</td></tr>
+      <tr><td>microphone</td><td id="state-microphone">checking</td></tr>
+      <tr><td>clipboard-read</td><td id="state-clipboard-read">checking</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Notifications</h4>
+  <button id="ask-notifications" class="button" type="button">Ask to show notifications</button>
+  <p id="notifications-result"></p>
+
+  <h4>Clipboard</h4>
+  <label for="clipboard-text">Text to copy</label>
+  <input type="text" id="clipboard-text" value="Copied from the-internet">
+  <button id="copy" class="button" type="button">Copy</button>
+  <button id="paste" class="button secondary" type="button">Paste</button>
+  <p id="clipboard-result"></p>
+
+  <h4>Camera</h4>
+  <button id="start-camera" class="button" type="button">Turn on the camera</button>
+  <button id="stop-camera" class="button secondary" type="button">Turn it off</button>
+  <p id="camera-result"></p>
+  <video id="camera-video" width="320" height="240" autoplay muted playsinline style="background: #192319;"></video>
+</div>
+<script>
+  (function() {
+    function refresh(name) {
+      var cell = document.getElementById('state-' + name);
+      if (!navigator.permissions) { cell.textContent = 'unsupported'; return; }
+      navigator.permissions.query({ name: name }).then(function(status) {
+        cell.textContent = status.state;
+        status.onchange = function() { cell.textContent = status.state; };
+      }, function() { cell.textContent = 'unsupported'; });
+    }
+    ['geolocation', 'notifications', 'camera', 'microphone', 'clipboard-read'].forEach(refresh);
+
+    document.getElementById('ask-notifications').addEventListener('click', function() {
+      var result = document.getElementById('notifications-result');
+      if (!('Notification' in window)) { result.textContent = 'Notifications are not supported'; return; }
+      Notification.requestPermission().then(function(answer) {
+        result.textContent = 'Notifications: ' + answer;
+        if (answer === 'granted') new Notification('Hello from the-internet');
+        refresh('notifications');
+      });
+    });
+
+    var clipboardResult = document.getElementById('clipboard-result');
+    document.getElementById('copy').addEventListener('click', function() {
+      var text = document.getElementById('clipboard-text').value;
+      navigator.clipboard.writeText(text).then(
+        function() { clipboardResult.textContent = 'Copied: ' + text; },
+        function(error) { clipboardResult.textContent = 'Copy failed: ' + error.name; });
+    });
+    document.getElementById('paste').addEventListener('click', function() {
+      navigator.clipboard.readText().then(
+        function(text) { clipboardResult.textContent = 'Pasted: ' + text; },
+        function(error) { clipboardResult.textContent = 'Paste failed: ' + error.name; });
+      refresh('clipboard-read');
+    });
+
+    var stream = null;
+    var cameraResult = document.getElementById('camera-result');
+    document.getElementById('start-camera').addEventListener('click', function() {
+      if (!navigator.mediaDevices) { cameraResult.textContent = 'Camera is not supported (needs https or localhost)'; return; }
+      navigator.mediaDevices.getUserMedia({ video: true }).then(function(s) {
+        stream = s;
+        document.getElementById('camera-video').srcObject = s;
+        cameraResult.textContent = 'Camera on: ' + s.getVideoTracks()[0].label;
+        refresh('camera');
+      }, function(error) {
+        cameraResult.textContent = 'Camera blocked: ' + error.name;
+        refresh('camera');
+      });
+    });
+    document.getElementById('stop-camera').addEventListener('click', function() {
+      if (stream) stream.getTracks().forEach(function(track) { track.stop(); });
+      stream = null;
+      document.getElementById('camera-video').srcObject = null;
+      cameraResult.textContent = 'Camera off';
+    });
+  })();
+</script>
