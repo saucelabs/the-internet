@@ -3,7 +3,8 @@ require_relative '../spec_helper'
 describe 'Examples' do
   before { visit '/download_modern' }
 
-  it 'Modern File Download: saves files made in the browser' do
+  it 'Modern File Download: saves files made in the browser',
+     unsupported: { 'safari' => 'Safari asks before a script starts a download, in a dialog WebDriver cannot answer' } do
     find(:id, 'blob-download').click
     expect(find(:id, 'download-status').text).to eq 'Saved report.csv (28 bytes, text/csv)'
     find(:id, 'fetch-download').click
@@ -15,6 +16,6 @@ describe 'Examples' do
   it 'Modern File Download: an inline file opens in the browser' do
     find(:link_text, 'inline.txt').click
     wait { @driver.current_url.end_with?('/download_modern/file/inline') }
-    expect(find(:tag_name, 'body').text).to eq 'This file opens in the browser instead of downloading.'
+    expect(find(:tag_name, 'body').text.strip).to eq 'This file opens in the browser instead of downloading.'
   end
 end
