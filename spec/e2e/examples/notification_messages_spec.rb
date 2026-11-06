@@ -7,10 +7,9 @@ describe 'Examples' do
   end
 
   it 'Notification Messages closes the flash with its close link' do
-    # In small windows the GitHub ribbon covers the close link.
-    @driver.manage.window.resize_to(1280, 800)
     visit '/notification_message'
-    find(:css, '#flash a.close').click
+    # Keyboard, not a click: at 1024px wide the GitHub ribbon covers the close link.
+    find(:css, '#flash a.close').send_keys(:enter)
     wait { @driver.find_elements(:id, 'flash').none?(&:displayed?) }
   end
 end
