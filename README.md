@@ -20,6 +20,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom) - Elements without useful ids and a canvas
 + [Checkboxes](https://the-internet.herokuapp.com/checkboxes) - Check and uncheck boxes
 + [Context Menu](https://the-internet.herokuapp.com/context_menu) - Right-click to open an alert
++ [Cookie Consent](https://the-internet.herokuapp.com/cookie_consent) - A cookie banner that comes back until you accept / reject or pick cookies
 + [Custom Dropdown](https://the-internet.herokuapp.com/custom_dropdown) - A select list built from divs with ARIA roles instead of <select>
 + [Date & Time Pickers](https://the-internet.herokuapp.com/date_pickers) - Native date and time inputs and a calendar widget built with JavaScript
 + [Digest Authentication](https://the-internet.herokuapp.com/digest_auth) (user and pass: admin) - Log in through the browser's digest auth prompt
@@ -85,6 +86,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + Autocomplete suggestions as JSON: `/autocomplete/suggestions?q=:text&delay=:ms`
 + [Add/Remove Elements with N buttons](https://the-internet.herokuapp.com/add_remove_elements/3) (`/add_remove_elements/:number`)
 + [Basic Auth with a trailing slash](https://the-internet.herokuapp.com/basic_auth/)
++ [Cookie Consent: forget my choice](https://the-internet.herokuapp.com/cookie_consent/reset) (clears the cookie and redirects)
 + [Dynamic Loading Example 1](https://the-internet.herokuapp.com/dynamic_loading/1) and [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2)
 + Form Validation server check: `POST /form_validation` (JSON; 422 with errors per field)
 + Network & Console JSON: [/network_console/data](https://the-internet.herokuapp.com/network_console/data)

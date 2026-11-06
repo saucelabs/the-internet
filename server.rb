@@ -844,6 +844,17 @@ class Public < Sinatra::Base
     end
   end
 
+  # The banner shows until the cookie_consent cookie is "all" or "necessary".
+  get '/cookie_consent' do
+    consent = request.cookies['cookie_consent']
+    erb :cookie_consent, locals: { consent: %w[all necessary].include?(consent) ? consent : nil }
+  end
+
+  get '/cookie_consent/reset' do
+    response.delete_cookie('cookie_consent', path: '/')
+    redirect '/cookie_consent'
+  end
+
   # subdirectories
   get '/subdirectories' do
     erb :'subdirectories/index'

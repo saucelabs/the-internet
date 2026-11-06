@@ -1,3 +1,6 @@
+#0.81.0
++ Added Cookie Consent (/cookie_consent): a banner that stays until you accept, reject or customize cookies
+
 #0.80.0
 + Added Live Updates (/live_updates): updates pushed with Server-Sent Events (?count=, ?interval=)
 
