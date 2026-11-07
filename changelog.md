@@ -1,3 +1,6 @@
+#0.89.1
++ Fixed the README markdown: no stray line under the title, `<select>` and `<dialog>` in descriptions show up, and commands are in code blocks
+
 #0.89.0
 + Added a users API for test setup: POST /api/users, DELETE /api/users/:username and POST /api/sessions. Created users log in at /login and expire after an hour
 + /secure shows the logged-in user in #username
