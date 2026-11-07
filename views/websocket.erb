@@ -1,0 +1,71 @@
+<div class="example">
+  <h3>WebSocket</h3>
+  <p>The page talks to the server over a WebSocket. Connect, send a message, and the server sends it back as <code>Echo: &lt;message&gt;</code>. The server closes the connection after 30 seconds without messages, after 100 messages, or if a message is longer than 1000 characters.</p>
+  <p>
+    <button id="connect" class="button" type="button">Connect</button>
+    <button id="disconnect" class="button secondary" type="button" disabled>Disconnect</button>
+  </p>
+  <p id="connection" role="status">Disconnected</p>
+  <form id="send-form">
+    <label for="message">Message</label>
+    <input id="message" type="text" autocomplete="off" disabled>
+    <button id="send" class="button" type="submit" disabled>Send</button>
+  </form>
+  <ul id="messages" aria-live="polite"></ul>
+</div>
+<script>
+  (function() {
+    var socket = null;
+    var connection = document.getElementById('connection');
+    var connect = document.getElementById('connect');
+    var disconnect = document.getElementById('disconnect');
+    var input = document.getElementById('message');
+    var send = document.getElementById('send');
+    var messages = document.getElementById('messages');
+
+    function setConnected(connected) {
+      connect.disabled = connected;
+      disconnect.disabled = !connected;
+      input.disabled = !connected;
+      send.disabled = !connected;
+    }
+
+    function add(kind, text) {
+      var li = document.createElement('li');
+      li.className = 'message ' + kind;
+      li.textContent = text;
+      messages.appendChild(li);
+    }
+
+    connect.addEventListener('click', function() {
+      connect.disabled = true;
+      messages.innerHTML = '';
+      connection.textContent = 'Connecting...';
+      var scheme = location.protocol === 'https:' ? 'wss://' : 'ws://';
+      socket = new WebSocket(scheme + location.host + '/websocket/echo');
+      socket.onopen = function() {
+        connection.textContent = 'Connected';
+        setConnected(true);
+        input.focus();
+      };
+      socket.onmessage = function(event) { add('received', event.data); };
+      socket.onclose = function(event) {
+        connection.textContent = 'Disconnected (code ' + event.code + (event.reason ? ': ' + event.reason : '') + ')';
+        setConnected(false);
+        socket = null;
+      };
+    });
+
+    disconnect.addEventListener('click', function() {
+      if (socket) socket.close(1000, 'Closed by the page');
+    });
+
+    document.getElementById('send-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      if (!socket || socket.readyState !== WebSocket.OPEN || input.value === '') return;
+      add('sent', input.value);
+      socket.send(input.value);
+      input.value = '';
+    });
+  })();
+</script>

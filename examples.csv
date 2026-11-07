@@ -73,3 +73,4 @@ Responsive Layout,/responsive,,A menu that turns into a hamburger button on narr
 Accessibility Issues,/accessibility_issues,,A page with known accessibility problems for scanners like axe / and a fixed version
 Visual Differences,/visual_diff,,A card with small changes you turn on in the URL for visual testing
 Modern File Download,/download_modern,,Downloads made with Blob / fetch and data URLs / and Content-Disposition quirks
+WebSocket,/websocket,,A chat-style page that sends messages over a WebSocket and shows the echo

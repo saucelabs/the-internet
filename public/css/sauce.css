@@ -79,9 +79,32 @@ body:has(> #page-footer) > a.home-link {
 body:has(> #page-footer) > a.home-link::before {
   content: "The Internet";
 }
+/* Text only, placed just outside the link's box so a click on it doesn't go home.
+   The link's aria-label keeps its name. 1em here is 0.6 of the link's em, so its 1.5em right
+   padding is 2.5em: left = 100% - 2.5em + 1em gap. */
+body:has(> #page-footer) > a.home-link::after {
+  content: "powered by Sauce Labs";
+  position: absolute;
+  left: calc(100% - 1.5em);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--sl-sans);
+  font-size: 0.6em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--sl-ivory);
+  opacity: 0.8;
+  white-space: nowrap;
+  pointer-events: none;
+}
 body:has(> #page-footer) > a.home-link:hover,
 body:has(> #page-footer) > a.home-link:focus {
   color: var(--sl-highlight);
+}
+
+/* The GitHub ribbon is hidden, not removed: tests that count the images on a page still find it. */
+body:has(> #page-footer) nav[aria-label="Source code"] {
+  display: none;
 }
 body:has(> #page-footer) > a.home-link:focus-visible {
   outline: 3px solid var(--sl-highlight);

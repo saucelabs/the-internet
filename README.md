@@ -83,6 +83,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Virtualized List](https://the-internet.herokuapp.com/virtual_list) - A list of 10000 rows where only the visible rows exist in the DOM
 + [Visual Differences](https://the-internet.herokuapp.com/visual_diff) - A card with small changes you turn on in the URL for visual testing
 + [WYSIWYG Editor](https://the-internet.herokuapp.com/tinymce) - A rich text editor inside an iframe
++ [WebSocket](https://the-internet.herokuapp.com/websocket) - A chat-style page that sends messages over a WebSocket and shows the echo
 
 
 ### Pages reached from the examples
@@ -114,6 +115,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
 + Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
++ WebSocket echo server: `/websocket/echo` (`ws://` or `wss://`; sends each text message back as `Echo: <text>`)
 
 Don't see an example you need or think should be here? Contribute!
 

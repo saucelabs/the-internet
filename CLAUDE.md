@@ -11,7 +11,7 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 ## Layout
 - `server.rb` — all routes. Two Rack apps:
   - `Protected` — `/digest_auth` (digest auth via `lib/digest_auth.rb`, admin/admin), mounted in `config.ru`.
-  - `Public` — everything else.
+  - `Public` — everything else. `/websocket/echo` hands the connection to `lib/websocket_echo.rb` (`websocket-driver`, puma full hijack, own thread).
 - `config.ru` — `Rack::URLMap` mounting the two apps.
 - `views/*.erb` — one view per example; `layout.erb` is the shared shell. Some views render without layout (frames, `/windows/new`, `/javascript_error`).
 - `views/examples.erb` — **generated** from `examples.csv` by `rake gen_docs` (also regenerates `README.md` from `README.template`). Edit the CSV, not the view.
