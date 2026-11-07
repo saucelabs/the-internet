@@ -18,6 +18,8 @@ describe 'Examples' do
       visit '/login'
       find(:id, 'username').send_keys(username)
       find(:id, 'password').send_keys('secret')
+      # Safari can click before the typed text is in the fields.
+      wait { find(:id, 'username').property('value') == username && find(:id, 'password').property('value') == 'secret' }
       find(:css, 'button[type="submit"]').click
       wait { @driver.current_url.end_with?('/secure') }
       expect(find(:css, 'span#username').text).to eq username
@@ -33,7 +35,9 @@ describe 'Examples' do
     res = api(:post, '/api/sessions', username: username, password: 'secret')
     name, value = res['set-cookie'].split(';').first.split('=', 2)
     visit '/login'
-    @driver.manage.add_cookie(name: name, value: value)
+    # /login already set a session cookie; Safari keeps both unless the old one is removed.
+    @driver.manage.delete_all_cookies
+    @driver.manage.add_cookie(name: name, value: value, path: '/')
     visit '/secure'
     expect(find(:css, 'span#username').text).to eq username
   ensure
