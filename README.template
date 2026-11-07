@@ -42,6 +42,22 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
 + WebSocket echo server: `/websocket/echo` (`ws://` or `wss://`; sends each text message back as `Echo: <text>`)
 
+### Users API (test setup)
+
+Create a user through the API, log in with it at [/login](https://the-internet.herokuapp.com/login), and delete it when the test is done. [/secure](https://the-internet.herokuapp.com/secure) shows the logged-in user in `#username`.
+
+```sh
+curl -i -X POST https://the-internet.herokuapp.com/api/users \
+  -H 'Content-Type: application/json' -d '{"username": "user-123", "password": "secret"}'
+curl -i -X DELETE https://the-internet.herokuapp.com/api/users/user-123
+```
+
++ `POST /api/users` with `{"username": "...", "password": "..."}`: `201` with `{"username": "..."}`; `400` for invalid JSON or a missing, empty or invalid field; `409` when the username exists (including `tomsmith`). Usernames: 1 to 64 characters from `A-Z a-z 0-9 _ . -` (not only dots). Passwords: 1 to 128 characters.
++ `DELETE /api/users/:username`: `204` when deleted, `404` when there is no such user, `403` for `tomsmith`. A browser logged in as a deleted user is sent back to `/login`.
++ `POST /api/sessions` with the same JSON: `200` with the session cookie (`rack.session`) that the login form sets, or `401`. Add the cookie to the browser to open `/secure` without the form.
++ Errors are JSON: `{"error": "..."}`. There is no authentication.
++ Users expire 1 hour after they are created. At 10,000 users, the oldest are dropped. Use a unique username in each test (e.g. with a random suffix), as many test runs share the site.
+
 Don't see an example you need or think should be here? Contribute!
 
 ## Contribution Guidelines
@@ -79,6 +95,10 @@ Then open http://localhost:5000.
 Run the HTTP contract suite (boots the app and checks every example):
 
     bundle exec rake contract
+
+Run the in-process tests (the users store and login, with a test clock):
+
+    bundle exec rake unit
 
 Run the browser suite (Selenium, headless Chrome by default):
 

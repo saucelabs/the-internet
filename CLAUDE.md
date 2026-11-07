@@ -12,6 +12,7 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 - `server.rb` — all routes. Two Rack apps:
   - `Protected` — `/digest_auth` (digest auth via `lib/digest_auth.rb`, admin/admin), mounted in `config.ru`.
   - `Public` — everything else. `/websocket/echo` hands the connection to `lib/websocket_echo.rb` (`websocket-driver`, puma full hijack, own thread).
+- Users API (`/api/users`, `/api/sessions`) — `lib/user_store.rb`: one file per user in `API_USERS_DIR` (default `tmp/api_users`), shared by all puma workers on a dyno, flock for atomic creates, 1-hour expiry from the file mtime, 10,000-user cap (oldest dropped). `/authenticate` and `/secure` accept these users besides `tomsmith`. Not shared across dynos (production runs one Basic dyno).
 - `config.ru` — `Rack::URLMap` mounting the two apps.
 - `views/*.erb` — one view per example; `layout.erb` is the shared shell. Some views render without layout (frames, `/windows/new`, `/javascript_error`).
 - `views/examples.erb` — **generated** from `examples.csv` by `rake gen_docs` (also regenerates `README.md` from `README.template`). Edit the CSV, not the view.
@@ -20,6 +21,7 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 - `/tinymce` uses TinyMCE 6.8.6 (MIT, last MIT release; 7+ is GPL), vendored minimal in `public/js/vendor/tinymce/` with the `tinymce-5` skin to match the old look. Do not switch to Tiny Cloud (editor-load quota made it read-only).
 - `public/uploads/` — target of `/upload`, listed by `/download` and `/download_secure`.
 - `spec/contract/` — HTTP contract suite (black-box, any `BASE_URL`): statuses, auth, redirects, flash, cookies and markup snapshots recorded from the live site. Run it after any change. See its README.
+- `spec/unit/` — in-process tests (`rake unit`) of the users store and login, with a test clock for expiry.
 - `spec/e2e/` — Selenium 4 browser suite, one scenario per example; local headless (`rake e2e`, `BROWSER=chrome|firefox|edge|safari`) or Sauce Labs (`TARGET=saucelabs`, needs `SAUCE_USERNAME`/`SAUCE_ACCESS_KEY`, plus `SAUCE_TUNNEL_NAME` for a localhost app).
 - `config/puma.rb`, `Procfile` — server config for Heroku and Docker.
 

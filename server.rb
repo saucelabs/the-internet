@@ -7,6 +7,7 @@ require 'sinatra/cookies'
 require 'faker'
 require_relative 'lib/digest_auth'
 require_relative 'lib/websocket_echo'
+require_relative 'lib/user_store'
 
 # Shared by every process (puma workers) so sessions and digest nonces
 # issued by one worker are accepted by the others.
@@ -382,30 +383,110 @@ class Public < Sinatra::Base
     erb :login
   end
 
-  post "/authenticate" do
-    username = 'tomsmith'
-    password = 'SuperSecretPassword!'
+  # Users for /login: tomsmith, plus the ones created through /api/users.
+  BUILT_IN_USERS = { 'tomsmith' => 'SuperSecretPassword!' }.freeze
+  set :user_store, UserStore.new(dir: ENV.fetch('API_USERS_DIR', 'tmp/api_users'))
 
-    if username == params[:username]
-      if password == params[:password]
-        session[:username] = params[:username]
-        flash[:success] = 'You logged into a secure area!'
-        redirect '/secure'
+  helpers do
+    def user_store
+      settings.user_store
+    end
+
+    # :ok, :wrong_password, or :not_found.
+    def check_login(username, password)
+      if BUILT_IN_USERS.key?(username)
+        BUILT_IN_USERS[username] == password ? :ok : :wrong_password
       else
-        flash[:error] = 'Your password is invalid!'
+        user_store.authenticate(username, password)
       end
+    end
+
+    def user_exists?(username)
+      BUILT_IN_USERS.key?(username) || user_store.exists?(username)
+    end
+
+    def json_error(code, message)
+      halt code, { 'Content-Type' => 'application/json' }, JSON.generate(error: message)
+    end
+
+    # Username and password from a JSON body. check_format: also apply the
+    # limits for new users.
+    def api_credentials(check_format: true)
+      request.body.rewind if request.body.respond_to?(:rewind)
+      data = begin
+        JSON.parse(request.body.read)
+      rescue JSON::ParserError
+        json_error 400, 'Body must be valid JSON'
+      end
+      json_error 400, 'Body must be a JSON object' unless data.is_a?(Hash)
+      username, password = data.values_at('username', 'password')
+      json_error 400, 'username is required' if username.nil? || username == ''
+      json_error 400, 'password is required' if password.nil? || password == ''
+      if check_format
+        unless username.is_a?(String) && username.match?(UserStore::USERNAME)
+          json_error 400, 'username must be 1 to 64 characters: letters, digits, _ . - (not only dots)'
+        end
+        unless password.is_a?(String) && password.length <= UserStore::MAX_PASSWORD_LENGTH
+          json_error 400, "password must be 1 to #{UserStore::MAX_PASSWORD_LENGTH} characters"
+        end
+      end
+      [username, password]
+    end
+  end
+
+  post "/authenticate" do
+    case check_login(params[:username].to_s, params[:password].to_s)
+    when :ok
+      session[:username] = params[:username]
+      flash[:success] = 'You logged into a secure area!'
+      redirect '/secure'
+    when :wrong_password
+      flash[:error] = 'Your password is invalid!'
     else
       flash[:error] = 'Your username is invalid!'
     end
     redirect '/login'
   end
 
+  # A user deleted (or expired) since logging in counts as logged out.
   get '/secure' do
-    unless session[:username]
+    unless session[:username] && user_exists?(session[:username])
+      session[:username] = nil
       flash[:error] = 'You must login to view the secure area!'
       redirect '/login'
     end
-    erb :secure
+    erb :secure, locals: { username: session[:username] }
+  end
+
+  # Users API for test setup: create a user, log in with it at /login, delete it.
+  # Users expire after an hour; at 10,000 users the oldest are dropped.
+  post '/api/users' do
+    require 'json'
+    username, password = api_credentials
+    if BUILT_IN_USERS.key?(username) || user_store.create(username, password) == :exists
+      json_error 409, 'Username already exists'
+    end
+    status 201
+    content_type :json
+    JSON.generate(username: username)
+  end
+
+  delete '/api/users/:username' do |username|
+    require 'json'
+    json_error 403, "#{username} can't be deleted" if BUILT_IN_USERS.key?(username)
+    json_error 404, 'User not found' unless user_store.delete(username)
+    status 204
+    ''
+  end
+
+  # Logs in without the form: answers with the same session cookie as /authenticate.
+  post '/api/sessions' do
+    require 'json'
+    username, password = api_credentials(check_format: false)
+    json_error 401, 'Invalid username or password' unless check_login(username, password) == :ok
+    session[:username] = username
+    content_type :json
+    JSON.generate(username: username)
   end
 
   get '/logout' do

@@ -15,3 +15,6 @@ public/uploads/*
 !public/uploads/sample.json
 !public/uploads/sample.pdf
 !public/uploads/jqueryui/
+
+# Users created through /api/users
+tmp/

@@ -63,11 +63,15 @@ task :run do
 end
 
 # Boots the app with puma on a free port and yields its base URL.
+# Two puma workers, like production, so the specs also cover requests spread over processes.
 def with_app
   require 'net/http'
+  require 'tmpdir'
   require 'socket'
   port = Addrinfo.tcp('127.0.0.1', 0).bind { |s| s.local_address.ip_port }
-  pid = spawn({ 'PORT' => port.to_s }, 'bundle exec puma -C config/puma.rb -q', out: File::NULL)
+  users_dir = Dir.mktmpdir('api_users')
+  env = { 'PORT' => port.to_s, 'WEB_CONCURRENCY' => ENV.fetch('WEB_CONCURRENCY', '2'), 'API_USERS_DIR' => users_dir }
+  pid = spawn(env, 'bundle exec puma -C config/puma.rb -q', out: File::NULL)
   begin
     50.times do
       break if (Net::HTTP.get_response(URI("http://127.0.0.1:#{port}/")) rescue nil)
@@ -77,6 +81,7 @@ def with_app
   ensure
     Process.kill('TERM', pid)
     Process.wait(pid)
+    FileUtils.rm_rf(users_dir)
   end
 end
 
@@ -91,4 +96,9 @@ task :e2e do
   with_app { |url| sh({ 'BASE_URL' => url }, "bundle exec parallel_rspec -n #{processes} spec/e2e") }
 end
 
-task default: :contract
+desc 'Run the in-process tests (users store and login, with a test clock)'
+task :unit do
+  sh 'bundle exec rspec spec/unit'
+end
+
+task default: %i[unit contract]
