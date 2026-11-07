@@ -6,6 +6,7 @@ require 'sinatra/flash'
 require 'sinatra/cookies'
 require 'faker'
 require_relative 'lib/digest_auth'
+require_relative 'lib/websocket_echo'
 
 # Shared by every process (puma workers) so sessions and digest nonces
 # issued by one worker are accepted by the others.
@@ -842,6 +843,18 @@ class Public < Sinatra::Base
       end
       out << "event: done\ndata: No more updates\n\n"
     end
+  end
+
+  get '/websocket' do
+    erb :websocket
+  end
+
+  # WebSocket echo server for /websocket (see lib/websocket_echo.rb).
+  get '/websocket/echo' do
+    halt 426, { 'Upgrade' => 'websocket' }, 'Use a WebSocket client' unless WebSocket::Driver.websocket?(env)
+    halt 503, 'Too many open WebSocket connections, try again later' unless WebSocketEcho.start(env)
+    # The connection now belongs to WebSocketEcho; puma ignores this response.
+    [200, {}, []]
   end
 
   # The banner shows until the cookie_consent cookie is "all" or "necessary".

@@ -8,6 +8,7 @@ gem 'rackup', '~> 2.3'
 gem 'puma', '~> 8.0'
 gem 'rake', '~> 13.4'
 gem 'pony', '~> 1.13'
+gem 'websocket-driver', '~> 0.8' # WebSocket protocol for /websocket (no EventMachine)
 gem 'faker', '~> 3.8'
 gem 'csv', '~> 3.3' # Rakefile gen_docs; no longer a default gem
 

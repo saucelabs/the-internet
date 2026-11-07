@@ -22,4 +22,12 @@ describe 'Examples' do
     wait { @driver.current_url == "#{ENV['BASE_URL']}/" }
     expect(find(:css, 'h1.heading').text).to eq 'Welcome to the-internet'
   end
+
+  it 'Page chrome shows "powered by Sauce Labs" in the top bar and hides the GitHub ribbon' do
+    visit '/checkboxes'
+    text = @driver.execute_script("return getComputedStyle(document.querySelector('a.home-link'), '::after').content")
+    expect(text).to eq '"powered by Sauce Labs"'
+    ribbon = find(:css, 'img[alt="Fork me on GitHub"]')
+    expect(ribbon).not_to be_displayed
+  end
 end

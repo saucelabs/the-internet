@@ -3,6 +3,8 @@ require 'digest'
 require 'json'
 require 'erb'
 require 'securerandom'
+require 'websocket/driver'
+require_relative 'support/echo_client'
 
 REPO_ROOT = File.expand_path('../..', __dir__)
 
@@ -104,6 +106,30 @@ describe 'Behaviour' do
       res = client.get('/live_updates/events?count=2&interval=200')
       expect(res['content-type']).to start_with 'text/event-stream'
       expect(res.body).to eq "id: 1\ndata: Update 1 of 2\n\nid: 2\ndata: Update 2 of 2\n\nevent: done\ndata: No more updates\n\n"
+    end
+  end
+
+  describe 'WebSocket' do
+    it 'answers a plain request with 426' do
+      res = client.get('/websocket/echo')
+      expect(res.code).to eq '426'
+      expect(res['upgrade']).to eq 'websocket'
+    end
+
+    it 'greets, echoes text messages and closes cleanly' do
+      ws = EchoClient.new(BASE_URL)
+      driver = WebSocket::Driver.client(ws)
+      received = []
+      closed = nil
+      driver.on(:open) { driver.text('hello') }
+      driver.on(:message) { |event| received << event.data; driver.close if received.size == 2 }
+      driver.on(:close) { |event| closed = event.code }
+      driver.start
+      Timeout.timeout(10) { driver.parse(ws.socket.readpartial(4096)) until closed }
+      expect(received).to eq ['Connected. Send a message and the server sends it back.', 'Echo: hello']
+      expect(closed).to eq 1000
+    ensure
+      ws&.socket&.close
     end
   end
 

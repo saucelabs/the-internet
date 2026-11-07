@@ -1,3 +1,8 @@
+#0.88.0
++ Added WebSocket (/websocket): a page that sends messages to an echo server over a WebSocket
++ The top bar shows "powered by Sauce Labs" next to the title
++ The GitHub ribbon is hidden (still in the page), so it no longer covers the flash close link
+
 #0.87.2
 + The title in the top bar links to the home page
 
