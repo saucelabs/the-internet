@@ -30,6 +30,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - run: bundle exec rake unit
       - run: bundle exec rake contract
 
   e2e:

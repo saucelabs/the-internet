@@ -1,3 +1,7 @@
+#0.89.0
++ Added a users API for test setup: POST /api/users, DELETE /api/users/:username and POST /api/sessions. Created users log in at /login and expire after an hour
++ /secure shows the logged-in user in #username
+
 #0.88.0
 + Added WebSocket (/websocket): a page that sends messages to an echo server over a WebSocket
 + The top bar shows "powered by Sauce Labs" next to the title
