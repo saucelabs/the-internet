@@ -1,5 +1,4 @@
 # The Internet
-=======
 
 An example application that captures prominent and ugly functionality found on the web. Perfect for writing automated acceptance tests against.
 
@@ -7,7 +6,7 @@ Deployed and available at [https://the-internet.herokuapp.com](https://the-inter
 
 The-internet is now wholly owned by Sauce Labs Inc.!
 
-## Available Examples:
+## Available Examples
 
 + [A/B Testing](https://the-internet.herokuapp.com/abtest) - Content that changes between visits
 + [Accessibility Issues](https://the-internet.herokuapp.com/accessibility_issues) - A page with known accessibility problems for scanners like axe / and a fixed version
@@ -23,7 +22,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Checkboxes](https://the-internet.herokuapp.com/checkboxes) - Check and uncheck boxes
 + [Context Menu](https://the-internet.herokuapp.com/context_menu) - Right-click to open an alert
 + [Cookie Consent](https://the-internet.herokuapp.com/cookie_consent) - A cookie banner that comes back until you accept / reject or pick cookies
-+ [Custom Dropdown](https://the-internet.herokuapp.com/custom_dropdown) - A select list built from divs with ARIA roles instead of <select>
++ [Custom Dropdown](https://the-internet.herokuapp.com/custom_dropdown) - A select list built from divs with ARIA roles instead of `<select>`
 + [Date & Time Pickers](https://the-internet.herokuapp.com/date_pickers) - Native date and time inputs and a calendar widget built with JavaScript
 + [Digest Authentication](https://the-internet.herokuapp.com/digest_auth) (user and pass: admin) - Log in through the browser's digest auth prompt
 + [Disappearing Elements](https://the-internet.herokuapp.com/disappearing_elements) - Menu items that come and go
@@ -57,7 +56,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Modern File Download](https://the-internet.herokuapp.com/download_modern) - Downloads made with Blob / fetch and data URLs / and Content-Disposition quirks
 + [Multiple Select Dropdown](https://the-internet.herokuapp.com/multiple_dropdown) - A select list that allows many options
 + [Multiple Windows](https://the-internet.herokuapp.com/windows) - A link that opens a new window
-+ [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal <dialog> elements with Escape and focus handling
++ [Native Dialog](https://the-internet.herokuapp.com/dialog) - Modal and non-modal `<dialog>` elements with Escape and focus handling
 + [Nested Frames](https://the-internet.herokuapp.com/nested_frames) - Frames inside frames
 + [Network & Console](https://the-internet.herokuapp.com/network_console) - Requests / console messages / a JavaScript error and a CSP violation to catch with Selenium BiDi
 + [Notification Messages](https://the-internet.herokuapp.com/notification_message) - A flash message that changes on each click
@@ -137,7 +136,7 @@ Don't see an example you need or think should be here? Contribute!
 
 ## Contribution Guidelines
 
-tldr;
+TL;DR:
 
 1. Fork
 2. Build Something
@@ -148,20 +147,24 @@ tldr;
 
 Install Ruby (version in `.ruby-version`) and your dependencies:
 
-    bundle install
+```sh
+bundle install
+```
 
 Start the server:
 
-    rackup
+```sh
+rackup
+```
 
-Load the page you want to see in your browser:
-
-    http://localhost:9292/url_path
+Then open the page you want to see, e.g. http://localhost:9292/checkboxes.
 
 Or run it with Docker:
 
-    docker build -t the-internet .
-    docker run -p 5000:5000 the-internet
+```sh
+docker build -t the-internet .
+docker run -p 5000:5000 the-internet
+```
 
 Then open http://localhost:5000.
 
@@ -169,20 +172,28 @@ Then open http://localhost:5000.
 
 Run the HTTP contract suite (boots the app and checks every example):
 
-    bundle exec rake contract
+```sh
+bundle exec rake contract
+```
 
 Run the in-process tests (the users store and login, with a test clock):
 
-    bundle exec rake unit
+```sh
+bundle exec rake unit
+```
 
 Run the browser suite (Selenium, headless Chrome by default):
 
-    bundle exec rake e2e
-    BROWSER=firefox HEADLESS=false bundle exec rake e2e
+```sh
+bundle exec rake e2e
+BROWSER=firefox HEADLESS=false bundle exec rake e2e
+```
 
 Or on Sauce Labs (set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`):
 
-    TARGET=saucelabs BROWSER=safari BASE_URL=https://the-internet.herokuapp.com bundle exec rspec spec/e2e
+```sh
+TARGET=saucelabs BROWSER=safari BASE_URL=https://the-internet.herokuapp.com bundle exec rspec spec/e2e
+```
 
 ## Deploying and Releasing
 

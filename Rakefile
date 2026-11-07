@@ -22,7 +22,8 @@ def convert_to_markdown_links(examples)
   examples.each do |example|
     markdown_string << "+ [#{example[:title]}](https://the-internet.herokuapp.com#{example[:url_path]})"
     markdown_string << " (#{example[:notes]})" if example[:notes]
-    markdown_string << " - #{example[:description]}" if example[:description]
+    # HTML tags like <select> go in backticks, or GitHub drops them.
+    markdown_string << " - #{example[:description].gsub(/<\w+>/) { |tag| "`#{tag}`" }}" if example[:description]
     markdown_string << "\n"
   end
   markdown_string
