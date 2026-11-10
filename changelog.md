@@ -1,3 +1,6 @@
+#0.90.2
++ Updated nokogiri to 1.19.5 (security fixes)
+
 #0.90.1
 + Updated rack to 3.2.8 (security fixes)
 
