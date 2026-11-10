@@ -34,6 +34,7 @@
     var socket = null;
     var name = null; // set once the user joins
     var retries = 0;
+    var timer = null; // next reconnect
 
     function connected() {
       return socket !== null && socket.readyState === WebSocket.OPEN;
@@ -90,9 +91,24 @@
           return;
         }
         retries = Math.min(retries + 1, 5);
-        setTimeout(connect, retries * 1000);
+        timer = setTimeout(connect, retries * 1000);
       };
     }
+
+    // Leaving the page closes the socket, so the others see "<name> left" right away.
+    // Without this, Chrome can keep the left page and its socket open in the back/forward cache.
+    window.addEventListener('pagehide', function() {
+      clearTimeout(timer);
+      if (socket === null) return;
+      socket.onclose = null;
+      socket.close();
+      socket = null;
+    });
+
+    // Back to the page from the back/forward cache: connect (and join) again.
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) connect();
+    });
 
     document.getElementById('join-form').addEventListener('submit', function(event) {
       event.preventDefault();

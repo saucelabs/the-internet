@@ -42,8 +42,9 @@ describe 'Examples' do
     sleep 1
     expect(messages.call(bob).size).to eq 2
 
-    bob.quit
-    bob = nil
+    # Leaving the page closes the WebSocket. (Quitting the browser may not close it right
+    # away when the browser reaches the app through a tunnel, like on Sauce Labs.)
+    bob.get "#{ENV['BASE_URL']}/"
     wait { notices.call(alice).last == 'Bob left' }
   ensure
     bob&.quit
