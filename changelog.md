@@ -1,3 +1,6 @@
+#0.90.1
++ Updated rack to 3.2.8 (security fixes)
+
 #0.90.0
 + Added Chat (/chat): users in the same room see each other's messages over a WebSocket, to test with two browsers at once. Rooms with ?room=<name>
 
