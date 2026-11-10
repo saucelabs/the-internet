@@ -72,6 +72,11 @@ module E2EHelpers
     @driver.find_element(*locator)
   end
 
+  # Another browser, for scenarios with two users. The scenario quits it.
+  def start_browser(name)
+    ENV['TARGET'] == 'saucelabs' ? Driver.saucelabs(name) : Driver.local
+  end
+
   def wait(timeout = 10, &block)
     Selenium::WebDriver::Wait.new(timeout: timeout, ignore: Selenium::WebDriver::Error::NoSuchElementError).until(&block)
   end

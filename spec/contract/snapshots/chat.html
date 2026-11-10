@@ -1,0 +1,44 @@
+<div class="large-12 columns" id="content" role="main">
+  <style>
+    #messages { list-style: none; margin-left: 0; max-height: 20em; overflow-y: auto; } #messages .author { font-weight: bold; } /* .notice is also the blue flash style, with an icon: plain text here. */ #messages .notice { background: none; font-style: italic; color: #666; } #messages .notice::before { content: none; }
+  <div class="example">
+    <h3>
+      Chat
+    <p>
+      People in the same room chat in real time over a WebSocket. Type a name and join, then send messages. Every message goes to everyone in the room, you included, and everyone sees a notice when someone joins or leaves. Messages are not saved: you only see what is sent after you join. Names can be up to 30 characters and messages up to 500.
+    <p>
+      To test with two users, open this page in two browsers. Rooms keep chats apart:
+      <code>
+        /chat?room=<name>
+      , with letters, digits,
+      <code>
+        -
+      or
+      <code>
+        _
+      (default:
+      <code>
+        lobby
+      ). Tests that run in parallel should each use a random room name, so they don't see each other's messages. Wait for the status to show "Connected" before you join.
+    <p>
+      Room:
+      <strong id="room">
+        lobby
+      . Status:
+      <span id="status" role="status">
+        Connecting
+    <form id="join-form">
+      <label for="name">
+        Name
+      <input autocomplete="off" id="name" maxlength="30" type="text">
+      <button class="button" disabled="disabled" id="join" type="submit">
+        Join
+    <form id="send-form">
+      <label for="message">
+        Message
+      <input autocomplete="off" disabled="disabled" id="message" maxlength="500" type="text">
+      <button class="button" disabled="disabled" id="send" type="submit">
+        Send
+    <ul aria-label="Messages" aria-live="polite" id="messages" role="log">
+  <script>
+    (function() { var room = document.getElementById('room').textContent; var status = document.getElementById('status'); var nameInput = document.getElementById('name'); var join = document.getElementById('join'); var input = document.getElementById('message'); var send = document.getElementById('send'); var messages = document.getElementById('messages'); var socket = null; var name = null; // set once the user joins var retries = 0; function connected() { return socket !== null && socket.readyState === WebSocket.OPEN; } function update() { nameInput.disabled = name !== null; join.disabled = !connected() || name !== null; input.disabled = !connected() || name === null; send.disabled = input.disabled; } // Text goes in with textContent, so it always shows as text, never as HTML. function show(event) { var li = document.createElement('li'); if (event.type === 'message') { li.className = 'message'; var author = document.createElement('span'); author.className = 'author'; author.textContent = event.author; var text = document.createElement('span'); text.className = 'text'; text.textContent = event.text; li.appendChild(author); li.appendChild(document.createTextNode(': ')); li.appendChild(text); } else { li.className = 'notice'; li.textContent = event.text; } messages.appendChild(li); messages.scrollTop = messages.scrollHeight; } function connect() { status.textContent = 'Connecting'; var scheme = location.protocol === 'https:' ? 'wss://' : 'ws://'; socket = new WebSocket(scheme + location.host + '/chat/socket?room=' + encodeURIComponent(room)); socket.onopen = function() { retries = 0; // After a reconnect, join again with the same name. if (name !== null) socket.send(JSON.stringify({ type: 'join', name: name })); status.textContent = 'Connected'; update(); }; socket.onmessage = function(event) { show(JSON.parse(event.data)); }; socket.onclose = function(event) { socket = null; status.textContent = 'Disconnected'; update(); // 1000: the server closed an idle connection on purpose. Anything else: try again. if (event.code === 1000) { show({ type: 'notice', text: 'Disconnected: ' + (event.reason || 'closed by the server') + '. Reload the page to chat again.' }); return; } retries = Math.min(retries + 1, 5); setTimeout(connect, retries * 1000); }; } document.getElementById('join-form').addEventListener('submit', function(event) { event.preventDefault(); var value = nameInput.value.trim(); if (!connected() || name !== null || value === '') return; name = value; socket.send(JSON.stringify({ type: 'join', name: name })); update(); input.focus(); }); document.getElementById('send-form').addEventListener('submit', function(event) { event.preventDefault(); if (!connected() || name === null || input.value.trim() === '') return; socket.send(JSON.stringify({ type: 'message', text: input.value })); input.value = ''; }); connect(); })();

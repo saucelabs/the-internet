@@ -12,6 +12,7 @@ Thousands of tutorials, courses and test suites target the live site. Treat ever
 - `server.rb` — all routes. Two Rack apps:
   - `Protected` — `/digest_auth` (digest auth via `lib/digest_auth.rb`, admin/admin), mounted in `config.ru`.
   - `Public` — everything else. `/websocket/echo` hands the connection to `lib/websocket_echo.rb` (`websocket-driver`, puma full hijack, own thread).
+  - `/chat/socket` (for `/chat`) works the same way in `lib/chat_server.rb`. Events go to every puma worker on the machine through Unix datagram sockets in `CHAT_RELAY_DIR` (default `tmp/chat`), in memory only. Not shared across dynos.
 - Users API (`/api/users`, `/api/sessions`) — `lib/user_store.rb`: one file per user in `API_USERS_DIR` (default `tmp/api_users`), shared by all puma workers on a dyno, flock for atomic creates, 1-hour expiry from the file mtime, 10,000-user cap (oldest dropped). `/authenticate` and `/secure` accept these users besides `tomsmith`. Not shared across dynos (production runs one Basic dyno).
 - `config.ru` — `Rack::URLMap` mounting the two apps.
 - `views/*.erb` — one view per example; `layout.erb` is the shared shell. Some views render without layout (frames, `/windows/new`, `/javascript_error`).

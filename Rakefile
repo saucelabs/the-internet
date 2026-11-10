@@ -71,7 +71,9 @@ def with_app
   require 'socket'
   port = Addrinfo.tcp('127.0.0.1', 0).bind { |s| s.local_address.ip_port }
   users_dir = Dir.mktmpdir('api_users')
-  env = { 'PORT' => port.to_s, 'WEB_CONCURRENCY' => ENV.fetch('WEB_CONCURRENCY', '2'), 'API_USERS_DIR' => users_dir }
+  chat_dir = Dir.mktmpdir('chat')
+  env = { 'PORT' => port.to_s, 'WEB_CONCURRENCY' => ENV.fetch('WEB_CONCURRENCY', '2'), 'API_USERS_DIR' => users_dir,
+          'CHAT_RELAY_DIR' => chat_dir }
   pid = spawn(env, 'bundle exec puma -C config/puma.rb -q', out: File::NULL)
   begin
     50.times do
@@ -83,6 +85,7 @@ def with_app
     Process.kill('TERM', pid)
     Process.wait(pid)
     FileUtils.rm_rf(users_dir)
+    FileUtils.rm_rf(chat_dir)
   end
 end
 

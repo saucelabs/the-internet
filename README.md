@@ -19,6 +19,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Browser Permissions](https://the-internet.herokuapp.com/permissions) - Ask for notifications / clipboard and camera access and see each permission's state
 + [Canvas](https://the-internet.herokuapp.com/canvas) - Click and type into a canvas
 + [Challenging DOM](https://the-internet.herokuapp.com/challenging_dom) - Elements without useful ids and a canvas
++ [Chat](https://the-internet.herokuapp.com/chat) - A chat where users in the same room see each other's messages: test with two browsers at once
 + [Checkboxes](https://the-internet.herokuapp.com/checkboxes) - Check and uncheck boxes
 + [Context Menu](https://the-internet.herokuapp.com/context_menu) - Right-click to open an alert
 + [Cookie Consent](https://the-internet.herokuapp.com/cookie_consent) - A cookie banner that comes back until you accept / reject or pick cookies
@@ -114,6 +115,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
 + Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
++ Chat server: `/chat/socket?room=:name` (WebSocket, used by Chat; JSON messages)
 + WebSocket echo server: `/websocket/echo` (`ws://` or `wss://`; sends each text message back as `Echo: <text>`)
 
 ### Users API (test setup)

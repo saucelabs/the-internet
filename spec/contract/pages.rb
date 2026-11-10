@@ -97,6 +97,7 @@ PAGES = {
   '/visual_diff'                   => { text: 'Visual Differences' },
   '/download_modern'               => { text: 'Modern File Download' },
   '/websocket'                     => { text: 'WebSocket' },
+  '/chat'                          => { text: 'Chat', unreleased: true },
 }.freeze
 
 def snapshot_name(path)

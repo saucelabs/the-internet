@@ -1,3 +1,6 @@
+#0.90.0
++ Added Chat (/chat): users in the same room see each other's messages over a WebSocket, to test with two browsers at once. Rooms with ?room=<name>
+
 #0.89.1
 + Fixed the README markdown: no stray line under the title, `<select>` and `<dialog>` in descriptions show up, and commands are in code blocks
 
