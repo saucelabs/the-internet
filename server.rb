@@ -7,6 +7,7 @@ require 'sinatra/cookies'
 require 'faker'
 require_relative 'lib/digest_auth'
 require_relative 'lib/websocket_echo'
+require_relative 'lib/chat_server'
 require_relative 'lib/user_store'
 
 # Shared by every process (puma workers) so sessions and digest nonces
@@ -935,6 +936,23 @@ class Public < Sinatra::Base
     halt 426, { 'Upgrade' => 'websocket' }, 'Use a WebSocket client' unless WebSocket::Driver.websocket?(env)
     halt 503, 'Too many open WebSocket connections, try again later' unless WebSocketEcho.start(env)
     # The connection now belongs to WebSocketEcho; puma ignores this response.
+    [200, {}, []]
+  end
+
+  # Chat between browsers. ?room=<name> keeps groups apart (default: lobby).
+  get '/chat' do
+    room = params.fetch('room', 'lobby')
+    halt 400, 'Room names are 1 to 64 letters, digits, - or _' unless ChatServer::ROOM.match?(room)
+    erb :chat, locals: { room: room }
+  end
+
+  # Chat server for /chat (see lib/chat_server.rb).
+  get '/chat/socket' do
+    halt 426, { 'Upgrade' => 'websocket' }, 'Use a WebSocket client' unless WebSocket::Driver.websocket?(env)
+    room = params.fetch('room', 'lobby')
+    halt 400, 'Room names are 1 to 64 letters, digits, - or _' unless ChatServer::ROOM.match?(room)
+    halt 503, 'Too many open chat connections, try again later' unless ChatServer.start(env, room)
+    # The connection now belongs to ChatServer; puma ignores this response.
     [200, {}, []]
   end
 

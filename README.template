@@ -39,6 +39,7 @@ The-internet is now wholly owned by Sauce Labs Inc.!
 + [Status code pages](https://the-internet.herokuapp.com/status_codes/404) (`/status_codes/:code`)
 + [Subdirectory One](https://the-internet.herokuapp.com/subdirectories/one) and [Two](https://the-internet.herokuapp.com/subdirectories/two)
 + Two-Factor Login: code page (`/two_factor/code`), secure area (`/two_factor/secure`) and logout (`/two_factor/logout`), after logging in
++ Chat server: `/chat/socket?room=:name` (WebSocket, used by Chat; JSON messages)
 + WebSocket echo server: `/websocket/echo` (`ws://` or `wss://`; sends each text message back as `Echo: <text>`)
 
 ### Users API (test setup)

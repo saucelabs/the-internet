@@ -74,3 +74,4 @@ Accessibility Issues,/accessibility_issues,,A page with known accessibility prob
 Visual Differences,/visual_diff,,A card with small changes you turn on in the URL for visual testing
 Modern File Download,/download_modern,,Downloads made with Blob / fetch and data URLs / and Content-Disposition quirks
 WebSocket,/websocket,,A chat-style page that sends messages over a WebSocket and shows the echo
+Chat,/chat,,A chat where users in the same room see each other's messages: test with two browsers at once

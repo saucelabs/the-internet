@@ -4,7 +4,8 @@ require 'json'
 require 'erb'
 require 'securerandom'
 require 'websocket/driver'
-require_relative 'support/echo_client'
+require_relative 'support/websocket_client'
+require_relative 'support/chat_client'
 
 REPO_ROOT = File.expand_path('../..', __dir__)
 
@@ -117,7 +118,7 @@ describe 'Behaviour' do
     end
 
     it 'greets, echoes text messages and closes cleanly' do
-      ws = EchoClient.new(BASE_URL)
+      ws = WebSocketClient.new(BASE_URL, '/websocket/echo')
       driver = WebSocket::Driver.client(ws)
       received = []
       closed = nil
@@ -130,6 +131,92 @@ describe 'Behaviour' do
       expect(closed).to eq 1000
     ensure
       ws&.socket&.close
+    end
+  end
+
+  # rake contract boots two puma workers, so the users of a room are often on different processes.
+  describe 'Chat', :unreleased do
+    let(:room) { "test-#{SecureRandom.hex(8)}" }
+    let(:clients) { [] }
+
+    def user(name, room: self.room)
+      ChatClient.new(BASE_URL, room).tap do |client|
+        clients << client
+        expect(client.join(name)).to eq('type' => 'notice', 'text' => "#{name[0, 30]} joined") # names are cut to 30
+      end
+    end
+
+    after { clients.each(&:close) }
+
+    it 'answers a plain request with 426' do
+      res = client.get('/chat/socket')
+      expect(res.code).to eq '426'
+      expect(res['upgrade']).to eq 'websocket'
+    end
+
+    it 'rejects bad room names' do
+      expect(client.get('/chat?room=no%20spaces').code).to eq '400'
+      expect(client.get('/chat?room=').code).to eq '400'
+      expect(client.get("/chat?room=#{'a' * 65}").code).to eq '400'
+    end
+
+    it 'sends every message to everyone in the room, the sender included' do
+      alice = user('Alice')
+      bob = user('Bob')
+      expect(alice.next_event).to eq('type' => 'notice', 'text' => 'Bob joined')
+      alice.say('Hi Bob')
+      bob.say('Hi Alice')
+      [alice, bob].each do |client|
+        expect([client.next_event, client.next_event]).to contain_exactly(
+          { 'type' => 'message', 'author' => 'Alice', 'text' => 'Hi Bob' },
+          { 'type' => 'message', 'author' => 'Bob', 'text' => 'Hi Alice' }
+        )
+      end
+    end
+
+    it 'keeps rooms apart' do
+      alice = user('Alice')
+      bob = user('Bob', room: "#{room}-other")
+      bob.say('Only for my room')
+      expect(bob.next_event).to eq('type' => 'message', 'author' => 'Bob', 'text' => 'Only for my room')
+      expect(alice.next_event(1)).to be_nil
+    end
+
+    it 'tells the others when someone leaves' do
+      alice = user('Alice')
+      bob = user('Bob')
+      expect(alice.next_event).to eq('type' => 'notice', 'text' => 'Bob joined')
+      bob.close
+      expect(alice.next_event).to eq('type' => 'notice', 'text' => 'Bob left')
+    end
+
+    it 'does not show earlier messages to someone who joins later' do
+      alice = user('Alice')
+      alice.say('Before Bob')
+      expect(alice.next_event['text']).to eq 'Before Bob'
+      bob = user('Bob')
+      expect(bob.next_event(1)).to be_nil
+    end
+
+    it 'sends text as is (the page shows it as text), cut to the limits' do
+      alice = user('<b>Alice</b>')
+      alice.say('<script>alert(1)</script> & "quotes"')
+      expect(alice.next_event['text']).to eq '<script>alert(1)</script> & "quotes"'
+      bob = user('B' * 40)
+      bob.say('x' * 600)
+      event = bob.next_event
+      expect(event['author']).to eq 'B' * 30
+      expect(event['text']).to eq 'x' * 500
+    end
+
+    it 'ignores empty messages and messages before joining' do
+      alice = user('Alice')
+      alice.say('')
+      alice.say('   ')
+      expect(alice.next_event(1)).to be_nil
+      guest = ChatClient.new(BASE_URL, room).tap { |c| clients << c }
+      guest.say('Not joined')
+      expect(alice.next_event(1)).to be_nil
     end
   end
 
